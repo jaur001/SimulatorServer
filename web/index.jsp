@@ -8,12 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Restaurant Simulator</title>
   </head>
   <body>
-  $END$
-  <form action="Servlet">
-    <input type="submit">
+  Welcome to my Simulator
+  <form method="get" action="FrontServlet">
+    <input type="hidden" name="command" value="StartCommand">
+    <input type="submit"  name="Start">
   </form>
   </body>
 </html>

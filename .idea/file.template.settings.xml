@@ -3,6 +3,7 @@
   <component name="ExportableFileTemplateSettings">
     <default_templates>
       <template name="Servlet.java" reformat="true" live-template-enabled="true" />
+      <template name="VelocityServlet.java" reformat="true" live-template-enabled="true" />
     </default_templates>
     <j2ee_templates>
       <template name="Servlet Class.java" reformat="true" live-template-enabled="true" enabled="true" />

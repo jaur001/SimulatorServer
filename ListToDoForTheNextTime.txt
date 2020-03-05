@@ -1,0 +1,45 @@
+H - Las rutinas no funcionan si pongo mas de un restaurante por persona.
+P - El ID de la factura debe coger el siguiente al ultimo de la carpeta.
+H - Cada restaurante de la factura necesita un dia distinto.
+H - el dia de la rutina tiene que cambiar en cada ciclo.
+H - añadir random al nif para que sea mas bonito.
+
+P- crear distribucion para los dias que tardan en volver al restaurante.
+P - crear distribucion para el numero de personas invitadas a comer.
+P - crear distribucion para el numero de restaurantes que va el cliente
+
+H - añadir add y delete routine en el routine routineController.
+H - cambiar estructura del routineController y routinecreator.
+
+H - agregar trabajadores en funcion del numero de mesas, y sus nominas de estos de las empresas.
+P - agregar numero maximo de comensales al dia, numero de mesas x numero de comidas por hora.
+
+
+Dudas
+Trabajadores son parte de la lista de clientes y pueden ir a comer?
+
+
+
+notas:
+bespline
+crear distribucion al gusto.
+Se añadiran platos al final
+
+Nominas:	
+
+H - Datos de la empresa: Debe aparecer el nombre legal de la empresa, su domicilio fiscal, el CIF
+y el código de cuenta de cotización (código numérico que la Tesorería General de la Seguridad
+Social asigna a los empresarios y otros responsables del pago de cuotas a la Seguridad Social).
+
+H - Datos del trabajador: Nombre completo, DNI, Número de afiliación a la Seguridad Social, Categoría
+o grupo profesional, grupo de cotización, fecha de antigüedad o de ingreso a la empresa y código
+de contrato.
+
+P - Periodo de liquidación: Es el mes trabajado al que hace referencia esa nómina. Incluye la fecha
+de inicio, la fecha de finalización y el total de días.
+
+H - Salario base: Cantidad que el trabajador percibe por los días trabajados y que no puede ser inferior
+a lo establecido por el convenio que se le aplique.
+
+
+- Añadir clase generica para reader de provider y client

@@ -28,6 +28,10 @@ public class Restaurant {
     private RestaurantFinancialData financialData;
     private List<Provider> providersList = new ArrayList<>();
 
+    public Restaurant() {
+        this("xd", "xd", "xd", new PriceRange(10,20), 20, 1000);
+    }
+
     public Restaurant(int NIF, String name, String street, String telephoneNumber, PriceRange priceRange, int numberTables, double socialCapital) {
         this(name, telephoneNumber, street, priceRange, numberTables, socialCapital);
         this.NIF = NIF;
@@ -108,6 +112,10 @@ public class Restaurant {
 
     public int getNumberTables() {
         return numberTables;
+    }
+
+    public int getNumberOfWorkers(){
+        return workerList.size();
     }
 
     public List<Worker> getWorkerList() {

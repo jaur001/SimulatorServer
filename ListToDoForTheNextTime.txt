@@ -43,3 +43,4 @@ a lo establecido por el convenio que se le aplique.
 
 
 - Añadir clase generica para reader de provider y client
+- Añadir NIF a provider.

@@ -19,9 +19,7 @@ public abstract class FrontCommand {
         public void forward(String target){
             try {
                 context.getRequestDispatcher(target).forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         }

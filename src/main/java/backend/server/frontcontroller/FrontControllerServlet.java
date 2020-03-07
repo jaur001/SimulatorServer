@@ -1,13 +1,22 @@
 package backend.server.frontcontroller;
 
+import org.apache.velocity.tools.view.VelocityViewServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FrontServlet extends HttpServlet {
+public class FrontControllerServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
+        FrontCommand command = getCommand(request);
+        command.init(getServletContext(), request, response);
+        command.process();
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response){
         FrontCommand command = getCommand(request);
         command.init(getServletContext(), request, response);
         command.process();

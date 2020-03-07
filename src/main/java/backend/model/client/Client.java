@@ -11,6 +11,10 @@ public class Client {
     private RoutineList routineList;
     private int commensalNumber;
 
+    public Client(String name){
+        commensalNumber = 0;
+        this.personalData = new PersonalData(name);
+    }
 
     public Client(String[] data) {
         commensalNumber = 0;

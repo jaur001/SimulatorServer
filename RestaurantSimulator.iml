@@ -44,5 +44,10 @@
     <orderEntry type="library" name="Maven: com.github.cliftonlabs:json-simple:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity.tools:velocity-tools-view:3.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.velocity.tools:velocity-tools-view-jsp:3.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant:1.10.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.10.7" level="project" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

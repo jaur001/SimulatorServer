@@ -5,44 +5,18 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>Servlet</servlet-name>
-        <servlet-class>backend.server.Servlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Servlet</servlet-name>
-        <url-pattern>/Servlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>velocity</servlet-name>
-        <servlet-class>
-            org.apache.velocity.tools.view.VelocityViewServlet
-        </servlet-class>
-
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <servlet-class>backend.server.frontcontroller.FrontControllerServlet</servlet-class>
         <init-param>
-            <param-name>org.apache.velocity.toolbox</param-name>
-            <param-value>/WEB-INF/tools.xml</param-value>
-        </init-param>
-
-        <init-param>
-            <param-name>org.apache.velocity.properties</param-name>
-            <param-value>/WEB-INF/velocity.properties</param-value>
+            <param-name>properties</param-name>
+            <param-value>/velocity.properties</param-value>
         </init-param>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>velocity</servlet-name>
-        <url-pattern>*.vm</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>FrontServlet</servlet-name>
-        <servlet-class>backend.server.frontcontroller.FrontServlet</servlet-class>
-    </servlet>
 
     <servlet-mapping>
-        <servlet-name>FrontServlet</servlet-name>
-        <url-pattern>/FrontServlet</url-pattern>
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <url-pattern>/FrontControllerServlet</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

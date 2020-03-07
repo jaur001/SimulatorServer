@@ -18,6 +18,19 @@ public class PersonalData {
     private String telephoneNumber;
     private String cardNumber;
 
+    public PersonalData(String firstName) {
+        this.firstName = firstName;
+        this.NIF = count.getAndIncrement();
+        this.lastName = "xd";
+        this.birthDate = new Date();
+        this.gender = "xd";
+        this.job = "xd";
+        this.country = "xd";
+        this.telephoneNumber = "xd";
+        this.email = "xd";
+        this.cardNumber = "xd";
+    }
+
     public PersonalData(String[] data) {
         this.NIF = count.getAndIncrement();
         this.firstName = data[1];
@@ -69,5 +82,9 @@ public class PersonalData {
 
     public String getCardNumber() {
         return cardNumber;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

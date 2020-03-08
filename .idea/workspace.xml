@@ -6,78 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_1_10_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_launcher_1_10_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/taglibs-standard-compat-1.2.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/taglibs-standard-impl-1.2.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/taglibs-standard-jstlel-1.2.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/taglibs-standard-spec-1.2.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/ClientsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/ProvidersCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/RestaurantsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/toolbox.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/clients.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/providers.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/restaurants.jsp" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantSimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantSimulator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/client/PersonalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/client/PersonalData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/provider/Provider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/provider/Provider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/restaurant/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/restaurant/Restaurant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/Servlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/Servlet2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/FrontCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/FrontCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/FrontServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/StartCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/StartCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/client/PersonalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/client/PersonalData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/provider/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/provider/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/restaurant/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/Servlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/Servlet2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontControllerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/model/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/model/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/model/client/PersonalData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/model/client/PersonalData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/model/provider/Provider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/model/provider/Provider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/model/restaurant/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/model/restaurant/Restaurant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/Servlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/Servlet2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/FrontCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/FrontCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/FrontServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/StartCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/StartCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,11 +181,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -278,8 +204,18 @@
       <workItem from="1583433111568" duration="6941000" />
       <workItem from="1583520734596" duration="12198000" />
       <workItem from="1583588952158" duration="5857000" />
-      <workItem from="1583602969019" duration="1400000" />
+      <workItem from="1583602969019" duration="1606000" />
+      <workItem from="1583606719516" duration="2832000" />
+      <workItem from="1583703580161" duration="761000" />
     </task>
+    <task id="LOCAL-00001" summary="Added views for the webage and the routes for it.">
+      <created>1583604541086</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583604541086</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +224,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Added views for the webage and the routes for it." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added views for the webage and the routes for it." />
   </component>
   <component name="WindowStateProjectService">
     <state x="331" y="58" key="#Project_Structure" timestamp="1583436552150">
@@ -325,99 +262,99 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583592756764" />
-    <state x="364" y="0" key="CommitChangelistDialog2" timestamp="1583604468738">
+    <state x="364" y="0" key="CommitChangelistDialog2" timestamp="1583604539129">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="259" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1583432665590" />
-    <state x="364" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468738" />
+    <state x="364" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1583604539129" />
     <state x="519" y="141" key="FileChooserDialogImpl" timestamp="1583433260148">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1583433260148" />
-    <state width="1293" height="15" key="GridCell.Tab.0.bottom" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.0.bottom" timestamp="1583604576083">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="15" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.0.center" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576083" />
+    <state width="1293" height="15" key="GridCell.Tab.0.center" timestamp="1583604576083">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="15" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.0.left" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576083" />
+    <state width="1293" height="15" key="GridCell.Tab.0.left" timestamp="1583604576083">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942803" />
     <state width="905" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653575" />
-    <state width="1293" height="15" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.0.right" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576083" />
+    <state width="1293" height="15" key="GridCell.Tab.0.right" timestamp="1583604576083">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="15" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.1.bottom" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576083" />
+    <state width="1293" height="15" key="GridCell.Tab.1.bottom" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.1.center" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.1.center" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="15" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.1.left" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.1.left" timestamp="1583604576083">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="15" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.1.right" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576083" />
+    <state width="1293" height="15" key="GridCell.Tab.1.right" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.2.bottom" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.2.bottom" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.2.center" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.2.center" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.2.left" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.2.left" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
-    <state width="1293" height="15" key="GridCell.Tab.2.right" timestamp="1583604468797">
+    <state width="1293" height="15" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
+    <state width="1293" height="15" key="GridCell.Tab.2.right" timestamp="1583604576084">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="15" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604468797" />
+    <state width="1293" height="15" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583604576084" />
     <state x="213" y="39" key="Maven.ArtifactSearchDialog" timestamp="1583417223668">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -427,11 +364,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="440" y="114" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1583436140399" />
-    <state x="533" y="293" key="com.intellij.ide.util.TipDialog" timestamp="1583602973489">
+    <state x="533" y="293" key="com.intellij.ide.util.TipDialog" timestamp="1583703581851">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583411786415" />
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1583432429808" />
-    <state x="533" y="293" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583602973489" />
+    <state x="533" y="293" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583703581851" />
   </component>
 </project>

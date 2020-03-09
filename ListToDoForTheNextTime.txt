@@ -44,3 +44,5 @@ a lo establecido por el convenio que se le aplique.
 
 - Añadir clase generica para reader de provider y client
 - Añadir NIF a provider.
+- Meter routine dentro de paquete cliente junto con clientLoader
+- Meter Time como View y Threads en el paquete Controller

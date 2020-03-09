@@ -11,8 +11,8 @@ import java.util.List;
 
 public class RoutineThread {
 
-    public static void setClientRoutines(List<Client> clients, List<Restaurant> restaurants) {
-        clients.parallelStream().forEach(client -> setClientRoutine(client, restaurants));
+    public static void setClientRoutines(List<Client> clientList, List<Restaurant> restaurants) {
+        clientList.parallelStream().forEach(client -> setClientRoutine(client, restaurants));
     }
 
     private static void setClientRoutine(Client client, List<Restaurant> restaurants) {

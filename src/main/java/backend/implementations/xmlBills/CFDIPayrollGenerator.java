@@ -90,7 +90,7 @@ public class CFDIPayrollGenerator implements PayrollGenerator {
         bill.appendChild(clientElement);
     }
     private void appendTimeWorked(Element bill) {
-        Element timeWorked = appendElement("cfdi:Settlement Period");
+        Element timeWorked = appendElement("cfdi:SettlementPeriod");
         timeWorked.setAttribute("Month", Year.getActualMonth()+"");
         bill.appendChild(timeWorked);
     }

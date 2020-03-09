@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Simulator" uuid="1446b4aa-39c2-4036-927f-fc9f366a5d7d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\out\artifacts\RestaurantSimulator_war_exploded\Simulator.db</jdbc-url>
+    </data-source>
+  </component>
+</project>

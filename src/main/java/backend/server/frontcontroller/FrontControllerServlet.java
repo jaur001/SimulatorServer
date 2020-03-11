@@ -1,6 +1,6 @@
 package backend.server.frontcontroller;
 
-import org.apache.velocity.tools.view.VelocityViewServlet;
+import backend.server.commands.UnknownCommand;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

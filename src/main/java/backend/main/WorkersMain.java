@@ -2,8 +2,8 @@ package backend.main;
 
 import backend.implementations.xmlBills.CFDIBillGenerator;
 import backend.model.restaurant.Restaurant;
-import backend.threads.initializers.RestaurantThread;
-import backend.threads.initializers.WorkerThread;
+import backend.model.threads.initializers.RestaurantThread;
+import backend.model.threads.initializers.WorkerThread;
 
 import java.util.List;
 

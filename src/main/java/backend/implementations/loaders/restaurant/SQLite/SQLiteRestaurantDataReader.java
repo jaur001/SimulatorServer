@@ -2,7 +2,7 @@ package backend.implementations.loaders.restaurant.SQLite;
 
 import backend.implementations.loaders.restaurant.tripAvisor.PriceRange;
 import backend.model.restaurant.Restaurant;
-import backend.utils.RestaurantUtils;
+import backend.model.utils.RestaurantUtils;
 import backend.view.loaders.restaurant.RestaurantDataReader;
 
 import java.sql.ResultSet;

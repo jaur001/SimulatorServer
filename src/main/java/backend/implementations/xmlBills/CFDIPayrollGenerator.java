@@ -5,7 +5,7 @@ import backend.model.restaurant.worker.Payroll;
 import backend.model.restaurant.worker.Worker;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import backend.time.Year;
+import backend.model.time.Year;
 import backend.view.bills.PayrollGenerator;
 
 import javax.xml.parsers.DocumentBuilder;

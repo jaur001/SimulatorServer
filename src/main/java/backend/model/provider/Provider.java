@@ -12,17 +12,6 @@ public class Provider {
     private ProviderFinancialData financialData;
     private double productPrice;
 
-    public Provider() {
-        this.product = Product.Egg;
-        this.companyName = "xd";
-        this.creationDate = "xd";
-        this.ownerName = "xd";
-        this.street = "xd";
-        this.telephoneNumber = "xd";
-        this.financialData = new ProviderFinancialData(1000);
-        this.productPrice = 10;
-    }
-
     public Provider(String[] data, double socialCapital) {
         this.product = null;
         this.companyName = data[0];

@@ -1,7 +1,7 @@
 package backend.implementations.loaders.provider.product;
 
 import backend.model.provider.Product;
-import backend.utils.MathUtils;
+import backend.model.utils.MathUtils;
 import backend.view.loaders.provider.product.ProductInitializer;
 
 public class RandomProductInitializer implements ProductInitializer {

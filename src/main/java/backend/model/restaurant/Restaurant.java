@@ -4,7 +4,7 @@ import backend.implementations.loaders.restaurant.tripAvisor.PriceRange;
 import backend.model.financialData.RestaurantFinancialData;
 import backend.model.provider.Provider;
 import backend.model.restaurant.worker.Worker;
-import backend.utils.MathUtils;
+import backend.model.utils.MathUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -28,11 +28,7 @@ public class Restaurant {
     private RestaurantFinancialData financialData;
     private List<Provider> providersList = new ArrayList<>();
 
-    public Restaurant() {
-        this("xd", "xd", "xd", new PriceRange(10,20), 20, 1000);
-    }
-
-    public Restaurant(int NIF, String name, String street, String telephoneNumber, PriceRange priceRange, int numberTables, double socialCapital) {
+    public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int numberTables, double socialCapital) {
         this(name, telephoneNumber, street, priceRange, numberTables, socialCapital);
         this.NIF = NIF;
     }

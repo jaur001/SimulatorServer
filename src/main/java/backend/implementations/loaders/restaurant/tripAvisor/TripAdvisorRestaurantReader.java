@@ -32,6 +32,15 @@ public class TripAdvisorRestaurantReader implements RestaurantReader {
         return restaurantList;
     }
 
+    private Document connect(int j) throws IOException {
+        return Jsoup.connect(RESTAURANT_WEBPAGE_SEARCHER + j*30 + HTML_FILE).get();
+    }
+
+    private Elements getRestaurantList(Document doc) {
+        Element topRestaurant = doc.getElementById(RESTAURANT_COLLECTION);
+        return topRestaurant.getElementsByClass(RESTAURANT_SELECTOR);
+    }
+
     private Restaurant readRestaurant(Element i) throws IOException {
         Document doc = connectToRestaurantPage(i);
         return new TripAdvisorRestaurantDataReader().readData(doc);
@@ -41,15 +50,6 @@ public class TripAdvisorRestaurantReader implements RestaurantReader {
         Document doc;
         doc = Jsoup.connect(WEBPAGE +i.attr(HREF)).get();
         return doc;
-    }
-
-    private Elements getRestaurantList(Document doc) {
-        Element topRestaurant = doc.getElementById(RESTAURANT_COLLECTION);
-        return topRestaurant.getElementsByClass(RESTAURANT_SELECTOR);
-    }
-
-    private Document connect(int j) throws IOException {
-        return Jsoup.connect(RESTAURANT_WEBPAGE_SEARCHER + j*30 + HTML_FILE).get();
     }
 
 }

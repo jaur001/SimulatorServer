@@ -1,7 +1,7 @@
 package backend.model.client;
 
 import backend.model.client.routine.RoutineList;
-import backend.utils.BillsUtils;
+import backend.model.utils.BillsUtils;
 
 import java.util.Date;
 
@@ -11,10 +11,6 @@ public class Client {
     private RoutineList routineList;
     private int commensalNumber;
 
-    public Client(String name){
-        commensalNumber = 0;
-        this.personalData = new PersonalData(name);
-    }
 
     public Client(String[] data) {
         commensalNumber = 0;

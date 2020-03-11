@@ -2,7 +2,7 @@ package backend.implementations.loaders.routine;
 
 import backend.model.client.routine.Routine;
 import backend.model.restaurant.Restaurant;
-import backend.utils.RoutineUtils;
+import backend.model.utils.RoutineUtils;
 import backend.view.loaders.routine.RoutineController;
 
 import java.util.*;

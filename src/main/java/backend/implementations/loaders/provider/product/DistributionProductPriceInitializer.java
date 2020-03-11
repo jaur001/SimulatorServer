@@ -1,7 +1,7 @@
 package backend.implementations.loaders.provider.product;
 
 import backend.model.provider.Product;
-import backend.utils.ProviderUtils;
+import backend.model.utils.ProviderUtils;
 import backend.view.loaders.provider.product.ProductPriceInitializer;
 
 public class DistributionProductPriceInitializer implements ProductPriceInitializer {

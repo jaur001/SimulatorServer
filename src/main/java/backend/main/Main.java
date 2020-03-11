@@ -8,13 +8,12 @@ import backend.implementations.xmlBills.CFDIBillGenerator;
 import backend.implementations.xmlBills.CFDIPayrollGenerator;
 import backend.model.client.Client;
 import backend.model.provider.Provider;
-import backend.threads.initializers.RestaurantThread;
-import backend.threads.initializers.RoutineThread;
-import backend.threads.initializers.WorkerThread;
+import backend.model.threads.initializers.RoutineThread;
+import backend.model.threads.initializers.WorkerThread;
 import backend.model.restaurant.Restaurant;
-import backend.threads.initializers.provider.ProductInitializerThread;
-import backend.threads.initializers.provider.ProvidingThread;
-import backend.time.Time;
+import backend.model.threads.initializers.provider.ProductInitializerThread;
+import backend.model.threads.initializers.provider.ProvidingThread;
+import backend.model.time.Time;
 
 import java.util.List;
 
@@ -48,8 +47,8 @@ public class Main {
         Time time = new Time(restaurantList,clientList,providerList);
         while(true){
             time.play();
-            for (Client i : clientList) {
-                i.printRoutines();
+            for (Client client : clientList) {
+                client.printRoutines();
             }
         }
 

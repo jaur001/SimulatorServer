@@ -1,6 +1,6 @@
 package backend.model.client;
 
-import backend.utils.MathUtils;
+import backend.model.utils.MathUtils;
 
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,18 +18,6 @@ public class PersonalData {
     private String telephoneNumber;
     private String cardNumber;
 
-    public PersonalData(String firstName) {
-        this.firstName = firstName;
-        this.NIF = count.getAndIncrement();
-        this.lastName = "xd";
-        this.birthDate = new Date();
-        this.gender = "xd";
-        this.job = "xd";
-        this.country = "xd";
-        this.telephoneNumber = "xd";
-        this.email = "xd";
-        this.cardNumber = "xd";
-    }
 
     public PersonalData(String[] data) {
         this.NIF = count.getAndIncrement();

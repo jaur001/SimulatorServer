@@ -33,7 +33,7 @@ public class CFDIBillGenerator implements BillGenerator {
     }
 
     public void generateBill(Eating eating){
-        System.out.println("New Bill -> Client : " + eating.getClient().getFirstName() + ", Restaurant: " + eating.getRestaurant().getName() + ", amount: " + eating.getBill().getFinalPrice());
+        System.out.println("New Bill -> Client : " + eating.getClient().getFirstName() + ", Restaurant: " + eating.getRestaurant().getName() + ", amount: " + eating.getPlateBill().getFinalPrice());
         try {
             createBill(eating);
 
@@ -72,7 +72,7 @@ public class CFDIBillGenerator implements BillGenerator {
         bill.setAttribute("paymentType","1");
         bill.setAttribute("Location",eating.getRestaurant().getStreet());
         bill.setAttribute("Currency", "Euro");
-        bill.setAttribute("Amount", eating.getBill().getFinalPrice()+"");
+        bill.setAttribute("Amount", eating.getPlateBill().getFinalPrice()+"");
     }
 
     private void appendClientData(Client client, Element bill) {

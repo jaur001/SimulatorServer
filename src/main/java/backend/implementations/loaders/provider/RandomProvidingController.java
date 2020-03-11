@@ -2,7 +2,7 @@ package backend.implementations.loaders.provider;
 
 import backend.model.provider.Product;
 import backend.model.provider.Provider;
-import backend.utils.MathUtils;
+import backend.model.utils.MathUtils;
 import backend.view.loaders.provider.providing.ProvidingController;
 
 import java.util.List;

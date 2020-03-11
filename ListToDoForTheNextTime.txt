@@ -44,4 +44,8 @@ a lo establecido por el convenio que se le aplique.
 
 - Añadir clase generica para reader de provider y client
 - Añadir NIF a provider.
-- Añadir Clase generica para CFDI generator-
+- Añadir Clase generica para CFDI generator
+- Strategy
+- Memento
+localDAte
+Sniffer

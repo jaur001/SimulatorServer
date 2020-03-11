@@ -3,8 +3,8 @@ package backend.implementations.loaders.restaurant.tripAvisor;
 import backend.model.restaurant.Restaurant;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import backend.utils.MathUtils;
-import backend.utils.RestaurantUtils;
+import backend.model.utils.MathUtils;
+import backend.model.utils.RestaurantUtils;
 import backend.view.loaders.restaurant.RestaurantDataReader;
 
 public class TripAdvisorRestaurantDataReader implements RestaurantDataReader {
@@ -14,7 +14,7 @@ public class TripAdvisorRestaurantDataReader implements RestaurantDataReader {
     public static final int MAXPRICE_MIN = 20;
     public static final int MAXPRICE_MAX = 50;
     public static final String NAME = "ui_header h1";
-    public static final String TELEPHONE = "detail  is-hidden-mobile";
+    public static final String TELEPHONE = "detail  ui_link level_4 is-hidden-mobile";
     public static final String STREET = "street-address";
     private static double intialSocialCapital = 10000;
 
@@ -49,9 +49,7 @@ public class TripAdvisorRestaurantDataReader implements RestaurantDataReader {
 
     private String getStreet(Document doc) {
         Elements streetList = doc.getElementsByClass(STREET);
-        if (streetList.hasText()) {
-            return streetList.first().text();
-        }
+        if (streetList.hasText())return streetList.first().text();
         return "";
     }
 }

@@ -1,7 +1,7 @@
 package backend.implementations.loaders.CSV;
 
 import backend.model.provider.Provider;
-import backend.utils.RestaurantUtils;
+import backend.model.utils.RestaurantUtils;
 import backend.view.loaders.provider.ProviderLoader;
 
 import java.io.BufferedReader;

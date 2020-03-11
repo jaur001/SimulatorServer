@@ -3,8 +3,8 @@ package backend.implementations.loaders.routine;
 import backend.model.client.routine.Counter;
 import backend.model.client.routine.Routine;
 import backend.model.restaurant.Restaurant;
-import backend.utils.MathUtils;
-import backend.utils.RoutineUtils;
+import backend.model.utils.MathUtils;
+import backend.model.utils.RoutineUtils;
 import backend.view.loaders.routine.RoutineCreator;
 
 import java.util.List;

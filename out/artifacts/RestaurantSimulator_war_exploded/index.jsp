@@ -1,6 +1,6 @@
 <%@ page import="backend.implementations.xmlBills.CFDIBillGenerator" %>
 <%@ page import="backend.implementations.xmlBills.CFDIPayrollGenerator" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <title>Restaurant Simulator</title>
@@ -33,7 +33,9 @@
   </nav>
   Welcome to my Simulator
   <form method="post" action="FrontControllerServlet">
-    <input type="text" name="clientRowNumber">
+    <label>
+      <input type="text" name="clientRowNumber">
+    </label>
     <input type="hidden" name="command" value="StartCommand">
     <input type="submit"  value="Start">
   </form>

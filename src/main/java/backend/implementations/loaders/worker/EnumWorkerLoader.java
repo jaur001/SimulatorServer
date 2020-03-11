@@ -2,7 +2,7 @@ package backend.implementations.loaders.worker;
 
 import backend.model.restaurant.worker.Job;
 import backend.model.restaurant.worker.Worker;
-import backend.utils.RestaurantUtils;
+import backend.model.utils.RestaurantUtils;
 import backend.view.loaders.worker.WorkerLoader;
 
 import java.util.Arrays;

@@ -37,7 +37,7 @@ public class TripAdvisorPriceParser implements PriceParser {
     }
 
     private static PriceRange parsePrice(String text) {
-        String price = getPriceSection(text); // Sometimes it has more details, not only price
+        String price = getPriceSection(text.replace(".","")); // Sometimes it has more details, not only price
         return new PriceRange(getMinPrice(price),getMaxPrice(price));
     }
 

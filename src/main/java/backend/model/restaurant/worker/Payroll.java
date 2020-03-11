@@ -1,7 +1,7 @@
 package backend.model.restaurant.worker;
 
 import backend.model.restaurant.Restaurant;
-import backend.time.Time;
+import backend.model.time.Time;
 
 import java.util.Date;
 

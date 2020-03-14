@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="backend.model.client.Client" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="backend.model.simulables.client.Client" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Clients</title>

@@ -1,6 +1,6 @@
 package backend.utils;
 
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.ArrayList;

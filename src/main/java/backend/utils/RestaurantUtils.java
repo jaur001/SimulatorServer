@@ -1,6 +1,6 @@
 package backend.utils;
 
-import backend.model.restaurant.worker.Job;
+import backend.model.simulables.restaurant.worker.Job;
 import org.apache.commons.math3.distribution.BetaDistribution;
 
 import java.util.HashMap;

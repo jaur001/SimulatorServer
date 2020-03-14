@@ -1,6 +1,6 @@
 package backend.implementations.loaders.restaurant.SQLite;
 
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 import backend.view.loaders.restaurant.DatabaseRestaurantWriter;
 
 import java.sql.*;

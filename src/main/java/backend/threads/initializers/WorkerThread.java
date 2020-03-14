@@ -1,7 +1,7 @@
 package backend.threads.initializers;
 
 import backend.implementations.loaders.worker.EnumWorkerLoader;
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 
 import java.util.List;
 

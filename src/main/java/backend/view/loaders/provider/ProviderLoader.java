@@ -1,9 +1,9 @@
 package backend.view.loaders.provider;
 
-import backend.model.provider.Provider;
+import backend.model.simulables.provider.Provider;
 
 import java.util.List;
 
 public interface ProviderLoader {
-    List<Provider> load(String url, int rowLength);
+    List<Provider> load(int rowLength);
 }

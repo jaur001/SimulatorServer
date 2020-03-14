@@ -1,6 +1,6 @@
 package backend.implementations.loaders.restaurant.tripAvisor;
 
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import backend.utils.MathUtils;

@@ -1,12 +1,6 @@
-<%@ page import="backend.model.provider.Provider" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: PROPIETARIO
-  Date: 07/03/2020
-  Time: 14:53
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="backend.model.simulables.provider.Provider" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Providers</title>

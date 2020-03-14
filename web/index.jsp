@@ -1,5 +1,4 @@
-<%@ page import="backend.implementations.xmlBills.CFDIBillGenerator" %>
-<%@ page import="backend.implementations.xmlBills.CFDIPayrollGenerator" %>
+<%@ page import="backend.model.bill.generator.CFDIBillGenerator" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>

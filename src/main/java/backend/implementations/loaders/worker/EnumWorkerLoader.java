@@ -1,7 +1,7 @@
 package backend.implementations.loaders.worker;
 
-import backend.model.restaurant.worker.Job;
-import backend.model.restaurant.worker.Worker;
+import backend.model.simulables.restaurant.worker.Job;
+import backend.model.simulables.restaurant.worker.Worker;
 import backend.utils.RestaurantUtils;
 import backend.view.loaders.worker.WorkerLoader;
 

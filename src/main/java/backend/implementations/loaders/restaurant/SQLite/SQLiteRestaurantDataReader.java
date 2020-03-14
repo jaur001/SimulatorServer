@@ -1,7 +1,7 @@
 package backend.implementations.loaders.restaurant.SQLite;
 
 import backend.implementations.loaders.restaurant.tripAvisor.PriceRange;
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 import backend.utils.RestaurantUtils;
 import backend.view.loaders.restaurant.RestaurantDataReader;
 

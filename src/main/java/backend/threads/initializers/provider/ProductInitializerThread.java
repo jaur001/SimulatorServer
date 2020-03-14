@@ -2,7 +2,7 @@ package backend.threads.initializers.provider;
 
 import backend.implementations.loaders.provider.product.DistributionProductPriceInitializer;
 import backend.implementations.loaders.provider.product.RandomProductInitializer;
-import backend.model.provider.Provider;
+import backend.model.simulables.provider.Provider;
 import java.util.List;
 
 public class ProductInitializerThread{

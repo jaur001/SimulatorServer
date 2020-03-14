@@ -1,10 +1,10 @@
 package backend.threads.initializers;
 
-import backend.implementations.loaders.routine.DistributionRoutineController;
-import backend.model.client.Client;
-import backend.model.client.routine.Routine;
-import backend.model.client.routine.RoutineList;
-import backend.model.restaurant.Restaurant;
+import backend.implementations.routine.DistributionRoutineController;
+import backend.model.simulables.client.Client;
+import backend.model.simulables.client.routineList.routine.Routine;
+import backend.model.simulables.client.routineList.RoutineList;
+import backend.model.simulables.restaurant.Restaurant;
 import backend.utils.RoutineUtils;
 
 import java.util.List;

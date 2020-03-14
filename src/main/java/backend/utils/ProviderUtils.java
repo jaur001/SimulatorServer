@@ -1,6 +1,6 @@
 package backend.utils;
 
-import backend.model.provider.Product;
+import backend.model.simulables.provider.Product;
 
 import java.util.HashMap;
 import java.util.Map;

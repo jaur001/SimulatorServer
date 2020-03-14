@@ -1,6 +1,6 @@
 package backend.view.loaders.restaurant;
 
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 
 
 public interface RestaurantDataReader {

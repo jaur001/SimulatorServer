@@ -1,6 +1,6 @@
 package backend.view.loaders.restaurant;
 
-import backend.model.restaurant.Restaurant;
+import backend.model.simulables.restaurant.Restaurant;
 
 import java.io.IOException;
 import java.util.List;

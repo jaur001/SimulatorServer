@@ -1,6 +1,6 @@
 package backend.threads;
 
-import backend.model.client.Client;
+import backend.model.simulables.client.Client;
 
 import java.util.List;
 

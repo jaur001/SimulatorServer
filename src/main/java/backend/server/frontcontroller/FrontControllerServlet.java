@@ -1,6 +1,6 @@
 package backend.server.frontcontroller;
 
-import org.apache.velocity.tools.view.VelocityViewServlet;
+import backend.server.commands.UnknownCommand;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ public class FrontControllerServlet extends HttpServlet {
 
     private Class getCommandClass(HttpServletRequest request) {
         try {
-            return Class.forName("backend.server.frontcontroller." + request.getParameter("command"));
+            return Class.forName("backend.server.commands." + request.getParameter("command"));
         } catch (ClassNotFoundException e) {
             return UnknownCommand.class;
         }

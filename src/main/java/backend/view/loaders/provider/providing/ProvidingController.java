@@ -1,7 +1,7 @@
 package backend.view.loaders.provider.providing;
 
-import backend.model.provider.Product;
-import backend.model.provider.Provider;
+import backend.model.simulables.provider.Product;
+import backend.model.simulables.provider.Provider;
 
 import java.util.List;
 

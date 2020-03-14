@@ -1,6 +1,6 @@
-<%@ page import="backend.model.restaurant.Restaurant" %>
+<%@ page import="backend.model.simulables.restaurant.Restaurant" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Restaurants</title>

@@ -25,6 +25,8 @@
             <th>birthDate</th>
             <th>Gender</th>
             <th>Job</th>
+            <th>Salary</th>
+            <th>Salary Spent</th>
             <th>Country</th>
             <th>Telephone Number</th>
             <th>Email</th>
@@ -41,6 +43,8 @@
             <td><%=client.getBirthDate()%></td>
             <td><%=client.getGender()%></td>
             <td><%=client.getJob()%></td>
+            <td><%=client.getSalary()%></td>
+            <td><%=client.getSalarySpent()%></td>
             <td><%=client.getCountry()%></td>
             <td><%=client.getTelephoneNumber()%></td>
             <td><%=client.getEmail()%></td>

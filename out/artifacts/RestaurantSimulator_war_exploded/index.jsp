@@ -12,19 +12,19 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <form method="post" action="FrontControllerServlet">
-          <input type="hidden" name="command" value="ClientsCommand">
+          <input type="hidden" name="command" value="ShowClientsCommand">
           <input type="submit"  value="Clients">
         </form>
       </div>
       <div class="navbar-header">
         <form method="post" action="FrontControllerServlet">
-          <input type="hidden" name="command" value="ProvidersCommand">
+          <input type="hidden" name="command" value="ShowProvidersCommand">
           <input type="submit"  value="Providers">
         </form>
       </div>
       <div class="navbar-header">
         <form method="post" action="FrontControllerServlet">
-          <input type="hidden" name="command" value="RestaurantsCommand">
+          <input type="hidden" name="command" value="ShowRestaurantsCommand">
           <input type="submit"  value="Restaurants">
         </form>
       </div>
@@ -36,7 +36,7 @@
       <input type="text" name="clientRowNumber">
     </label>
     <input type="hidden" name="command" value="StartCommand">
-    <input type="submit"  value="Start">
+    <input type="submit"  value="Start/Stop">
   </form>
   </body>
 </html>

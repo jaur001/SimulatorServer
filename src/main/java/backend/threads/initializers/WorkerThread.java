@@ -12,7 +12,7 @@ public class WorkerThread extends Thread{
     }
 
     private static void addWorker(Restaurant restaurant){
-        new EnumWorkerLoader().load(restaurant.getNumberTables())
+        new EnumWorkerLoader().load(restaurant.getTables())
                 .forEach(restaurant::addWorker);
     }
 

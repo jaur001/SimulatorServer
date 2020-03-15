@@ -5,19 +5,21 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.TimeLine;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Main {
     public static void main(String[] args) {
         int clientCount = 1;
         int providerCount = 100;
         int restaurantCount = 30;
-        String uriClients = "./CSVFiles/Clients.csv";
-        String uriProviders = "./CSVFiles/Providers.csv";
+        Simulation.setUriClient("./CSVFiles/Clients.csv");
+        Simulation.setUriProvider("./CSVFiles/Providers.csv");
 
         CFDIBillGenerator.setUriSales("./xmlFiles/EatingBills/");
         CFDIBillGenerator.setUriPayrolls("./xmlFiles/Payrolls/");
         SQLiteRestaurantReader.setSQLiteUrl("jdbc:sqlite:Simulator.db");
 
-        Simulation.execute(new TimeLine(Simulation.init(providerCount,restaurantCount,clientCount,uriClients,uriProviders)));
+        Simulation.execute(providerCount,restaurantCount,clientCount);
 
     }
 }

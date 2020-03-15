@@ -5,6 +5,7 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.NIFCreator.CompanyNIFCreator;
 import backend.model.bill.bills.ProductPurchase;
 import backend.model.financialData.RestaurantFinancialData;
+import backend.model.simulables.client.Client;
 import backend.model.simulables.provider.Provider;
 import backend.model.bill.bills.Payroll;
 import backend.model.simulables.restaurant.worker.Worker;
@@ -13,6 +14,8 @@ import backend.model.simulation.TimeLine;
 import backend.utils.MathUtils;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
@@ -26,25 +29,29 @@ public class Restaurant implements Simulable {
     private String street;
     private String telephoneNumber;
     private PriceRange priceRange;
-    private int numberTables;
+    private int tables;
+    private AtomicInteger tablesAvailable;
+    private static final int eatingsPerTable = 6;
 
     private List<Worker> workerList;
     private RestaurantFinancialData financialData;
-    private List<Provider> providersList = new ArrayList<>();
+    private List<Provider> providersList;
 
-    public Restaurant(int NIF, String name, String street, String telephoneNumber, PriceRange priceRange, int numberTables, double socialCapital) {
-        this(name, telephoneNumber, street, priceRange, numberTables, socialCapital);
+    public Restaurant(int NIF, String name, String street, String telephoneNumber, PriceRange priceRange, int tables, double socialCapital) {
+        this(name, telephoneNumber, street, priceRange, tables, socialCapital);
         this.NIF = NIF;
     }
 
-    public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int numberTables, double socialCapital) {
+    public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables, double socialCapital) {
         this.NIF = new CompanyNIFCreator().create();
         this.name = name;
         this.telephoneNumber = telephoneNumber;
         this.street = street;
         this.priceRange = priceRange;
-        this.numberTables = numberTables;
+        this.tables = tables;
+        this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
         this.workerList = new ArrayList<>();
+        this.providersList = new ArrayList<>();
         this.financialData = new RestaurantFinancialData(socialCapital);
     }
 
@@ -73,7 +80,7 @@ public class Restaurant implements Simulable {
         }
     }
 
-    public void addSale(double amount){
+    public void payEating(double amount){
         financialData.addSale(amount);
     }
 
@@ -110,29 +117,18 @@ public class Restaurant implements Simulable {
         return priceRange.getMaxPrice();
     }
 
-    public int getNumberTables() {
-        return numberTables;
+    public int getTables() {
+        return tables;
     }
 
     public int getNumberOfWorkers(){
         return workerList.size();
     }
 
-    public List<Worker> getWorkerList() {
-        return workerList;
-    }
-
     public RestaurantFinancialData getFinancialData() {
         return financialData;
     }
 
-    public List<Provider> getProvidersList() {
-        return providersList;
-    }
-
-    public String printPriceRange() {
-        return getMinPricePlate() + " - " + getMaxPricePlate();
-    }
 
 
     @Override
@@ -142,5 +138,19 @@ public class Restaurant implements Simulable {
             workerList.forEach(worker -> new CFDIBillGenerator().generateBill(new Payroll(worker, this)));
             providersList.forEach(provider -> new CFDIBillGenerator().generateBill(new ProductPurchase(provider,this)));
         }
+        restartTablesAvailable();
+    }
+
+    private void restartTablesAvailable() {
+        tablesAvailable.set(tables*eatingsPerTable);
+    }
+
+    public boolean acceptClient(Client client) {
+        int tablesNeeded = (client.getPeopleInvited()+1)/4 + (client.getPeopleInvited()+1)%4==0? 0 : 1;
+        if(tablesAvailable.get()-tablesNeeded >= 0){
+            tablesAvailable.set(tablesAvailable.get()-tablesNeeded);
+            return true;
+        }
+        return false;
     }
 }

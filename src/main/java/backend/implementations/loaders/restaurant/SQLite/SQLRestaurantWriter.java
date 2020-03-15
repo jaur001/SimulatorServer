@@ -93,7 +93,7 @@ public class SQLRestaurantWriter implements DatabaseRestaurantWriter {
         preparedStatement.setString(4, restaurant.getTelephoneNumber());
         preparedStatement.setInt(5, restaurant.getMinPricePlate());
         preparedStatement.setInt(6, restaurant.getMaxPricePlate());
-        preparedStatement.setInt(7, restaurant.getNumberTables());
+        preparedStatement.setInt(7, restaurant.getTables());
     }
 
     private void disconnect() {

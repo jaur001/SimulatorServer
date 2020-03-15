@@ -14,32 +14,86 @@ import backend.threads.initializers.provider.ProvidingThread;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Simulation {
 
-    public static List<Simulable> init(int providerCount, int restaurantCount, int clientCount, String urlClient, String urlProvider){
+    private static AtomicBoolean condition;
+    private static AtomicBoolean restart;
+    private static List<Restaurant> restaurantList = new ArrayList<>();
+    private static List<Provider> providerList = new ArrayList<>();
+    private static List<Client> clientList = new ArrayList<>();
+    private static String uriProvider;
+    private static String uriClient;
 
-        List<Restaurant> restaurantList = getRestaurants(restaurantCount, getProviders(providerCount, urlProvider));
-
-        return getSimulableList(restaurantList,getClients(clientCount, urlClient, restaurantList));
+    public static void restart(){
+        restart.set(true);
     }
 
-    private static List<Provider> getProviders(int providerCount, String urlProvider) {
-        List<Provider> providerList = new CSVProviderLoader(urlProvider).load(providerCount);
+    public static void changeExecuting() {
+        if(condition.get()) condition.set(false);
+        else condition.set(true);
+    }
+
+    public static boolean isInitialized(){
+        return condition != null;
+    }
+
+    public static String getUriProvider() {
+        return uriProvider;
+    }
+
+    public static void setUriProvider(String uriProvider) {
+        Simulation.uriProvider = uriProvider;
+    }
+
+    public static String getUriClient() {
+        return uriClient;
+    }
+
+    public static void setUriClient(String uriClient) {
+        Simulation.uriClient = uriClient;
+    }
+
+    public static List<Restaurant> getRestaurantList() {
+        return restaurantList;
+    }
+
+    public static List<Provider> getProviderList() {
+        return providerList;
+    }
+
+    public static List<Client> getClientList() {
+        return clientList;
+    }
+
+    public static List<Simulable> init(int providerCount, int restaurantCount, int clientCount){
+        condition = new AtomicBoolean(true);
+        restart = new AtomicBoolean(false);
+        getProviders(providerCount);
+        getRestaurants(restaurantCount);
+        getClients(clientCount);
+        return getSimulableList(restaurantList,clientList);
+    }
+
+    private static List<Provider> getProviders(int providerCount) {
+        providerList = new CSVProviderLoader(uriProvider).load(providerCount);
         ProductInitializerThread.initProducts(providerList);
         return providerList;
     }
 
-    private static List<Restaurant> getRestaurants(int restaurantCount, List<Provider> providerList) {
-        //List<Restaurant> restaurantList = RestaurantThread.loadRestaurantsPage(restaurantCount/30);
-        List<Restaurant> restaurantList = new SQLiteRestaurantReader().read(restaurantCount);
+    private static List<Restaurant> getRestaurants(int restaurantCount) {
+        //restaurantList = RestaurantThread.loadRestaurantsPage(restaurantCount/30);
+        restaurantList = new SQLiteRestaurantReader().read(restaurantCount);
         WorkerThread.addWorkers(restaurantList);
-        ProvidingThread.initRestaurantProviders(providerList,restaurantList);
+        ProvidingThread.initRestaurantsProviders(providerList,restaurantList);
         return restaurantList;
     }
 
-    private static List<Client> getClients(int clientCount, String urlClient, List<Restaurant> restaurantList) {
-        List<Client> clientList = new CSVClientLoader(urlClient).load(clientCount);
+    private static List<Client> getClients(int clientCount) {
+        clientList = new CSVClientLoader(uriClient).load(clientCount);
         RoutineThread.setClientRoutines(clientList,restaurantList);
         return clientList;
     }
@@ -51,9 +105,14 @@ public class Simulation {
         return simulableList;
     }
 
-    public static void execute(TimeLine timeLine) {
-        while (true){
-            timeLine.play();
-        }
+    public static void execute(int providerCount, int restaurantCount, int clientCount) {
+        TimeLine timeLine = new TimeLine(Simulation.init(providerCount,restaurantCount,clientCount));
+        ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
+        executor.submit(() -> {
+            while (!restart.get()){
+                if(condition.get()) timeLine.play();
+            }
+        });
+
     }
 }

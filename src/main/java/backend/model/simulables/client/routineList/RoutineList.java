@@ -25,6 +25,10 @@ public class RoutineList {
         return salary;
     }
 
+    public double getSalarySpent() {
+        return salarySpent;
+    }
+
     public List<Routine> getClientRoutines() {
         return restaurantRoutines;
     }

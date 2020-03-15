@@ -2,16 +2,16 @@ package backend.server.commands;
 
 import backend.implementations.loaders.CSV.CSVProviderLoader;
 import backend.model.simulables.provider.Provider;
+import backend.model.simulation.Simulation;
 import backend.server.frontcontroller.FrontCommand;
 
 import java.util.List;
 
-public class ProvidersCommand extends FrontCommand {
+public class ShowProvidersCommand extends FrontCommand {
 
     @Override
     public void process() {
-        List<Provider> providerList = new CSVProviderLoader(context.getRealPath("/CSVFiles/Providers.csv")).load(3);
-        request.setAttribute("providerList",providerList);
+        request.setAttribute("providerList", Simulation.getProviderList());
         forward("/providers.jsp");
     }
 }

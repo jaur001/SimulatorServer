@@ -2,6 +2,9 @@ package backend.model.simulables.provider;
 
 import backend.model.NIFCreator.CompanyNIFCreator;
 import backend.model.financialData.ProviderFinancialData;
+import backend.model.simulables.restaurant.Restaurant;
+
+import java.util.List;
 
 public class Provider {
     private int NIF;
@@ -13,6 +16,7 @@ public class Provider {
     private String telephoneNumber;
     private ProviderFinancialData financialData;
     private double productPrice;
+    private List<Restaurant> restaurantList;
 
 
 
@@ -26,6 +30,18 @@ public class Provider {
         this.telephoneNumber = data[4];
         this.financialData = new ProviderFinancialData(socialCapital);
         this.productPrice = 0;
+    }
+
+    public void addRestaurant(Restaurant restaurant){
+        restaurantList.add(restaurant);
+        financialData.addMonthClient(productPrice);
+    }
+
+    public void removeRestaurant(Restaurant restaurant){
+        if(restaurantList.contains(restaurant)){
+            restaurantList.remove(restaurant);
+            financialData.removeMonthClient(productPrice);
+        }
     }
 
     public int getNIF() {

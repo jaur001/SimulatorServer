@@ -14,9 +14,9 @@ public class BillsUtils {
         return Math.abs(new NormalDistribution(mean,restaurant.getMaxPricePlate()-mean).sample());
     }
 
-    public static double getPlateNumberSample() {
+    public static int getPlateNumberSample() {
         double sample = Math.round(Math.abs(plateNumberDistribution.sample()));
-        return sample<1? 1: sample;
+        return (int)(sample<1? 1: sample);
     }
 
     public static double getPlateNumberMean(){
@@ -27,8 +27,8 @@ public class BillsUtils {
         return NUMBER_PEOPLE_MEAN;
     }
 
-    public static int getNumberPeopleSample(){
-        return MathUtils.random(1,4);
+    public static int getPeopleInvitedSample(){
+        return MathUtils.random(0,3);
     }
 
     public static double getPriceApproximation(Restaurant restaurant, int plateNumber, int invitedPeople){

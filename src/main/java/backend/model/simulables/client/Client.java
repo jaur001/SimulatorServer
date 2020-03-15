@@ -7,6 +7,7 @@ import backend.model.simulables.restaurant.Bill;
 import backend.model.bill.bills.EatingSale;
 import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
+import backend.model.simulation.TimeLine;
 import backend.utils.BillsUtils;
 
 import java.util.Date;
@@ -15,16 +16,17 @@ public class Client implements Simulable {
     PersonalData personalData;
 
     private RoutineList routineList;
-    private int commensalNumber;
+    private int peopleInvited;
 
 
     public Client(String[] data) {
-        commensalNumber = 0;
+        peopleInvited = 0;
         this.personalData = new PersonalData(data);
     }
 
-    public void pay(double amount){
+    public void pay(double amount, Restaurant restaurant){
         this.getRoutineList().decreaseBudget(amount);
+        restaurant.payEating(amount);
     }
 
     public RoutineList getRoutineList() {
@@ -36,21 +38,11 @@ public class Client implements Simulable {
     }
 
     public int getPeopleInvited() {
-        commensalNumber = BillsUtils.getNumberPeopleSample();
-        return commensalNumber;
+        return peopleInvited;
     }
 
-
-    public double getSalary(){
-        return routineList.getSalary();
-    }
-
-    public void setSalary(double salary) {
-        routineList.setSalary(salary);
-    }
-
-    public int getCommensalNumber() {
-        return commensalNumber;
+    private void invitePeople(){
+        peopleInvited = BillsUtils.getPeopleInvitedSample();
     }
 
     public void printRoutines(){
@@ -82,6 +74,14 @@ public class Client implements Simulable {
         return personalData.getCountry();
     }
 
+    public double getSalary(){
+        return routineList.getSalary();
+    }
+
+    public double getSalarySpent(){
+        return routineList.getSalary();
+    }
+
     public String getTelephoneNumber() {
         return personalData.getTelephoneNumber();
     }
@@ -104,14 +104,15 @@ public class Client implements Simulable {
 
     @Override
     public void simulate() {
-        routineList.checkRoutines().forEach(this::payEating);
-        this.printRoutines();
+        routineList.checkRoutines().stream().limit(2).forEach(this::goToEat);
+        if(TimeLine.isLastDay()) routineList.restartBudget();
+        //this.printRoutines();
     }
 
-    private void payEating(Restaurant restaurant) {
+    private void goToEat(Restaurant restaurant) {
+        if(!restaurant.acceptClient(this)) return;
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
-        this.pay(amount);
-        restaurant.addSale(amount);
-        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new Bill(amount),this.getCommensalNumber()));
+        this.pay(amount,restaurant);
+        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new Bill(amount), peopleInvited));
     }
 }

@@ -21,7 +21,7 @@ public class TimeLine {
     }
 
     public void play(){
-        simulableList.forEach(Simulable::simulate);
+        simulableList.parallelStream().forEach(Simulable::simulate);
         passDay();
     }
 
@@ -31,7 +31,7 @@ public class TimeLine {
         try {
             TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Simulation stopped");
         }
     }
 

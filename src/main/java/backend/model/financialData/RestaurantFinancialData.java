@@ -19,14 +19,14 @@ public class RestaurantFinancialData extends FinancialData {
     }
 
 
-    public void addDebt(double productPrice) {
-        purchases+=productPrice;
-        totalPassive+=productPrice;
+    public void addDebt(double amount) {
+        purchases+=amount;
+        totalPassive+=amount;
     }
 
-    public void removeDebt(double productPrice) {
-        purchases-=productPrice;
-        totalPassive-=productPrice;
+    public void removeDebt(double amount) {
+        purchases-=amount;
+        totalPassive-=amount;
     }
 
     public void payDebts(){

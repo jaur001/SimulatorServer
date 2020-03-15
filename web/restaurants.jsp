@@ -38,7 +38,7 @@
     <tr>
         <td><%=restaurant.getNIF()%></td>
         <td><%=restaurant.getName()%></td>
-        <td><%=restaurant.getNumberTables()%></td>
+        <td><%=restaurant.getTables()%></td>
         <td><%=restaurant.getMinPricePlate()%></td>
         <td><%=restaurant.getMaxPricePlate()%></td>
         <td><%=restaurant.getNumberOfWorkers()%></td>

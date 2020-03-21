@@ -19,6 +19,13 @@ public class Client implements Simulable {
     private RoutineList routineList;
     private int peopleInvited;
 
+    public Client(int NIF,String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
+        personalData = new PersonalData(NIF,firstName,lastName,birthDate,gender,job,country,telephoneNumber,email,cardNumber);
+    }
+
+    public Client(String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
+        personalData = new PersonalData(firstName,lastName,birthDate,gender,job,country,telephoneNumber,email,cardNumber);
+    }
 
     public Client(PersonalData personalData) {
         this.personalData = personalData;

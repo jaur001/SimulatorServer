@@ -22,23 +22,22 @@ public class Provider {
 
 
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
-        this(companyName,creationDate,ownerName,street,telephoneNumber,RestaurantUtils.intialSocialCapital);
+        init(companyName,creationDate,ownerName,street,telephoneNumber);
         this.NIF = NIF;
     }
 
-
-    public Provider(String[] data) {
-        this(data[0],data[1],data[2],data[3],data[4],RestaurantUtils.intialSocialCapital);
+    public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
+        init(companyName, creationDate, ownerName, street, telephoneNumber);
         NIF = new ProviderNIFCreator().create();
     }
 
-    public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber, double socialCapital) {
+    private void init(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         this.companyName = companyName;
         this.creationDate = creationDate;
         this.ownerName = ownerName;
         this.street = street;
         this.telephoneNumber = telephoneNumber;
-        this.financialData = new ProviderFinancialData(socialCapital);
+        this.financialData = new ProviderFinancialData(RestaurantUtils.intialSocialCapital);
         this.product = null;
         this.productPrice = 0;
     }

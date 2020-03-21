@@ -6,160 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="Refactoring of CSV Readers, added package of architecture for database Management and implementation for SQLite database. You can create and drop tables, and Insert and select from the tables with the same functionality for any table. Besides, now we can see the bills created in the web.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/DatabaseConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/DatabaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/SQLiteDatabaseConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteDataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteTableCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteTableInsert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteTableSelector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVClientDataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderDataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/ProviderNIFCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/DownloadCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowBillsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/utils/DatabaseUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/Builder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ClientBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/controller/TableCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/controller/TableInsert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/controller/TableSelector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/elements/DataType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/elements/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/elements/Header.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/elements/Restriction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/elements/Row.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/reader/GenericDataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/reader/GenericReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/bills.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/PROPIETARIO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/PROPIETARIO.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simulator.db" beforeDir="false" afterPath="$PROJECT_DIR$/Simulator.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/provider/RandomProvidingController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/provider/product/DistributionProductPriceInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/provider/product/RandomProductInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/SQLite/SQLRestaurantWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/tripAvisor/PriceRange.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorPriceParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/main/DatabaseMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/server/frontcontroller/FrontCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/BudgetRestartThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/initializers/RestaurantThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/initializers/RoutineThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/initializers/WorkerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/initializers/provider/ProductInitializerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/threads/initializers/provider/ProvidingThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/BillsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/BillsUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/RoutineUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/RoutineUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/view/loaders/restaurant/DatabaseRestaurantWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/view/loaders/restaurant/PriceParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/view/loaders/restaurant/RestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/view/loaders/restaurant/RestaurantReader.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVClientLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVClientReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/provider/RandomProvidingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/providing/RandomProvidingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/provider/product/DistributionProductPriceInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/providing/product/DistributionProductPriceInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/provider/product/RandomProductInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/providing/product/RandomProductInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/SQLite/SQLRestaurantWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantDataReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/tripAvisor/PriceRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/restaurant/PriceRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorPriceParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorPriceParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/DatabaseMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/CompanyNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/RestaurantNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/PersonNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/PersonNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/CFDIBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/CFDIBill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingSale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/XMLBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/XMLBill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVClientDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVClientDataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderDataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/PersonalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/PersonalData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/provider/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/provider/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/restaurant/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowClientsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowClientsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowProvidersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowProvidersCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowRestaurantsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowRestaurantsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/UnknownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/UnknownCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/frontcontroller/FrontControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontControllerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threads/initializers/RestaurantThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RestaurantThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threads/initializers/RoutineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RoutineThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threads/initializers/WorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/WorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threads/initializers/provider/ProductInitializerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/provider/ProductInitializerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threads/initializers/provider/ProvidingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/provider/ProvidingThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/BillsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/BillsUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/RoutineUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/RoutineUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/restaurant/DatabaseRestaurantWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/restaurant/PriceParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/restaurant/RestaurantDataReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/restaurant/RestaurantReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/provider/RandomProvidingController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/provider/product/DistributionProductPriceInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/provider/product/RandomProductInitializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/SQLite/SQLRestaurantWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/SQLite/SQLiteRestaurantReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/tripAvisor/PriceRange.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorPriceParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/restaurant/tripAvisor/TripAdvisorRestaurantReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/main/DatabaseMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/server/frontcontroller/FrontCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/BudgetRestartThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/initializers/RestaurantThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/initializers/RoutineThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/initializers/WorkerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/initializers/provider/ProductInitializerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/threads/initializers/provider/ProvidingThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/BillsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/utils/BillsUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/RoutineUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/utils/RoutineUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/view/loaders/restaurant/DatabaseRestaurantWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/view/loaders/restaurant/PriceParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/view/loaders/restaurant/RestaurantDataReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/view/loaders/restaurant/RestaurantReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bootstrap/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ClientBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ClientBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,7 +303,7 @@
       <workItem from="1584561624584" duration="8585000" />
       <workItem from="1584619572356" duration="38652000" />
       <workItem from="1584707220194" duration="36452000" />
-      <workItem from="1584796378999" duration="5262000" />
+      <workItem from="1584796378999" duration="11751000" />
     </task>
     <task id="LOCAL-00001" summary="Added views for the webage and the routes for it.">
       <created>1583604541086</created>
@@ -483,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584296478720</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactoring of CSV Readers, added package of architecture for database Management and implementation for SQLite database. You can create and drop tables, and Insert and select from the tables with the same functionality for any table. Besides, now we can see the bills created in the web.">
+      <created>1584801686126</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1584801686126</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,11 +427,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="287" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584644533170" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1584801658779">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1584801684745">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="259" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1583432665590" />
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1584801658779" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1584801684745" />
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog" timestamp="1583785997626">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -576,90 +440,90 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1584660742898" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1584801522772">
+    <state width="1877" height="415" key="GridCell.Tab.0.bottom" timestamp="1584807057348">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584801522772" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1584801522772">
+    <state width="1877" height="415" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584807057348" />
+    <state width="1877" height="415" key="GridCell.Tab.0.center" timestamp="1584807057348">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584801522772" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1584801522772">
+    <state width="1877" height="415" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584807057348" />
+    <state width="1877" height="415" key="GridCell.Tab.0.left" timestamp="1584807057348">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942803" />
     <state width="905" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653575" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584801522772" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1584801522772">
+    <state width="1877" height="415" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584807057348" />
+    <state width="1877" height="415" key="GridCell.Tab.0.right" timestamp="1584807057348">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584801522772" />
-    <state width="1293" height="300" key="GridCell.Tab.1.bottom" timestamp="1584800048489">
+    <state width="1877" height="415" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584807057348" />
+    <state width="1293" height="300" key="GridCell.Tab.1.bottom" timestamp="1584806416517">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048489" />
-    <state width="1293" height="300" key="GridCell.Tab.1.center" timestamp="1584800048489">
+    <state width="1293" height="300" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416517" />
+    <state width="1293" height="300" key="GridCell.Tab.1.center" timestamp="1584806416517">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="300" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048489" />
-    <state width="1293" height="300" key="GridCell.Tab.1.left" timestamp="1584800048489">
+    <state width="1293" height="300" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416517" />
+    <state width="1293" height="300" key="GridCell.Tab.1.left" timestamp="1584806416517">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="300" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048489" />
-    <state width="1293" height="300" key="GridCell.Tab.1.right" timestamp="1584800048489">
+    <state width="1293" height="300" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416517" />
+    <state width="1293" height="300" key="GridCell.Tab.1.right" timestamp="1584806416517">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048489" />
-    <state width="1293" height="300" key="GridCell.Tab.2.bottom" timestamp="1584800048490">
+    <state width="1293" height="300" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416517" />
+    <state width="1293" height="300" key="GridCell.Tab.2.bottom" timestamp="1584806416518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048490" />
-    <state width="1293" height="300" key="GridCell.Tab.2.center" timestamp="1584800048490">
+    <state width="1293" height="300" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416518" />
+    <state width="1293" height="300" key="GridCell.Tab.2.center" timestamp="1584806416518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048490" />
-    <state width="1293" height="300" key="GridCell.Tab.2.left" timestamp="1584800048490">
+    <state width="1293" height="300" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416518" />
+    <state width="1293" height="300" key="GridCell.Tab.2.left" timestamp="1584806416518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048490" />
-    <state width="1293" height="300" key="GridCell.Tab.2.right" timestamp="1584800048490">
+    <state width="1293" height="300" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416518" />
+    <state width="1293" height="300" key="GridCell.Tab.2.right" timestamp="1584806416518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584800048490" />
+    <state width="1293" height="300" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584806416518" />
     <state width="1293" height="300" key="GridCell.Tab.3.bottom" timestamp="1584564892925">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -689,10 +553,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="672" y="256" key="MultipleFileMergeDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583785928913" />
-    <state x="775" y="474" key="ReplaceDuplicatesPrompt" timestamp="1584654565321">
+    <state x="775" y="474" key="ReplaceDuplicatesPrompt" timestamp="1584802765181">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="775" y="474" key="ReplaceDuplicatesPrompt/0.0.1920.1080@0.0.1920.1080" timestamp="1584654565321" />
+    <state x="775" y="474" key="ReplaceDuplicatesPrompt/0.0.1920.1080@0.0.1920.1080" timestamp="1584802765181" />
     <state x="440" y="114" width="965" height="851" key="SettingsEditor" timestamp="1584633583244">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -711,9 +575,9 @@
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583411786415" />
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1583432429808" />
     <state x="533" y="293" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584796397425" />
-    <state x="1230" y="515" width="540" height="496" key="extract.method.dialog" timestamp="1584736639910">
+    <state x="1230" y="515" width="540" height="496" key="extract.method.dialog" timestamp="1584802763384">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1230" y="515" width="540" height="496" key="extract.method.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584736639910" />
+    <state x="1230" y="515" width="540" height="496" key="extract.method.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584802763384" />
   </component>
 </project>

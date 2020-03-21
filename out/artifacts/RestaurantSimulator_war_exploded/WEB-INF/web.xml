@@ -14,15 +14,4 @@
         <url-pattern>/FrontControllerServlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>BillControllerServlet</servlet-name>
-        <servlet-class>backend.server.servlets.BillControllerServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>BillControllerServlet</servlet-name>
-        <url-pattern>/BillControllerServlet</url-pattern>
-    </servlet-mapping>
-
-
 </web-app>

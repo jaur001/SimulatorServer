@@ -9,6 +9,7 @@ import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
 import backend.utils.BillsUtils;
+import backend.utils.RoutineUtils;
 
 import java.util.Date;
 
@@ -19,9 +20,8 @@ public class Client implements Simulable {
     private int peopleInvited;
 
 
-    public Client(String[] data) {
-        peopleInvited = 0;
-        this.personalData = new PersonalData(data);
+    public Client(PersonalData personalData) {
+        this.personalData = personalData;
     }
 
     public void pay(double amount, Restaurant restaurant){
@@ -42,7 +42,7 @@ public class Client implements Simulable {
     }
 
     private void invitePeople(){
-        peopleInvited = BillsUtils.getPeopleInvitedSample();
+        peopleInvited = RoutineUtils.getPeopleInvitedSample();
     }
 
     public void printRoutines(){
@@ -98,7 +98,7 @@ public class Client implements Simulable {
         return personalData.getGender();
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return personalData.getBirthDate();
     }
 
@@ -111,8 +111,9 @@ public class Client implements Simulable {
 
     private void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
+        this.invitePeople();
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
         this.pay(amount,restaurant);
-        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new Bill(amount), peopleInvited));
+        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new Bill(amount)));
     }
 }

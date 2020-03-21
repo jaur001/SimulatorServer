@@ -6,16 +6,22 @@
 
     <servlet>
         <servlet-name>FrontControllerServlet</servlet-name>
-        <servlet-class>backend.server.frontcontroller.FrontControllerServlet</servlet-class>
-        <init-param>
-            <param-name>properties</param-name>
-            <param-value>/velocity.properties</param-value>
-        </init-param>
+        <servlet-class>backend.server.servlets.FrontControllerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>FrontControllerServlet</servlet-name>
         <url-pattern>/FrontControllerServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BillControllerServlet</servlet-name>
+        <servlet-class>backend.server.servlets.BillControllerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BillControllerServlet</servlet-name>
+        <url-pattern>/BillControllerServlet</url-pattern>
     </servlet-mapping>
 
 

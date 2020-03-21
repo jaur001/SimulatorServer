@@ -1,12 +1,9 @@
 package backend.server.commands;
 
-import backend.implementations.loaders.restaurant.SQLite.SQLiteRestaurantReader;
+import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.Simulation;
-import backend.server.frontcontroller.FrontCommand;
-import backend.model.simulation.TimeLine;
-
-import java.util.concurrent.ThreadPoolExecutor;
+import backend.server.servlets.FrontCommand;
 
 public class StartCommand extends FrontCommand {
     @Override
@@ -19,7 +16,7 @@ public class StartCommand extends FrontCommand {
 
         CFDIBillGenerator.setUriSales(context.getRealPath("/xmlFiles/EatingBills")+"/");
         CFDIBillGenerator.setUriPayrolls(context.getRealPath("/xmlFiles/Payrolls")+"/");
-        SQLiteRestaurantReader.setSQLiteUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
+        SQLiteDatabaseConnector.setUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
 
         if(!Simulation.isInitialized()) Simulation.execute(providerCount,restaurantCount,clientCount);
         else Simulation.changeExecuting();

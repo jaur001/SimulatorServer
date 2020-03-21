@@ -2,6 +2,7 @@ package backend.model.bill.generator;
 
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
+import backend.model.simulation.Simulation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -55,6 +56,7 @@ public class CFDIBillGenerator implements BillGenerator {
         getXMLDocument();
         appendData();
         saveXMLInFile();
+        addToSimulation();
     }
 
     private void getXMLDocument() throws ParserConfigurationException {
@@ -108,12 +110,24 @@ public class CFDIBillGenerator implements BillGenerator {
     private void saveXMLInFile() throws TransformerException {
         Transformer transformer = getTransformer();
         DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(new File((bill.getType()== Type.income?urlSales:urlPayrolls) + "Bill n°" + bill.getUUID()));
+        StreamResult result = new StreamResult(new File(getFilePath()+getFileName()));
         transformer.transform(source, result);
+    }
+
+    private String getFilePath() {
+        return (bill.getType()== Type.income?urlSales:urlPayrolls);
+    }
+
+    private String getFileName() {
+        return "Bill" + bill.getUUID() + ".xml";
     }
 
     private Transformer getTransformer() throws TransformerConfigurationException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         return transformerFactory.newTransformer();
+    }
+
+    private void addToSimulation() {
+        Simulation.addBill(new XMLBill(bill, getFilePath(),getFileName()));
     }
 }

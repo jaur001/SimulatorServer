@@ -28,6 +28,12 @@
           <input type="submit"  value="Restaurants">
         </form>
       </div>
+      <div class="navbar-header">
+        <form method="post" action="FrontControllerServlet">
+          <input type="hidden" name="command" value="ShowBillsCommand">
+          <input type="submit"  value="Bills">
+        </form>
+      </div>
     </div>
   </nav>
   Welcome to my Simulator

@@ -1,11 +1,8 @@
 package backend.main;
 
-import backend.implementations.loaders.restaurant.SQLite.SQLiteRestaurantReader;
+import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.Simulation;
-import backend.model.simulation.TimeLine;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +14,7 @@ public class Main {
 
         CFDIBillGenerator.setUriSales("./xmlFiles/EatingBills/");
         CFDIBillGenerator.setUriPayrolls("./xmlFiles/Payrolls/");
-        SQLiteRestaurantReader.setSQLiteUrl("jdbc:sqlite:Simulator.db");
+        SQLiteDatabaseConnector.setUrl("jdbc:sqlite:Simulator.db");
 
         Simulation.execute(providerCount,restaurantCount,clientCount);
 

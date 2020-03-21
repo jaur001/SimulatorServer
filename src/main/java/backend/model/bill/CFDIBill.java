@@ -24,6 +24,15 @@ public class CFDIBill {
 
     public CFDIBill(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total) {
         UUID = count.getAndIncrement();
+        init(street,type,issuerName,issuerRFC,receiverName,receiverRFC,total);
+    }
+
+    public CFDIBill(int UUID,String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total) {
+        this.UUID = UUID;
+        init(street,type,issuerName,issuerRFC,receiverName,receiverRFC,total);
+    }
+
+    public void init(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total) {
         this.street = street;
         this.type = type;
         this.issuerName = issuerName;
@@ -37,6 +46,8 @@ public class CFDIBill {
         this.concept = "";
         this.date = TimeLine.getDate();
     }
+
+
 
     public int getUUID() {
         return UUID;

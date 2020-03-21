@@ -36,6 +36,10 @@ public class RoutineUtils {
         return Math.max(sample, MIN_SALARY);
     }
 
+    public static int getPeopleInvitedSample(){
+        return MathUtils.random(0,3);
+    }
+
     public static int getNumOfRestaurantSample(){
         return MathUtils.random(1,2);
     }

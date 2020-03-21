@@ -2,6 +2,8 @@ package backend.model.simulables.client;
 
 import backend.model.NIFCreator.PersonNIFCreator;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Date;
 
 public class PersonalData {
@@ -10,7 +12,7 @@ public class PersonalData {
     private String lastName;
     private String email;
     private String gender;
-    private Date birthDate;
+    private String birthDate;
     private String job;
     private String country;
     private String telephoneNumber;
@@ -18,15 +20,42 @@ public class PersonalData {
 
     public PersonalData(String[] data) {
         this.NIF = new PersonNIFCreator().create();
-        this.firstName = data[1];
-        this.lastName = data[2];
-        this.birthDate = new Date(data[3]);
-        this.gender = data[4];
-        this.job = data[5];
-        this.country = data[6];
-        this.telephoneNumber = data[7];
-        this.email = data[8];
-        this.cardNumber = data[9];
+        init(data[1],data[2],data[3]
+                ,data[4],data[5],data[6]
+                ,data[7],data[8],data[9]);
+
+    }
+
+    public PersonalData(Object[] data) {
+        this.NIF = (int)data[0];
+        init((String) data[1],(String) data[2],(String)data[3]
+                ,(String) data[4],(String) data[5],(String) data[6]
+                ,(String) data[7],(String) data[8],(String) data[9]);
+    }
+
+    public PersonalData(int NIF,String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
+        this.NIF = NIF;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.job = job;
+        this.country = country;
+        this.telephoneNumber = telephoneNumber;
+        this.cardNumber = cardNumber;
+    }
+
+    public void init(String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.job = job;
+        this.country = country;
+        this.telephoneNumber = telephoneNumber;
+        this.cardNumber = cardNumber;
     }
 
     public int getNIF() {
@@ -49,7 +78,7 @@ public class PersonalData {
         return gender;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 

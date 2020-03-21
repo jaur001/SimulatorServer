@@ -1,6 +1,6 @@
 package backend.server.commands;
 
-import backend.server.frontcontroller.FrontCommand;
+import backend.server.servlets.FrontCommand;
 
 public class UnknownCommand extends FrontCommand {
     @Override

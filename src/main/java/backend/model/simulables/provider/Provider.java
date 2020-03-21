@@ -1,9 +1,11 @@
 package backend.model.simulables.provider;
 
-import backend.model.NIFCreator.CompanyNIFCreator;
+import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.financialData.ProviderFinancialData;
 import backend.model.simulables.restaurant.Restaurant;
+import backend.utils.RestaurantUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Provider {
@@ -16,19 +18,28 @@ public class Provider {
     private String telephoneNumber;
     private ProviderFinancialData financialData;
     private double productPrice;
-    private List<Restaurant> restaurantList;
+    private List<Restaurant> restaurantList = new ArrayList<>();
 
 
+    public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
+        this(companyName,creationDate,ownerName,street,telephoneNumber,RestaurantUtils.intialSocialCapital);
+        this.NIF = NIF;
+    }
 
-    public Provider(String[] data, double socialCapital) {
-        NIF = new CompanyNIFCreator().create();
-        this.product = null;
-        this.companyName = data[0];
-        this.creationDate = data[1];
-        this.ownerName = data[2];
-        this.street = data[3];
-        this.telephoneNumber = data[4];
+
+    public Provider(String[] data) {
+        this(data[0],data[1],data[2],data[3],data[4],RestaurantUtils.intialSocialCapital);
+        NIF = new ProviderNIFCreator().create();
+    }
+
+    public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber, double socialCapital) {
+        this.companyName = companyName;
+        this.creationDate = creationDate;
+        this.ownerName = ownerName;
+        this.street = street;
+        this.telephoneNumber = telephoneNumber;
         this.financialData = new ProviderFinancialData(socialCapital);
+        this.product = null;
         this.productPrice = 0;
     }
 

@@ -12,7 +12,7 @@ H - añadir add y delete routine en el routine routineController.
 H - cambiar estructura del routineController y routinecreator.
 
 H - agregar trabajadores en funcion del numero de mesas, y sus nominas de estos de las empresas.
-P - agregar numero maximo de comensales al dia, numero de mesas x numero de comidas por hora.
+H - agregar numero maximo de comensales al dia, numero de mesas x numero de comidas por hora.
 
 
 Dudas

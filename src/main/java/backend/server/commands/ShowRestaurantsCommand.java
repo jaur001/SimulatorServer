@@ -1,13 +1,8 @@
 package backend.server.commands;
 
 
-import backend.implementations.loaders.restaurant.SQLite.SQLiteRestaurantReader;
-import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulation.Simulation;
-import backend.server.frontcontroller.FrontCommand;
-import backend.threads.initializers.RestaurantThread;
-
-import java.util.List;
+import backend.server.servlets.FrontCommand;
 
 public class ShowRestaurantsCommand extends FrontCommand {
     @Override

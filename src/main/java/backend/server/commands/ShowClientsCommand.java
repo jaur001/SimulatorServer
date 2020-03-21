@@ -1,11 +1,7 @@
 package backend.server.commands;
 
-import backend.implementations.loaders.CSV.CSVClientLoader;
-import backend.model.simulables.client.Client;
 import backend.model.simulation.Simulation;
-import backend.server.frontcontroller.FrontCommand;
-
-import java.util.List;
+import backend.server.servlets.FrontCommand;
 
 public class ShowClientsCommand extends FrontCommand {
     @Override

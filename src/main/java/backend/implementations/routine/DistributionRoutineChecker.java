@@ -36,6 +36,7 @@ public class DistributionRoutineChecker implements RoutineChecker {
         List<Routine> routinesForToday = getRoutines();
         restartRoutines(routinesForToday);
         return routinesForToday.stream()
+                .limit(3)
                 .map(Routine::getRestaurant)
                 .collect(Collectors.toList());
     }

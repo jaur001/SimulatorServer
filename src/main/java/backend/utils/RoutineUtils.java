@@ -32,8 +32,9 @@ public class RoutineUtils {
     }
 
     public static double getSalarySample() {
-        double sample = salaryDistribution.sample();
-        return Math.max(sample, MIN_SALARY);
+        double salary = Math.max(salaryDistribution.sample(), MIN_SALARY);
+        if(Double.isNaN(salary)) return getSalarySample();
+        return salary;
     }
 
     public static int getPeopleInvitedSample(){

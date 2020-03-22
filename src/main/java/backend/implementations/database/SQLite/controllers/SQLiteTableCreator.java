@@ -54,6 +54,10 @@ public class SQLiteTableCreator extends DatabaseController implements TableCreat
         statement.close();
     }
 
+    public void dropTable(Header header) throws SQLException, ClassNotFoundException {
+        dropTable(header.getName());
+    }
+
     private String dropTable() {
         return "drop table " + actualHeaderName + ";";
     }

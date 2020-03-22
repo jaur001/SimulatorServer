@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface TableSelector {
     List<Row> read(String headerName, int fromID, int toID) throws SQLException, ClassNotFoundException;
+    int readCount(String headerName) throws SQLException, ClassNotFoundException;
 }

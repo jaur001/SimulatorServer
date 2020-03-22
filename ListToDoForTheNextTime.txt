@@ -45,3 +45,11 @@ a lo establecido por el convenio que se le aplique.
 - Añadir clase generica para reader de provider y client
 - Añadir NIF a provider.
 - Añadir Clase generica para CFDI generator-
+
+Campos de factura pendiente
+- Concepto: addd texto
+- Uso:
+N01: nominas
+G01: Compra a proveedores, venta de comida
+G02: Devoluciones
+G03: Servicios de limpieza

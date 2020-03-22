@@ -86,7 +86,7 @@ public class Client implements Simulable {
     }
 
     public double getSalarySpent(){
-        return routineList.getSalary();
+        return routineList.getSalarySpent();
     }
 
     public String getTelephoneNumber() {
@@ -111,8 +111,10 @@ public class Client implements Simulable {
 
     @Override
     public void simulate() {
-        routineList.checkRoutines().stream().limit(2).forEach(this::goToEat);
-        if(TimeLine.isLastDay()) routineList.restartBudget();
+        routineList.checkRoutines().forEach(this::goToEat);
+        if(TimeLine.isLastDay()){
+            routineList.restartBudget();
+        }
         //this.printRoutines();
     }
 

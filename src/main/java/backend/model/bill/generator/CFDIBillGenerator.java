@@ -1,8 +1,10 @@
 package backend.model.bill.generator;
 
+import backend.implementations.database.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.simulation.Simulation;
+import backend.view.loaders.database.builder.builders.BillBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -16,6 +18,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 public class CFDIBillGenerator implements BillGenerator {
     private static String urlSales = "./xmlFiles/EatingBills/";
@@ -56,7 +60,8 @@ public class CFDIBillGenerator implements BillGenerator {
         getXMLDocument();
         appendData();
         saveXMLInFile();
-        addToSimulation();
+        saveInList();
+        saveInDatabase();
     }
 
     private void getXMLDocument() throws ParserConfigurationException {
@@ -127,7 +132,20 @@ public class CFDIBillGenerator implements BillGenerator {
         return transformerFactory.newTransformer();
     }
 
-    private void addToSimulation() {
+    private void saveInList() {
         Simulation.addBill(new XMLBill(bill, getFilePath(),getFileName()));
+    }
+
+    private void saveInDatabase() {
+        try {
+            new SQLiteTableInsert().insert("Bill", new BillBuilder().buildRow(new XMLBill(bill, getFilePath(),getFileName())));
+        } catch (SQLException | ClassNotFoundException e) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+                saveInDatabase();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

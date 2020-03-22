@@ -6,6 +6,7 @@ public class Header {
     private String name;
     private Map<String, Field> parameters;
     private String primaryKeyName;
+    private int initialPrimaryKeyValue;
 
     public Header(String name, Map<String, Field> parameters) {
         this.name = name;
@@ -42,5 +43,13 @@ public class Header {
 
     public Map<String, Field> getFields() {
         return parameters;
+    }
+
+    public int getInitialPrimaryKeyValue() {
+        return initialPrimaryKeyValue;
+    }
+
+    public void setInitialPrimaryKeyValue(int initialPrimaryKeyValue) {
+        this.initialPrimaryKeyValue = initialPrimaryKeyValue;
     }
 }

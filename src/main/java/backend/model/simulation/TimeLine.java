@@ -17,7 +17,11 @@ public class TimeLine {
     }
 
     public static boolean isLastDay() {
-        return TimeLine.getDay() == Month.of(TimeLine.getMonth()).minLength();
+        return TimeLine.getDay() == getLengthOfMonth();
+    }
+
+    private static int getLengthOfMonth() {
+        return Month.of(TimeLine.getMonth()).minLength();
     }
 
     public void play(){

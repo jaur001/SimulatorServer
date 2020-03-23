@@ -12,11 +12,20 @@ public class DownloadCommand extends FrontCommand {
     @Override
     public void process() {
         String fileID = request.getParameter("ID");
-        XMLBill bill = Simulation.getBillList().stream()
-                .filter(xmlBill -> xmlBill.getUUID()==Integer.parseInt(fileID)).findFirst().orElse(null);
+        XMLBill bill = Simulation.getBillList(Simulation.getActualPage()).stream()
+                .filter(xmlBill -> BillHaveTheUUID(fileID, xmlBill)).findFirst().orElse(null);
         response.setContentType("text/html");
         response.setContentType("APPLICATION/OCTET-STREAM");
         response.setHeader("Content-Disposition","attachment; filename=\"" + bill.getFileName() + "\"");
+        download(bill);
+    }
+
+    private boolean BillHaveTheUUID(String fileID, XMLBill xmlBill) {
+        return xmlBill.getUUID()==Integer.parseInt(fileID);
+    }
+
+
+    private void download(XMLBill bill) {
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(bill.getFilePath() + bill.getFileName());

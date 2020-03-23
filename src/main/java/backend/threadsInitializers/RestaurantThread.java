@@ -5,6 +5,7 @@ import backend.implementations.loaders.tripAvisor.TripAdvisorRestaurantReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,7 +16,7 @@ public class RestaurantThread{
         return IntStream.range(0,threadsCount).boxed()
                 .parallel().map(RestaurantThread::getPage)
                 .flatMap(List::stream)
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(LinkedList::new));
 
     }
 
@@ -25,7 +26,7 @@ public class RestaurantThread{
         } catch (IOException e) {
             System.out.println("Error: Time Out exception");
         }
-        return new ArrayList<>();
+        return new LinkedList<>();
     }
 
 }

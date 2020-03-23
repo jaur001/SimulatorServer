@@ -25,19 +25,21 @@
         <% int length = Integer.parseInt(lengthText); %>
         <form method="post" action="FrontControllerServlet">
             <input type="hidden" name="command" value="ShowBillsCommand">
-            <select>
-                <%
-                    for (int i = 1; i <= length; i++) {
-                %>
-                <%
-                    if(pageCount==i){
-                %>
-                        <option value="<%=i%>" selected><%=i%></option>
-                    <%} else {%>
-                        <option value="<%=i%>"><%=i%></option>
+            <label>
+                <select name="page">
+                    <%
+                        for (int i = 1; i <= length; i++) {
+                    %>
+                    <%
+                        if(pageCount==i){
+                    %>
+                            <option value="<%=i%>" selected><%=i%></option>
+                        <%} else {%>
+                            <option value="<%=i%>"><%=i%></option>
+                        <%}%>
                     <%}%>
-                <%}%>
-            </select>
+                </select>
+            </label>
             <input type="submit"  value="Change">
         </form>
 

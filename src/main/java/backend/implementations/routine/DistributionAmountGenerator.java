@@ -8,6 +8,6 @@ import backend.model.simulables.client.routineList.routineListController.AmountG
 public class DistributionAmountGenerator implements AmountGenerator {
     @Override
     public double generate(Restaurant restaurant, Client client) {
-        return BillsUtils.getPriceApproximation(restaurant,BillsUtils.getPlateNumberSample(), client.getPeopleInvited());
+        return BillsUtils.calculatePrice(restaurant, client.getPeopleInvited());
     }
 }

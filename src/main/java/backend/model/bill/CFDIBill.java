@@ -20,7 +20,7 @@ public class CFDIBill {
     protected double subtotal;
     protected String currency;
     protected String concept;
-    protected Date date;
+    protected String date;
 
     public CFDIBill(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total) {
         UUID = new BillNIFCreator().create();
@@ -35,21 +35,6 @@ public class CFDIBill {
     public CFDIBill() {
     }
 
-    public CFDIBill(int UUID, String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total, double taxRate, double subtotal, String currency, String concept, Date date) {
-        this.UUID = UUID;
-        this.street = street;
-        this.type = type;
-        this.issuerName = issuerName;
-        this.issuerRFC = issuerRFC;
-        this.receiverName = receiverName;
-        this.receiverRFC = receiverRFC;
-        this.total = total;
-        this.taxRate = taxRate;
-        this.subtotal = subtotal;
-        this.currency = currency;
-        this.concept = concept;
-        this.date = date;
-    }
 
     public void init(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total) {
         this.street = street;
@@ -59,11 +44,11 @@ public class CFDIBill {
         this.receiverName = receiverName;
         this.receiverRFC = receiverRFC;
         this.total = total;
-        this.taxRate = 1;
+        this.taxRate = 1.0;
         this.subtotal = this.taxRate*total;
         this.currency = "euro";
         this.concept = "";
-        this.date = TimeLine.getDate();
+        this.date = TimeLine.getDate().toString();
     }
 
 
@@ -72,7 +57,7 @@ public class CFDIBill {
         return UUID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -168,7 +153,7 @@ public class CFDIBill {
         this.concept = concept;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

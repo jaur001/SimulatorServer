@@ -13,6 +13,7 @@ import java.util.*;
 
 public class DatabaseUtils {
 
+    public static final int LIST_LIMIT = 1000;
     private static List<Header> headers = new LinkedList<>();
     private static int pageLength = 30;
 
@@ -73,9 +74,9 @@ public class DatabaseUtils {
         parameters.put("issuerRFC",new Field(Restriction.NOT_NULL, DataType.integer));
         parameters.put("receiverName",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("receiverRFC",new Field(Restriction.NOT_NULL, DataType.integer));
-        parameters.put("total",new Field(Restriction.NOT_NULL, DataType.integer));
-        parameters.put("taxRate",new Field(Restriction.NOT_NULL, DataType.integer));
-        parameters.put("subtotal",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("total",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("taxRate",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("subtotal",new Field(Restriction.NOT_NULL, DataType.real));
         parameters.put("currency",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("concept",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("date",new Field(Restriction.NOT_NULL, DataType.text));
@@ -91,5 +92,9 @@ public class DatabaseUtils {
 
     public static List<Header> getHeaders(){
         return headers;
+    }
+
+    public static int getListLimit() {
+        return LIST_LIMIT;
     }
 }

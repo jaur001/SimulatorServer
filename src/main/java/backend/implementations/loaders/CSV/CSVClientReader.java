@@ -5,6 +5,7 @@ import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class CSVClientReader implements GenericReader<Client> {
         return br != null ? br.lines()
                 .map(this::readClient)
                 .limit(count)
-                .collect(Collectors.toList()) : new ArrayList<>();
+                .collect(Collectors.toList()) : new LinkedList<>();
     }
 
 

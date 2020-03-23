@@ -17,7 +17,7 @@ public class BillBuilder extends Builder<XMLBill> {
                 ,bill.getIssuerName(),bill.getIssuerRFC(),bill.getReceiverName()
                 ,bill.getReceiverRFC(),bill.getTotal(),bill.getTaxRate()
                 ,bill.getSubtotal(),bill.getCurrency(),bill.getConcept()
-                ,bill.getDate(),bill.getFilePath(),bill.getFileName()});
+                ,bill.getDate().toString(),bill.getFilePath(),bill.getFileName()});
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BillBuilder extends Builder<XMLBill> {
     private void buildItem(Object[] parameters, XMLBill bill) {
         bill.setUUID((int)parameters[0]);
         bill.setStreet((String)parameters[1]);
-        bill.setType((Type) parameters[2]);
+        bill.setType(Type.createType(parameters[2]));
         bill.setIssuerName((String)parameters[3]);
         bill.setIssuerRFC((int)parameters[4]);
         bill.setReceiverName((String)parameters[5]);
@@ -40,7 +40,7 @@ public class BillBuilder extends Builder<XMLBill> {
         bill.setSubtotal((double)parameters[9]);
         bill.setCurrency((String)parameters[10]);
         bill.setConcept((String) parameters[11]);
-        bill.setDate((Date)parameters[12]);
+        bill.setDate((String) parameters[12]);
         bill.setFilePath((String) parameters[13]);
         bill.setFileName((String)parameters[14]);
     }

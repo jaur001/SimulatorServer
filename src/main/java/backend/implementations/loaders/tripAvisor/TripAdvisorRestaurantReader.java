@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TripAdvisorRestaurantReader implements GenericReader<Restaurant> {
@@ -18,7 +19,7 @@ public class TripAdvisorRestaurantReader implements GenericReader<Restaurant> {
     private static final String RESTAURANT_SELECTOR = "_15_ydu6b";
     private static final String RESTAURANT_WEBPAGE_SEARCHER = "https://www.tripadvisor.es/RestaurantSearch-g187471-oa";
     private static final String HTML_FILE = "-a_date.2019__2D__11__2D__20-a_people.2-a_time.20%3A00%3A00-a_zur.2019__5F__11__5F__20-Gran_Ca.html#EATERY_LIST_CONTENTS";
-    private List<Restaurant> restaurantList = new ArrayList<>();
+    private List<Restaurant> restaurantList = new LinkedList<>();
 
     public List<Restaurant> read(int pages) throws IOException {
 

@@ -4,5 +4,5 @@ import backend.model.bill.CFDIBill;
 
 public interface BillGenerator {
 
-    void generateBill(CFDIBill bill);
+    void generateBill(CFDIBill bill, String type);
 }

@@ -15,16 +15,6 @@ public class SQLiteTableSelector extends DatabaseController implements TableSele
     private int fromID;
     private int toID;
 
-    @Override
-    public List<Row> read(String headerName,int fromID, int toID) throws SQLException, ClassNotFoundException {
-        if (checkTable(headerName)) return new LinkedList<>();
-        this.fromID = fromID;
-        this.toID = toID;
-        init(headerName);
-        ResultSet resultSet = getResultSet(getSelect());
-        return getRows(resultSet);
-    }
-
     private boolean checkTable(String headerName) {
         if(notContains(headerName)){
             System.out.println("Error: Table does not exist");
@@ -39,10 +29,13 @@ public class SQLiteTableSelector extends DatabaseController implements TableSele
     }
 
     @Override
-    public int readCount(String headerName) throws SQLException, ClassNotFoundException {
-        if (checkTable(headerName)) return 0;
+    public List<Row> read(String headerName,int fromID, int toID) throws SQLException, ClassNotFoundException {
+        if (checkTable(headerName)) return new LinkedList<>();
+        this.fromID = fromID;
+        this.toID = toID;
         init(headerName);
-        return getCount(getResultSet(getSelectCount()));
+        ResultSet resultSet = getResultSet(getSelect());
+        return getRows(resultSet);
     }
 
 
@@ -57,19 +50,26 @@ public class SQLiteTableSelector extends DatabaseController implements TableSele
                 + " between " + fromID + " and " + toID + ";";
     }
 
-    private String getSelectCount() {
-        return "select count(*) AS count from " + actualHeaderName + ";";
-    }
-
-    private int getCount(ResultSet resultSet) throws SQLException {
-        return resultSet.getInt("count");
-    }
-
     private List<Row> getRows(ResultSet resultSet) throws SQLException {
         List<Row> rows = new LinkedList<>();
         while (resultSet.next()){
             rows.add(new SQLiteDataReader().readData(resultSet));
         }
         return rows;
+    }
+
+    @Override
+    public int readCount(String headerName) throws SQLException, ClassNotFoundException {
+        if (checkTable(headerName)) return 0;
+        init(headerName);
+        return getCount(getResultSet(getSelectCount()));
+    }
+
+    private String getSelectCount() {
+        return "select count(*) AS count from " + actualHeaderName + ";";
+    }
+
+    private int getCount(ResultSet resultSet) throws SQLException {
+        return resultSet.getInt("count");
     }
 }

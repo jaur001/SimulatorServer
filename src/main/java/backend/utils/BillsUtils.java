@@ -19,11 +19,6 @@ public class BillsUtils {
         conceptsTable.put("Payroll","Payroll o a worker");
     }
 
-    public static int getPlateNumberSample() {
-        double sample = Math.round(Math.abs(plateNumberDistribution.sample()));
-        return (int)(sample<1? 1: sample);
-    }
-
     public static double getPlateNumberMean(){
         return plateNumberDistribution.getMean();
     }
@@ -36,19 +31,28 @@ public class BillsUtils {
         return conceptsTable.get(billType);
     }
 
-    public static double getPriceApproximation(Restaurant restaurant, int plateNumber, int invitedPeople){
+    public static double calculatePrice(Restaurant restaurant, int peopleInvited){
         double mean = MathUtils.twoNumberMean(restaurant.getMinPricePlate(),restaurant.getMaxPricePlate());
-        return (platePriceIsConstant(restaurant) ? mean :
-                getPlatePriceSample(restaurant)) * plateNumber * invitedPeople;
+        return getPriceOfPlate(restaurant, mean) * getPlateNumberSample() * (peopleInvited+1);
 
+    }
+
+    private static int getPlateNumberSample() {
+        double sample = Math.round(Math.abs(plateNumberDistribution.sample()));
+        return (int)(sample<1? 1: sample);
+    }
+
+    private static double getPriceOfPlate(Restaurant restaurant, double mean) {
+        return platePriceIsConstant(restaurant) ? mean :
+                getPlatePriceSample(restaurant);
+    }
+
+    private static boolean platePriceIsConstant(Restaurant restaurant) {
+        return restaurant.getMaxPricePlate()==restaurant.getMinPricePlate();
     }
 
     private static double getPlatePriceSample(Restaurant restaurant){
         double mean = MathUtils.twoNumberMean(restaurant.getMinPricePlate(),restaurant.getMaxPricePlate());
         return Math.abs(new NormalDistribution(mean,restaurant.getMaxPricePlate()-mean).sample());
-    }
-
-    private static boolean platePriceIsConstant(Restaurant restaurant) {
-        return restaurant.getMaxPricePlate()==restaurant.getMinPricePlate();
     }
 }

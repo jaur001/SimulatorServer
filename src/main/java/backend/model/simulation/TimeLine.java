@@ -21,7 +21,7 @@ public class TimeLine {
     }
 
     private static int getLengthOfMonth() {
-        return Month.of(TimeLine.getMonth()).minLength();
+        return Month.of(TimeLine.getMonth()+1).minLength();
     }
 
     public void play(){
@@ -33,7 +33,7 @@ public class TimeLine {
         date.setDate(date.getDate()+1);
         System.out.println("New Day:" + date.toString());
         try {
-            TimeUnit.MILLISECONDS.sleep(100);
+            TimeUnit.MILLISECONDS.sleep(500);
         } catch (InterruptedException e) {
             System.out.println("Simulation stopped");
         }

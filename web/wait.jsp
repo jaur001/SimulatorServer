@@ -1,19 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PROPIETARIO
-  Date: 22/03/2020
-  Time: 15:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Database is Locked</title>
 </head>
 <body>
     <h3>
-        The database is currently in use
-        Try in a seconds
+        There is no Data Available yet,
+        Try Later
     </h3>
 </body>
 </html>

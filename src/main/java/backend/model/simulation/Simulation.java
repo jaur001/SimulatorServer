@@ -62,28 +62,49 @@ public class Simulation {
 
 
 
-    public static List<Restaurant> getRestaurantList() {
-        return restaurantList;
+    public static int geClientSize() {
+        return clientList.size();
     }
 
-    public static List<Provider> getProviderList() {
-        return providerList;
+    public static int getProviderSize() {
+        return providerList.size();
     }
 
-    public static List<Client> getClientList() {
-        return clientList;
+    public static int getRestaurantSize() {
+        return restaurantList.size();
     }
 
+    private static int getFrom(int page) {
+        return DatabaseUtils.getPageLength()*(page-1);
+    }
 
+    private static int getTo(int from, int to) {
+        return Math.min(from + DatabaseUtils.getPageLength(), to);
+    }
+
+    public static List<Restaurant> getRestaurantList(int page) {
+        int from = getFrom(page);
+        int to = getTo(from,restaurantList.size());
+        return restaurantList.subList(from, to);
+    }
+
+    public static List<Provider> getProviderList(int page) {
+        int from = getFrom(page);
+        int to = getTo(from,providerList.size());
+        return providerList.subList(from, to);
+    }
+
+    public static List<Client> getClientList(int page) {
+        int from = getFrom(page);
+        int to = getTo(from,clientList.size());
+        return clientList.subList(from, to);
+    }
 
     public static List<XMLBill> getBillList(int page) {
-        int from = DatabaseUtils.getPageLength()*(page-1);
-        if(billList.size()>(page-1)*DatabaseUtils.getPageLength())return billList.subList(from, getTo(from));
+        int from = getFrom(page);
+        int to = getTo(from,billList.size());
+        if(billList.size()>(page-1)*DatabaseUtils.getPageLength())return billList.subList(from, to);
         else return getFromDatabase(page);
-    }
-
-    private static int getTo(int from) {
-        return Math.min(from + DatabaseUtils.getPageLength(), billList.size());
     }
 
     private static List<XMLBill> getFromDatabase(int page) {
@@ -95,6 +116,8 @@ public class Simulation {
         return new LinkedList<>();
     }
 
+
+
     public static void addBill(XMLBill bill){
         if(billList.size()<DatabaseUtils.getListLimit())billList.add(bill);
     }
@@ -102,8 +125,6 @@ public class Simulation {
     public static void removeBill(XMLBill bill){
         billList.remove(bill);
     }
-
-
 
 
 
@@ -135,7 +156,7 @@ public class Simulation {
         return actualPage;
     }
 
-    public static void setActualPage(int page) {
+    public static void setBillPage(int page) {
         actualPage = page;
     }
 }

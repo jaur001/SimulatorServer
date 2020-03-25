@@ -1,12 +1,12 @@
 package backend.model.simulables.restaurant;
 
-public class Bill {
+public class EatingBill {
     private double finalPrice = 0;
 
-    public Bill() {
+    public EatingBill() {
     }
 
-    public Bill(double finalPrice) {
+    public EatingBill(double finalPrice) {
         this.finalPrice = finalPrice;
     }
 

@@ -18,11 +18,9 @@
 <body>
     <div style="display: inline-block">
         <h1>Bills</h1>
-        <% List<XMLBill> billList = (List<XMLBill>) request.getAttribute("billList"); %>
-        <% String pageText = (String) request.getAttribute("page"); %>
-        <% int pageCount = Integer.parseInt(pageText); %>
-        <% String lengthText = (String) request.getAttribute("length"); %>
-        <% int length = Integer.parseInt(lengthText); %>
+        <% List<XMLBill> billList = (List<XMLBill>) request.getAttribute("list"); %>
+        <% int actualPage = (Integer) request.getAttribute("page"); %>
+        <% int length = (Integer) request.getAttribute("length"); %>
         <form method="post" action="FrontControllerServlet">
             <input type="hidden" name="command" value="ShowBillsCommand">
             <label>
@@ -31,7 +29,7 @@
                         for (int i = 1; i <= length; i++) {
                     %>
                     <%
-                        if(pageCount==i){
+                        if(actualPage==i){
                     %>
                             <option value="<%=i%>" selected><%=i%></option>
                         <%} else {%>

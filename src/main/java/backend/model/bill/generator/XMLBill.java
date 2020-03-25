@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class XMLBill extends CFDIBill {
 
-    private String fileName;
-    private String filePath;
+    private String fileName = "";
+    private String filePath = "";
 
     public XMLBill(CFDIBill bill, String filePath, String fileName) {
         super(bill.getUUID(),bill.getStreet(), bill.getType(), bill.getIssuerName(), bill.getIssuerRFC(), bill.getReceiverName(), bill.getReceiverRFC(), bill.getTotal());

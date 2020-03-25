@@ -37,12 +37,12 @@
     </div>
   </nav>
   Welcome to my Simulator
-  <form method="post" action="FrontControllerServlet">
-    <label>
-      <input type="text" name="clientRowNumber">
-    </label>
-    <input type="hidden" name="command" value="StartCommand">
-    <input type="submit"  value="Start/Stop">
-  </form>
+    <form method="post" action="FrontControllerServlet">
+      <label>
+        <input type="text" name="clientRowNumber">
+      </label>
+      <input type="hidden" name="command" value="StartCommand">
+      <input type="submit"  value="Start/Stop">
+    </form>
   </body>
 </html>

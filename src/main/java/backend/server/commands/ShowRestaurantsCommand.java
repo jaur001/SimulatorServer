@@ -1,13 +1,30 @@
 package backend.server.commands;
 
 
+import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulation.Simulation;
-import backend.server.servlets.FrontCommand;
+import backend.server.servlets.PageableFrontCommand;
 
-public class ShowRestaurantsCommand extends FrontCommand {
+import java.util.List;
+
+public class ShowRestaurantsCommand extends PageableFrontCommand<Restaurant> {
+
+    public static final String TABLE_NAME = "Restaurant";
+
     @Override
     public void process() {
-        request.setAttribute("restaurantList", Simulation.getRestaurantList());
+        checkPagination();
         forward("/restaurants.jsp");
     }
+
+    @Override
+    protected List<Restaurant> getList(int page) {
+        return Simulation.getRestaurantList(page);
+    }
+
+    @Override
+    protected int getLimit(){
+        return Simulation.getRestaurantSize();
+    }
+
 }

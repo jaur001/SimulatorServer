@@ -2,10 +2,9 @@ package backend.server.commands;
 
 import backend.server.servlets.FrontCommand;
 
-public class UnknownCommand extends FrontCommand {
+public class CancelCommand extends FrontCommand {
     @Override
     public void process() {
-        forward("/unknown.jsp");
+        forward("/index.jsp");
     }
-
 }

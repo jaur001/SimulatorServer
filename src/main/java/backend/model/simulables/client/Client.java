@@ -3,15 +3,12 @@ package backend.model.simulables.client;
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.client.routineList.RoutineList;
-import backend.model.simulables.restaurant.Bill;
+import backend.model.simulables.restaurant.EatingBill;
 import backend.model.bill.bills.EatingSale;
 import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
-import backend.utils.BillsUtils;
 import backend.utils.RoutineUtils;
-
-import java.util.Date;
 
 public class Client implements Simulable {
     PersonalData personalData;
@@ -123,6 +120,6 @@ public class Client implements Simulable {
         this.invitePeople();
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
         this.pay(amount,restaurant);
-        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new Bill(amount)),"EatingSale");
+        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new EatingBill(amount)),"EatingSale");
     }
 }

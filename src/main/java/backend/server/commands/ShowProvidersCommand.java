@@ -1,13 +1,29 @@
 package backend.server.commands;
 
+import backend.model.simulables.provider.Provider;
 import backend.model.simulation.Simulation;
-import backend.server.servlets.FrontCommand;
+import backend.server.servlets.PageableFrontCommand;
 
-public class ShowProvidersCommand extends FrontCommand {
+import java.util.List;
+
+public class ShowProvidersCommand extends PageableFrontCommand<Provider> {
+
+    public static final String TABLE_NAME = "Provider";
 
     @Override
     public void process() {
-        request.setAttribute("providerList", Simulation.getProviderList());
+        checkPagination();
         forward("/providers.jsp");
     }
+
+    @Override
+    protected List<Provider> getList(int page) {
+        return Simulation.getProviderList(page);
+    }
+
+    @Override
+    protected int getLimit(){
+        return Simulation.getProviderSize();
+    }
+
 }

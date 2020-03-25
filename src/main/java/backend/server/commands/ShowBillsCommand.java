@@ -3,54 +3,33 @@ package backend.server.commands;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulation.Simulation;
-import backend.server.servlets.FrontCommand;
-import backend.utils.DatabaseUtils;
-import backend.view.loaders.database.builder.builders.BillBuilder;
+import backend.server.servlets.PageableFrontCommand;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ShowBillsCommand extends FrontCommand {
+public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
+
+    public static final String TABLE_NAME = "Bill";
+
     @Override
     public void process() {
-        setPage();
-        setMaxPage();
+        checkPagination();
         forward("/bills.jsp");
     }
-
-    private void setPage() {
-        String attribute = request.getParameter("page");
-        if(attribute == null){
-            request.setAttribute("page","1");
-            Simulation.setActualPage(1);
-            request.setAttribute("billList", Simulation.getBillList(1));
-        }
-        else{
-            request.setAttribute("page",attribute);
-            getBills(Integer.parseInt(attribute));
-        }
+    protected List<XMLBill> getList(int page) {
+        Simulation.setBillPage(page);
+        return Simulation.getBillList(page);
     }
 
-    private void getBills(int page) {
-        Simulation.setActualPage(page);
-        List<XMLBill> billList = Simulation.getBillList(page);
-        if(billList.size() == 0) forward("/wait.jsp");
-        request.setAttribute("billList", billList);
-    }
-
-
-
-    private void setMaxPage() {
+    @Override
+    protected int getLimit(){
         try {
-            int count = new SQLiteTableSelector().readCount("Bill");
-            request.setAttribute("length", getMaxPage(count) +"");
+            return new SQLiteTableSelector().readCount("Bill");
         } catch (SQLException | ClassNotFoundException e) {
-            request.setAttribute("length","1");
+            e.printStackTrace();
         }
+        return 0;
     }
 
-    private int getMaxPage(int count) {
-        int maxPage = count / DatabaseUtils.getPageLength();
-        return count%DatabaseUtils.getPageLength()==0?maxPage:maxPage+1;
-    }
 }

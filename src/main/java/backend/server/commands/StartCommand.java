@@ -22,6 +22,4 @@ public class StartCommand extends FrontCommand {
         else Simulation.changeExecuting();
         forward("/index.jsp");
     }
-
-
 }

@@ -6,96 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="Creating all the management of the settings for changing it easily everytime it change in the front end.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/SettingsBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/SettingsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/data/BillData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/data/ClientData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/data/GeneralData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/data/ProviderData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/data/RestaurantData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/GeneralSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/RestaurantSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/SaveSettingsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/ShowSettingsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/utils/FrontControllerUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/CSS/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/PROPIETARIO.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/PROPIETARIO.xml" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simulator.db" beforeDir="false" afterPath="$PROJECT_DIR$/Simulator.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/worker/EnumWorkerLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/worker/EnumWorkerLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/financialData/RestaurantFinancialData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/model/financialData/RestaurantFinancialData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/BillsUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/ProviderUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/RestaurantUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/utils/RoutineUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/unknown.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/DatabaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteTableSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/database/SQLite/controllers/SQLiteTableSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/providing/product/DistributionProductPriceInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/providing/product/DistributionProductPriceInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/worker/EnumWorkerLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/worker/EnumWorkerLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionAmountGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionAmountGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionRoutineCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/BillNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/BillNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/NIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/NIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/PersonNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/PersonNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/ProviderNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/ProviderNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/RestaurantNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/RestaurantNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/financialData/RestaurantFinancialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/financialData/RestaurantFinancialData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/provider/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/provider/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/restaurant/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Initializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/CancelCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/CancelCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/DownloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/DownloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/SaveSettingsCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowBillsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/ShowBillsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowClientsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/ShowClientsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowProvidersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/ShowProvidersCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowRestaurantsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/ShowRestaurantsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/ShowSettingsCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontControllerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RestaurantThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RestaurantThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RoutineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/threadsInitializers/RoutineThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/BillsUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/DatabaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/DatabaseUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/ProviderUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/RestaurantUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/RoutineUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/worker/EnumWorkerLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/worker/EnumWorkerLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/model/financialData/RestaurantFinancialData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/model/financialData/RestaurantFinancialData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/BillsUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/ProviderUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/RestaurantUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/utils/RoutineUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bills.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/bills.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/clients.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/clients.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/providers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/providers.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/restaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/restaurants.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/settings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/unknown.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/wait.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/wait.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -371,7 +283,7 @@
       <workItem from="1585431360911" duration="650000" />
       <workItem from="1585508938919" duration="1794000" />
       <workItem from="1585524878006" duration="2076000" />
-      <workItem from="1585570526094" duration="1283000" />
+      <workItem from="1585570526094" duration="1673000" />
     </task>
     <task id="LOCAL-00001" summary="Added views for the webage and the routes for it.">
       <created>1583604541086</created>
@@ -443,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585172663666</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Creating all the management of the settings for changing it easily everytime it change in the front end.">
+      <created>1585571937017</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1585571937018</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,11 +455,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="287" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584644533170" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1585571907512">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1585571934245">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="259" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1583432665590" />
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1585571907512" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1585571934245" />
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog" timestamp="1583785997626">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

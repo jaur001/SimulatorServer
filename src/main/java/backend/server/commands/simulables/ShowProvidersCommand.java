@@ -1,4 +1,4 @@
-package backend.server.commands;
+package backend.server.commands.simulables;
 
 import backend.model.simulables.provider.Provider;
 import backend.model.simulation.Simulation;
@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ShowProvidersCommand extends PageableFrontCommand<Provider> {
 
-    public static final String TABLE_NAME = "Provider";
 
     @Override
     public void process() {

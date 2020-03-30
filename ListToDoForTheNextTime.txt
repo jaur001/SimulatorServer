@@ -53,3 +53,10 @@ N01: nominas
 G01: Compra a proveedores, venta de comida
 G02: Devoluciones
 G03: Servicios de limpieza
+
+
+Dudas:
+- Proveedores mensuales o diarios?
+- ajustes avanzados como hacerlo
+- Sniffer: como obtengo los eventos en el front end sin actualizar la pagina todo el rato.
+

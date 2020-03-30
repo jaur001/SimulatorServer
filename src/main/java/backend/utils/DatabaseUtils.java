@@ -34,7 +34,7 @@ public class DatabaseUtils {
         parameters.put("maxPrice",new Field(Restriction.NOT_NULL, DataType.integer));
         parameters.put("numberTables",new Field(Restriction.NOT_NULL, DataType.integer));
         headers.add(new Header("Restaurant",parameters));
-        headers.get(0).setInitialPrimaryKeyValue(RestaurantNIFCreator.INITIAL_VALUE);
+        headers.get(0).setInitialPrimaryKeyValue(RestaurantNIFCreator.getInitialValue());
     }
 
     private static void createProviderTable() {
@@ -46,7 +46,7 @@ public class DatabaseUtils {
         parameters.put("street",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("telephoneNumber",new Field(Restriction.NOT_NULL, DataType.text));
         headers.add(new Header("Provider",parameters));
-        headers.get(1).setInitialPrimaryKeyValue(ProviderNIFCreator.INITIAL_VALUE);
+        headers.get(1).setInitialPrimaryKeyValue(ProviderNIFCreator.getInitialValue());
     }
 
     private static void createClientTable() {
@@ -62,7 +62,7 @@ public class DatabaseUtils {
         parameters.put("email",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("cardNumber",new Field(Restriction.NOT_NULL, DataType.text));
         headers.add(new Header("Client",parameters));
-        headers.get(2).setInitialPrimaryKeyValue(PersonNIFCreator.INITIAL_VALUE);
+        headers.get(2).setInitialPrimaryKeyValue(PersonNIFCreator.getInitialValue());
     }
 
     private static void createBillTable() {
@@ -83,7 +83,7 @@ public class DatabaseUtils {
         parameters.put("filePath",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("fileName",new Field(Restriction.NOT_NULL_UNIQUE, DataType.text));
         headers.add(new Header("Bill",parameters));
-        headers.get(3).setInitialPrimaryKeyValue(BillNIFCreator.INITIAL_VALUE);
+        headers.get(3).setInitialPrimaryKeyValue(BillNIFCreator.getInitialValue());
     }
 
     public static int getPageLength() {

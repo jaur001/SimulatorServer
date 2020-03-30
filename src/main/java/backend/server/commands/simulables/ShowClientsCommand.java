@@ -1,4 +1,4 @@
-package backend.server.commands;
+package backend.server.commands.simulables;
 
 import backend.model.simulables.client.Client;
 import backend.model.simulation.Simulation;

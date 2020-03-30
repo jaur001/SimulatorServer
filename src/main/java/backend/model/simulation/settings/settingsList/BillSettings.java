@@ -1,31 +1,48 @@
-package backend.utils;
+package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulation.settings.Settings;
+import backend.model.simulation.settings.SettingsData;
+import backend.model.simulation.settings.data.BillData;
+import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillsUtils {
+public class BillSettings implements Settings {
 
-    private static final int NUMBER_PEOPLE_MEAN = 4;
     private static final int PLATE_NUMBER_MEAN = 2;
-    private static final NormalDistribution plateNumberDistribution = new NormalDistribution(PLATE_NUMBER_MEAN,0.7);
+    private static final double PLATE_NUMBER_SD = 0.7;
     private static final Map<String,String> conceptsTable = new HashMap<>();
 
+    private static NormalDistribution plateNumberDistribution;
+
     static {
+        getDefaultSettings();
         conceptsTable.put("EatingSale","Bill of a eating");
         conceptsTable.put("ProductPurchase","Purchase of a product for the restaurant");
         conceptsTable.put("Payroll","Payroll o a worker");
+    }
+
+    private static void getDefaultSettings() {
+        plateNumberDistribution = new NormalDistribution(PLATE_NUMBER_MEAN,PLATE_NUMBER_SD);
+    }
+    @Override
+    public void init(SettingsData data) {
+        BillData billData = data.getBillData();
+        plateNumberDistribution = new NormalDistribution(billData.getPlateNumberMean(), billData.getPlateNumberSd());
+    }
+
+    @Override
+    public void setDefault() {
+        getDefaultSettings();
     }
 
     public static double getPlateNumberMean(){
         return plateNumberDistribution.getMean();
     }
 
-    public static int getNumberPeopleMean(){
-        return NUMBER_PEOPLE_MEAN;
-    }
 
     public static String getConcept(String billType){
         return conceptsTable.get(billType);
@@ -55,4 +72,5 @@ public class BillsUtils {
         double mean = MathUtils.twoNumberMean(restaurant.getMinPricePlate(),restaurant.getMaxPricePlate());
         return Math.abs(new NormalDistribution(mean,restaurant.getMaxPricePlate()-mean).sample());
     }
+
 }

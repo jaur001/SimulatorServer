@@ -1,6 +1,7 @@
 package backend.server.servlets;
 
 import backend.server.commands.UnknownCommand;
+import backend.utils.FrontControllerUtils;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,10 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
     private Class getCommandClass(HttpServletRequest request) {
+        String command = request.getParameter("command");
+        String folder = FrontControllerUtils.getFolder(command);
         try {
-            return Class.forName("backend.server.commands." + request.getParameter("command"));
+            return Class.forName("backend.server.commands."+ FrontControllerUtils.getFolder(command) + command);
         } catch (ClassNotFoundException e) {
             return UnknownCommand.class;
         }

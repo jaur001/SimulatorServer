@@ -1,4 +1,4 @@
-package backend.server.commands;
+package backend.server.commands.simulables;
 
 
 import backend.model.simulables.restaurant.Restaurant;
@@ -8,8 +8,6 @@ import backend.server.servlets.PageableFrontCommand;
 import java.util.List;
 
 public class ShowRestaurantsCommand extends PageableFrontCommand<Restaurant> {
-
-    public static final String TABLE_NAME = "Restaurant";
 
     @Override
     public void process() {
@@ -24,6 +22,7 @@ public class ShowRestaurantsCommand extends PageableFrontCommand<Restaurant> {
 
     @Override
     protected int getLimit(){
+        System.out.println("Limit: " + Simulation.getRestaurantSize());
         return Simulation.getRestaurantSize();
     }
 

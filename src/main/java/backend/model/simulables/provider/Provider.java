@@ -3,7 +3,7 @@ package backend.model.simulables.provider;
 import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.financialData.ProviderFinancialData;
 import backend.model.simulables.restaurant.Restaurant;
-import backend.utils.RestaurantUtils;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class Provider {
         this.ownerName = ownerName;
         this.street = street;
         this.telephoneNumber = telephoneNumber;
-        this.financialData = new ProviderFinancialData(RestaurantUtils.intialSocialCapital);
+        this.financialData = new ProviderFinancialData(RestaurantSettings.getInitialSocialCapital());
         this.product = null;
         this.productPrice = 0;
     }

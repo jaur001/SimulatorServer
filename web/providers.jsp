@@ -4,18 +4,10 @@
 <html>
     <head>
         <title>Providers</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 15px;
-                text-align: left;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="CSS/general.css">
     </head>
     <body>
+        <h1 class="header">Bill Data Generator</h1>
         <h1>Providers</h1>
         <%List<Provider> providerList = (List<Provider>) request.getAttribute("list"); %>
         <% int actualPage = (Integer) request.getAttribute("page"); %>
@@ -39,6 +31,7 @@
         </form>
         <table style="width:100%">
             <tr>
+                <th>Company NIF</th>
                 <th>Company Name</th>
                 <th>Product</th>
                 <th>Product Price</th>
@@ -57,6 +50,7 @@
                     for (Provider provider : providerList) {
                 %>
                 <tr>
+                    <td><%=provider.getNIF()%></td>
                     <td><%=provider.getCompanyName()%></td>
                     <td><%=provider.getProduct()%></td>
                     <td><%=provider.getProductPrice()%></td>
@@ -72,4 +66,9 @@
             <% } %>
         </table>
     </body>
+    <footer>
+        <div class="footer">
+            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
+        </div>
+    </footer>
 </html>

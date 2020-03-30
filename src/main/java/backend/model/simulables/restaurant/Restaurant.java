@@ -10,8 +10,8 @@ import backend.model.bill.bills.Payroll;
 import backend.model.simulables.restaurant.worker.Worker;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
-import backend.utils.RestaurantUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,13 +35,13 @@ public class Restaurant implements Simulable {
 
 
     public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        this(name, telephoneNumber, street, priceRange, tables, RestaurantUtils.intialSocialCapital);
+        this(name, telephoneNumber, street, priceRange, tables, RestaurantSettings.getInitialSocialCapital());
         this.NIF = NIF;
     }
 
 
     public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        this(name, telephoneNumber, street, priceRange, tables, RestaurantUtils.intialSocialCapital);
+        this(name, telephoneNumber, street, priceRange, tables, RestaurantSettings.getInitialSocialCapital());
         this.NIF = new RestaurantNIFCreator().create();
     }
 
@@ -97,6 +97,10 @@ public class Restaurant implements Simulable {
 
     public int getNIF() {
         return NIF;
+    }
+
+    public void setNIF(int NIF) {
+        this.NIF = NIF;
     }
 
     public String getName() {

@@ -33,11 +33,6 @@ public class RestaurantFinancialData extends FinancialData {
         reset();
         treasury+= totalActive - totalPassive;
         netWorth+= totalActive - totalPassive;
-        System.out.println("Treasury: " + treasury + "$");
-        System.out.println("netWorth: " + netWorth + "$");
-        System.out.println("Last Month Data: ");
-        System.out.println("Treasury: " + lastMonthdata.treasury + "$");
-        System.out.println("netWorth: " + lastMonthdata.netWorth + "$");
         totalActive = 0;
     }
 }

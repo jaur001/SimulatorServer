@@ -1,4 +1,4 @@
-package backend.server.commands;
+package backend.server.commands.bills;
 
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulation.Simulation;
@@ -11,15 +11,17 @@ import java.io.PrintWriter;
 
 public class DownloadCommand extends FrontCommand {
 
-    public static final String TABLE_NAME = "Bill";
-
     @Override
     public void process() {
         String fileID = request.getParameter("ID");
-        XMLBill bill = Simulation.getBillList(Simulation.getActualPage()).stream()
+        XMLBill bill = Simulation.getBillList(getBillPage()).stream()
                 .filter(xmlBill -> BillHaveTheUUID(fileID, xmlBill)).findFirst().orElse(new XMLBill());
         prepareDownload(bill);
         download(bill);
+    }
+
+    private int getBillPage() {
+        return (int)request.getSession(true).getAttribute("billPage");
     }
 
     private boolean BillHaveTheUUID(String fileID, XMLBill xmlBill) {

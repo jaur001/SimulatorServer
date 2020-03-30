@@ -4,18 +4,10 @@
 <html>
     <head>
         <title>Restaurants</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td {
-                padding: 15px;
-                text-align: left;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="CSS/general.css">
     </head>
     <body>
+        <h1 class="header">Bill Data Generator</h1>
         <h1>Restaurants</h1>
         <%List<Restaurant> restaurantList = (List<Restaurant>) request.getAttribute("list"); %>
         <% int actualPage = (Integer) request.getAttribute("page"); %>
@@ -74,4 +66,9 @@
             <% } %>
         </table>
     </body>
+    <footer>
+        <div class="footer">
+            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
+        </div>
+    </footer>
 </html>

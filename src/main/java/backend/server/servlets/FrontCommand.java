@@ -24,6 +24,10 @@ public abstract class FrontCommand {
         }
     }
 
+    protected int getIntParameter(String name){
+        return Integer.parseInt(request.getParameter(name));
+    }
+
     protected void setToRequest(String name, Object value) {
         request.setAttribute(name, value);
     }

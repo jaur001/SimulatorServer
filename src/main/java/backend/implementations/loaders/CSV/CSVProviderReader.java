@@ -1,12 +1,9 @@
 package backend.implementations.loaders.CSV;
 
 import backend.model.simulables.provider.Provider;
-import backend.utils.RestaurantUtils;
-import backend.view.loaders.provider.ProviderLoader;
 import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;

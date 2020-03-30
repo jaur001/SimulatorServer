@@ -2,8 +2,9 @@ package backend.implementations.routine;
 
 import backend.model.simulables.client.routineList.routine.Routine;
 import backend.model.simulables.restaurant.Restaurant;
-import backend.utils.BillsUtils;
+import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.model.simulables.client.routineList.routineListController.RoutineChecker;
+import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class DistributionRoutineChecker implements RoutineChecker {
     }
 
     private double getBudgetApproximation(Restaurant restaurant) {
-        return restaurant.getPricePlateMean()* BillsUtils.getPlateNumberMean()* BillsUtils.getNumberPeopleMean();
+        return restaurant.getPricePlateMean()* BillSettings.getPlateNumberMean() * ClientSettings.getPeopleInvitedMean();
     }
 
     private boolean addToProvisionalBudget(double money) {

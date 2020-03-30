@@ -4,7 +4,7 @@ import backend.implementations.database.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.simulation.Simulation;
-import backend.utils.BillsUtils;
+import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -86,14 +86,14 @@ public class CFDIBillGenerator implements BillGenerator {
     }
 
     private void setAttributes(Element billElement) {
-        billElement.setAttribute("Date", bill.getDate().toString());
+        billElement.setAttribute("Date", bill.getDate());
         billElement.setAttribute("Type",bill.getType().toString());
         billElement.setAttribute("Location", bill.getStreet());
         billElement.setAttribute("Currency", bill.getCurrency());
         billElement.setAttribute("Total", bill.getTotal()+"");
         billElement.setAttribute("TaxRate", bill.getTaxRate()+"");
         billElement.setAttribute("SubTotal", bill.getSubtotal()+"");
-        billElement.setAttribute("Concept", BillsUtils.getConcept(type));
+        billElement.setAttribute("Concept", BillSettings.getConcept(type));
     }
 
     private void appendIssuerData(Element billElement) {

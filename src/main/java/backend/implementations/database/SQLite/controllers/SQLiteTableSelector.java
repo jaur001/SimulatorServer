@@ -32,7 +32,7 @@ public class SQLiteTableSelector extends DatabaseController implements TableSele
     public List<Row> read(String headerName,int fromID, int toID) throws SQLException, ClassNotFoundException {
         if (checkTable(headerName)) return new LinkedList<>();
         this.fromID = fromID;
-        this.toID = toID;
+        this.toID = toID-1;
         init(headerName);
         ResultSet resultSet = getResultSet(getSelect());
         return getRows(resultSet);

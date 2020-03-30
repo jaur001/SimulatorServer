@@ -1,11 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-    <title>COMMAND EXCEPTION</title>
-</head>
-<body>
-    <h3>
-        Error: Page Not Found
-    </h3>
-</body>
+    <head>
+        <title>COMMAND EXCEPTION</title>
+        <link rel="stylesheet" type="text/css" href="CSS/general.css">
+        <h1 class="header">Bill Data Generator</h1>
+    </head>
+    <body>
+        <h3>
+            Error: Page Not Found
+        </h3>
+        <div class="fixed-footer">
+            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
+        </div>
+    </body>
+    <footer>
+        <div class="footer">
+            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
+        </div>
+    </footer>
 </html>

@@ -17,7 +17,6 @@ public class RestaurantThread{
                 .parallel().map(RestaurantThread::getPage)
                 .flatMap(List::stream)
                 .collect(Collectors.toCollection(LinkedList::new));
-
     }
 
     private static List<Restaurant> getPage(int page){

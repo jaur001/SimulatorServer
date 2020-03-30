@@ -8,7 +8,7 @@ import backend.model.bill.bills.EatingSale;
 import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
-import backend.utils.RoutineUtils;
+import backend.model.simulation.settings.settingsList.ClientSettings;
 
 public class Client implements Simulable {
     PersonalData personalData;
@@ -46,7 +46,7 @@ public class Client implements Simulable {
     }
 
     private void invitePeople(){
-        peopleInvited = RoutineUtils.getPeopleInvitedSample();
+        peopleInvited = ClientSettings.getPeopleInvitedSample();
     }
 
     public void printRoutines(){

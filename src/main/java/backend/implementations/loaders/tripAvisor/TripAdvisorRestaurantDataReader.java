@@ -2,11 +2,11 @@ package backend.implementations.loaders.tripAvisor;
 
 import backend.model.simulables.restaurant.PriceRange;
 import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.view.loaders.reader.GenericDataReader;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import backend.utils.MathUtils;
-import backend.utils.RestaurantUtils;
 
 public class TripAdvisorRestaurantDataReader implements GenericDataReader<Restaurant> {
 
@@ -24,7 +24,7 @@ public class TripAdvisorRestaurantDataReader implements GenericDataReader<Restau
         Document doc = (Document) document;
         PriceRange prices = new TripAdvisorPriceParser().getPrice(doc).isAvailable()? new TripAdvisorPriceParser().getPrice(doc): addRandomPrice();
         return new Restaurant(getName(doc),getTelephoneNumber(doc),getStreet(doc),prices,
-                RestaurantUtils.getNumTablesSample());
+                RestaurantSettings.getNumTablesSample());
     }
 
     private PriceRange addRandomPrice() {

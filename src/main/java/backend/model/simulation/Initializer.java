@@ -30,14 +30,14 @@ public class Initializer {
 
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.INITIAL_VALUE,providerCount));
+        providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(),providerCount));
         ProductInitializerThread.initProducts(providerList);
         return providerList;
     }
 
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
         //restaurantList = RestaurantThread.loadRestaurantsPage(restaurantCount/30);
-        restaurantList = new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.INITIAL_VALUE,restaurantCount));
+        restaurantList = new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue(),restaurantCount));
         WorkerThread.addWorkers(restaurantList);
         ProvidingThread.initRestaurantsProviders(providerList,restaurantList);
         return restaurantList;
@@ -48,7 +48,7 @@ public class Initializer {
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        clientList = new ClientBuilder().buildList(getRows("Client", PersonNIFCreator.INITIAL_VALUE,clientCount));
+        clientList = new ClientBuilder().buildList(getRows("Client", PersonNIFCreator.getInitialValue(),clientCount));
         RoutineThread.setClientRoutines(clientList,restaurantList);
         return clientList;
     }

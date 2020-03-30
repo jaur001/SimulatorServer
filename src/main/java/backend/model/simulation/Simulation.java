@@ -6,6 +6,7 @@ import backend.model.simulables.Simulable;
 import backend.model.simulables.client.Client;
 import backend.model.simulables.provider.Provider;
 import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 
@@ -20,13 +21,17 @@ public class Simulation {
 
     private static AtomicBoolean condition;
     private static AtomicBoolean restart;
+    private static int actualPage = 0;
+
     private static List<Restaurant> restaurantList = new LinkedList<>();
     private static List<Provider> providerList = new LinkedList<>();
     private static List<Client> clientList = new LinkedList<>();
     private static List<XMLBill> billList = new LinkedList<>();
+
+
     private static String uriProvider;
     private static String uriClient;
-    private static int actualPage = 0;
+
 
 
     public static void restart(){
@@ -128,24 +133,29 @@ public class Simulation {
 
 
 
-    public static void execute(int providerCount, int restaurantCount, int clientCount) {
-        TimeLine timeLine = new TimeLine(Simulation.init(providerCount,restaurantCount,clientCount));
+    public static void execute() {
+        TimeLine timeLine = new TimeLine(Simulation.init());
         ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
         executor.submit(() -> {
             while (!restart.get()){
-                if(condition.get()) timeLine.play();
+                if(condition.get()){
+                    timeLine.play();
+                    System.out.println(geClientSize());
+                    System.out.println(getRestaurantSize());
+                    System.out.println(getProviderSize());
+                }
             }
         });
 
     }
 
-    public static List<Simulable> init(int providerCount, int restaurantCount, int clientCount){
+    public static List<Simulable> init(){
         condition = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
         try {
-            providerList = Initializer.getProviders(providerCount);
-            restaurantList = Initializer.getRestaurants(restaurantCount);
-            clientList = Initializer.getClients(clientCount);
+            providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
+            restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
+            clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

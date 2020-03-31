@@ -4,12 +4,13 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.simulables.provider.Provider;
 import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulation.settings.settingsList.BillSettings;
 
 public class ProductPurchase extends CFDIBill {
 
     private static final Type type = Type.income;
 
     public ProductPurchase(Provider provider, Restaurant restaurant) {
-        super(restaurant.getStreet(), type, provider.getCompanyName(),provider.getNIF(), restaurant.getName(), restaurant.getNIF(), provider.getProductPrice());
+        super(restaurant.getStreet(), type, provider.getCompanyName(),provider.getNIF(), restaurant.getName(), restaurant.getNIF(), provider.getProductPrice(), BillSettings.getConcept("ProductPurchase"));
     }
 }

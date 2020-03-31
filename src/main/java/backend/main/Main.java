@@ -13,7 +13,7 @@ public class Main {
         CFDIBillGenerator.setUriPayrolls("./xmlFiles/Payrolls/");
         SQLiteDatabaseConnector.setUrl("jdbc:sqlite:out/artifacts/RestaurantSimulator_war_exploded/Simulator.db");
 
-        Simulation.execute();
+        Simulation.startStop();
 
     }
 }

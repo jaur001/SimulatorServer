@@ -17,7 +17,7 @@ public class BillBuilder extends Builder<XMLBill> {
                 ,bill.getIssuerName(),bill.getIssuerRFC(),bill.getReceiverName()
                 ,bill.getReceiverRFC(),bill.getTotal(),bill.getTaxRate()
                 ,bill.getSubtotal(),bill.getCurrency(),bill.getConcept()
-                ,bill.getDate().toString(),bill.getFilePath(),bill.getFileName()});
+                ,bill.getDate(),bill.getFilePath(),bill.getFileName()});
     }
 
     @Override

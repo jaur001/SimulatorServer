@@ -14,6 +14,7 @@ public class TimeLine {
 
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
+        date = new Date();
     }
 
     public static boolean isLastDay() {
@@ -33,7 +34,7 @@ public class TimeLine {
         date.setDate(date.getDate()+1);
         System.out.println("New Day:" + date.toString());
         try {
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println("Simulation stopped");
         }

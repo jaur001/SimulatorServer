@@ -45,6 +45,10 @@
       <input type="hidden" name="command" value="StartCommand">
       <input type="submit"  value="Start/Stop">
     </form>
+    <form method="post" action="FrontControllerServlet">
+      <input type="hidden" name="command" value="RestartCommand">
+      <input type="submit"  value="Restart">
+    </form>
   </body>
   <footer>
     <div class="footer">

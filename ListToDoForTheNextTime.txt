@@ -59,4 +59,6 @@ Dudas:
 - Proveedores mensuales o diarios?
 - ajustes avanzados como hacerlo
 - Sniffer: como obtengo los eventos en el front end sin actualizar la pagina todo el rato.
-
+- Solucionar el tema de cerrar la base de datos, como hacer para parar la web.
+- Eliminar tabla y volver a crear de facturas o eliminar todas las filas?
+- Cambiar la velocidad sin actualizar la pagina.

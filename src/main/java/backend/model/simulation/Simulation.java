@@ -1,5 +1,6 @@
 package backend.model.simulation;
 
+import backend.implementations.database.SQLite.controllers.SQLiteTableCreator;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulables.Simulable;
@@ -19,9 +20,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Simulation {
 
-    private static AtomicBoolean condition;
+    private static AtomicBoolean executing;
     private static AtomicBoolean restart;
-    private static int actualPage = 0;
 
     private static List<Restaurant> restaurantList = new LinkedList<>();
     private static List<Provider> providerList = new LinkedList<>();
@@ -36,15 +36,16 @@ public class Simulation {
 
     public static void restart(){
         restart.set(true);
+        executing = null;
     }
 
     public static void changeExecuting() {
-        if(condition.get()) condition.set(false);
-        else condition.set(true);
+        if(executing.get()) executing.set(false);
+        else executing.set(true);
     }
 
     public static boolean isInitialized(){
-        return condition != null;
+        return executing != null;
     }
 
 
@@ -131,28 +132,33 @@ public class Simulation {
         billList.remove(bill);
     }
 
+    public static void resetBills(){
+        billList = new LinkedList<>();
+    }
 
+    public static void startStop(){
+        if(!Simulation.isInitialized()) Simulation.execute();
+        else Simulation.changeExecuting();
+    }
 
-    public static void execute() {
+    private static void execute() {
         TimeLine timeLine = new TimeLine(Simulation.init());
         ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
         executor.submit(() -> {
             while (!restart.get()){
-                if(condition.get()){
+                if(executing.get()){
                     timeLine.play();
-                    System.out.println(geClientSize());
-                    System.out.println(getRestaurantSize());
-                    System.out.println(getProviderSize());
                 }
             }
+            System.out.println("reset...................");
         });
-
     }
 
-    public static List<Simulable> init(){
-        condition = new AtomicBoolean(true);
+    private static List<Simulable> init(){
+        executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
         try {
+            reset();
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
@@ -162,11 +168,13 @@ public class Simulation {
         return Initializer.getSimulableList();
     }
 
-    public static int getActualPage() {
-        return actualPage;
-    }
-
-    public static void setBillPage(int page) {
-        actualPage = page;
+    private static void reset(){
+        resetBills();
+        try {
+            new SQLiteTableCreator().dropTable("Bill");
+            new SQLiteTableCreator().createTable(DatabaseUtils.getHeaders().get(4));
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

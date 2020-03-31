@@ -3,12 +3,10 @@
     <head>
         <title>COMMAND EXCEPTION</title>
         <link rel="stylesheet" type="text/css" href="CSS/general.css">
-        <h1 class="header">Bill Data Generator</h1>
     </head>
     <body>
-        <h3>
-            Error: Page Not Found
-        </h3>
+        <h1 class="header">Bill Data Generator</h1>
+        <h3>Error: Page Not Found</h3>
         <div class="fixed-footer">
             <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
         </div>

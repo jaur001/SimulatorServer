@@ -120,6 +120,6 @@ public class Client implements Simulable {
         this.invitePeople();
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
         this.pay(amount,restaurant);
-        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new EatingBill(amount)),"EatingSale");
+        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new EatingBill(amount)));
     }
 }

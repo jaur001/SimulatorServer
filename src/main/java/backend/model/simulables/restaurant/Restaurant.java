@@ -87,7 +87,6 @@ public class Restaurant implements Simulable {
     }
 
     public void payDebts() {
-        System.out.println(this.name +" payed Debts:");
         financialData.payDebts();
     }
 
@@ -141,8 +140,8 @@ public class Restaurant implements Simulable {
     public void simulate() {
         if(TimeLine.isLastDay()) {
             this.payDebts();
-            workerList.forEach(worker -> new CFDIBillGenerator().generateBill(new Payroll(worker, this),"Payroll"));
-            providersList.forEach(provider -> new CFDIBillGenerator().generateBill(new ProductPurchase(provider,this),"ProductPurchase"));
+            workerList.forEach(worker -> new CFDIBillGenerator().generateBill(new Payroll(worker, this)));
+            providersList.forEach(provider -> new CFDIBillGenerator().generateBill(new ProductPurchase(provider,this)));
         }
         restartTablesAvailable();
     }

@@ -3,9 +3,9 @@
   <head>
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
-    <h1 class="header">Bill Data Generator</h1>
   </head>
   <body>
+  <h1 class="header">Bill Data Generator</h1>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -44,6 +44,10 @@
     <form method="post" action="FrontControllerServlet">
       <input type="hidden" name="command" value="StartCommand">
       <input type="submit"  value="Start/Stop">
+    </form>
+    <form method="post" action="FrontControllerServlet">
+      <input type="hidden" name="command" value="RestartCommand">
+      <input type="submit"  value="Restart">
     </form>
   </body>
   <footer>

@@ -28,6 +28,9 @@ public class Initializer {
     private static List<Restaurant> restaurantList;
     private static List<Client> clientList;
 
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> System.out.println("In shutdown hook"), "Shutdown-thread"));
+    }
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
         providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(),providerCount));

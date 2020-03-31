@@ -14,9 +14,7 @@ public class StartCommand extends FrontCommand {
         CFDIBillGenerator.setUriSales(context.getRealPath("/xmlFiles/EatingBills")+"/");
         CFDIBillGenerator.setUriPayrolls(context.getRealPath("/xmlFiles/Payrolls")+"/");
         SQLiteDatabaseConnector.setUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
-
-        if(!Simulation.isInitialized()) Simulation.execute();
-        else Simulation.changeExecuting();
+        Simulation.startStop();
         forward("/index.jsp");
     }
 }

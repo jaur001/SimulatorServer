@@ -27,7 +27,6 @@ public class CFDIBillGenerator implements BillGenerator {
     private static String urlPayrolls = "./xmlFiles/Payrolls/";
     private Document document;
     private CFDIBill bill;
-    private String type;
 
 
     public static String getUrlSales() {
@@ -46,10 +45,9 @@ public class CFDIBillGenerator implements BillGenerator {
         CFDIBillGenerator.urlPayrolls = urlPayrolls;
     }
 
-    public void generateBill(CFDIBill bill, String type){
+    public void generateBill(CFDIBill bill){
         this.bill = bill;
-        this.type = type;
-        System.out.println("New Bill -> Issuer : " + bill.getIssuerName() + ", Receiver: " + bill.getReceiverName() + ", amount: " + bill.getSubtotal());
+        //System.out.println("New Bill -> Issuer : " + bill.getIssuerName() + ", Receiver: " + bill.getReceiverName() + ", amount: " + bill.getSubtotal());
         try {
             createBill();
 
@@ -93,7 +91,7 @@ public class CFDIBillGenerator implements BillGenerator {
         billElement.setAttribute("Total", bill.getTotal()+"");
         billElement.setAttribute("TaxRate", bill.getTaxRate()+"");
         billElement.setAttribute("SubTotal", bill.getSubtotal()+"");
-        billElement.setAttribute("Concept", BillSettings.getConcept(type));
+        billElement.setAttribute("Concept", bill.getConcept());
     }
 
     private void appendIssuerData(Element billElement) {

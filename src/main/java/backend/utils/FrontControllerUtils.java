@@ -11,7 +11,7 @@ public class FrontControllerUtils {
     static {
         String[] folders = {"bills.","settings.","simulables."};
         List<String> billsFolder = Arrays.asList("DownloadCommand", "ShowBillsCommand");
-        List<String> settingsFolder = Arrays.asList("CancelCommand", "SaveSettingsCommand","ShowSettingsCommand");
+        List<String> settingsFolder = Arrays.asList("CancelCommand", "SaveSettingsCommand","ShowSettingsCommand","ChangeSpeedCommand");
         List<String> simulablesFolder = Arrays.asList("ShowClientsCommand", "ShowProvidersCommand","ShowRestaurantsCommand");
         folderTable.put(folders[0],billsFolder);
         folderTable.put(folders[1],settingsFolder);

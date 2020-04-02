@@ -1,8 +1,7 @@
 package backend.model.simulation.settings.data;
 
-import backend.model.simulables.restaurant.worker.Job;
+import backend.model.simulables.person.worker.Job;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class RestaurantData {

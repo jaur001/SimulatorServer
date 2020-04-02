@@ -1,19 +1,21 @@
 package backend.model.simulation.settings.settingsList;
 
+import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.simulables.restaurant.Restaurant;
-import backend.model.simulation.settings.Settings;
+import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.ClientData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class ClientSettings implements Settings {
+public class ClientSettings implements Adjustable {
 
     public static final int SALARY_MEAN = 1717;
     public static final double SALARY_SD = 979.28;
@@ -22,6 +24,7 @@ public class ClientSettings implements Settings {
     private static final int INVITED_PEOPLE_MAX = 3;
     private static final int NUM_OF_RESTAURANT_MIN = 1;
     private static final int NUM_OF_RESTAURANT_MAX = 2;
+    public static final int CLIENT_SPACE = 85000;
 
     private static NormalDistribution salaryDistribution;
     private static int minSalary;
@@ -87,6 +90,14 @@ public class ClientSettings implements Settings {
         return restaurantList.stream()
                 .filter(restaurant -> restaurant.getMaxPricePlate() <= price)
                 .toArray(Restaurant[]::new);
+    }
+
+    public static int getLimit() throws SQLException, ClassNotFoundException {
+        return new SQLiteTableSelector().readCount("Client")-WorkerSettings.getSpaceForWorkers();
+    }
+
+    public static int getSpaceForClients(){
+        return CLIENT_SPACE;
     }
 
 

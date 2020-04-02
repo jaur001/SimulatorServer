@@ -9,8 +9,13 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeLine {
 
+    public static int TIMEOUT = 1000;
     private static Date date = new Date();
     private List<Simulable> simulableList;
+
+    public static void setTIMEOUT(int TIMEOUT) {
+        TimeLine.TIMEOUT = TIMEOUT;
+    }
 
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
@@ -34,7 +39,7 @@ public class TimeLine {
         date.setDate(date.getDate()+1);
         System.out.println("New Day:" + date.toString());
         try {
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
             System.out.println("Simulation stopped");
         }

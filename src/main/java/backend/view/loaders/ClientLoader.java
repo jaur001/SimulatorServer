@@ -1,6 +1,6 @@
 package backend.view.loaders;
 
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
 import java.util.List;
 
 public interface ClientLoader {

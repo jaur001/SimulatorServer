@@ -62,3 +62,9 @@ Dudas:
 - Solucionar el tema de cerrar la base de datos, como hacer para parar la web.
 - Eliminar tabla y volver a crear de facturas o eliminar todas las filas?
 - Cambiar la velocidad sin actualizar la pagina.
+- notas hpds
+- Solo actualizar cuando se porducen cambios con ese elemento. O usar AJax.
+
+Proximos Pasos:
+- Usar Ajax para mostrar los eventos y cambiar la velocidad
+- Usar 

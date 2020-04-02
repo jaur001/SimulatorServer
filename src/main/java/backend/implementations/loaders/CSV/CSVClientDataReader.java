@@ -1,6 +1,6 @@
 package backend.implementations.loaders.CSV;
 
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
 import backend.view.loaders.reader.GenericDataReader;
 
 public class CSVClientDataReader implements GenericDataReader<Client> {

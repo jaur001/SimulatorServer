@@ -1,13 +1,16 @@
 package backend.model.simulation.settings.settingsList;
 
+import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.simulables.provider.Product;
-import backend.model.simulation.settings.Settings;
+import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
+
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class ProviderSettings implements Settings {
+public class ProviderSettings implements Adjustable {
 
     private static final int INITIAL_SOCIAL_CAPITAL = 10000;
 
@@ -49,5 +52,9 @@ public class ProviderSettings implements Settings {
 
     public static int getProductCost(Product product){
         return productCostTable.get(product);
+    }
+
+    public static int getLimit() throws SQLException, ClassNotFoundException {
+        return new SQLiteTableSelector().readCount("Provider");
     }
 }

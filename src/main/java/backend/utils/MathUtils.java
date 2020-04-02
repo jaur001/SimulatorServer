@@ -1,6 +1,12 @@
 package backend.utils;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class MathUtils {
 
@@ -30,5 +36,11 @@ public class MathUtils {
 
     public static double twoNumberMean(double min, double max){
         return mean(new double[]{min,max});
+    }
+
+    public static int calculateProbability(int[] percentages) {
+        int probSelected = random(0,100);
+        return IntStream.range(0,percentages.length).boxed()
+                .filter(position-> percentages[position] >= probSelected).findFirst().orElse(0);
     }
 }

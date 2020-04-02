@@ -1,7 +1,7 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.model.simulables.client.Client;
-import backend.model.simulables.client.PersonalData;
+import backend.model.simulables.person.client.Client;
+import backend.model.simulables.person.PersonalData;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;
@@ -17,12 +17,13 @@ public class ClientBuilder extends Builder<Client> {
                 ,client.getTelephoneNumber(),client.getEmail(),client.getCardNumber()});
     }
 
+
     @Override
     protected Client getItem(Object[] parameters) {
-        return new Client((int)parameters[0]
+        return new Client(new PersonalData((int)parameters[0]
                 ,(String) parameters[1],(String) parameters[2],(String)parameters[3]
                 ,(String) parameters[4],(String) parameters[5],(String) parameters[6]
-                ,(String) parameters[7],(String) parameters[8],(String) parameters[9]);
+                ,(String) parameters[7],(String) parameters[8],(String) parameters[9]));
 
     }
 }

@@ -1,10 +1,9 @@
 package backend.implementations.loaders.CSV;
 
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
 import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;

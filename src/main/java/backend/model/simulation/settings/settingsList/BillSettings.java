@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.restaurant.Restaurant;
-import backend.model.simulation.settings.Settings;
+import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.BillData;
 import backend.utils.MathUtils;
@@ -10,7 +10,7 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillSettings implements Settings {
+public class BillSettings implements Adjustable {
 
     private static final int PLATE_NUMBER_MEAN = 2;
     private static final double PLATE_NUMBER_SD = 0.7;

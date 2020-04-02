@@ -1,9 +1,9 @@
 package backend.implementations.routine;
 
-import backend.model.simulables.client.routineList.routine.Routine;
+import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
-import backend.model.simulables.client.routineList.routineListController.RoutineChecker;
+import backend.model.simulables.person.client.routineList.routineListController.RoutineChecker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.ArrayList;

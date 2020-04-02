@@ -1,14 +1,15 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.provider.Product;
-import backend.model.simulation.settings.Settings;
+import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 
-public class GeneralSettings implements Settings {
+public class GeneralSettings implements Adjustable {
 
     private static int clientCount;
     private static int restaurantCount;
     private static int providerCount;
+    private static int workerCount;
 
     static {
         getDefaultSettings();
@@ -18,6 +19,7 @@ public class GeneralSettings implements Settings {
         clientCount = 1000;
         restaurantCount = 10;
         providerCount = restaurantCount*Product.values().length;
+        workerCount = restaurantCount*1000;
     }
 
     @Override
@@ -42,5 +44,9 @@ public class GeneralSettings implements Settings {
 
     public static int getProviderCount() {
         return providerCount;
+    }
+
+    public static int getWorkerCount() {
+        return workerCount;
     }
 }

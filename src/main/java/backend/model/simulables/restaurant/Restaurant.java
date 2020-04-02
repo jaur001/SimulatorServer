@@ -4,10 +4,10 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.bill.bills.ProductPurchase;
 import backend.model.financialData.RestaurantFinancialData;
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
 import backend.model.simulables.provider.Provider;
 import backend.model.bill.bills.Payroll;
-import backend.model.simulables.restaurant.worker.Worker;
+import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -73,6 +73,7 @@ public class Restaurant implements Simulable {
     public void addWorker(Worker worker){
         workerList.add(worker);
         financialData.addDebt(worker.getSalary());
+        worker.hire();
     }
 
     public void removeWorker(Worker worker){

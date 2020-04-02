@@ -2,7 +2,7 @@ package backend.model.bill.bills;
 
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
 import backend.model.simulables.restaurant.EatingBill;
 import backend.model.simulables.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;

@@ -1,12 +1,14 @@
 package backend.model.simulation;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableCreator;
+import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.client.Client;
+import backend.model.simulables.person.client.Client;
+import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.provider.Provider;
 import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 public class Simulation {
 
@@ -26,6 +29,7 @@ public class Simulation {
     private static List<Restaurant> restaurantList = new LinkedList<>();
     private static List<Provider> providerList = new LinkedList<>();
     private static List<Client> clientList = new LinkedList<>();
+    private static List<Worker> workerList = new LinkedList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
 
@@ -106,6 +110,12 @@ public class Simulation {
         return clientList.subList(from, to);
     }
 
+    public static List<Worker> getWorkerList(Job job) {
+        return workerList.stream()
+                .filter(worker -> worker.getJob().equals(job.toString()))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
     public static List<XMLBill> getBillList(int page) {
         int from = getFrom(page);
         int to = getTo(from,billList.size());
@@ -144,13 +154,13 @@ public class Simulation {
     private static void execute() {
         TimeLine timeLine = new TimeLine(Simulation.init());
         ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
+        restaurantList.forEach(restaurant -> System.out.println(restaurant.getNumberOfWorkers()));
         executor.submit(() -> {
             while (!restart.get()){
                 if(executing.get()){
                     timeLine.play();
                 }
             }
-            System.out.println("reset...................");
         });
     }
 
@@ -160,6 +170,7 @@ public class Simulation {
         try {
             reset();
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
+            workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
@@ -171,8 +182,7 @@ public class Simulation {
     private static void reset(){
         resetBills();
         try {
-            new SQLiteTableCreator().dropTable("Bill");
-            new SQLiteTableCreator().createTable(DatabaseUtils.getHeaders().get(4));
+            new SQLiteTableDeleter().deleteAll("Bill");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

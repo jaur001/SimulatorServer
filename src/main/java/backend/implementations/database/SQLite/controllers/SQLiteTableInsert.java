@@ -15,10 +15,7 @@ public class SQLiteTableInsert extends DatabaseController implements TableInsert
 
     @Override
     public void insert(String headerName, Row parameters) throws SQLException, ClassNotFoundException {
-        if(notContains(headerName)){
-            System.out.println("Error: Table does not exist");
-            return;
-        }
+        if (checkTable(headerName)) return;
         init(headerName);
         PreparedStatement preparedStatement = prepareInsert();
         insertValues(parameters.getParameters(),preparedStatement);

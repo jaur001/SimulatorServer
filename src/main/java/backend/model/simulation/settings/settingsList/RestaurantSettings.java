@@ -1,15 +1,17 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.restaurant.worker.Job;
-import backend.model.simulation.settings.Settings;
+import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.model.simulables.person.worker.Job;
+import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import org.apache.commons.math3.distribution.BetaDistribution;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class RestaurantSettings implements Settings {
+public class RestaurantSettings implements Adjustable {
 
     private static final int ALPHA = 2;
     private static final int BETA = 4;
@@ -34,14 +36,14 @@ public class RestaurantSettings implements Settings {
     }
 
     private static void getNumberOfWorkers(){
-        Integer[] lengthPerTenTable = {3,2,1,-1,-1,-1};
+        Integer[] lengthPerTenTable = {3,2,1,-1,-1};
         IntStream.range(0,lengthPerTenTable.length).boxed()
                 .forEach(i -> lengthWorkerTable.put(Job.values()[i],lengthPerTenTable[i]));
 
     }
 
     private static void getWorkersSalary(){
-        Integer[] salaries = {500,500,500,500,500,500};
+        Integer[] salaries = {500,500,500,500,500};
         IntStream.range(0,salaries.length).boxed()
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
     }
@@ -71,9 +73,11 @@ public class RestaurantSettings implements Settings {
         return workerSalaryTable.get(job);
     }
 
-
-
     public static int getNumTablesSample(){
         return (int)Math.max(MIN_TABLES,Math.round(numTablesDistribution.sample()* MAX_TABLES));
+    }
+
+    public static int getLimit() throws SQLException, ClassNotFoundException {
+        return new SQLiteTableSelector().readCount("Restaurant");
     }
 }

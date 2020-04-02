@@ -4,14 +4,9 @@ import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
 import backend.implementations.database.SQLite.controllers.SQLiteTableCreator;
 import backend.implementations.database.SQLite.controllers.SQLiteTableInsert;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
-import backend.implementations.loaders.tripAvisor.TripAdvisorRestaurantReader;
-import backend.model.NIFCreator.NIFCreator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
-import backend.model.bill.generator.XMLBill;
 import backend.model.simulables.restaurant.Restaurant;
-import backend.threadsInitializers.RestaurantThread;
 import backend.utils.DatabaseUtils;
-import backend.view.loaders.database.builder.builders.BillBuilder;
 import backend.view.loaders.database.builder.builders.RestaurantBuilder;
 import backend.view.loaders.database.controller.TableInsert;
 

@@ -9,9 +9,6 @@ public class SaveSettingsCommand extends FrontCommand {
     @Override
     public void process() {
         SettingsBuilder.build(getGeneralData());
-        System.out.println("Settings 1: " + GeneralSettings.getClientCount());
-        System.out.println("Settings 2: " + GeneralSettings.getRestaurantCount());
-        System.out.println("Settings 3: " + GeneralSettings.getProviderCount());
         forward("/index.jsp");
     }
 

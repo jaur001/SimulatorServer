@@ -15,13 +15,6 @@ public class SQLiteTableSelector extends DatabaseController implements TableSele
     private int fromID;
     private int toID;
 
-    private boolean checkTable(String headerName) {
-        if(notContains(headerName)){
-            System.out.println("Error: Table does not exist");
-            return true;
-        }
-        return false;
-    }
 
     public List<Row> read(String headerName, int page) throws SQLException, ClassNotFoundException {
         int fromID = getActualHeader(headerName).getInitialPrimaryKeyValue()+(page-1)*DatabaseUtils.getPageLength();

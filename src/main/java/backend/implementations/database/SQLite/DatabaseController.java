@@ -25,4 +25,12 @@ public abstract class DatabaseController {
         this.actualHeaderName = actualHeaderName;
         this.connection = new SQLiteDatabaseConnector().connect();
     }
+
+    protected boolean checkTable(String headerName) {
+        if(notContains(headerName)){
+            System.out.println("Error: Table does not exist");
+            return true;
+        }
+        return false;
+    }
 }

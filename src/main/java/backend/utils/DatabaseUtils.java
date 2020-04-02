@@ -61,7 +61,7 @@ public class DatabaseUtils {
         parameters.put("telephoneNumber",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("email",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("cardNumber",new Field(Restriction.NOT_NULL, DataType.text));
-        headers.add(new Header("Client",parameters));
+        headers.add(new Header("Person",parameters));
         headers.get(2).setInitialPrimaryKeyValue(PersonNIFCreator.getInitialValue());
     }
 

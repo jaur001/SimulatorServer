@@ -1,6 +1,6 @@
 package backend.implementations.loaders.CSV;
 
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Provider;
 import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;

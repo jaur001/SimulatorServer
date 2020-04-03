@@ -1,6 +1,7 @@
 package backend.server.servlets;
 
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.model.simulation.Simulation;
 import backend.utils.DatabaseUtils;
 
 import javax.servlet.ServletContext;
@@ -14,6 +15,7 @@ import java.util.List;
 public abstract class PageableFrontCommand<T> extends FrontCommand{
 
     protected void checkPagination(){
+        Simulation.startStop();
         setPage();
         setMaxPage();
     }

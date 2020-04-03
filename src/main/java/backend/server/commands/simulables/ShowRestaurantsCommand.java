@@ -1,7 +1,7 @@
 package backend.server.commands.simulables;
 
 
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.Simulation;
 import backend.server.servlets.PageableFrontCommand;
 

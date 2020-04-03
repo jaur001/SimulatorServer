@@ -3,6 +3,7 @@ package backend.model.bill.generator;
 import backend.implementations.database.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
+import backend.model.event.Event;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -47,7 +48,7 @@ public class CFDIBillGenerator implements BillGenerator {
 
     public void generateBill(CFDIBill bill){
         this.bill = bill;
-        //System.out.println("New Bill -> Issuer : " + bill.getIssuerName() + ", Receiver: " + bill.getReceiverName() + ", amount: " + bill.getSubtotal());
+        System.out.println("New Bill " + bill.getUUID() + " -> Issuer : " + bill.getIssuerName() + ", Receiver: " + bill.getReceiverName() + ", amount: " + bill.getSubtotal());
         try {
             createBill();
 
@@ -88,9 +89,9 @@ public class CFDIBillGenerator implements BillGenerator {
         billElement.setAttribute("Type",bill.getType().toString());
         billElement.setAttribute("Location", bill.getStreet());
         billElement.setAttribute("Currency", bill.getCurrency());
-        billElement.setAttribute("Total", bill.getTotal()+"");
-        billElement.setAttribute("TaxRate", bill.getTaxRate()+"");
         billElement.setAttribute("SubTotal", bill.getSubtotal()+"");
+        billElement.setAttribute("TaxRate", bill.getTaxRate()+"");
+        billElement.setAttribute("Total", bill.getTotal()+"");
         billElement.setAttribute("Concept", bill.getConcept());
     }
 

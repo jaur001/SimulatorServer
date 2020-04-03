@@ -1,6 +1,6 @@
 package backend.view.loaders.provider;
 
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Provider;
 
 import java.util.List;
 

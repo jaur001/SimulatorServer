@@ -1,9 +1,7 @@
 package backend.implementations.loaders.CSV;
 
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Provider;
 import backend.view.loaders.reader.GenericDataReader;
-
-import java.util.Arrays;
 
 public class CSVProviderDataReader implements GenericDataReader<Provider> {
     @Override

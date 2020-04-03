@@ -2,7 +2,7 @@ package backend.implementations.routine;
 
 import backend.model.simulables.person.client.routineList.routine.Counter;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.utils.MathUtils;
 import backend.model.simulables.person.client.routineList.routineListController.RoutineCreator;

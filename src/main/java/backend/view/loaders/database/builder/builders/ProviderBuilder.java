@@ -1,6 +1,6 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Provider;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

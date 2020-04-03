@@ -4,7 +4,7 @@ import backend.implementations.routine.DistributionRoutineController;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.List;

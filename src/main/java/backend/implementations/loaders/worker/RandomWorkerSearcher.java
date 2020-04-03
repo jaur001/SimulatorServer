@@ -4,7 +4,7 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.view.loaders.worker.WorkerSearcher;
+import backend.view.loaders.WorkerSearcher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +23,11 @@ public class RandomWorkerSearcher implements WorkerSearcher {
     }
 
     private List<Worker> searchWorkersForGroup(Job job, int numTables) {
-        int numWorkers = RestaurantSettings.getWorkerLengthGroup(job,numTables);
-        List<Worker> list = IntStream.range(0, numWorkers).boxed()
+        int numWorkers = RestaurantSettings.getWorkerLength(job,numTables);
+        return IntStream.range(0, numWorkers).boxed()
                 .map(integer -> getWorker(job))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        return list;
     }
 
     private Worker getWorker(Job job) {

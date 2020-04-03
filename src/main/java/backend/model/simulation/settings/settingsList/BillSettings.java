@@ -1,6 +1,6 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.BillData;

@@ -1,9 +1,9 @@
 package backend.initializers.provider;
 
 import backend.implementations.loaders.providing.RandomProvidingController;
-import backend.model.simulables.provider.Product;
-import backend.model.simulables.provider.Provider;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.restaurant.Restaurant;
 
 import java.util.List;
 import java.util.stream.IntStream;

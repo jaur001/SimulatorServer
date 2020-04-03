@@ -1,7 +1,7 @@
 package backend.implementations.routine;
 
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.model.simulables.person.client.routineList.routineListController.RoutineChecker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
@@ -12,25 +12,18 @@ import java.util.stream.Collectors;
 
 public class DistributionRoutineChecker implements RoutineChecker {
 
-    private static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
     private double salary;
-    private double budgetForRestaurant;
-    private double salarySpent;
     private List<Routine> restaurantRoutines;
-    private double provisionalBudgetSpent;
+    private double provisionalBudget;
 
-    public DistributionRoutineChecker(double salary, double salarySpent, List<Routine> restaurantRoutines) {
-        restartProvisionalBudget();
+    public DistributionRoutineChecker(double salary, double budget, List<Routine> restaurantRoutines) {
+        this.provisionalBudget = budget;
         this.salary = salary;
-        this.salarySpent = salarySpent;
-        this.budgetForRestaurant = calculateBudgetForRestaurant(salary);
         this.restaurantRoutines = restaurantRoutines;
     }
 
     public List<Restaurant> checkRoutines(){
-        List<Restaurant> finalList = addIfClientHasBudget(getRestaurants());
-        restartProvisionalBudget();
-        return finalList;
+        return addIfClientHasBudget(getRestaurants());
     }
 
     private List<Restaurant> getRestaurants() {
@@ -60,32 +53,17 @@ public class DistributionRoutineChecker implements RoutineChecker {
 
 
     private boolean thereIsEnoughBudget(Restaurant restaurant) {
-        return addToProvisionalBudget(getBudgetApproximation(restaurant));
+        double budgetApproximation = getBudgetApproximation(restaurant);
+        if(provisionalBudget >= budgetApproximation) {
+            provisionalBudget -= budgetApproximation;
+            return true;
+        }
+        System.out.println("No budget for the restaurant -> salary: "+ salary + ", budget: " + salary* ClientSettings.PERCENTAGE_FOR_RESTAURANT);
+        return false;
     }
 
     private double getBudgetApproximation(Restaurant restaurant) {
         return restaurant.getPricePlateMean()* BillSettings.getPlateNumberMean() * ClientSettings.getPeopleInvitedMean();
     }
 
-    private boolean addToProvisionalBudget(double money) {
-        if(getBudgetAvailable()>provisionalBudgetSpent){
-            provisionalBudgetSpent += money;
-            return true;
-        }
-        System.out.println("No budget for the restaurant -> salary: "+ salary + ", budget: " + budgetForRestaurant);
-        return false;
-    }
-
-    private double getBudgetAvailable() {
-        return budgetForRestaurant - salarySpent;
-    }
-
-
-    private double calculateBudgetForRestaurant(double salary) {
-        return salary* PERCENTAGE_FOR_RESTAURANT;
-    }
-
-    private void restartProvisionalBudget() {
-        provisionalBudgetSpent = 0;
-    }
 }

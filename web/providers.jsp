@@ -1,4 +1,4 @@
-<%@ page import="backend.model.simulables.provider.Provider" %>
+<%@ page import="backend.model.simulables.company.provider.Provider" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
@@ -39,6 +39,11 @@
                 <th>Creation Date</th>
                 <th>Street</th>
                 <th>Telephone Number</th>
+                <th>Treasury</th>
+                <th>Profits</th>
+                <th>Losses</th>
+                <th>Sales</th>
+                <th>Purchases</th>
                 <th>Social Capital</th>
                 <th>Total Active</th>
                 <th>Total Passive</th>
@@ -58,6 +63,11 @@
                     <td><%=provider.getCreationDate()%></td>
                     <td><%=provider.getStreet()%></td>
                     <td><%=provider.getTelephoneNumber()%></td>
+                    <td><%=provider.getFinancialData().getTreasury()%></td>
+                    <td><%=provider.getFinancialData().getProfit()%></td>
+                    <td><%=provider.getFinancialData().getLosses()%></td>
+                    <td><%=provider.getFinancialData().getSales()%></td>
+                    <td><%=provider.getFinancialData().getPurchases()%></td>
                     <td><%=provider.getFinancialData().getSocialCapital()%></td>
                     <td><%=provider.getFinancialData().getTotalActive()%></td>
                     <td><%=provider.getFinancialData().getTotalPassive()%></td>

@@ -2,8 +2,8 @@ package backend.model.bill.bills;
 
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
-import backend.model.simulables.provider.Provider;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
 public class ProductPurchase extends CFDIBill {

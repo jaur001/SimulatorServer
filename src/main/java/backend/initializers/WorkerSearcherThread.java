@@ -1,7 +1,7 @@
 package backend.initializers;
 
 import backend.implementations.loaders.worker.RandomWorkerSearcher;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 
 import java.util.List;
 

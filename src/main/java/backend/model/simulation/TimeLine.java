@@ -1,5 +1,8 @@
 package backend.model.simulation;
 
+import backend.model.event.Event;
+import backend.model.event.EventFactory;
+import backend.model.event.events.DateEvent;
 import backend.model.simulables.Simulable;
 
 import java.time.Month;
@@ -7,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class TimeLine {
+public class TimeLine implements EventFactory {
 
     public static int TIMEOUT = 1000;
     private static Date date = new Date();
@@ -38,6 +41,7 @@ public class TimeLine {
     private void passDay() {
         date.setDate(date.getDate()+1);
         System.out.println("New Day:" + date.toString());
+        EventFactory.addEvent(buildEvent(date.clone()));
         try {
             TimeUnit.MILLISECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
@@ -61,4 +65,8 @@ public class TimeLine {
         return date.getDate();
     }
 
+    @Override
+    public Event buildEvent(Object data) {
+        return new DateEvent((Date)data);
+    }
 }

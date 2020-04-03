@@ -43,4 +43,5 @@ public class MathUtils {
         return IntStream.range(0,percentages.length).boxed()
                 .filter(position-> percentages[position] >= probSelected).findFirst().orElse(0);
     }
+
 }

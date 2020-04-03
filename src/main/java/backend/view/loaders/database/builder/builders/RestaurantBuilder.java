@@ -1,7 +1,7 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.model.simulables.restaurant.PriceRange;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.PriceRange;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

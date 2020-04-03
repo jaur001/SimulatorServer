@@ -66,27 +66,6 @@
         <div>
             <form method="post" action="FrontControllerServlet">
                 <div>
-                    <h3>Number of Simulables</h3>
-                    <div>
-                        <label>Number of Clients</label><br>
-                        <label>
-                            <input type="range" name="clients" min="0" max="<%=request.getAttribute("clientLength")%>" step="1">
-                        </label>
-                    </div>
-                    <div>
-                        <label>Number of Restaurants (Not recommended more than 500)</label><br>
-                        <label>
-                            <input type="range" name="restaurants" min="0" max="<%=request.getAttribute("restaurantLength")%>" step="1">
-                        </label>
-                    </div>
-                    <div>
-                        <label>Number of Providers</label><br>
-                        <label>
-                            <input type="range" name="providers" min="0" max="<%=request.getAttribute("providerLength")%>" step="1">
-                        </label>
-                    </div>
-                </div>
-                <div>
                     <h3>Clients Settings</h3>
                 </div>
                 <div>

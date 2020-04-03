@@ -2,17 +2,23 @@ package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.bill.generator.CFDIBillGenerator;
+import backend.model.event.Event;
+import backend.model.event.EventFactory;
+import backend.model.event.events.EatingSaleEvent;
+import backend.model.simulables.bank.Bank;
+import backend.model.simulables.bank.Collector;
+import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.person.Person;
 import backend.model.simulables.person.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulables.restaurant.EatingBill;
+import backend.model.simulables.company.restaurant.EatingBill;
 import backend.model.bill.bills.EatingSale;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
 import backend.model.simulation.TimeLine;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
-public class Client extends Person implements Simulable {
+public class Client extends Person implements Simulable, EventFactory, EconomicAgent, Collector {
     PersonalData personalData;
 
     private RoutineList routineList;
@@ -28,11 +34,6 @@ public class Client extends Person implements Simulable {
 
     public Client(PersonalData personalData) {
         super(personalData);
-    }
-
-    public void pay(double amount, Restaurant restaurant){
-        this.getRoutineList().decreaseBudget(amount);
-        restaurant.payEating(amount);
     }
 
     public RoutineList getRoutineList() {
@@ -61,24 +62,48 @@ public class Client extends Person implements Simulable {
     }
 
     public double getSalarySpent(){
-        return routineList.getSalarySpent();
+        return routineList.getBudget();
     }
 
 
     @Override
     public void simulate() {
         routineList.checkRoutines().forEach(this::goToEat);
-        if(TimeLine.isLastDay()){
-            routineList.restartBudget();
-        }
         //this.printRoutines();
     }
 
     private void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
+        EatingSale bill = payRestaurant(restaurant);
+        EventFactory.addEvent(buildEvent(bill));
+    }
+
+    private EatingSale payRestaurant(Restaurant restaurant) {
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
-        this.pay(amount,restaurant);
-        new CFDIBillGenerator().generateBill(new EatingSale(restaurant,this,new EatingBill(amount)));
+        EatingSale bill = new EatingSale(restaurant, this, new EatingBill(amount));
+        Bank.makeTransaction(this,restaurant,amount);
+        new CFDIBillGenerator().generateBill(bill);
+        return bill;
+    }
+
+    @Override
+    public Event buildEvent(Object data) {
+        return new EatingSaleEvent((EatingSale) data);
+    }
+
+    @Override
+    public void pay(double amount) {
+        this.getRoutineList().decreaseBudget(amount);
+    }
+
+    @Override
+    public void collect(double amount) {
+        this.getRoutineList().increaseBudget(amount);
+    }
+
+    @Override
+    public void collect() {
+        routineList.restartBudget();
     }
 }

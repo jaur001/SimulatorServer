@@ -1,6 +1,7 @@
 package backend.initializers;
 
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.bank.Bank;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.implementations.loaders.tripAvisor.TripAdvisorRestaurantReader;
 
 import java.io.IOException;

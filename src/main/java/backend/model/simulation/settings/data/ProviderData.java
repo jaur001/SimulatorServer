@@ -1,8 +1,7 @@
 package backend.model.simulation.settings.data;
 
-import backend.model.simulables.provider.Product;
+import backend.model.simulables.company.provider.Product;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProviderData {

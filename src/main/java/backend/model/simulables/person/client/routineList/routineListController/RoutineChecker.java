@@ -1,6 +1,6 @@
 package backend.model.simulables.person.client.routineList.routineListController;
 
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 
 import java.util.List;
 

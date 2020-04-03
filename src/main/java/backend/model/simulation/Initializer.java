@@ -6,9 +6,10 @@ import backend.model.NIFCreator.PersonNIFCreator;
 import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.Simulable;
+import backend.model.simulables.bank.Bank;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.provider.Provider;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.initializers.RoutineThread;
@@ -40,7 +41,7 @@ public class Initializer {
     }
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+ ClientSettings.getSpaceForClients(),workerCount));
+        workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+ ClientSettings.getLimit(),workerCount));
         WorkerThread.setJobs(workerList);
         return workerList;
     }
@@ -60,7 +61,10 @@ public class Initializer {
     }
 
     public static List<Simulable> getSimulableList() {
+        restaurantList.forEach(Bank::addPayer);
+        clientList.forEach(Bank::addCollector);
         List<Simulable> simulableList = new LinkedList<>();
+        simulableList.add(new Bank());
         simulableList.addAll(restaurantList);
         simulableList.addAll(clientList);
         simulableList.addAll(workerList);

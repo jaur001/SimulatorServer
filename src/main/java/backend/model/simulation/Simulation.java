@@ -1,13 +1,14 @@
 package backend.model.simulation;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
+import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
+import backend.model.simulables.bank.Bank;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Job;
-import backend.model.simulables.provider.Provider;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
@@ -37,14 +38,17 @@ public class Simulation {
     private static String uriClient;
 
 
-
     public static void restart(){
         restart.set(true);
         executing = null;
     }
 
+    public static boolean isRunning() {
+        return executing.get();
+    }
+
     public static void changeExecuting() {
-        if(executing.get()) executing.set(false);
+        if(isRunning()) executing.set(false);
         else executing.set(true);
     }
 
@@ -142,10 +146,6 @@ public class Simulation {
         billList.remove(bill);
     }
 
-    public static void resetBills(){
-        billList = new LinkedList<>();
-    }
-
     public static void startStop(){
         if(!Simulation.isInitialized()) Simulation.execute();
         else Simulation.changeExecuting();
@@ -154,10 +154,9 @@ public class Simulation {
     private static void execute() {
         TimeLine timeLine = new TimeLine(Simulation.init());
         ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
-        restaurantList.forEach(restaurant -> System.out.println(restaurant.getNumberOfWorkers()));
         executor.submit(() -> {
             while (!restart.get()){
-                if(executing.get()){
+                if(isRunning()){
                     timeLine.play();
                 }
             }
@@ -168,7 +167,7 @@ public class Simulation {
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
         try {
-            reset();
+            resetBills();
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
@@ -181,10 +180,19 @@ public class Simulation {
 
     private static void reset(){
         resetBills();
-        try {
-            new SQLiteTableDeleter().deleteAll("Bill");
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        resetEvents();
+        resetBank();
+    }
+
+    private static void resetBank() {
+        Bank.reset();
+    }
+
+    private static void resetBills(){
+        billList = new LinkedList<>();
+    }
+
+    private static void resetEvents() {
+        EventController.reset();
     }
 }

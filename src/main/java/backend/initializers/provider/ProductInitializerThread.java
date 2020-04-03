@@ -2,8 +2,8 @@ package backend.initializers.provider;
 
 import backend.implementations.loaders.providing.product.DistributionProductPriceInitializer;
 import backend.implementations.loaders.providing.product.RandomProductInitializer;
-import backend.model.simulables.provider.Product;
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.provider.Provider;
 
 import java.util.List;
 import java.util.stream.IntStream;

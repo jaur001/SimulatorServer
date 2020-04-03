@@ -1,6 +1,6 @@
 package backend.model.simulables.person.client.routineList.routine;
 
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 
 public class Routine {
     private Restaurant restaurant;

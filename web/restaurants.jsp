@@ -1,4 +1,4 @@
-<%@ page import="backend.model.simulables.restaurant.Restaurant" %>
+<%@ page import="backend.model.simulables.company.restaurant.Restaurant" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
@@ -39,6 +39,11 @@
                 <th>Number Of Workers</th>
                 <th>Street</th>
                 <th>Telephone Number</th>
+                <th>Treasury</th>
+                <th>Profits</th>
+                <th>Losses</th>
+                <th>Sales</th>
+                <th>Purchases</th>
                 <th>Social Capital</th>
                 <th>Total Active</th>
                 <th>Total Passive</th>
@@ -58,6 +63,11 @@
                     <td><%=restaurant.getNumberOfWorkers()%></td>
                     <td><%=restaurant.getStreet()%></td>
                     <td><%=restaurant.getTelephoneNumber()%></td>
+                    <td><%=restaurant.getFinancialData().getTreasury()%></td>
+                    <td><%=restaurant.getFinancialData().getProfit()%></td>
+                    <td><%=restaurant.getFinancialData().getLosses()%></td>
+                    <td><%=restaurant.getFinancialData().getSales()%></td>
+                    <td><%=restaurant.getFinancialData().getPurchases()%></td>
                     <td><%=restaurant.getFinancialData().getSocialCapital()%></td>
                     <td><%=restaurant.getFinancialData().getTotalActive()%></td>
                     <td><%=restaurant.getFinancialData().getTotalPassive()%></td>

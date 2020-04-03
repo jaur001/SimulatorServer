@@ -2,55 +2,51 @@ package backend.model.simulables.person.client.routineList;
 
 import backend.implementations.routine.DistributionRoutineChecker;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.List;
 
 public class RoutineList {
     private double salary;
-    private double salarySpent;
+    private double budget;
+    private final double budgetLimit;
     private List<Routine> restaurantRoutines;
 
     public RoutineList(double salary,List<Routine> restaurantRoutines) {
-        restartBudget();
+        budgetLimit = salary * ClientSettings.PERCENTAGE_FOR_RESTAURANT;
+        budget = budgetLimit;
         this.salary = salary;
         this.restaurantRoutines = restaurantRoutines;
     }
 
     public List<Restaurant> checkRoutines(){
-        return new DistributionRoutineChecker(salary,salarySpent,restaurantRoutines).checkRoutines();
+        return new DistributionRoutineChecker(salary, budget,restaurantRoutines).checkRoutines();
     }
+
 
     public double getSalary() {
         return salary;
     }
 
-    public double getSalarySpent() {
-        return salarySpent;
-    }
-
-    public List<Routine> getClientRoutines() {
-        return restaurantRoutines;
-    }
-
-    public void setClientRoutines(List<Routine> restaurantRoutines) {
-        this.restaurantRoutines = restaurantRoutines;
+    public double getBudget() {
+        return budget;
     }
 
     public void restartBudget(){
-        salarySpent = 0;
+        budget = budgetLimit;
+    }
+
+    public void increaseBudget(double amount) {
+        budget += Math.min(amount,budgetLimit);
     }
 
     public void decreaseBudget(double amount) {
-        salarySpent += amount;
+        budget -= amount;
     }
 
     public void printCount() {
         restaurantRoutines.forEach((routine -> System.out.print(routine.getRestaurant().getName() + ": " + routine.getCount()+", ")));
         System.out.print("\n");
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
     }
 }

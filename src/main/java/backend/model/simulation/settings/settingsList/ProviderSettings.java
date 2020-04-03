@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
-import backend.model.simulables.provider.Product;
+import backend.model.simulables.company.provider.Product;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 

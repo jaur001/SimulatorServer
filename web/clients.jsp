@@ -40,7 +40,7 @@
                 <th>Gender</th>
                 <th>Job</th>
                 <th>Salary</th>
-                <th>Salary Spent</th>
+                <th>Budget</th>
                 <th>Country</th>
                 <th>Telephone Number</th>
                 <th>Email</th>

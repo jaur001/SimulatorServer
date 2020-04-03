@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.ClientData;
@@ -17,14 +17,15 @@ import java.util.stream.IntStream;
 
 public class ClientSettings implements Adjustable {
 
-    public static final int SALARY_MEAN = 1717;
-    public static final double SALARY_SD = 979.28;
-    public static final int MIN_SALARY = 500;
+    public static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
+    private static final int SALARY_MEAN = 1717;
+    private static final double SALARY_SD = 979.28;
+    private static final int MIN_SALARY = 500;
     private static final int INVITED_PEOPLE_MIN = 0;
     private static final int INVITED_PEOPLE_MAX = 3;
     private static final int NUM_OF_RESTAURANT_MIN = 1;
     private static final int NUM_OF_RESTAURANT_MAX = 2;
-    public static final int CLIENT_SPACE = 85000;
+    private static final int CLIENT_SPACE = 85000;
 
     private static NormalDistribution salaryDistribution;
     private static int minSalary;
@@ -78,11 +79,11 @@ public class ClientSettings implements Adjustable {
     }
 
     public static int getPeopleInvitedSample(){
-        return MathUtils.random(INVITED_PEOPLE_MIN, INVITED_PEOPLE_MAX);
+        return MathUtils.random(INVITED_PEOPLE_MIN, INVITED_PEOPLE_MAX+1);
     }
 
     public static int getNumOfRestaurantSample(){
-        return MathUtils.random(NUM_OF_RESTAURANT_MIN, NUM_OF_RESTAURANT_MAX);
+        return MathUtils.random(NUM_OF_RESTAURANT_MIN, NUM_OF_RESTAURANT_MAX+1);
     }
 
     public static Restaurant[] getRestaurantOptions(double salary, List<Restaurant> restaurantList){
@@ -92,14 +93,16 @@ public class ClientSettings implements Adjustable {
                 .toArray(Restaurant[]::new);
     }
 
-    public static int getLimit() throws SQLException, ClassNotFoundException {
-        return new SQLiteTableSelector().readCount("Client")-WorkerSettings.getSpaceForWorkers();
+    public static int getLimit(){
+        int limit = 0;
+        try {
+            limit = new SQLiteTableSelector().readCount("Person");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        limit = Math.max(limit - WorkerSettings.getSpaceForWorkers(), 0);
+        return Math.min(limit,CLIENT_SPACE);
     }
-
-    public static int getSpaceForClients(){
-        return CLIENT_SPACE;
-    }
-
 
     public static int getNextVisitDaySample(double salary, double salaryOption) {
         return MathUtils.random(7,14);

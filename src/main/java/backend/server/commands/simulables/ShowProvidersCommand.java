@@ -1,6 +1,6 @@
 package backend.server.commands.simulables;
 
-import backend.model.simulables.provider.Provider;
+import backend.model.simulables.company.provider.Provider;
 import backend.model.simulation.Simulation;
 import backend.server.servlets.PageableFrontCommand;
 

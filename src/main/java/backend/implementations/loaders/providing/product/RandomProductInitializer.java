@@ -1,6 +1,6 @@
 package backend.implementations.loaders.providing.product;
 
-import backend.model.simulables.provider.Product;
+import backend.model.simulables.company.provider.Product;
 import backend.utils.MathUtils;
 import backend.view.loaders.provider.product.ProductInitializer;
 

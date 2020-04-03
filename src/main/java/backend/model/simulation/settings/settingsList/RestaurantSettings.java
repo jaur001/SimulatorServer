@@ -65,11 +65,11 @@ public class RestaurantSettings implements Adjustable {
         return initialSocialCapital;
     }
 
-    public static int getWorkerLengthGroup(Job job, int numTables) {
+    public static int getWorkerLength(Job job, int numTables) {
         return (int)Math.max(Math.round(((lengthWorkerTable.get(job)/10.0))*numTables), WORKERS_MIN);
     }
 
-    public static int getWorkerSalaryGroup(Job job){
+    public static int getSalary(Job job){
         return workerSalaryTable.get(job);
     }
 

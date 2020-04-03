@@ -10,15 +10,6 @@ import java.sql.SQLException;
 public class ShowSettingsCommand extends FrontCommand {
     @Override
     public void process() {
-        try {
-            setToRequest("clientLength", ClientSettings.getLimit());
-            setToRequest("restaurantLength", RestaurantSettings.getLimit());
-            setToRequest("providerLength", ProviderSettings.getLimit());
-        } catch (SQLException | ClassNotFoundException e) {
-            setToRequest("clientLength",0);
-            setToRequest("restaurantLength",0);
-            setToRequest("providerLength",0);
-        }
         forward("/settings.jsp");
     }
 }

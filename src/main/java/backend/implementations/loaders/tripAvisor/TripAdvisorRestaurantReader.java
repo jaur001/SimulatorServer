@@ -1,7 +1,6 @@
 package backend.implementations.loaders.tripAvisor;
 
-import backend.model.NIFCreator.RestaurantNIFCreator;
-import backend.model.simulables.restaurant.Restaurant;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.view.loaders.reader.GenericReader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,7 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

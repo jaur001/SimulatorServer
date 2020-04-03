@@ -4,18 +4,10 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
+    <script src="JS/index.js"></script>
   </head>
   <script>
-    $(document).ready(function() {
-      $('#submit').click(function(event) {
-        let speed = $('#speed').val();
-        let command = $('#command').val();
-        $.post('FrontControllerServlet', {
-          speed : speed,
-          "command": command
-        });
-      });
-    });
+    let isRunning = false;
   </script>
   <body>
   <h1 class="header">Bill Data Generator</h1>
@@ -54,19 +46,24 @@
       </div>
     </nav>
     Welcome to my Simulator
-    <form method="post" action="FrontControllerServlet">
-      <input type="hidden" name="command" value="StartCommand">
-      <input type="submit"  value="Start/Stop">
-    </form>
-    <form method="post" action="FrontControllerServlet">
-      <input type="hidden" name="command" value="RestartCommand">
-      <input type="submit"  value="Restart">
+    <form>
+      <input type="hidden" id="startCommand" value="StartCommand">
+      <input type="button" id="start" value="Start/Stop">
     </form>
     <form>
-      <input type="range" id="speed" name="speed" min="100" max="5000" step="10">
-      <input type="hidden" id="command" name="command" value="ChangeSpeedCommand">
-      <input type="button" id="submit"  value="Change Speed">
+      <input type="hidden" id="restartCommand" name="command" value="RestartCommand">
+      <input type="button"  id="restart" value="Restart">
     </form>
+    <form>
+      <label for="speed"></label>
+      <input type="range" id="speed" name="speed" min="100" max="5000" step="10">
+      <input type="hidden" id="speedCommand" value="ChangeSpeedCommand">
+      <input type="button" id="changeSpeed"  value="Change Speed">
+    </form>
+    <label for="text-area"></label>
+    <textarea id="text-area" rows="10" cols="50">
+
+    </textarea>
   </body>
   <footer>
     <div class="footer">

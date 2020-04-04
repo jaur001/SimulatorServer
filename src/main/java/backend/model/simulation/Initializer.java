@@ -61,14 +61,19 @@ public class Initializer {
     }
 
     public static List<Simulable> getSimulableList() {
-        restaurantList.forEach(Bank::addPayer);
-        clientList.forEach(Bank::addCollector);
+        addPayersAndCollectors();
         List<Simulable> simulableList = new LinkedList<>();
         simulableList.add(new Bank());
         simulableList.addAll(restaurantList);
         simulableList.addAll(clientList);
         simulableList.addAll(workerList);
         return simulableList;
+    }
+
+    public static void addPayersAndCollectors() {
+        restaurantList.forEach(Bank::addPayer);
+        providerList.forEach(Bank::addPayer);
+        clientList.forEach(Bank::addCollector);
     }
 
     private static List<Row> getRows(String tableName, int initialValue, int count) throws SQLException, ClassNotFoundException {

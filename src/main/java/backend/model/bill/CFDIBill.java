@@ -22,34 +22,28 @@ public class CFDIBill {
     protected String concept;
     protected String date;
 
-    public CFDIBill(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total, String concept) {
-        UUID = new BillNIFCreator().create();
-        init(street,type,issuerName,issuerRFC,receiverName,receiverRFC,total,concept);
-    }
-
-    public CFDIBill(int UUID,String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total, String concept) {
+    public CFDIBill(int UUID,String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
         this.UUID = UUID;
-        init(street,type,issuerName,issuerRFC,receiverName,receiverRFC,total,concept);
-    }
-
-
-    public CFDIBill() {
-    }
-
-
-    public void init(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double total, String concept) {
         this.street = street;
         this.type = type;
         this.issuerName = issuerName;
         this.issuerRFC = issuerRFC;
         this.receiverName = receiverName;
         this.receiverRFC = receiverRFC;
-        this.total = total;
+        this.subtotal = subtotal;
         this.taxRate = 1.0;
-        this.subtotal = this.taxRate*total;
+        this.total = this.taxRate*subtotal;
         this.currency = "euro";
         this.concept = concept;
         this.date = TimeLine.getDate().toString();
+    }
+
+    public CFDIBill(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
+        this(new BillNIFCreator().create(),street,type,issuerName,issuerRFC,receiverName,receiverRFC,subtotal,concept);
+    }
+
+
+    public CFDIBill() {
     }
 
 

@@ -44,6 +44,7 @@ $(document).ready(function() {
             command: command
         }, function() {
             isRunning = false;
+            document.getElementById('#text-area').value = "";
         });
     });
 });

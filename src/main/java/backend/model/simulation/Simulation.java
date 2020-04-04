@@ -1,5 +1,6 @@
 package backend.model.simulation;
 
+import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
@@ -19,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
@@ -146,9 +148,15 @@ public class Simulation {
         billList.remove(bill);
     }
 
+
+
     public static void startStop(){
         if(!Simulation.isInitialized()) Simulation.execute();
         else Simulation.changeExecuting();
+    }
+
+    public static void stop() {
+        executing.set(false);
     }
 
     private static void execute() {
@@ -166,16 +174,20 @@ public class Simulation {
     private static List<Simulable> init(){
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
+        initElements();
+        return Initializer.getSimulableList();
+    }
+
+    private static void initElements() {
         try {
-            resetBills();
+            reset();
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            waitForDatabase();
         }
-        return Initializer.getSimulableList();
     }
 
     private static void reset(){
@@ -190,9 +202,22 @@ public class Simulation {
 
     private static void resetBills(){
         billList = new LinkedList<>();
+        try {
+            new SQLiteTableDeleter().deleteAll("Bill");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void resetEvents() {
         EventController.reset();
+    }
+
+    private static void waitForDatabase() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ex) {
+            initElements();
+        }
     }
 }

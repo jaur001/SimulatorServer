@@ -12,7 +12,7 @@ public class XMLBill extends CFDIBill {
     private String filePath = "";
 
     public XMLBill(CFDIBill bill, String filePath, String fileName) {
-        super(bill.getUUID(),bill.getStreet(), bill.getType(), bill.getIssuerName(), bill.getIssuerRFC(), bill.getReceiverName(), bill.getReceiverRFC(), bill.getTotal(), bill.getConcept());
+        super(bill.getUUID(),bill.getStreet(), bill.getType(), bill.getIssuerName(), bill.getIssuerRFC(), bill.getReceiverName(), bill.getReceiverRFC(), bill.getSubtotal(), bill.getConcept());
         this.filePath = filePath;
         this.fileName = fileName;
     }

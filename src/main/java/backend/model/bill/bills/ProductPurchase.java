@@ -2,11 +2,12 @@ package backend.model.bill.bills;
 
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
+import backend.model.event.Event;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
-public class ProductPurchase extends CFDIBill {
+public class ProductPurchase extends CFDIBill implements Event {
 
     private static final Type type = Type.income;
     private Provider provider;
@@ -25,5 +26,13 @@ public class ProductPurchase extends CFDIBill {
 
     public Restaurant getRestaurant() {
         return restaurant;
+    }
+
+    @Override
+    public String getMessage() {
+        return this.getReceiverName() + " has bought "
+                + this.getProvider().getProduct() + " to "
+                + this.getIssuerName() + ", amount: "
+                + this.getTotal();
     }
 }

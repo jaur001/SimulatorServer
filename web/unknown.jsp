@@ -7,9 +7,6 @@
     <body>
         <h1 class="header">Bill Data Generator</h1>
         <h3>Error: Page Not Found</h3>
-        <div class="fixed-footer">
-            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
-        </div>
     </body>
     <footer>
         <div class="footer">

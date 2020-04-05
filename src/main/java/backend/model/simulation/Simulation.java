@@ -78,7 +78,7 @@ public class Simulation {
 
 
 
-    public static int geClientSize() {
+    public static int getClientSize() {
         return clientList.size();
     }
 
@@ -88,6 +88,10 @@ public class Simulation {
 
     public static int getRestaurantSize() {
         return restaurantList.size();
+    }
+
+    public static int getWorkerSize() {
+        return workerList.size();
     }
 
     private static int getFrom(int page) {
@@ -120,6 +124,12 @@ public class Simulation {
         return workerList.stream()
                 .filter(worker -> worker.getJob().equals(job.toString()))
                 .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public static List<Worker> getWorkerList(int page) {
+        int from = getFrom(page);
+        int to = getTo(from,workerList.size());
+        return workerList.subList(from, to);
     }
 
     public static List<XMLBill> getBillList(int page) {

@@ -43,6 +43,12 @@
             <input type="submit"  value="Settings">
           </form>
         </div>
+        <div class="navbar-header">
+          <form method="post" action="FrontControllerServlet">
+            <input type="hidden" name="command" value="ShowWorkersCommand">
+            <input type="submit"  value="Workers">
+          </form>
+        </div>
       </div>
     </nav>
     Welcome to my Simulator

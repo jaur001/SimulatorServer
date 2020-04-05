@@ -1,6 +1,6 @@
 package backend.initializers;
 
-import backend.implementations.routine.DistributionRoutineController;
+import backend.implementations.routine.controller.ConstantRoutineController;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.client.routineList.RoutineList;
@@ -17,7 +17,7 @@ public class RoutineThread {
 
     private static void setClientRoutine(Client client, List<Restaurant> restaurants) {
         double salary = ClientSettings.getSalarySample();
-        List<Routine> restaurantRoutines = new DistributionRoutineController().createRoutineList(salary,restaurants);
+        List<Routine> restaurantRoutines = new ConstantRoutineController().createRoutineList(salary,restaurants);
         client.setRoutineList(new RoutineList(salary, restaurantRoutines));
     }
 

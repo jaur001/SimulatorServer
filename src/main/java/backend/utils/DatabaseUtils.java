@@ -20,7 +20,7 @@ public class DatabaseUtils {
     static {
         createRestaurantTable();
         createProviderTable();
-        createClientTable();
+        createPersonTable();
         createBillTable();
     }
 
@@ -49,7 +49,7 @@ public class DatabaseUtils {
         headers.get(1).setInitialPrimaryKeyValue(ProviderNIFCreator.getInitialValue());
     }
 
-    private static void createClientTable() {
+    private static void createPersonTable() {
         Map<String, Field> parameters = new LinkedHashMap<>();
         parameters.put("NIF",new Field(Restriction.PRIMARY_KEY, DataType.integer));
         parameters.put("firstName",new Field(Restriction.NOT_NULL, DataType.text));

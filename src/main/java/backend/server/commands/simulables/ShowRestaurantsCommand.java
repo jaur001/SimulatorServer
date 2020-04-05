@@ -22,7 +22,6 @@ public class ShowRestaurantsCommand extends PageableFrontCommand<Restaurant> {
 
     @Override
     protected int getLimit(){
-        System.out.println("Limit: " + Simulation.getRestaurantSize());
         return Simulation.getRestaurantSize();
     }
 

@@ -3,8 +3,7 @@ package backend.model.simulables.person.client;
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.event.Event;
-import backend.model.event.EventFactory;
-import backend.model.event.events.EatingSaleEvent;
+import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.EconomicAgent;
@@ -15,11 +14,9 @@ import backend.model.simulables.company.restaurant.EatingBill;
 import backend.model.bill.bills.EatingSale;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.Simulable;
-import backend.model.simulation.TimeLine;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
-public class Client extends Person implements Simulable, EventFactory, EconomicAgent, Collector {
-    PersonalData personalData;
+public class Client extends Person implements Simulable, EconomicAgent, Collector {
 
     private RoutineList routineList;
     private int peopleInvited;
@@ -75,8 +72,7 @@ public class Client extends Person implements Simulable, EventFactory, EconomicA
     private void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
-        EatingSale bill = payRestaurant(restaurant);
-        EventFactory.addEvent(buildEvent(bill));
+        addEvent(payRestaurant(restaurant));
     }
 
     private EatingSale payRestaurant(Restaurant restaurant) {
@@ -87,10 +83,6 @@ public class Client extends Person implements Simulable, EventFactory, EconomicA
         return bill;
     }
 
-    @Override
-    public Event buildEvent(Object data) {
-        return new EatingSaleEvent((EatingSale) data);
-    }
 
     @Override
     public void pay(double amount) {

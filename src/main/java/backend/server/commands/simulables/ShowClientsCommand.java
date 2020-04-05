@@ -23,7 +23,7 @@ public class ShowClientsCommand extends PageableFrontCommand<Client> {
 
     @Override
     protected int getLimit() {
-        return Simulation.geClientSize();
+        return Simulation.getClientSize();
     }
 
 }

@@ -1,6 +1,8 @@
 package backend.model.simulables.person;
 
-public class Person {
+import backend.model.event.EventGenerator;
+
+public class Person extends EventGenerator {
     protected PersonalData personalData;
 
     public Person(PersonalData personalData) {
@@ -38,6 +40,7 @@ public class Person {
     public String getCountry() {
         return personalData.getCountry();
     }
+
 
     public String getTelephoneNumber() {
         return personalData.getTelephoneNumber();

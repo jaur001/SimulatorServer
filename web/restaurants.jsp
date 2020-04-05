@@ -33,6 +33,7 @@
             <tr>
                 <th>Company NIF</th>
                 <th>Company Name</th>
+                <th>Score</th>
                 <th>Table Number</th>
                 <th>Minimum Price Per Plate</th>
                 <th>Maximum Price Per Plate</th>
@@ -57,6 +58,7 @@
                 <tr>
                     <td><%=restaurant.getNIF()%></td>
                     <td><%=restaurant.getName()%></td>
+                    <td><%=restaurant.getScore()%></td>
                     <td><%=restaurant.getTables()%></td>
                     <td><%=restaurant.getMinPricePlate()%></td>
                     <td><%=restaurant.getMaxPricePlate()%></td>

@@ -1,6 +1,6 @@
 package backend.model.simulables.person.client.routineList;
 
-import backend.implementations.routine.DistributionRoutineChecker;
+import backend.implementations.routine.checker.ConstantRoutineChecker;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.ClientSettings;
@@ -21,7 +21,7 @@ public class RoutineList {
     }
 
     public List<Restaurant> checkRoutines(){
-        return new DistributionRoutineChecker(salary, budget,restaurantRoutines).checkRoutines();
+        return new ConstantRoutineChecker(salary, budget,restaurantRoutines).checkRoutines();
     }
 
 

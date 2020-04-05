@@ -4,9 +4,8 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.bill.bills.ProductPurchase;
 import backend.model.event.Event;
-import backend.model.event.EventFactory;
-import backend.model.event.events.PayrollEvent;
-import backend.model.event.events.ProductPurchaseEvent;
+import backend.model.event.EventController;
+import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
@@ -26,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 // No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
-public class Restaurant extends Company implements Simulable, EventFactory{
+public class Restaurant extends Company implements Simulable{
     private int NIF;
     private String name;
     private String street;
@@ -82,6 +81,12 @@ public class Restaurant extends Company implements Simulable, EventFactory{
             financialData.removeDebt(worker.getSalary());
             worker.fire();
         }
+    }
+
+    public double getScore(){
+        return workerList.stream()
+                .map(worker -> (double)worker.getQuality().getScore())
+                .reduce(1.0,Double::sum)/workerList.size();
     }
 
     public void collectEating(double amount){
@@ -142,7 +147,9 @@ public class Restaurant extends Company implements Simulable, EventFactory{
     }
 
     public void payProvider(Provider provider) {
-        new CFDIBillGenerator().generateBill(new ProductPurchase(provider,this));
+        ProductPurchase bill = new ProductPurchase(provider, this);
+        new CFDIBillGenerator().generateBill(bill);
+        addEvent(bill);
         Bank.makeTransaction(this,provider,provider.getProductPrice());
     }
 
@@ -153,7 +160,7 @@ public class Restaurant extends Company implements Simulable, EventFactory{
     public void payWorker(Worker worker) {
         Payroll payroll= new Payroll(worker, this);
         new CFDIBillGenerator().generateBill(payroll);
-        EventFactory.addEvent(buildEvent(payroll));
+        addEvent(payroll);
         Bank.makeTransaction(this,worker,worker.getSalary());
     }
 
@@ -166,9 +173,4 @@ public class Restaurant extends Company implements Simulable, EventFactory{
         return false;
     }
 
-    @Override
-    public Event buildEvent(Object data) {
-        if(data instanceof Payroll)return new PayrollEvent((Payroll)data);
-        return new ProductPurchaseEvent((ProductPurchase)data);
-    }
 }

@@ -73,15 +73,27 @@ public class PersonalData {
         return country;
     }
 
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public String getTelephoneNumber() {
         return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 
     public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

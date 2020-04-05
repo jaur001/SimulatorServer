@@ -15,8 +15,8 @@ import java.util.List;
 public abstract class PageableFrontCommand<T> extends FrontCommand{
 
     protected void checkPagination(){
-        Simulation.stop();
         setPage();
+        Simulation.stop();
         setMaxPage();
     }
 

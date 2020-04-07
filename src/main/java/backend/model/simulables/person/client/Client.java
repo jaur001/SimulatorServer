@@ -1,36 +1,81 @@
 package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
+import backend.model.bill.bills.EatingSale;
 import backend.model.bill.generator.CFDIBillGenerator;
-import backend.model.event.Event;
 import backend.model.event.EventGenerator;
+import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.EconomicAgent;
-import backend.model.simulables.person.Person;
-import backend.model.simulables.person.PersonalData;
-import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.company.restaurant.EatingBill;
-import backend.model.bill.bills.EatingSale;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulables.Simulable;
+import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
-public class Client extends Person implements Simulable, EconomicAgent, Collector {
-
-    private RoutineList routineList;
-    private int peopleInvited;
-
-    public Client(int NIF,String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
-        super(new PersonalData(NIF,firstName,lastName,birthDate,gender,job,country,telephoneNumber,email,cardNumber));
-    }
-
-    public Client(String firstName, String lastName,String birthDate, String gender, String job, String country, String telephoneNumber, String email, String cardNumber) {
-        super(new PersonalData(firstName,lastName,birthDate,gender,job,country,telephoneNumber,email,cardNumber));
-    }
+public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector {
+    protected PersonalData personalData;
+    protected RoutineList routineList;
+    protected int peopleInvited;
 
     public Client(PersonalData personalData) {
-        super(personalData);
+        this.personalData = personalData;
+    }
+
+    public PersonalData getPersonalData() {
+        return personalData;
+    }
+
+    public int getNIF() {
+        return personalData.getNIF();
+    }
+
+    public String getFirstName() {
+        return personalData.getFirstName();
+    }
+
+    public String getLastName() {
+        return personalData.getLastName();
+    }
+
+    public String getFullName(){
+        return personalData.getFirstName() + " " + personalData.getLastName();
+    }
+
+    public String getJob() {
+        return personalData.getJob();
+    }
+
+    public void setJob(String job){
+        personalData.setJob(job);
+    }
+
+    public String getCountry() {
+        return personalData.getCountry();
+    }
+
+    public String getTelephoneNumber() {
+        return personalData.getTelephoneNumber();
+    }
+
+    public String getCardNumber() {
+        return personalData.getCardNumber();
+    }
+
+    public String getEmail() {
+        return personalData.getEmail();
+    }
+
+    public String getGender() {
+        return personalData.getGender();
+    }
+
+    public String getBirthDate() {
+        return personalData.getBirthDate();
+    }
+
+    public int getAge(){
+        return personalData.getAge();
     }
 
     public RoutineList getRoutineList() {
@@ -45,7 +90,7 @@ public class Client extends Person implements Simulable, EconomicAgent, Collecto
         return peopleInvited;
     }
 
-    private void invitePeople(){
+    protected void invitePeople(){
         peopleInvited = ClientSettings.getPeopleInvitedSample();
     }
 
@@ -55,7 +100,11 @@ public class Client extends Person implements Simulable, EconomicAgent, Collecto
     }
 
     public double getSalary(){
-        return routineList.getSalary();
+        return personalData.getSalary();
+    }
+
+    public void setSalary(double salary) {
+        personalData.setSalary(salary);
     }
 
     public double getSalarySpent(){
@@ -69,13 +118,13 @@ public class Client extends Person implements Simulable, EconomicAgent, Collecto
         //this.printRoutines();
     }
 
-    private void goToEat(Restaurant restaurant) {
+    protected void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
         addEvent(payRestaurant(restaurant));
     }
 
-    private EatingSale payRestaurant(Restaurant restaurant) {
+    protected EatingSale payRestaurant(Restaurant restaurant) {
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
         EatingSale bill = new EatingSale(restaurant, this, new EatingBill(amount));
         Bank.makeTransaction(this,restaurant,amount);

@@ -1,6 +1,7 @@
-package backend.model.simulables.person;
+package backend.model.simulables.person.client;
 
 import backend.model.NIFCreator.PersonNIFCreator;
+import backend.model.simulation.timeLine.TimeLine;
 
 public class PersonalData {
     private int NIF;
@@ -10,6 +11,7 @@ public class PersonalData {
     private String gender;
     private String birthDate;
     private String job;
+    private double salary;
     private String country;
     private String telephoneNumber;
     private String cardNumber;
@@ -32,6 +34,7 @@ public class PersonalData {
         this.gender = gender;
         this.birthDate = birthDate;
         this.job = job;
+        this.salary = 0;
         this.country = country;
         this.telephoneNumber = telephoneNumber;
         this.cardNumber = cardNumber;
@@ -61,12 +64,24 @@ public class PersonalData {
         return birthDate;
     }
 
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getJob() {
         return job;
     }
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     public String getCountry() {
@@ -95,5 +110,13 @@ public class PersonalData {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getAge(){
+        return TimeLine.getYear()-Integer.parseInt(birthDate.substring(getYear()+1));
+    }
+
+    public int getYear() {
+        return birthDate.indexOf("/",birthDate.length()-6);
     }
 }

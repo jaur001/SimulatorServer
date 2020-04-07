@@ -3,9 +3,10 @@ package backend.initializers;
 import backend.implementations.worker.GenericWorkerSearcher;
 import backend.implementations.worker.strategy.FirstWorkerStrategy;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.Initializer;
 import backend.model.simulation.Simulation;
 
-public class WorkerSearcherThread extends Thread{
+public class WorkerSearcherThread{
 
     public static void addWorkers(){
         Simulation.getRestaurantList().parallelStream().forEach(WorkerSearcherThread::addWorker);

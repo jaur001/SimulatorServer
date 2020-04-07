@@ -13,6 +13,7 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
+import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.*;
 
@@ -46,17 +47,17 @@ public class Administrator {
     }
 
     public void addWorker(Worker worker, double salary){
+        worker.hire(restaurant,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
         workerList.add(worker);
         financialData.addDebt(salary);
         contractList.add(createContract(worker));
-        worker.hire(restaurant,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
     }
 
     public void removeWorker(Worker worker){
         if(workerList.contains(worker)){
+            worker.fire();
             workerList.remove(worker);
             financialData.removeDebt(worker.getSalary());
-            worker.fire();
         }
     }
 
@@ -90,52 +91,71 @@ public class Administrator {
 
     public void checkExpiredSoonContracts() {
         contractList.stream().filter(Contract::isExpiredSoon)
-                .forEach(contract -> makeOffers(searchBestWorker(contract.getWorker())));
+                .forEach(contract -> makeOffers(searchBestWorkers(contract.getWorker()),contract.getWorker()));
+
     }
 
-    private void makeOffers(List<Worker> workerList) {
-        workerList.forEach(this::makeOffer);
+    private void makeOffers(List<Worker> workerList, Worker current) {
+        workerList.forEach(worker -> makeOffer(current,worker));
     }
 
-    private void makeOffer(Worker worker) {
-        JobOffer jobOffer = new JobOffer(restaurant, worker, worker.getSalaryDesired());
-        if(workerOffers.containsKey(worker)) workerOffers.get(worker).add(jobOffer);
-        else workerOffers.put(worker, Collections.singletonList(jobOffer));
 
-        worker.addOffer(jobOffer);
+    private void makeOffer(Worker current, Worker option) {
+        JobOffer jobOffer = new JobOffer(restaurant, option, option.getSalaryDesired());
+        if(!workerOffers.containsKey(current)) workerOffers.put(current, new LinkedList<>());
+        workerOffers.get(current).add(jobOffer);
+        jobOffer.acceptOfferRestaurant();
+        option.addOffer(jobOffer);
     }
 
     public void checkExpiredContracts() {
+        System.out.println("Actual date: " + TimeLine.getDate().toString());
+        contractList.forEach(contract -> System.out.println("expire date: " + contract.getExpireDate().toString()));
         contractList.stream().filter(Contract::isExpired)
                 .forEach(contract -> {
-                    decideContract(contract);
+                    contract.getWorker().getPersonalData().setBirthDate("9/9/1940");
+                    if(isRetired(contract)) changeRetiredWorker(contract);
+                    else decideContract(contract);
                     contractList.remove(contract);
+                    cancelOffers(contract);
+                    workerOffers.remove(contract.getWorker());
                 });
     }
 
+    private void changeRetiredWorker(Contract contract) {
+        System.out.println("Worker Retired");
+        changeWorker(contract.getWorker(),getBestOption(contract));
+        contract.getWorker().retire();
+    }
 
     private void decideContract(Contract contract) {
-        Worker workerSelected = getFinalOption(contract);
+        Worker workerSelected = getBestOption(contract);
         if (workerSelected.equals(contract.getWorker()))renovateWorker(contract.getWorker());
         else changeWorker(contract.getWorker(),workerSelected);
     }
 
-    private Worker getFinalOption(Contract contract){
-        List<JobOffer> jobOffers = workerOffers.get(contract.getWorker());
+    private Worker getBestOption(Contract contract){
         if(!workerOffers.containsKey(contract.getWorker())) return contract.getWorker();
+        List<JobOffer> jobOffers = workerOffers.get(contract.getWorker());
         JobOffer option = jobOffers.stream()
                 .filter(JobOffer::isAccepted)
-                .reduce(null,this::getBetterOffer);
+                .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return contract.getWorker();
         else return option.getWorker();
     }
 
     private JobOffer getBetterOffer(JobOffer offer1, JobOffer offer2) {
-        return getSalaryPerQuality(offer1)>getSalaryPerQuality(offer2)? offer2:offer1;
+        return getSalaryPerQuality(offer1)>=getSalaryPerQuality(offer2)? offer1:offer2;
     }
 
     private double getSalaryPerQuality(JobOffer offer) {
         return RestaurantSettings.getSalaryPerQuality(offer.getWorker());
+    }
+
+    private void renovateWorker(Worker worker) {
+        System.out.println("Worker renovated");
+        worker.setSalary(worker.getSalary()+ WorkerSettings.SALARY_CHANGE*worker.getSalary());
+        contractList.add(createContract(worker));
     }
 
     private void changeWorker(Worker oldWorker, Worker workerSelected) {
@@ -150,14 +170,18 @@ public class Administrator {
                 .orElse(workerSelected.getSalary());
     }
 
-    private List<Worker> searchBestWorker(Worker worker) {
+    private void cancelOffers(Contract contract) {
+        workerOffers.get(contract.getWorker()).forEach(JobOffer::cancel);
+    }
+
+    private List<Worker> searchBestWorkers(Worker worker) {
         return new GenericWorkerSearcher(Simulation.WORKER_STRATEGY).searchBetterOptions(worker);
     }
 
 
-    private void renovateWorker(Worker worker) {
-        worker.setSalary(worker.getSalary()+ WorkerSettings.SALARY_CHANGE*worker.getSalary());
-        contractList.add(createContract(worker));
+    public boolean isRetired(Contract contract) {
+        int age = contract.getWorker().getAge();
+        return age >= WorkerSettings.RETIRE_AGE;
     }
 
     private Contract createContract(Worker worker) {

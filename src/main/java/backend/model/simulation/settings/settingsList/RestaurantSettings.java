@@ -1,6 +1,5 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.Adjustable;
@@ -9,7 +8,6 @@ import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.BetaDistribution;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +21,8 @@ public class RestaurantSettings implements Adjustable {
     private static final int MIN_TABLES = 4;
     private static final int MAX_TABLES = 50;
     private static final int WORKERS_MIN = 1;
+    public static final int MIN_LENGTH_CONTRACT = 20;
+    public static final int MAX_LENGTH_CONTRACT = 21;
 
 
     private static Map<Job, Integer> lengthWorkerTable = new HashMap<>();
@@ -53,7 +53,7 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static double getSalaryPerQuality(Worker worker) {
-        return worker.getSalaryDesired()/worker.getQuality().getScore();
+        return (worker.getQuality().getScore()/worker.getSalaryDesired())*10000;
     }
 
     @Override
@@ -92,6 +92,6 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static int getContractLength() {
-        return MathUtils.random(30,120);
+        return MathUtils.random(MIN_LENGTH_CONTRACT, MAX_LENGTH_CONTRACT);
     }
 }

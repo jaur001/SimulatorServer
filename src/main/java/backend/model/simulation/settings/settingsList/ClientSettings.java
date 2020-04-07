@@ -69,7 +69,7 @@ public class ClientSettings implements Adjustable {
     }
 
     public static double getSalarySample() {
-        double salary = Math.max(salaryDistribution.sample(), MIN_SALARY);
+        double salary = Math.max(salaryDistribution.sample(), minSalary);
         if(Double.isNaN(salary)) return getSalarySample();
         return salary;
     }

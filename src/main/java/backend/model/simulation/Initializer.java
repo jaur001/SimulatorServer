@@ -25,16 +25,20 @@ import backend.view.loaders.database.elements.Row;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Initializer {
 
-
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        return new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(),providerCount));
+        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(), providerCount));
+        ProductInitializerThread.initProducts(providerList);
+        return providerList;
     }
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        return new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+ ClientSettings.getLimit(),workerCount));
+        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + ClientSettings.getLimit(), workerCount));
+        WorkerThread.setJobs(workerList);
+        return workerList;
     }
 
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
@@ -53,10 +57,8 @@ public class Initializer {
     }
 
     private static void prepareSimulables() {
-        ProductInitializerThread.initProducts(Simulation.getProviderList());
-        WorkerThread.setJobs(Simulation.getWorkerList());
-        WorkerSearcherThread.addWorkers();
         ProvidingThread.initRestaurantsProviders();
+        WorkerSearcherThread.addWorkers();
         RoutineThread.setClientRoutines();
     }
 
@@ -78,5 +80,15 @@ public class Initializer {
 
     private static List<Row> getRows(String tableName, int initialValue, int count) throws SQLException, ClassNotFoundException {
         return new SQLiteTableSelector().read(tableName, initialValue, initialValue+count);
+    }
+
+    public static Worker getWorker() {
+        try {
+            Worker worker = getWorkers(1).get(0);
+            WorkerThread.setJob(worker);
+            return worker;
+        } catch (SQLException | ClassNotFoundException e) {
+            return null;
+        }
     }
 }

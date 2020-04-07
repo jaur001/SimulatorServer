@@ -1,31 +1,31 @@
 package backend.model.simulables.person.worker;
 
-import backend.model.simulables.Simulable;
-import backend.model.simulables.bank.EconomicAgent;
-import backend.model.simulables.person.Person;
-import backend.model.simulables.person.PersonalData;
+import backend.implementations.routine.GenericRoutineFactory;
+import backend.model.simulables.person.client.Client;
+import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.person.client.routineList.RoutineList;
+import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.worker.jobSearcher.JobSearcher;
 import backend.model.simulation.Simulation;
-import backend.model.simulation.settings.settingsList.ClientSettings;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Worker extends Person implements Simulable, EconomicAgent {
-    private double salary;
+public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
+    private AtomicBoolean isLocked = new AtomicBoolean(false);
     private Restaurant restaurant = null;
     private List<JobOffer> jobOfferList;
 
     public Worker(PersonalData personalData) {
         super(personalData);
         super.setJob("");
-        salary = 0;
         salaryDesired = 0;
         jobOfferList = new LinkedList<>();
     }
@@ -34,13 +34,6 @@ public class Worker extends Person implements Simulable, EconomicAgent {
         return restaurant;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 
     public double getSalaryDesired() {
         return salaryDesired;
@@ -58,44 +51,78 @@ public class Worker extends Person implements Simulable, EconomicAgent {
         this.quality = quality;
     }
 
+    @Override
+    public void setJob(String job){
+        super.setJob(job);
+        salaryDesired = RestaurantSettings.getSalary(Job.valueOf(job));
+    }
+
     public boolean isWorking() {
         return isWorking.get();
     }
 
     public void hire(Restaurant restaurant, double salary) {
-        this.restaurant = restaurant;
-        this.salary = salary;
-        this.salaryDesired = 0;
         this.isWorking.set(true);
+        this.restaurant = restaurant;
+        setSalary(salary);
+        salaryDesired = getSalary();
         this.jobOfferList = new LinkedList<>();
+        isLocked.set(false);
     }
 
     public void fire() {
-        restaurant = null;
-        salaryDesired = salary;
-        salary = 0;
         this.isWorking.set(false);
+        restaurant = null;
+        salaryDesired = getSalary();
+        setSalary(0);
+        routineList.deleteRoutines();
+        isLocked.set(false);
+    }
+
+    public void retire() {
+        this.isWorking.set(false);
+        restaurant = null;
+        setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT,500));
+        setJob("Retired");
     }
 
     @Override
     public void simulate() {
-        if(!isWorking.get()) new JobSearcher(jobOfferList,salaryDesired, Simulation.SEARCHER_STRATEGY).searchJob();
+        if(!isWorking.get() && isNotRetired()) searchJob();
+        else if(routineList.isEmpty()) routineList = new RoutineList(getSalary(),getRoutineList(getSalary()));
+        else routineList.checkRoutines().forEach(this::goToEat);
     }
 
-
-
-
-    @Override
-    public void pay(double amount) {
-
+    public List<Routine> getRoutineList(double salary) {
+        return new GenericRoutineFactory(Simulation.ROUTINE_STRATEGY,salary).createRoutineList();
     }
 
-    @Override
-    public void collect(double amount) {
+    public boolean isNotRetired() {
+        return getSalary()==0;
+    }
 
+    public void searchJob() {
+        jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
+        if(!new JobSearcher(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();
+    }
+
+    private void reduceSalaryDesired() {
+        salaryDesired = WorkerSettings.reduceSalaryDesired(salaryDesired);
     }
 
     public void addOffer(JobOffer jobOffer) {
         if(!jobOfferList.contains(jobOffer))jobOfferList.add(jobOffer);
+    }
+
+    public void lock() {
+        isLocked.set(true);
+    }
+
+    public void unlock() {
+        isLocked.set(false);
+    }
+
+    public boolean isLocked(){
+        return isLocked.get();
     }
 }

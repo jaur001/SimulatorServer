@@ -15,7 +15,7 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulables.person.worker.jobSearcher.AcceptLowerOptionStrategy;
+import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SearcherStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
@@ -34,7 +34,7 @@ public class Simulation {
     private static List<Worker> workerList = new LinkedList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
-    public static final SearcherStrategy SEARCHER_STRATEGY = new AcceptLowerOptionStrategy();
+    public static final SearcherStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
     public static final WorkerStrategy WORKER_STRATEGY = new BestWorkerStrategy();
 
@@ -144,7 +144,7 @@ public class Simulation {
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
-            Simulator.waitForDatabase();
+            Simulator.waitForDatabaseOrThread();
             initElements();
         }
     }
@@ -173,6 +173,23 @@ public class Simulation {
     }
 
     public static List<Worker> getUnemployedWorkers(Job job){
-        return Simulation.getWorkerList(job).stream().filter(worker -> !worker.isWorking()).collect(Collectors.toCollection(LinkedList::new));
+        return Simulation.getWorkerList(job).stream()
+                .filter(worker -> !worker.isWorking())
+                .filter(worker -> !worker.isLocked())
+                .filter(Worker::isNotRetired)
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public static List<Worker> getEmployedWorkers() {
+        return workerList.stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public static void addWorker() {
+        Worker worker = Initializer.getWorker();
+        if(worker != null)workerList.add(worker);
+    }
+
+    public static void unlockUnemployedWorkers() {
+        workerList.forEach(Worker::unlock);
     }
 }

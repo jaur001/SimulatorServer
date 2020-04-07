@@ -66,5 +66,8 @@ Dudas:
 - Solo actualizar cuando se porducen cambios con ese elemento. O usar AJax.
 
 Proximos Pasos:
-- Usar Ajax para mostrar los eventos y cambiar la velocidad
-- Usar 
+H - Usar Ajax para mostrar los eventos y cambiar la velocidad
+
+añadir factura de impuestos de company.
+Darle pesos de puntuacion a cada trabajo.
+Los clientes y trabajadores pueden morir cuando son viejos.

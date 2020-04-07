@@ -60,7 +60,7 @@ public class Restaurant extends Company{
     public double getScore(){
         return administrator.getWorkerList().stream()
                 .map(worker -> (double)worker.getQuality().getScore())
-                .reduce(1.0,Double::sum)/administrator.getWorkerList().size();
+                .reduce(0.0,Double::sum)/administrator.getWorkerList().size();
     }
 
     public void collectEating(double amount){

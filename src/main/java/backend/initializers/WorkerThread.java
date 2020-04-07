@@ -15,7 +15,7 @@ public class WorkerThread extends Thread {
         workerList.parallelStream().forEach(WorkerThread::setJob);
     }
 
-    private static void setJob(Worker worker){
+    public static void setJob(Worker worker){
         worker.setJob(WorkerSettings.selectJob());
         worker.setSalaryDesired(RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
         int position = MathUtils.random(0,Quality.values().length);

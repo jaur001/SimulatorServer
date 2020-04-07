@@ -6,6 +6,7 @@ import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class RoutineList {
@@ -23,6 +24,10 @@ public class RoutineList {
 
     public List<Restaurant> checkRoutines(){
         return new GenericRoutineChecker(salary, budget,restaurantRoutines, Simulation.ROUTINE_STRATEGY).checkRoutines();
+    }
+
+    public void deleteRoutines(){
+        restaurantRoutines = new LinkedList<>();
     }
 
 
@@ -49,5 +54,9 @@ public class RoutineList {
     public void printCount() {
         restaurantRoutines.forEach((routine -> System.out.print(routine.getRestaurant().getName() + ": " + routine.getCount()+", ")));
         System.out.print("\n");
+    }
+
+    public boolean isEmpty() {
+        return restaurantRoutines.size()==0;
     }
 }

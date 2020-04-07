@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface WorkerSearcher {
     List<Worker> createStaff(int numTables);
-    Worker search(Job job);
     List<Worker> searchBetterOptions(Worker worker);
 }

@@ -26,32 +26,30 @@ public class GenericWorkerSearcher implements WorkerSearcher {
     public List<Worker> createStaff(int numTables) {
         return Arrays.stream(Job.values())
                 .flatMap(job -> searchWorkers(job,numTables).stream())
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     private List<Worker> searchWorkers(Job job, int numTables) {
         int numWorkers = RestaurantSettings.getWorkerLength(job,numTables);
-        List<Worker> unemployedWorkers = Simulation.getUnemployedWorkers(job);
-        return IntStream.range(0, numWorkers).boxed()
-                .map(integer -> strategy.getWorker(unemployedWorkers))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Worker search(Job job) {
-        List<Worker> unemployedWorkers = Simulation.getUnemployedWorkers(job);
-        if(unemployedWorkers.size() == 1) return unemployedWorkers.get(0);
-        return strategy.getWorker(unemployedWorkers);
+        return strategy.getWorker(job,numWorkers);
     }
 
     @Override
     public List<Worker> searchBetterOptions(Worker worker) {
-        List<Worker> unemployedWorkers = Simulation.getUnemployedWorkers(Job.valueOf(worker.getJob()));
-        return unemployedWorkers.stream().filter(option -> isBetterOption(worker,option)).collect(Collectors.toCollection(LinkedList::new));
+        List<Worker> options = new LinkedList<>();
+        while (true){
+            Worker option = strategy.getWorker(Job.valueOf(worker.getJob()));
+            if (option == null) break;
+            if(isBetterOption(worker,option)) options.add(option);
+            else break;
+        }
+        Simulation.unlockUnemployedWorkers();
+        return options;
     }
 
     private boolean isBetterOption(Worker worker, Worker option) {
-        return RestaurantSettings.getSalaryPerQuality(option)<RestaurantSettings.getSalaryPerQuality(worker);
+        double salaryPerQuality = RestaurantSettings.getSalaryPerQuality(option);
+        double salaryPerQuality2 = RestaurantSettings.getSalaryPerQuality(worker);
+        return salaryPerQuality > salaryPerQuality2;
     }
 }

@@ -17,7 +17,7 @@ public class GeneralSettings implements Adjustable {
 
     private static void getDefaultSettings() {
         clientCount = 10;
-        restaurantCount = 10;
+        restaurantCount = 1;
         providerCount = restaurantCount*Product.values().length;
         workerCount = restaurantCount*100;
     }

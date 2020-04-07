@@ -1,19 +1,22 @@
 package backend.model.simulables.person.worker;
 
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 public class JobOffer {
     private Restaurant restaurant;
     private Worker worker;
     private double salary;
-    private boolean accepted;
+    private boolean canceled;
+    private boolean acceptedByWorker;
+    private boolean acceptedByRestaurant;
 
     public JobOffer(Restaurant restaurant, Worker worker, double salary) {
         this.restaurant = restaurant;
         this.worker = worker;
         this.salary = salary;
-        accepted = false;
+        canceled = false;
+        acceptedByWorker = false;
+        acceptedByRestaurant = false;
     }
 
     public Restaurant getRestaurant() {
@@ -29,10 +32,22 @@ public class JobOffer {
     }
 
     public boolean isAccepted(){
-        return accepted;
+        return acceptedByWorker && acceptedByRestaurant;
     }
 
-    public void acceptOffer() {
-        accepted = true;
+    public void acceptOfferWorker() {
+        acceptedByWorker = true;
+    }
+
+    public void acceptOfferRestaurant() {
+        acceptedByRestaurant = true;
+    }
+
+    public void cancel() {
+        canceled = true;
+    }
+
+    public boolean isCanceled() {
+        return canceled;
     }
 }

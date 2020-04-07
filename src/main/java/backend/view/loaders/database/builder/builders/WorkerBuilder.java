@@ -1,7 +1,6 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.model.simulables.person.PersonalData;
-import backend.model.simulables.person.client.Client;
+import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.worker.Worker;
 import backend.view.loaders.database.builder.Builder;
 

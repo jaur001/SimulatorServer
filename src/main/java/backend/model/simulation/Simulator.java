@@ -90,7 +90,7 @@ public class Simulator {
         });
     }
 
-    public static void waitForDatabase() {
+    public static void waitForDatabaseOrThread() {
         try {
             TimeUnit.MILLISECONDS.sleep(500);
         } catch (InterruptedException ex) {

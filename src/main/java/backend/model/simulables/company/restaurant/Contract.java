@@ -24,12 +24,17 @@ public class Contract {
     }
 
     public boolean isExpired(){
-        return TimeLine.getDate().after(expireDate);
+        return TimeLine.isSameDate(expireDate);
     }
 
     public boolean isExpiredSoon(){
-        Date date = (Date) expireDate.clone();
+        Date date = getCopy();
         date.setDate(date.getDate()-15);
-        return TimeLine.getDate().after(date);
+        return TimeLine.isSameDate(date);
+    }
+
+
+    private Date getCopy() {
+        return new Date(expireDate.getYear(),expireDate.getMonth(),expireDate.getDate());
     }
 }

@@ -8,23 +8,22 @@ import java.util.List;
 public class JobSearcher {
 
     private List<JobOffer> jobOfferList;
-    private double salaryDesired;
     private SearcherStrategy strategy;
 
-    public JobSearcher(List<JobOffer> jobOfferList, double salaryDesired, SearcherStrategy strategy) {
+    public JobSearcher(List<JobOffer> jobOfferList, SearcherStrategy strategy) {
         this.jobOfferList = jobOfferList;
-        this.salaryDesired = salaryDesired;
         this.strategy = strategy;
     }
 
-    public void searchJob() {
-        if(jobOfferList.size()==0) reduceSalaryDesired();
-        if(jobOfferList.size()==1) acceptOffer(jobOfferList.get(0));
+    public boolean searchJob() {
+        if(jobOfferList.size()==0) return false;
+        else if(jobOfferList.size()==1) acceptOffer(jobOfferList.get(0));
         else checkOffers();
+        return true;
     }
 
     private void acceptOffer(JobOffer offer) {
-        offer.acceptOffer();
+        offer.acceptOfferWorker();
     }
 
     private void checkOffers() {
@@ -34,9 +33,5 @@ public class JobSearcher {
 
     private JobOffer getBetterOffer(JobOffer jobOffer1, JobOffer jobOffer2) {
         return jobOffer1.getSalary()>=jobOffer2.getSalary()? jobOffer1: jobOffer2;
-    }
-
-    private void reduceSalaryDesired() {
-        salaryDesired = Math.max(WorkerSettings.MIN_SALARY,salaryDesired-WorkerSettings.SALARY_CHANGE *salaryDesired);
     }
 }

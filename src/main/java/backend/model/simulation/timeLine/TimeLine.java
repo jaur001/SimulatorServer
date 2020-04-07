@@ -3,6 +3,8 @@ package backend.model.simulation.timeLine;
 
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
+import backend.model.simulation.Simulation;
+import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.time.Month;
 import java.util.Date;
@@ -39,7 +41,8 @@ public class TimeLine extends EventGenerator{
 
     private void passDay() {
         date.setDate(date.getDate()+1);
-        System.out.println("New Day:" + date.toString());
+        //System.out.println("New Day:" + date.toString());
+        if(WorkerSettings.newWorker()) Simulation.addWorker();
         addEvent((SimulationDate) date.clone());
         try {
             TimeUnit.MILLISECONDS.sleep(TIMEOUT);
@@ -48,12 +51,16 @@ public class TimeLine extends EventGenerator{
         }
     }
 
+    public static boolean isSameDate(Date otherDate){
+        return otherDate.getYear()== date.getYear() && otherDate.getMonth()==date.getMonth() && otherDate.getDate()==date.getDate();
+    }
+
     public static Date getDate() {
         return date;
     }
 
     public static int getYear() {
-        return date.getYear();
+        return date.getYear()+1900;
     }
 
     public static int getMonth() {

@@ -1,7 +1,6 @@
-package backend.model.simulation;
+package backend.model.simulation.timeLine;
 
-import backend.model.event.Event;
-import backend.model.event.EventController;
+
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 
@@ -10,10 +9,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class TimeLine extends EventGenerator implements Event{
+public class TimeLine extends EventGenerator{
 
     public static int TIMEOUT = 1000;
-    private static Date date = new Date();
+    private static SimulationDate date = new SimulationDate();
     private List<Simulable> simulableList;
 
     public static void setTIMEOUT(int TIMEOUT) {
@@ -22,7 +21,7 @@ public class TimeLine extends EventGenerator implements Event{
 
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
-        date = new Date();
+        date = new SimulationDate();
     }
 
     public static boolean isLastDay() {
@@ -41,7 +40,7 @@ public class TimeLine extends EventGenerator implements Event{
     private void passDay() {
         date.setDate(date.getDate()+1);
         System.out.println("New Day:" + date.toString());
-        addEvent(this);
+        addEvent((SimulationDate) date.clone());
         try {
             TimeUnit.MILLISECONDS.sleep(TIMEOUT);
         } catch (InterruptedException e) {
@@ -65,9 +64,6 @@ public class TimeLine extends EventGenerator implements Event{
         return date.getDate();
     }
 
-    @Override
-    public String getMessage() {
-        return date.clone().toString();
-    }
+
 
 }

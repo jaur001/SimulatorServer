@@ -1,33 +1,37 @@
-package backend.implementations.routine.checker;
+package backend.implementations.routine;
 
-import backend.implementations.routine.controller.ConstantRoutineController;
+import backend.implementations.routine.GenericRoutineFactory;
+import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
 import backend.model.simulation.settings.settingsList.BillSettings;
-import backend.model.simulables.person.client.routineList.routineListController.RoutineChecker;
+import backend.model.simulables.person.client.routineList.routineFactory.RoutineChecker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConstantRoutineChecker implements RoutineChecker {
+public class GenericRoutineChecker implements RoutineChecker {
 
-    protected double salary;
-    protected List<Routine> restaurantRoutines;
-    protected double provisionalBudget;
+    private double salary;
+    private List<Routine> restaurantRoutines;
+    private double provisionalBudget;
+    private RoutineStrategy strategy;
 
-    public ConstantRoutineChecker(double salary, double budget, List<Routine> restaurantRoutines) {
-        this.provisionalBudget = budget;
+    public GenericRoutineChecker(double salary, double provisionalBudget, List<Routine> restaurantRoutines, RoutineStrategy strategy) {
         this.salary = salary;
         this.restaurantRoutines = restaurantRoutines;
+        this.provisionalBudget = provisionalBudget;
+        this.strategy = strategy;
     }
 
     public List<Restaurant> checkRoutines(){
         return addIfClientHasBudget(getRestaurants());
     }
 
-    protected List<Restaurant> getRestaurants() {
+    private List<Restaurant> getRestaurants() {
         List<Routine> routinesForToday = getRoutines();
         restartRoutines(routinesForToday);
         return routinesForToday.stream()
@@ -36,24 +40,25 @@ public class ConstantRoutineChecker implements RoutineChecker {
                 .collect(Collectors.toList());
     }
 
-    protected List<Routine> getRoutines() {
+    private List<Routine> getRoutines() {
         return restaurantRoutines.stream()
                 .filter(Routine::check)
                 .collect(Collectors.toList());
     }
 
-    protected void restartRoutines(List<Routine> routines) {
-        routines.forEach(routine -> new ConstantRoutineController().restartRoutine(routine,salary));
+    private void restartRoutines(List<Routine> routines) {
+        RoutineFactory routineFactory = new GenericRoutineFactory(strategy, salary);
+        routines.forEach(routine -> routine = routineFactory.create());
     }
 
-    protected List<Restaurant> addIfClientHasBudget(List<Restaurant> restaurantOptions) {
+    private List<Restaurant> addIfClientHasBudget(List<Restaurant> restaurantOptions) {
         return restaurantOptions.stream()
                 .filter(this::thereIsEnoughBudget)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
 
-    protected boolean thereIsEnoughBudget(Restaurant restaurant) {
+    private boolean thereIsEnoughBudget(Restaurant restaurant) {
         double budgetApproximation = getBudgetApproximation(restaurant);
         if(provisionalBudget >= budgetApproximation) {
             provisionalBudget -= budgetApproximation;
@@ -63,7 +68,7 @@ public class ConstantRoutineChecker implements RoutineChecker {
         return false;
     }
 
-    protected double getBudgetApproximation(Restaurant restaurant) {
+    private double getBudgetApproximation(Restaurant restaurant) {
         return restaurant.getPricePlateMean()* BillSettings.getPlateNumberMean() * ClientSettings.getPeopleInvitedMean();
     }
 

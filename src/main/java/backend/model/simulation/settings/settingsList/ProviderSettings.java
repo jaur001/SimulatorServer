@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 
 public class ProviderSettings implements Adjustable {
 
+    public static final double PRICE_CHANGE = 0.10;
     private static final int INITIAL_SOCIAL_CAPITAL = 10000;
 
     private static Map<Product, Integer> productCostTable = new LinkedHashMap<>();
@@ -27,17 +28,14 @@ public class ProviderSettings implements Adjustable {
 
 
     private static void getDefaultProductCost() {
-        Integer[] cost = {20,20,20,20,20,20,20};
-        Product[] products = {Product.Vegetable,Product.Meat,Product.Fish,Product.Wheat,
-                Product.Egg,Product.Legume,Product.Fruit};
+        Integer[] cost = {150,160,160,80,80,100,90};
         IntStream.range(0,cost.length).boxed()
-                .forEach(i -> productCostTable.put(products[i],cost[i]));
+                .forEach(i -> productCostTable.put(Product.values()[i],cost[i]));
     }
 
     @Override
     public void init(SettingsData data) {
         initialSocialCapital = data.getProviderData().getInitialSocialCapital();
-        productCostTable = data.getProviderData().getProductCostTable();
 
     }
 

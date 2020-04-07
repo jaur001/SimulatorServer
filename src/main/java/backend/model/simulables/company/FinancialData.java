@@ -96,7 +96,7 @@ public class FinancialData implements Cloneable {
         return socialCapital;
     }
 
-    public double getProfit(){
+    public double getIncome(){
         return sales+totalActive;
     }
 

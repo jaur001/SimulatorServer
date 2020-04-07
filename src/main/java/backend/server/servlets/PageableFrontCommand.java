@@ -1,22 +1,15 @@
 package backend.server.servlets;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.Simulator;
 import backend.utils.DatabaseUtils;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public abstract class PageableFrontCommand<T> extends FrontCommand{
 
     protected void checkPagination(){
         setPage();
-        Simulation.stop();
+        Simulator.stopSimulation();
         setMaxPage();
     }
 

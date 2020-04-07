@@ -4,7 +4,9 @@ import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
+import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,12 +93,22 @@ public class Provider extends Company{
     }
 
     @Override
-    public void pay(double amount) {
-
+    public void simulate() {
+        if(TimeLine.isLastDay()) {
+            changePrice();
+        }
     }
 
-    @Override
-    public void collect(double amount) {
+    private void changePrice() {
+        if(financialData.getIncome()> financialData.getLosses())increasePrice();
+        else decreasePrice();
+    }
 
+    private void increasePrice() {
+        productPrice*= (1+ProviderSettings.PRICE_CHANGE);
+    }
+
+    private void decreasePrice() {
+        productPrice*= (1-ProviderSettings.PRICE_CHANGE);
     }
 }

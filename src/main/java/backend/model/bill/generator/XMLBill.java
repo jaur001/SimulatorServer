@@ -1,10 +1,6 @@
 package backend.model.bill.generator;
 
 import backend.model.bill.CFDIBill;
-import backend.model.bill.Type;
-import backend.model.simulation.TimeLine;
-
-import java.util.Date;
 
 public class XMLBill extends CFDIBill {
 

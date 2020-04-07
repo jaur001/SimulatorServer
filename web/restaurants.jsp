@@ -66,7 +66,7 @@
                     <td><%=restaurant.getStreet()%></td>
                     <td><%=restaurant.getTelephoneNumber()%></td>
                     <td><%=restaurant.getFinancialData().getTreasury()%></td>
-                    <td><%=restaurant.getFinancialData().getProfit()%></td>
+                    <td><%=restaurant.getFinancialData().getIncome()%></td>
                     <td><%=restaurant.getFinancialData().getLosses()%></td>
                     <td><%=restaurant.getFinancialData().getSales()%></td>
                     <td><%=restaurant.getFinancialData().getPurchases()%></td>

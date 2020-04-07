@@ -100,7 +100,7 @@ public class ClientSettings implements Adjustable {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        limit = Math.max(limit - WorkerSettings.getSpaceForWorkers(), 0);
+        limit = Math.max(limit - WorkerSettings.WORKER_SPACE, 0);
         return Math.min(limit,CLIENT_SPACE);
     }
 

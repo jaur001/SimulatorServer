@@ -6,18 +6,12 @@ import java.util.Map;
 
 public class RestaurantData {
 
-    private Map<Job, Integer> lengthWorkerTable;
     private Map<Job, Integer> workerSalaryTable;
     public double initialSocialCapital;
 
-    public RestaurantData(Map<Job, Integer> lengthWorkerTable, Map<Job, Integer> workerSalaryTable, double initialSocialCapital) {
-        this.lengthWorkerTable = lengthWorkerTable;
+    public RestaurantData(Map<Job, Integer> workerSalaryTable, double initialSocialCapital) {
         this.workerSalaryTable = workerSalaryTable;
         this.initialSocialCapital = initialSocialCapital;
-    }
-
-    public Map<Job, Integer> getLengthWorkerTable() {
-        return lengthWorkerTable;
     }
 
     public Map<Job, Integer> getWorkerSalaryTable() {

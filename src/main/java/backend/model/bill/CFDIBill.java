@@ -1,11 +1,7 @@
 package backend.model.bill;
 
 import backend.model.NIFCreator.BillNIFCreator;
-import backend.model.simulation.TimeLine;
-import backend.utils.MathUtils;
-
-import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
+import backend.model.simulation.timeLine.TimeLine;
 
 public class CFDIBill {
     protected int UUID;

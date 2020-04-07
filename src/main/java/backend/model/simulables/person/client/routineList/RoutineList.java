@@ -1,8 +1,9 @@
 package backend.model.simulables.person.client.routineList;
 
-import backend.implementations.routine.checker.ConstantRoutineChecker;
+import backend.implementations.routine.GenericRoutineChecker;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class RoutineList {
     }
 
     public List<Restaurant> checkRoutines(){
-        return new ConstantRoutineChecker(salary, budget,restaurantRoutines).checkRoutines();
+        return new GenericRoutineChecker(salary, budget,restaurantRoutines, Simulation.ROUTINE_STRATEGY).checkRoutines();
     }
 
 

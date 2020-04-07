@@ -28,52 +28,52 @@ import java.util.List;
 
 public class Initializer {
 
-    private static List<Restaurant> restaurantList = new LinkedList<>();
-    private static List<Provider> providerList = new LinkedList<>();
-    private static List<Client> clientList = new LinkedList<>();
-    private static List<Worker> workerList = new LinkedList<>();
-
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(),providerCount));
-        ProductInitializerThread.initProducts(providerList);
-        return providerList;
+        return new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(),providerCount));
     }
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+ ClientSettings.getLimit(),workerCount));
-        WorkerThread.setJobs(workerList);
-        return workerList;
+        return new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+ ClientSettings.getLimit(),workerCount));
     }
 
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
-        //restaurantList = RestaurantThread.loadRestaurantsPage(restaurantCount/30);
-        restaurantList = new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue(),restaurantCount));
-        WorkerSearcherThread.addWorkers(restaurantList);
-        ProvidingThread.initRestaurantsProviders(providerList,restaurantList);
-        return restaurantList;
+        //return RestaurantThread.loadRestaurantsPage(restaurantCount/30);
+        return new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue(),restaurantCount));
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        clientList = new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue(),clientCount));
-        RoutineThread.setClientRoutines(clientList,restaurantList);
-        return clientList;
+        return  new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue(),clientCount));
     }
 
-    public static List<Simulable> getSimulableList() {
+    public static List<Simulable> init() {
+        prepareSimulables();
         addPayersAndCollectors();
+        return createSimulables();
+    }
+
+    private static void prepareSimulables() {
+        ProductInitializerThread.initProducts(Simulation.getProviderList());
+        WorkerThread.setJobs(Simulation.getWorkerList());
+        WorkerSearcherThread.addWorkers();
+        ProvidingThread.initRestaurantsProviders();
+        RoutineThread.setClientRoutines();
+    }
+
+    private static void addPayersAndCollectors() {
+        Simulation.getRestaurantList().forEach(Bank::addPayer);
+        Simulation.getProviderList().forEach(Bank::addPayer);
+        Simulation.getClientList().forEach(Bank::addCollector);
+    }
+
+    private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new LinkedList<>();
         simulableList.add(new Bank());
-        simulableList.addAll(restaurantList);
-        simulableList.addAll(clientList);
-        simulableList.addAll(workerList);
+        simulableList.addAll(Simulation.getRestaurantList());
+        simulableList.addAll(Simulation.getClientList());
+        simulableList.addAll(Simulation.getWorkerList());
+        simulableList.addAll(Simulation.getProviderList());
         return simulableList;
-    }
-
-    public static void addPayersAndCollectors() {
-        restaurantList.forEach(Bank::addPayer);
-        providerList.forEach(Bank::addPayer);
-        clientList.forEach(Bank::addCollector);
     }
 
     private static List<Row> getRows(String tableName, int initialValue, int count) throws SQLException, ClassNotFoundException {

@@ -26,4 +26,8 @@ public class Routine {
     public void setCounter(Counter counter) {
         this.counter = counter;
     }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }

@@ -4,6 +4,7 @@ import backend.implementations.loaders.providing.RandomProvidingController;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.Simulation;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -11,13 +12,13 @@ import java.util.stream.IntStream;
 public class ProvidingThread{
 
 
-    public static void initRestaurantsProviders(List<Provider> providerList, List<Restaurant> restaurantList){
-        restaurantList.parallelStream().forEach(restaurant -> initProvidersForRestaurant(restaurant,providerList));
+    public static void initRestaurantsProviders(){
+        Simulation.getRestaurantList().parallelStream().forEach(ProvidingThread::initProvidersForRestaurant);
     }
 
-    private static void initProvidersForRestaurant(Restaurant restaurant, List<Provider> providerList) {
+    private static void initProvidersForRestaurant(Restaurant restaurant) {
         IntStream.range(0, Product.values().length).boxed()
-                .map(integer -> new RandomProvidingController().provide(providerList,Product.values()[integer]))
+                .map(integer -> new RandomProvidingController().provide(Simulation.getProviderList(),Product.values()[integer]))
                 .forEach(provider -> {
                     restaurant.addProvider(provider);
                     provider.addRestaurant(restaurant);

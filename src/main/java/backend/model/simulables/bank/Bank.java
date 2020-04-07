@@ -2,7 +2,7 @@ package backend.model.simulables.bank;
 
 
 import backend.model.simulables.Simulable;
-import backend.model.simulation.TimeLine;
+import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
 import java.util.List;

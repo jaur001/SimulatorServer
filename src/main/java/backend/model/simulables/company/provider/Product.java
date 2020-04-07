@@ -4,10 +4,10 @@ public enum  Product {
     Vegetable,
     Meat,
     Fish,
-    Wheat,
     Egg,
     Legume,
-    Fruit;
+    Fruit,
+    Others;
 
     @Override
     public String toString() {

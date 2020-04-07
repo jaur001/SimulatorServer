@@ -1,21 +1,13 @@
 package backend.model.simulables.company.restaurant;
 
-import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
-import backend.model.bill.bills.ProductPurchase;
-import backend.model.event.Event;
-import backend.model.event.EventController;
-import backend.model.event.EventGenerator;
-import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.company.provider.Provider;
-import backend.model.bill.bills.Payroll;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.Simulable;
-import backend.model.simulation.TimeLine;
+import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
@@ -25,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 // No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
-public class Restaurant extends Company implements Simulable{
+public class Restaurant extends Company{
     private int NIF;
     private String name;
     private String street;
@@ -35,8 +27,7 @@ public class Restaurant extends Company implements Simulable{
     private AtomicInteger tablesAvailable;
     private static final int eatingsPerTable = 6;
 
-    private List<Worker> workerList;
-    private List<Provider> providersList;
+    private Administrator administrator;
 
 
     public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
@@ -48,8 +39,7 @@ public class Restaurant extends Company implements Simulable{
         this.priceRange = priceRange;
         this.tables = tables;
         this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
-        this.workerList = new ArrayList<>();
-        this.providersList = new ArrayList<>();
+        this.administrator = new Administrator(financialData,this);
     }
 
     public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
@@ -58,35 +48,19 @@ public class Restaurant extends Company implements Simulable{
 
 
     public void addProvider(Provider provider){
-        providersList.add(provider);
-        financialData.addDebt(provider.getProductPrice());
+        administrator.addProvider(provider);
     }
 
-    public void removeProvider(Provider provider){
-        if(providersList.contains(provider)){
-            providersList.remove(provider);
-            financialData.removeDebt(provider.getProductPrice());
-        }
+
+    public void addWorker(Worker worker, double salary){
+        administrator.addWorker(worker,salary);
     }
 
-    public void addWorker(Worker worker){
-        workerList.add(worker);
-        financialData.addDebt(worker.getSalary());
-        worker.hire(this,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
-    }
-
-    public void removeWorker(Worker worker){
-        if(workerList.contains(worker)){
-            workerList.remove(worker);
-            financialData.removeDebt(worker.getSalary());
-            worker.fire();
-        }
-    }
 
     public double getScore(){
-        return workerList.stream()
+        return administrator.getWorkerList().stream()
                 .map(worker -> (double)worker.getQuality().getScore())
-                .reduce(1.0,Double::sum)/workerList.size();
+                .reduce(1.0,Double::sum)/administrator.getWorkerList().size();
     }
 
     public void collectEating(double amount){
@@ -126,7 +100,7 @@ public class Restaurant extends Company implements Simulable{
     }
 
     public int getNumberOfWorkers(){
-        return workerList.size();
+        return administrator.getWorkerList().size();
     }
 
     @Override
@@ -135,34 +109,25 @@ public class Restaurant extends Company implements Simulable{
             payWorkers();
             payProviders();
         }
+        administrator.checkExpiredSoonContracts();
+        administrator.checkExpiredContracts();
         restartTablesAvailable();
+    }
+
+    public void payWorkers() {
+        administrator.getWorkerList()
+                .forEach(worker -> addEvent(administrator.payWorker(worker)));
+    }
+
+    private void payProviders() {
+        administrator.getProvidersList()
+                .forEach(provider ->addEvent(administrator.payProvider(provider)));
     }
 
     private void restartTablesAvailable() {
         tablesAvailable.set(tables*eatingsPerTable);
     }
 
-    public void payProviders() {
-        providersList.forEach(this::payProvider);
-    }
-
-    public void payProvider(Provider provider) {
-        ProductPurchase bill = new ProductPurchase(provider, this);
-        new CFDIBillGenerator().generateBill(bill);
-        addEvent(bill);
-        Bank.makeTransaction(this,provider,provider.getProductPrice());
-    }
-
-    public void payWorkers() {
-        workerList.forEach(this::payWorker);
-    }
-
-    public void payWorker(Worker worker) {
-        Payroll payroll= new Payroll(worker, this);
-        new CFDIBillGenerator().generateBill(payroll);
-        addEvent(payroll);
-        Bank.makeTransaction(this,worker,worker.getSalary());
-    }
 
     public boolean acceptClient(Client client) {
         int tablesNeeded = (client.getPeopleInvited()+1)/4 + (client.getPeopleInvited()+1)%4==0? 0 : 1;

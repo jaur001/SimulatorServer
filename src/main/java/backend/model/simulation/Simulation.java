@@ -2,6 +2,10 @@ package backend.model.simulation;
 
 import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.implementations.routine.strategy.BestRoutineStrategy;
+import backend.implementations.routine.strategy.RoutineStrategy;
+import backend.implementations.worker.strategy.BestWorkerStrategy;
+import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
@@ -11,6 +15,8 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulables.person.worker.jobSearcher.AcceptLowerOptionStrategy;
+import backend.model.simulables.person.worker.jobSearcher.SearcherStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -18,16 +24,9 @@ import backend.view.loaders.database.builder.builders.BillBuilder;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class Simulation {
-
-    private static AtomicBoolean executing;
-    private static AtomicBoolean restart;
 
     private static List<Restaurant> restaurantList = new LinkedList<>();
     private static List<Provider> providerList = new LinkedList<>();
@@ -35,47 +34,9 @@ public class Simulation {
     private static List<Worker> workerList = new LinkedList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
-
-    private static String uriProvider;
-    private static String uriClient;
-
-
-    public static void restart(){
-        restart.set(true);
-        executing = null;
-    }
-
-    public static boolean isRunning() {
-        return executing.get();
-    }
-
-    public static void changeExecuting() {
-        if(isRunning()) executing.set(false);
-        else executing.set(true);
-    }
-
-    public static boolean isInitialized(){
-        return executing != null;
-    }
-
-
-
-    public static String getUriProvider() {
-        return uriProvider;
-    }
-
-    public static void setUriProvider(String uriProvider) {
-        Simulation.uriProvider = uriProvider;
-    }
-
-    public static String getUriClient() {
-        return uriClient;
-    }
-
-    public static void setUriClient(String uriClient) {
-        Simulation.uriClient = uriClient;
-    }
-
+    public static final SearcherStrategy SEARCHER_STRATEGY = new AcceptLowerOptionStrategy();
+    public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
+    public static final WorkerStrategy WORKER_STRATEGY = new BestWorkerStrategy();
 
 
     public static int getClientSize() {
@@ -108,16 +69,28 @@ public class Simulation {
         return restaurantList.subList(from, to);
     }
 
+    public static List<Restaurant> getRestaurantList() {
+        return restaurantList;
+    }
+
     public static List<Provider> getProviderList(int page) {
         int from = getFrom(page);
         int to = getTo(from,providerList.size());
         return providerList.subList(from, to);
     }
 
+    public static List<Provider> getProviderList() {
+        return providerList;
+    }
+
     public static List<Client> getClientList(int page) {
         int from = getFrom(page);
         int to = getTo(from,clientList.size());
         return clientList.subList(from, to);
+    }
+
+    public static List<Client> getClientList() {
+        return clientList;
     }
 
     public static List<Worker> getWorkerList(Job job) {
@@ -131,6 +104,11 @@ public class Simulation {
         int to = getTo(from,workerList.size());
         return workerList.subList(from, to);
     }
+
+    public static List<Worker> getWorkerList() {
+        return workerList;
+    }
+
 
     public static List<XMLBill> getBillList(int page) {
         int from = getFrom(page);
@@ -148,55 +126,26 @@ public class Simulation {
         return new LinkedList<>();
     }
 
-
-
     public static void addBill(XMLBill bill){
         if(billList.size()<DatabaseUtils.getListLimit())billList.add(bill);
     }
 
-    public static void removeBill(XMLBill bill){
-        billList.remove(bill);
-    }
 
-
-
-    public static void startStop(){
-        if(!Simulation.isInitialized()) Simulation.execute();
-        else Simulation.changeExecuting();
-    }
-
-    public static void stop() {
-        executing.set(false);
-    }
-
-    private static void execute() {
-        TimeLine timeLine = new TimeLine(Simulation.init());
-        ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(1);
-        executor.submit(() -> {
-            while (!restart.get()){
-                if(isRunning()){
-                    timeLine.play();
-                }
-            }
-        });
-    }
-
-    private static List<Simulable> init(){
-        executing = new AtomicBoolean(true);
-        restart = new AtomicBoolean(false);
+    public static List<Simulable> init(){
+        reset();
         initElements();
-        return Initializer.getSimulableList();
+        return Initializer.init();
     }
 
     private static void initElements() {
         try {
-            reset();
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
-            waitForDatabase();
+            Simulator.waitForDatabase();
+            initElements();
         }
     }
 
@@ -215,7 +164,7 @@ public class Simulation {
         try {
             new SQLiteTableDeleter().deleteAll("Bill");
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Database is locked, could not delete Bills of last Simulation");
         }
     }
 
@@ -223,11 +172,7 @@ public class Simulation {
         EventController.reset();
     }
 
-    private static void waitForDatabase() {
-        try {
-            TimeUnit.MILLISECONDS.sleep(500);
-        } catch (InterruptedException ex) {
-            initElements();
-        }
+    public static List<Worker> getUnemployedWorkers(Job job){
+        return Simulation.getWorkerList(job).stream().filter(worker -> !worker.isWorking()).collect(Collectors.toCollection(LinkedList::new));
     }
 }

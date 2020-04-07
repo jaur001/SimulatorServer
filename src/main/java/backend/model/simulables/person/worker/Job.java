@@ -11,5 +11,6 @@ public enum Job {
     public String toString() {
         return this.name();
     }
+
 }
 

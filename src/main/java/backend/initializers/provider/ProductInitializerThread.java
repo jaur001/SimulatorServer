@@ -1,6 +1,6 @@
 package backend.initializers.provider;
 
-import backend.implementations.loaders.providing.product.DistributionProductPriceInitializer;
+import backend.implementations.loaders.providing.product.ConstantProductPriceInitializer;
 import backend.implementations.loaders.providing.product.RandomProductInitializer;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
@@ -18,14 +18,14 @@ public class ProductInitializerThread{
 
     private static void initProduct(Provider provider) {
         provider.setProduct(new RandomProductInitializer().init());
-        provider.setProductPrice(new DistributionProductPriceInitializer().getPrice(provider.getProduct()));
+        provider.setProductPrice(new ConstantProductPriceInitializer().getPrice(provider.getProduct()));
     }
 
     private static void initOneProviderPerProduct(List<Provider> providerList) {
         IntStream.range(0,Product.values().length).boxed()
                 .forEach(integer -> {
                     providerList.get(integer).setProduct(Product.values()[integer]);
-                    providerList.get(integer).setProductPrice(new DistributionProductPriceInitializer().getPrice(Product.values()[integer]));
+                    providerList.get(integer).setProductPrice(new ConstantProductPriceInitializer().getPrice(Product.values()[integer]));
                 });
     }
 }

@@ -64,7 +64,7 @@
                     <td><%=provider.getStreet()%></td>
                     <td><%=provider.getTelephoneNumber()%></td>
                     <td><%=provider.getFinancialData().getTreasury()%></td>
-                    <td><%=provider.getFinancialData().getProfit()%></td>
+                    <td><%=provider.getFinancialData().getIncome()%></td>
                     <td><%=provider.getFinancialData().getLosses()%></td>
                     <td><%=provider.getFinancialData().getSales()%></td>
                     <td><%=provider.getFinancialData().getPurchases()%></td>

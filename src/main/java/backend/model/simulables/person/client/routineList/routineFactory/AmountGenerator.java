@@ -1,4 +1,4 @@
-package backend.model.simulables.person.client.routineList.routineListController;
+package backend.model.simulables.person.client.routineList.routineFactory;
 
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.restaurant.Restaurant;

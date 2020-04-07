@@ -1,18 +1,18 @@
 package backend.initializers;
 
-import backend.implementations.loaders.worker.RandomWorkerSearcher;
+import backend.implementations.worker.GenericWorkerSearcher;
+import backend.implementations.worker.strategy.FirstWorkerStrategy;
 import backend.model.simulables.company.restaurant.Restaurant;
-
-import java.util.List;
+import backend.model.simulation.Simulation;
 
 public class WorkerSearcherThread extends Thread{
 
-    public static void addWorkers(List<Restaurant> restaurantList){
-        restaurantList.parallelStream().forEach(WorkerSearcherThread::addWorker);
+    public static void addWorkers(){
+        Simulation.getRestaurantList().parallelStream().forEach(WorkerSearcherThread::addWorker);
     }
 
     private static void addWorker(Restaurant restaurant){
-        new RandomWorkerSearcher().search(restaurant.getTables()).forEach(restaurant::addWorker);
+        new GenericWorkerSearcher(new FirstWorkerStrategy()).createStaff(restaurant.getTables()).forEach(worker -> restaurant.addWorker(worker,worker.getSalaryDesired()));
     }
 
 }

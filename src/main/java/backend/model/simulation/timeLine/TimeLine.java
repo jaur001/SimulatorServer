@@ -35,8 +35,8 @@ public class TimeLine extends EventGenerator{
     }
 
     public void play(){
-        simulableList.parallelStream().forEach(Simulable::simulate);
         passDay();
+        simulableList.parallelStream().forEach(Simulable::simulate);
     }
 
     private void passDay() {

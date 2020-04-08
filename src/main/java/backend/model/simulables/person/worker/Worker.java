@@ -11,6 +11,7 @@ import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
+import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
-    private AtomicBoolean isLocked = new AtomicBoolean(false);
     private Restaurant restaurant = null;
     private List<JobOffer> jobOfferList;
 
@@ -70,7 +70,6 @@ public class Worker extends Client{
         setSalary(salary);
         salaryDesired = getSalary();
         this.jobOfferList = new LinkedList<>();
-        isLocked.set(false);
     }
 
     public void fire() {
@@ -79,7 +78,6 @@ public class Worker extends Client{
         salaryDesired = getSalary();
         setSalary(0);
         routineList = null;
-        isLocked.set(false);
     }
 
     public void retire() {
@@ -91,6 +89,9 @@ public class Worker extends Client{
 
     @Override
     public void simulate() {
+        if(TimeLine.getDay()==29){
+            System.out.println("xd");
+        }
         if (isNotRetired())work();
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
@@ -102,7 +103,7 @@ public class Worker extends Client{
 
     private void enjoyTime() {
         if(routineList==null) routineList = new RoutineList(getSalary(),getRoutineList(getSalary()));
-        routineList.checkRoutines().forEach(this::goToEat);
+        super.simulate();
     }
 
     public List<Routine> getRoutineList(double salary) {
@@ -114,6 +115,7 @@ public class Worker extends Client{
     }
 
     public void searchJob() {
+        if (jobOfferList.stream().anyMatch(JobOffer::isAccepted)) return;
         jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
         if(!new JobSearcher(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();
     }

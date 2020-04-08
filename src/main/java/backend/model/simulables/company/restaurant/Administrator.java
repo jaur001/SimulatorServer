@@ -13,6 +13,7 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
+import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.*;
 
@@ -95,6 +96,7 @@ public class Administrator {
     }
 
     private void makeOffers(List<Worker> workerList, Worker current) {
+        System.out.println(TimeLine.getDate().toString());
         workerList.forEach(worker -> makeOffer(current,worker));
     }
 
@@ -111,6 +113,7 @@ public class Administrator {
         List<Contract> auxList = new LinkedList<>(contractList);
         auxList.stream().filter(Contract::isExpired)
                 .forEach(contract -> {
+                    System.out.println(TimeLine.getDate().toString());
                     if(isRetired(contract)) changeRetiredWorker(contract);
                     else decideContract(contract);
                     contractList.remove(contract);

@@ -105,6 +105,9 @@ public class Restaurant extends Company{
 
     @Override
     public void simulate() {
+        if(TimeLine.getDay()==28){
+            System.out.println("xd");
+        }
         if(TimeLine.isLastDay()) {
             payWorkers();
             payProviders();

@@ -134,8 +134,7 @@ public class Simulation {
     public static List<Simulable> init(){
         reset();
         initElements();
-        List<Simulable> init = Initializer.init();
-        return init;
+        return Initializer.init();
     }
 
     private static void initElements() {

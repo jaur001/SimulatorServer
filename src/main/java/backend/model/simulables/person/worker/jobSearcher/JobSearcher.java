@@ -1,7 +1,6 @@
 package backend.model.simulables.person.worker.jobSearcher;
 
 import backend.model.simulables.person.worker.JobOffer;
-import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.List;
 

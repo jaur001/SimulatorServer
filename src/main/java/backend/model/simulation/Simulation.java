@@ -134,7 +134,8 @@ public class Simulation {
     public static List<Simulable> init(){
         reset();
         initElements();
-        return Initializer.init();
+        List<Simulable> init = Initializer.init();
+        return init;
     }
 
     private static void initElements() {
@@ -175,7 +176,6 @@ public class Simulation {
     public static List<Worker> getUnemployedWorkers(Job job){
         return Simulation.getWorkerList(job).stream()
                 .filter(worker -> !worker.isWorking())
-                .filter(worker -> !worker.isLocked())
                 .filter(Worker::isNotRetired)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -189,7 +189,4 @@ public class Simulation {
         if(worker != null)workerList.add(worker);
     }
 
-    public static void unlockUnemployedWorkers() {
-        workerList.forEach(Worker::unlock);
-    }
 }

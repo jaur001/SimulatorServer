@@ -6,6 +6,6 @@ import backend.model.simulables.person.worker.Worker;
 import java.util.List;
 
 public interface WorkerStrategy {
-    List<Worker> getWorker(Job job, int amount);
     Worker getWorker(Job job);
+    Worker getWorker(Job job, List<Worker> workerList);
 }

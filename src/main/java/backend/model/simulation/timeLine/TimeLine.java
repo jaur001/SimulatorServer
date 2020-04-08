@@ -41,7 +41,7 @@ public class TimeLine extends EventGenerator{
 
     private void passDay() {
         date.setDate(date.getDate()+1);
-        //System.out.println("New Day:" + date.toString());
+        System.out.println("New Day:" + date.toString());
         if(WorkerSettings.newWorker()) Simulation.addWorker();
         addEvent((SimulationDate) date.clone());
         try {

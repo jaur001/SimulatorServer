@@ -8,6 +8,7 @@ import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.worker.jobSearcher.JobSearcher;
 import backend.model.simulation.Simulation;
+import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
@@ -27,6 +28,7 @@ public class Worker extends Client{
         super(personalData);
         super.setJob("");
         salaryDesired = 0;
+        setSalary(0);
         jobOfferList = new LinkedList<>();
     }
 
@@ -54,7 +56,8 @@ public class Worker extends Client{
     @Override
     public void setJob(String job){
         super.setJob(job);
-        salaryDesired = RestaurantSettings.getSalary(Job.valueOf(job));
+        if (job.equals("Retired")) salaryDesired = getSalary();
+        else salaryDesired = RestaurantSettings.getSalary(Job.valueOf(job));
     }
 
     public boolean isWorking() {
@@ -75,22 +78,31 @@ public class Worker extends Client{
         restaurant = null;
         salaryDesired = getSalary();
         setSalary(0);
-        routineList.deleteRoutines();
+        routineList = null;
         isLocked.set(false);
     }
 
     public void retire() {
         this.isWorking.set(false);
         restaurant = null;
-        setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT,500));
+        setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
         setJob("Retired");
     }
 
     @Override
     public void simulate() {
-        if(!isWorking.get() && isNotRetired()) searchJob();
-        else if(routineList.isEmpty()) routineList = new RoutineList(getSalary(),getRoutineList(getSalary()));
-        else routineList.checkRoutines().forEach(this::goToEat);
+        if (isNotRetired())work();
+        if(isWorking() || !isNotRetired()) enjoyTime();
+    }
+
+    private void work() {
+        if((this.getAge()>=WorkerSettings.RETIRE_AGE)&&!isWorking()) retire();
+        else if(!isWorking()) searchJob();
+    }
+
+    private void enjoyTime() {
+        if(routineList==null) routineList = new RoutineList(getSalary(),getRoutineList(getSalary()));
+        routineList.checkRoutines().forEach(this::goToEat);
     }
 
     public List<Routine> getRoutineList(double salary) {
@@ -98,7 +110,7 @@ public class Worker extends Client{
     }
 
     public boolean isNotRetired() {
-        return getSalary()==0;
+        return !getJob().equals("Retired");
     }
 
     public void searchJob() {
@@ -114,15 +126,4 @@ public class Worker extends Client{
         if(!jobOfferList.contains(jobOffer))jobOfferList.add(jobOffer);
     }
 
-    public void lock() {
-        isLocked.set(true);
-    }
-
-    public void unlock() {
-        isLocked.set(false);
-    }
-
-    public boolean isLocked(){
-        return isLocked.get();
-    }
 }

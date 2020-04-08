@@ -1,6 +1,7 @@
 package backend.implementations.worker;
 
 import backend.implementations.worker.strategy.WorkerStrategy;
+import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
@@ -23,27 +24,27 @@ public class GenericWorkerSearcher implements WorkerSearcher {
     }
 
     @Override
-    public List<Worker> createStaff(int numTables) {
-        return Arrays.stream(Job.values())
-                .flatMap(job -> searchWorkers(job,numTables).stream())
-                .collect(Collectors.toCollection(LinkedList::new));
+    public void createStaff(Restaurant restaurant) {
+        Arrays.stream(Job.values())
+                .forEach(job -> searchWorkers(job,restaurant));
     }
 
-    private List<Worker> searchWorkers(Job job, int numTables) {
-        int numWorkers = RestaurantSettings.getWorkerLength(job,numTables);
-        return strategy.getWorker(job,numWorkers);
+    private void searchWorkers(Job job, Restaurant restaurant) {
+        int numWorkers = RestaurantSettings.getWorkerLength(job,restaurant.getTables());
+        IntStream.range(0,numWorkers).boxed()
+                .map(integer -> strategy.getWorker(job))
+                .forEach(worker -> restaurant.addWorker(worker,worker.getSalaryDesired()));
     }
 
     @Override
     public List<Worker> searchBetterOptions(Worker worker) {
         List<Worker> options = new LinkedList<>();
         while (true){
-            Worker option = strategy.getWorker(Job.valueOf(worker.getJob()));
+            Worker option = strategy.getWorker(Job.valueOf(worker.getJob()),options);
             if (option == null) break;
             if(isBetterOption(worker,option)) options.add(option);
             else break;
         }
-        Simulation.unlockUnemployedWorkers();
         return options;
     }
 

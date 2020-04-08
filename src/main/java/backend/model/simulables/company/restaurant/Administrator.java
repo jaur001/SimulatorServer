@@ -13,7 +13,6 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
-import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.*;
 
@@ -50,7 +49,7 @@ public class Administrator {
         worker.hire(restaurant,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
         workerList.add(worker);
         financialData.addDebt(salary);
-        contractList.add(createContract(worker));
+        addContract(worker);
     }
 
     public void removeWorker(Worker worker){
@@ -109,11 +108,9 @@ public class Administrator {
     }
 
     public void checkExpiredContracts() {
-        System.out.println("Actual date: " + TimeLine.getDate().toString());
-        contractList.forEach(contract -> System.out.println("expire date: " + contract.getExpireDate().toString()));
-        contractList.stream().filter(Contract::isExpired)
+        List<Contract> auxList = new LinkedList<>(contractList);
+        auxList.stream().filter(Contract::isExpired)
                 .forEach(contract -> {
-                    contract.getWorker().getPersonalData().setBirthDate("9/9/1940");
                     if(isRetired(contract)) changeRetiredWorker(contract);
                     else decideContract(contract);
                     contractList.remove(contract);
@@ -123,7 +120,6 @@ public class Administrator {
     }
 
     private void changeRetiredWorker(Contract contract) {
-        System.out.println("Worker Retired");
         changeWorker(contract.getWorker(),getBestOption(contract));
         contract.getWorker().retire();
     }
@@ -153,9 +149,8 @@ public class Administrator {
     }
 
     private void renovateWorker(Worker worker) {
-        System.out.println("Worker renovated");
         worker.setSalary(worker.getSalary()+ WorkerSettings.SALARY_CHANGE*worker.getSalary());
-        contractList.add(createContract(worker));
+        addContract(worker);
     }
 
     private void changeWorker(Worker oldWorker, Worker workerSelected) {
@@ -180,8 +175,11 @@ public class Administrator {
 
 
     public boolean isRetired(Contract contract) {
-        int age = contract.getWorker().getAge();
-        return age >= WorkerSettings.RETIRE_AGE;
+        return contract.getWorker().getAge() >= WorkerSettings.RETIRE_AGE;
+    }
+
+    private void addContract(Worker worker) {
+        contractList.add(createContract(worker));
     }
 
     private Contract createContract(Worker worker) {

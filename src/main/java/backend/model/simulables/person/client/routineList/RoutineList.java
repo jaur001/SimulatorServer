@@ -26,11 +26,6 @@ public class RoutineList {
         return new GenericRoutineChecker(salary, budget,restaurantRoutines, Simulation.ROUTINE_STRATEGY).checkRoutines();
     }
 
-    public void deleteRoutines(){
-        restaurantRoutines = new LinkedList<>();
-    }
-
-
     public double getSalary() {
         return salary;
     }

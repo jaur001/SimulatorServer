@@ -20,7 +20,7 @@ public class ClientSettings implements Adjustable {
     public static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
     private static final int SALARY_MEAN = 1717;
     private static final double SALARY_SD = 979.28;
-    private static final int MIN_SALARY = 500;
+    private static final double MIN_SALARY = 500;
     private static final int INVITED_PEOPLE_MIN = 0;
     private static final int INVITED_PEOPLE_MAX = 3;
     private static final int NUM_OF_RESTAURANT_MIN = 1;
@@ -28,7 +28,7 @@ public class ClientSettings implements Adjustable {
     private static final int CLIENT_SPACE = 85000;
 
     private static NormalDistribution salaryDistribution;
-    private static int minSalary;
+    private static double minSalary;
     private static Map<Integer,Integer> restaurantGroup = new HashMap<>();
 
     static {
@@ -106,5 +106,9 @@ public class ClientSettings implements Adjustable {
 
     public static int getNextVisitDaySample(double salary, double salaryOption) {
         return MathUtils.random(7,14);
+    }
+
+    public static double getMinSalary(){
+        return minSalary;
     }
 }

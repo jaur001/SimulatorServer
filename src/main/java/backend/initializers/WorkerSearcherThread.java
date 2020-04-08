@@ -13,7 +13,7 @@ public class WorkerSearcherThread{
     }
 
     private static void addWorker(Restaurant restaurant){
-        new GenericWorkerSearcher(new FirstWorkerStrategy()).createStaff(restaurant.getTables()).forEach(worker -> restaurant.addWorker(worker,worker.getSalaryDesired()));
+        new GenericWorkerSearcher(new FirstWorkerStrategy()).createStaff(restaurant);
     }
 
 }

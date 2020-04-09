@@ -9,10 +9,12 @@ import backend.model.simulation.settings.settingsList.WorkerSettings;
 import backend.utils.MathUtils;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class WorkerThread extends Thread {
     public static void setJobs(List<Worker> workerList){
         workerList.parallelStream().forEach(WorkerThread::setJob);
+        if(workerList.size()>=Job.values().length)setAtLeastOneWorkerPerJob(workerList);
     }
 
     public static void setJob(Worker worker){
@@ -20,5 +22,10 @@ public class WorkerThread extends Thread {
         worker.setSalaryDesired(RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
         int position = MathUtils.random(0,Quality.values().length);
         worker.setQuality(Quality.values()[position]);
+    }
+
+    private static void setAtLeastOneWorkerPerJob(List<Worker> workerList) {
+        IntStream.range(0, Job.values().length).boxed()
+                .forEach(integer -> workerList.get(integer).setJob(Job.values()[integer].toString()));
     }
 }

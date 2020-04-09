@@ -1,6 +1,8 @@
 package backend.model.simulation.settings.settingsList;
 
+import backend.model.simulables.company.restaurant.administration.Contract;
 import backend.model.simulables.person.worker.Job;
+import backend.model.simulables.person.worker.Worker;
 import backend.utils.MathUtils;
 
 import java.util.LinkedHashMap;
@@ -33,10 +35,14 @@ public class WorkerSettings{
     }
 
     public static boolean newWorker() {
-        return MathUtils.random(0,100)<=3;
+        return MathUtils.random(0,100)< 3;
     }
 
     public static double reduceSalaryDesired(double salaryDesired) {
         return Math.max(MIN_SALARY,salaryDesired-WorkerSettings.SALARY_DESIRED_CHANGE *salaryDesired);
+    }
+
+    public static boolean isInRetireAge(Worker worker) {
+        return worker.getAge() >= WorkerSettings.RETIRE_AGE;
     }
 }

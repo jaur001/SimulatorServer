@@ -10,6 +10,9 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/eventSocketEndpoint")
 public class EventWebSocket {
+
+    public static final String ERROR = "";
+
     @OnOpen
     public void onOpen(){
         System.out.println("Event socket opened....");
@@ -23,14 +26,12 @@ public class EventWebSocket {
     @OnMessage
     public String onMessage(String message){
         StringBuilder events = new StringBuilder();
-        if (EventController.thereIsEvent()){
-            EventController.getEvents().forEach(event -> events.append(event.getMessage()).append("\n"));
-        }
+        EventController.getEvents().forEach(event -> events.append(event).append("\n"));
         return events.toString();
     }
 
     @OnError
     public void onError(Throwable e){
-        this.onClose();
+        System.out.print(ERROR);
     }
 }

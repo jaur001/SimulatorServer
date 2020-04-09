@@ -6,11 +6,13 @@ import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Bank implements Simulable {
 
     private static List<Collector> collectorList = new LinkedList<>();
     private static List<Payer> payerList = new LinkedList<>();
+
 
     public static void makeTransaction(EconomicAgent transmitter, EconomicAgent receiver, double amount){
         transmitter.pay(amount);
@@ -37,4 +39,5 @@ public class Bank implements Simulable {
             payerList.forEach(Payer::pay);
         }
     }
+
 }

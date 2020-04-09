@@ -1,28 +1,29 @@
 package backend.model.simulables.person.worker;
 
 import backend.implementations.routine.GenericRoutineFactory;
+import backend.model.event.Event;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.person.worker.jobSearcher.JobSearcher;
+import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
-import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Worker extends Client{
+public class Worker extends Client implements Event,Cloneable {
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
     private Restaurant restaurant = null;
     private List<JobOffer> jobOfferList;
+
 
     public Worker(PersonalData personalData) {
         super(personalData);
@@ -31,6 +32,7 @@ public class Worker extends Client{
         setSalary(0);
         jobOfferList = new LinkedList<>();
     }
+
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -70,6 +72,7 @@ public class Worker extends Client{
         setSalary(salary);
         salaryDesired = getSalary();
         this.jobOfferList = new LinkedList<>();
+        addEvent(this);
     }
 
     public void fire() {
@@ -78,6 +81,7 @@ public class Worker extends Client{
         salaryDesired = getSalary();
         setSalary(0);
         routineList = null;
+        addEvent(this);
     }
 
     public void retire() {
@@ -85,19 +89,17 @@ public class Worker extends Client{
         restaurant = null;
         setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
         setJob("Retired");
+        addEvent(this);
     }
 
     @Override
     public void simulate() {
-        if(TimeLine.getDay()==29){
-            System.out.println("xd");
-        }
         if (isNotRetired())work();
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
 
     private void work() {
-        if((this.getAge()>=WorkerSettings.RETIRE_AGE)&&!isWorking()) retire();
+        if(WorkerSettings.isInRetireAge(this)&&!isWorking()) retire();
         else if(!isWorking()) searchJob();
     }
 
@@ -117,7 +119,7 @@ public class Worker extends Client{
     public void searchJob() {
         if (jobOfferList.stream().anyMatch(JobOffer::isAccepted)) return;
         jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
-        if(!new JobSearcher(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();
+        if(!new OfferSelector(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();
     }
 
     private void reduceSalaryDesired() {
@@ -128,4 +130,10 @@ public class Worker extends Client{
         if(!jobOfferList.contains(jobOffer))jobOfferList.add(jobOffer);
     }
 
+    @Override
+    public String getMessage() {
+        if(!isNotRetired())return getFullName() + " has retired.";
+        if(isWorking()) return getFullName() + " has been hired for a salary of "+ getSalary() + "€.";
+        return getFullName() + " has been fired.";
+    }
 }

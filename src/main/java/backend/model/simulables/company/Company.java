@@ -7,13 +7,14 @@ import backend.model.simulables.bank.Payer;
 
 public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable {
 
-    protected static final double companyTaxes = 1000;
     protected FinancialData financialData;
+    protected static final double TAXES = 1000;
 
     public Company(FinancialData financialData) {
         this.financialData = financialData;
-        financialData.addDebt(companyTaxes);
     }
+
+    protected abstract double getTaxes();
 
     public FinancialData getFinancialData() {
         return financialData;
@@ -31,6 +32,6 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
 
     @Override
     public void pay(){
-        financialData.pay(companyTaxes);
+        financialData.pay(getTaxes());
     }
 }

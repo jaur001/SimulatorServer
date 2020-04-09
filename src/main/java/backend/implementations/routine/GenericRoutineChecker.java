@@ -64,7 +64,6 @@ public class GenericRoutineChecker implements RoutineChecker {
             provisionalBudget -= budgetApproximation;
             return true;
         }
-        //System.out.println("No budget for the restaurant -> salary: "+ salary + ", budget: " + salary* ClientSettings.PERCENTAGE_FOR_RESTAURANT);
         return false;
     }
 

@@ -52,10 +52,6 @@ public class RestaurantSettings implements Adjustable {
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
     }
 
-    public static double getSalaryPerQuality(Worker worker) {
-        return (worker.getQuality().getScore()/worker.getSalaryDesired())*10000;
-    }
-
     @Override
     public void init(SettingsData data) {
         initialSocialCapital = data.getRestaurantData().getInitialSocialCapital();
@@ -67,6 +63,10 @@ public class RestaurantSettings implements Adjustable {
         getDefaultSettings();
     }
 
+
+    public static double getSalaryPerQuality(Worker worker) {
+        return (worker.getQuality().getScore()/worker.getSalaryDesired())*10000;
+    }
 
     public static double getInitialSocialCapital() {
         return initialSocialCapital;

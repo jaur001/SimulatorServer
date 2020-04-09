@@ -16,7 +16,7 @@ import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
-import backend.model.simulables.person.worker.jobSearcher.SearcherStrategy;
+import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -34,7 +34,7 @@ public class Simulation {
     private static List<Worker> workerList = new LinkedList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
-    public static final SearcherStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
+    public static final SelectOfferStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
     public static final WorkerStrategy WORKER_STRATEGY = new BestWorkerStrategy();
 
@@ -162,6 +162,7 @@ public class Simulation {
     private static void resetBills(){
         billList = new LinkedList<>();
         try {
+            if(new SQLiteTableSelector().readCount("Bill")==0)return;
             new SQLiteTableDeleter().deleteAll("Bill");
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Database is locked, could not delete Bills of last Simulation");
@@ -183,9 +184,11 @@ public class Simulation {
         return workerList.stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
     }
 
-    public static void addWorker() {
+    public static Simulable addWorker() {
         Worker worker = Initializer.getWorker();
-        if(worker != null)workerList.add(worker);
+        if(worker == null) return null;
+        workerList.add(worker);
+        return worker;
     }
 
 }

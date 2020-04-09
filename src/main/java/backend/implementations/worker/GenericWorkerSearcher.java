@@ -4,15 +4,12 @@ import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.view.loaders.WorkerSearcher;
+import backend.model.simulables.company.restaurant.administration.WorkerSearcher;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GenericWorkerSearcher implements WorkerSearcher {
@@ -46,6 +43,11 @@ public class GenericWorkerSearcher implements WorkerSearcher {
             else break;
         }
         return options;
+    }
+
+    @Override
+    public Worker searchBestOptions(Job job) {
+        return strategy.getWorker(job);
     }
 
     private boolean isBetterOption(Worker worker, Worker option) {

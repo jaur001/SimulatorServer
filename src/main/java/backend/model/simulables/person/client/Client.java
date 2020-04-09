@@ -13,6 +13,7 @@ import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
+
 public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector {
     protected PersonalData personalData;
     protected RoutineList routineList;

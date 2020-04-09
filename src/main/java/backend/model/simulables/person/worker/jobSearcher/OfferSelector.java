@@ -4,12 +4,12 @@ import backend.model.simulables.person.worker.JobOffer;
 
 import java.util.List;
 
-public class JobSearcher {
+public class OfferSelector {
 
     private List<JobOffer> jobOfferList;
-    private SearcherStrategy strategy;
+    private SelectOfferStrategy strategy;
 
-    public JobSearcher(List<JobOffer> jobOfferList, SearcherStrategy strategy) {
+    public OfferSelector(List<JobOffer> jobOfferList, SelectOfferStrategy strategy) {
         this.jobOfferList = jobOfferList;
         this.strategy = strategy;
     }

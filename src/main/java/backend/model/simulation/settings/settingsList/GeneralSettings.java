@@ -6,6 +6,7 @@ import backend.model.simulation.settings.SettingsData;
 
 public class GeneralSettings implements Adjustable {
 
+    private static final double PERCENTAGE_PROVIDERS = 0.9;
     private static int clientCount;
     private static int restaurantCount;
     private static int providerCount;
@@ -18,8 +19,8 @@ public class GeneralSettings implements Adjustable {
     private static void getDefaultSettings() {
         clientCount = 10;
         restaurantCount = 1;
-        providerCount = restaurantCount*Product.values().length;
-        workerCount = restaurantCount*100;
+        providerCount = (int)Math.max(restaurantCount* PERCENTAGE_PROVIDERS,Product.values().length);
+        workerCount = restaurantCount*40;
     }
 
     @Override

@@ -10,6 +10,7 @@ import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Provider extends Company{
     private int NIF;
@@ -22,7 +23,6 @@ public class Provider extends Company{
     private double productPrice;
     private List<Restaurant> restaurantList = new ArrayList<>();
 
-
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(new FinancialData(RestaurantSettings.getInitialSocialCapital()));
         this.NIF = NIF;
@@ -33,6 +33,7 @@ public class Provider extends Company{
         this.telephoneNumber = telephoneNumber;
         this.product = null;
         this.productPrice = 0;
+        financialData.addDebt(getTaxes());
     }
 
     public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
@@ -111,4 +112,10 @@ public class Provider extends Company{
     private void decreasePrice() {
         productPrice*= (1-ProviderSettings.PRICE_CHANGE);
     }
+
+    @Override
+    protected double getTaxes() {
+        return (productPrice*Company.TAXES)/100;
+    }
+
 }

@@ -48,7 +48,6 @@ public class CFDIBillGenerator implements BillGenerator {
 
     public void generateBill(CFDIBill bill){
         this.bill = bill;
-        //System.out.println("New Bill " + bill.getUUID() + " -> Issuer : " + bill.getIssuerName() + ", Receiver: " + bill.getReceiverName() + ", amount: " + bill.getTotal());
         try {
             createBill();
 

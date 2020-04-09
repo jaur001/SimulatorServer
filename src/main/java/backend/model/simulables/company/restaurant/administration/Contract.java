@@ -1,4 +1,4 @@
-package backend.model.simulables.company.restaurant;
+package backend.model.simulables.company.restaurant.administration;
 
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;

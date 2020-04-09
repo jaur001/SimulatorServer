@@ -52,7 +52,4 @@ public class ProviderSettings implements Adjustable {
         return productCostTable.get(product);
     }
 
-    public static int getLimit() throws SQLException, ClassNotFoundException {
-        return new SQLiteTableSelector().readCount("Provider");
-    }
 }

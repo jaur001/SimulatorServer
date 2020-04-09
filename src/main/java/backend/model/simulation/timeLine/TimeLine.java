@@ -10,6 +10,7 @@ import java.time.Month;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TimeLine extends EventGenerator{
 
@@ -17,13 +18,39 @@ public class TimeLine extends EventGenerator{
     private static SimulationDate date = new SimulationDate();
     private List<Simulable> simulableList;
 
-    public static void setTIMEOUT(int TIMEOUT) {
-        TimeLine.TIMEOUT = TIMEOUT;
-    }
-
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
         date = new SimulationDate();
+    }
+
+    public void play(){
+        simulableList.parallelStream().forEach(Simulable::simulate);
+        passDay();
+        checkThereIsNewWorker();
+    }
+
+    private void passDay() {
+        date.setDate(date.getDate()+1);
+        addEvent(date);
+        try {
+            TimeUnit.MILLISECONDS.sleep(TIMEOUT);
+        } catch (InterruptedException e) {
+            System.out.println("Simulation stopped");
+        }
+    }
+
+    private void checkThereIsNewWorker() {
+        if(!WorkerSettings.newWorker()) return;
+        Simulable simulable = Simulation.addWorker();
+        if(simulable!=null)addSimulable(simulable);
+    }
+
+    public void addSimulable(Simulable simulable){
+        simulableList.add(simulable);
+    }
+
+    public static void setTIMEOUT(int TIMEOUT) {
+        TimeLine.TIMEOUT = TIMEOUT;
     }
 
     public static boolean isLastDay() {
@@ -32,23 +59,6 @@ public class TimeLine extends EventGenerator{
 
     private static int getLengthOfMonth() {
         return Month.of(TimeLine.getMonth()+1).minLength();
-    }
-
-    public void play(){
-        passDay();
-        simulableList.parallelStream().forEach(Simulable::simulate);
-    }
-
-    private void passDay() {
-        date.setDate(date.getDate()+1);
-        System.out.println("New Day:" + date.toString());
-        if(WorkerSettings.newWorker()) Simulation.addWorker();
-        addEvent((SimulationDate) date.clone());
-        try {
-            TimeUnit.MILLISECONDS.sleep(TIMEOUT);
-        } catch (InterruptedException e) {
-            System.out.println("Simulation stopped");
-        }
     }
 
     public static boolean isSameDate(Date otherDate){

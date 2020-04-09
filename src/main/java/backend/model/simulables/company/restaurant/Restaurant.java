@@ -3,15 +3,17 @@ package backend.model.simulables.company.restaurant;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.restaurant.administration.Administrator;
+import backend.model.simulables.company.restaurant.administration.Employer;
+import backend.model.simulables.company.restaurant.administration.OfferManager;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulables.Simulable;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
-import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
@@ -27,7 +29,9 @@ public class Restaurant extends Company{
     private AtomicInteger tablesAvailable;
     private static final int eatingsPerTable = 6;
 
+    private Employer employer;
     private Administrator administrator;
+
 
 
     public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
@@ -40,6 +44,9 @@ public class Restaurant extends Company{
         this.tables = tables;
         this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
         this.administrator = new Administrator(financialData,this);
+        this.employer = new Employer(administrator,new OfferManager(this));
+
+        financialData.addDebt(getTaxes());
     }
 
     public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
@@ -60,7 +67,7 @@ public class Restaurant extends Company{
     public double getScore(){
         return administrator.getWorkerList().stream()
                 .map(worker -> (double)worker.getQuality().getScore())
-                .reduce(0.0,Double::sum)/administrator.getWorkerList().size();
+                .reduce(0.0,Double::sum)/ administrator.getWorkerList().size();
     }
 
     public void collectEating(double amount){
@@ -100,20 +107,17 @@ public class Restaurant extends Company{
     }
 
     public int getNumberOfWorkers(){
-        return administrator.getWorkerList().size();
+        return administrator.getContractsSize();
     }
 
     @Override
     public void simulate() {
-        if(TimeLine.getDay()==28){
-            System.out.println("xd");
-        }
         if(TimeLine.isLastDay()) {
             payWorkers();
             payProviders();
         }
-        administrator.checkExpiredSoonContracts();
-        administrator.checkExpiredContracts();
+        employer.checkExpiredSoonContracts();
+        employer.checkExpiredContracts();
         restartTablesAvailable();
     }
 
@@ -141,4 +145,8 @@ public class Restaurant extends Company{
         return false;
     }
 
+    @Override
+    protected double getTaxes() {
+        return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())*Company.TAXES)/10;
+    }
 }

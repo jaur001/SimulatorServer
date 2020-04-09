@@ -30,24 +30,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Initializer {
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue(), providerCount));
+        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue()+Simulation.getProviderSize(), providerCount));
         ProductInitializerThread.initProducts(providerList);
         return providerList;
     }
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + ClientSettings.getLimit(), workerCount));
+        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + ClientSettings.getLimit()+Simulation.getWorkerSize(), workerCount));
         WorkerThread.setJobs(workerList);
         return workerList;
     }
 
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
         //return RestaurantThread.loadRestaurantsPage(restaurantCount/30);
-        return new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue(),restaurantCount));
+        return new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue()+Simulation.getRestaurantSize(),restaurantCount));
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        return  new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue(),clientCount));
+        return  new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+Simulation.getClientSize(),clientCount));
     }
 
     public static List<Simulable> init() {
@@ -84,9 +84,7 @@ public class Initializer {
 
     public static Worker getWorker() {
         try {
-            Worker worker = getWorkers(1).get(0);
-            WorkerThread.setJob(worker);
-            return worker;
+            return getWorkers(1).get(0);
         } catch (SQLException | ClassNotFoundException e) {
             return null;
         }

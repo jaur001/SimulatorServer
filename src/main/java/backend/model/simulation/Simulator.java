@@ -12,10 +12,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Simulator {
 
     private static AtomicBoolean executing;
-    private static AtomicBoolean restart;
+    private static AtomicBoolean restart = new AtomicBoolean(false);
 
     private static String uriProvider;
     private static String uriClient;
+
 
     public static String getUriProvider() {
         return uriProvider;
@@ -42,6 +43,7 @@ public class Simulator {
     public static boolean isRunning() {
         return executing.get();
     }
+
 
     public static void changeExecuting() {
         if(isRunning()) stopSimulation();
@@ -90,6 +92,7 @@ public class Simulator {
         });
     }
 
+
     public static void waitForDatabaseOrThread() {
         try {
             TimeUnit.MILLISECONDS.sleep(500);
@@ -97,4 +100,5 @@ public class Simulator {
             ex.printStackTrace();
         }
     }
+
 }

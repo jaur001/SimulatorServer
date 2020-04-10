@@ -17,7 +17,6 @@ import backend.model.simulation.Simulation;
 import backend.model.simulation.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector, Event {

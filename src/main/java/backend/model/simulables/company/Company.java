@@ -1,12 +1,14 @@
 package backend.model.simulables.company;
 
+import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Payer;
+import backend.model.simulation.Simulator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 
-public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable {
+public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable, Event {
 
     protected FinancialData financialData;
     protected static final double TAXES = 1000;
@@ -26,6 +28,16 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
         else decreasePrice();
     }
 
+    protected void declareBankruptcy() {
+        Simulator.closeCompany(this);
+    }
+
+    protected void analyzeFinances(){
+        if(manageFinances())declareBankruptcy();
+    }
+
+    protected abstract boolean manageFinances();
+
     protected abstract void increasePrice();
 
     protected abstract void decreasePrice();
@@ -44,4 +56,5 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
     public void pay(){
         financialData.pay(getTaxes());
     }
+
 }

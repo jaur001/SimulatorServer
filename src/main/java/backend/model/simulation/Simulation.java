@@ -4,12 +4,13 @@ import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.routine.strategy.BestRoutineStrategy;
 import backend.implementations.routine.strategy.RoutineStrategy;
-import backend.implementations.worker.strategy.BestWorkerStrategy;
+import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
 import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.routineList.RoutineList;
@@ -39,12 +40,7 @@ public class Simulation {
 
     public static final SelectOfferStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
-    public static final WorkerStrategy WORKER_STRATEGY = new BestWorkerStrategy();
 
-
-    public static int getClientSize() {
-        return clientList.size();
-    }
 
     public static int getProviderSize() {
         return providerList.size();
@@ -54,8 +50,16 @@ public class Simulation {
         return restaurantList.size();
     }
 
+    public static int getClientSize() {
+        return clientList.size();
+    }
+
     public static int getWorkerSize() {
         return workerList.size();
+    }
+
+    public static int getPersonSize() {
+        return clientList.size()+workerList.size();
     }
 
     private static int getFrom(int page) {
@@ -179,7 +183,7 @@ public class Simulation {
     }
 
     private static void resetEvents() {
-        EventController.reset();
+        EventController.resetEvents();
     }
 
     public static List<Worker> getUnemployedWorkers(Job job){
@@ -200,25 +204,24 @@ public class Simulation {
         return worker;
     }
 
-    public static void removeWorker(Worker worker) {
-        workerList.remove(worker);
-    }
-
-    public static void removeClient(Client client) {
-        clientList.remove(client);
-    }
-
     public static Simulable addClient() {
         Client client = Initializer.getClient();
         if(client == null) return null;
-        prepareClient(client);
+        clientList.add(client);
         return client;
     }
 
-    private static void prepareClient(Client client) {
-        double salary = ClientSettings.getSalarySample();
-        client.setSalary(salary);
-        client.setRoutineList(new RoutineList(salary, ClientSettings.getRoutineList(salary)));
-        clientList.add(client);
+    public static Simulable addRestaurant() {
+        Restaurant restaurant = Initializer.getRestaurant();
+        if(restaurant == null) return null;
+        restaurantList.add(restaurant);
+        return restaurant;
+    }
+
+    public static Simulable addProvider() {
+        Provider provider = Initializer.getProvider();
+        if(provider == null) return null;
+        providerList.add(provider);
+        return provider;
     }
 }

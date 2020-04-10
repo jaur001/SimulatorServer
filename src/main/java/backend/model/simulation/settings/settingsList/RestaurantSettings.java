@@ -21,9 +21,11 @@ public class RestaurantSettings implements Adjustable {
     private static final int MIN_TABLES = 4;
     private static final int MAX_TABLES = 50;
     private static final int WORKERS_MIN = 1;
+
     public static final int MIN_LENGTH_CONTRACT = 90;
     public static final int MAX_LENGTH_CONTRACT = 360;
     public static final double PRICE_CHANGE = 0.02;
+    public static final double DIFFERENCE_PERCENTAGE = 1.25;
 
 
     private static Map<Job, Integer> lengthWorkerTable = new HashMap<>();
@@ -51,6 +53,10 @@ public class RestaurantSettings implements Adjustable {
         Integer[] salaries = {800,1000,1500,3000,3000};
         IntStream.range(0,salaries.length).boxed()
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
+    }
+
+    public static boolean newRestaurant() {
+        return MathUtils.random(0,100) < 3;
     }
 
     @Override

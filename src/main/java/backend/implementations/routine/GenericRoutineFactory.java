@@ -28,6 +28,7 @@ public class GenericRoutineFactory implements RoutineFactory {
         int restaurantRoutineLengthPerClient = selectNumberOfRestaurants(salaryOption);
         return IntStream.range(0,restaurantRoutineLengthPerClient).boxed()
                 .map((i) -> create())
+                .filter(Objects::nonNull)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -35,6 +36,7 @@ public class GenericRoutineFactory implements RoutineFactory {
     public Routine create() {
         int salaryOption = ClientSettings.getSalaryGroup(salary);
         Restaurant[] restaurants = ClientSettings.getRestaurantOptions(salaryOption,Simulation.getRestaurantList());
+        if(restaurants.length==0) return null;
         return new Routine(strategy.getRestaurant(restaurants), createCounter(salaryOption));
     }
 

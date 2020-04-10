@@ -5,8 +5,6 @@ import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
-import backend.model.simulation.settings.settingsList.RestaurantSettings;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -17,10 +15,13 @@ public class OfferManager {
 
     private Restaurant restaurant;
     private Map<Worker,List<JobOffer>> workerOffers;
+    private Administrator administrator;
 
-    public OfferManager(Restaurant restaurant) {
+    public OfferManager(Restaurant restaurant, Administrator administrator) {
         this.restaurant = restaurant;
+        this.administrator = administrator;
         this.workerOffers = new LinkedHashMap<>();
+
     }
 
     void makeOffers(Worker current) {
@@ -36,27 +37,29 @@ public class OfferManager {
     }
 
     Worker getBestOption(Worker worker){
-        if (checkOffers(worker)) return worker;
+        if (thereIsNoOffers(worker)) return worker;
         List<JobOffer> jobOffers = workerOffers.get(worker);
         JobOffer option = jobOffers.parallelStream()
                 .filter(JobOffer::isAccepted)
+                .filter(offer -> offer.getWorker().isNotRetired())
                 .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return worker;
         else return option.getWorker();
     }
 
-    private boolean checkOffers(Worker worker) {
+    private boolean thereIsNoOffers(Worker worker) {
         if(!workerOffers.containsKey(worker)) return true;
         return workerOffers.get(worker).size() == 0;
     }
 
     private JobOffer getBetterOffer(JobOffer offer1, JobOffer offer2) {
-        return getSalaryPerQuality(offer1)>=getSalaryPerQuality(offer2)? offer1:offer2;
+        return getBetterWorker(offer1.getWorker(), offer2.getWorker()).equals(offer1.getWorker()) ? offer1 : offer2;
     }
 
-    private double getSalaryPerQuality(JobOffer offer) {
-        return RestaurantSettings.getSalaryPerQuality(offer.getWorker());
+    private Worker getBetterWorker(Worker worker1, Worker worker2) {
+        return administrator.getCurrentStrategy().getBetterWorker(worker1,worker2);
     }
+
 
     void deleteOtherOffersSelectedWorker(Worker workerSelected) {
         workerOffers.keySet().forEach(worker -> {
@@ -85,10 +88,10 @@ public class OfferManager {
     }
 
     private List<Worker> searchBestWorkers(Worker worker) {
-        return new GenericWorkerSearcher(Simulation.WORKER_STRATEGY).searchBetterOptions(worker);
+        return new GenericWorkerSearcher(administrator.getCurrentStrategy()).searchBetterOptions(worker);
     }
 
-    Worker searchTheWorker(Job job) {
-        return new GenericWorkerSearcher(Simulation.WORKER_STRATEGY).searchBestOptions(job);
+    Worker searchBestWorker(Job job) {
+        return new GenericWorkerSearcher(administrator.getCurrentStrategy()).searchBestOptions(job);
     }
 }

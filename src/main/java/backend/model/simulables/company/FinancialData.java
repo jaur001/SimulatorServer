@@ -119,4 +119,10 @@ public class FinancialData implements Cloneable {
     public double getLastMonthBenefits(){
         return lastMonthData.getBenefits();
     }
+    public double getLastMonthIncome(){
+        return lastMonthData.getIncome();
+    }
+    public double getLastMonthLosses(){
+        return lastMonthData.getLosses();
+    }
 }

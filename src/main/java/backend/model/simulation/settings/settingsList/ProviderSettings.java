@@ -4,6 +4,7 @@ import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
+import backend.utils.MathUtils;
 
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
@@ -31,6 +32,10 @@ public class ProviderSettings implements Adjustable {
         Integer[] cost = {150,160,160,80,80,100,90};
         IntStream.range(0,cost.length).boxed()
                 .forEach(i -> productCostTable.put(Product.values()[i],cost[i]));
+    }
+
+    public static boolean newProvider() {
+        return MathUtils.random(0,100) < 3;
     }
 
     @Override

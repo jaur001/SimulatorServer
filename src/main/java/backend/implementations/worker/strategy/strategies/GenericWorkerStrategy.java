@@ -1,15 +1,15 @@
-package backend.implementations.worker.strategy;
+package backend.implementations.worker.strategy.strategies;
 
-
+import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.Simulation;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstWorkerStrategy implements WorkerStrategy {
-
+public abstract class GenericWorkerStrategy implements WorkerStrategy {
     @Override
     public Worker getWorker(Job job) {
         List<Worker> unemployedWorkers = Simulation.getUnemployedWorkers(job);
@@ -24,8 +24,9 @@ public class FirstWorkerStrategy implements WorkerStrategy {
         return getWorker(unemployedWorkers);
     }
 
-    private Worker getWorker(List<Worker> unemployedWorkers) {
-        return unemployedWorkers.stream()
-                .findFirst().orElse(null);
-    }
+    protected abstract Worker getWorker(List<Worker> unemployedWorkers);
+
+    @Override
+    public abstract Worker getBetterWorker(Worker worker1, Worker worker2);
+
 }

@@ -1,9 +1,7 @@
 package backend.model.simulables.company.restaurant.administration;
 
-import backend.implementations.worker.GenericWorkerSearcher;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 
@@ -38,7 +36,7 @@ public class Employer {
     }
 
     private void changeRetiredWorker(Worker worker) {
-        Worker workerSelected = manager.searchTheWorker(Job.valueOf(worker.getJob()));
+        Worker workerSelected = manager.searchBestWorker(Job.valueOf(worker.getJob()));
         administrator.addWorker(workerSelected,workerSelected.getSalaryDesired());
         worker.retire();
     }

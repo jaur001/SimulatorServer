@@ -76,3 +76,4 @@ H - Los clientes y trabajadores pueden morir cuando son viejos.
 - Solucionar dependencias circulares.
 - cambiar el numero de restaurantes por cliente
 - y los dias que tardan en ir
+- Mirar clases que calculen probabilidades

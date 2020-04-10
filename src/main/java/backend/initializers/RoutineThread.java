@@ -13,7 +13,6 @@ import java.util.List;
 public class RoutineThread{
 
     public static void setClientRoutines() {
-        Simulation.getClientList().forEach(client -> client.setSalary(ClientSettings.getSalarySample()));
         Simulation.getClientList().parallelStream().forEach(RoutineThread::setClientRoutine);
         Simulation.getEmployedWorkers().parallelStream().forEach(RoutineThread::setClientRoutine);
     }

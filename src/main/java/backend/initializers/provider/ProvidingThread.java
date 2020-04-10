@@ -16,7 +16,7 @@ public class ProvidingThread{
     }
 
 
-    private static void initProvidersForRestaurant(Restaurant restaurant) {
+    public static void initProvidersForRestaurant(Restaurant restaurant) {
         IntStream.range(0, Product.values().length).boxed()
                 .map(integer -> new RandomProvidingController().provide(Simulation.getProviderList(),Product.values()[integer]))
                 .forEach(provider -> {

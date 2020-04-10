@@ -11,11 +11,11 @@ import backend.model.simulables.company.restaurant.administration.ProviderSearch
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
@@ -50,7 +50,7 @@ public class Restaurant extends Company{
     public void initAdministration(int tables) {
         this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
         this.administrator = new Administrator(financialData,this);
-        this.employer = new Employer(administrator,new OfferManager(this));
+        this.employer = new Employer(administrator,new OfferManager(this,administrator));
         this.searcher = new ProviderSearcher(administrator);
     }
 
@@ -119,7 +119,8 @@ public class Restaurant extends Company{
     public void simulate() {
         SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()) {
-            payAndCheckFinances();
+            payAndCheckDebts();
+            analyzeFinances();
         }
         checkContracts();
         restartTablesAvailable();
@@ -130,30 +131,23 @@ public class Restaurant extends Company{
         employer.checkExpiredContracts();
     }
 
-    public void payAndCheckFinances() {
-        financialData.reset();
+    private void restartTablesAvailable() {
+        tablesAvailable.set(tables*eatingsPerTable);
+    }
+
+    public void payAndCheckDebts() {
+        administrator.payDebts();
         changePrice();
-        payWorkers();
-        payProviders();
         checkBetterProviders();
+    }
+
+    @Override
+    protected boolean manageFinances() {
+        return administrator.manageFinances();
     }
 
     private void checkBetterProviders() {
         searcher.searchBetterOptions();
-    }
-
-    public void payWorkers() {
-        administrator.getWorkerList()
-                .forEach(worker -> addEvent(administrator.payWorker(worker)));
-    }
-
-    private void payProviders() {
-        administrator.getProvidersList()
-                .forEach(provider ->addEvent(administrator.payProvider(provider)));
-    }
-
-    private void restartTablesAvailable() {
-        tablesAvailable.set(tables*eatingsPerTable);
     }
 
 
@@ -179,5 +173,11 @@ public class Restaurant extends Company{
     @Override
     protected void decreasePrice() {
         priceRange.decreasePrice(RestaurantSettings.PRICE_CHANGE);
+    }
+
+    @Override
+    public String getMessage() {
+        if(!Simulation.getRestaurantList().contains(this)) return "The restaurant " + name + " has closed.";
+        return "";
     }
 }

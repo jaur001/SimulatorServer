@@ -19,10 +19,6 @@ public class Contract {
         return worker;
     }
 
-    public Date getExpireDate() {
-        return expireDate;
-    }
-
     public boolean isExpired(){
         return TimeLine.isSameDate(expireDate);
     }

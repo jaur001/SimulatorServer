@@ -10,6 +10,7 @@ import backend.model.simulables.bank.Bank;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.initializers.RoutineThread;
@@ -35,19 +36,21 @@ public class Initializer {
         return providerList;
     }
 
-    public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + ClientSettings.getLimit()+Simulation.getWorkerSize(), workerCount));
-        WorkerThread.setJobs(workerList);
-        return workerList;
-    }
-
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
         //return RestaurantThread.loadRestaurantsPage(restaurantCount/30);
         return new RestaurantBuilder().buildList(getRows("Restaurant", RestaurantNIFCreator.getInitialValue()+Simulation.getRestaurantSize(),restaurantCount));
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        return  new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue()+Simulation.getClientSize(),clientCount));
+        List<Client> clientList = new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getPersonSize(), clientCount));
+        clientList.forEach(client -> client.setSalary(ClientSettings.getSalarySample()));
+        return clientList;
+    }
+
+    public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
+        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getPersonSize(), workerCount));
+        WorkerThread.setJobs(workerList);
+        return workerList;
     }
 
     public static List<Simulable> init() {
@@ -92,7 +95,29 @@ public class Initializer {
 
     public static Client getClient() {
         try {
-            return getClients(1).get(0);
+            Client client = getClients(1).get(0);
+            client.setRoutineList(new RoutineList(client.getSalary(), ClientSettings.getRoutineList(client.getSalary())));
+            Bank.addCollector(client);
+            return client;
+        } catch (SQLException | ClassNotFoundException e) {
+            return null;
+        }
+    }
+
+    public static Restaurant getRestaurant() {
+        try {
+            Restaurant restaurant = getRestaurants(1).get(0);
+            WorkerSearcherThread.addWorker(restaurant);
+            ProvidingThread.initProvidersForRestaurant(restaurant);
+            return restaurant;
+        } catch (SQLException | ClassNotFoundException e) {
+            return null;
+        }
+    }
+
+    public static Provider getProvider() {
+        try {
+            return getProviders(1).get(0);
         } catch (SQLException | ClassNotFoundException e) {
             return null;
         }

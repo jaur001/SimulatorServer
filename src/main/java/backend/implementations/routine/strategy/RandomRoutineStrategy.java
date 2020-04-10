@@ -6,6 +6,6 @@ import backend.utils.MathUtils;
 public class RandomRoutineStrategy implements RoutineStrategy {
     @Override
     public Restaurant getRestaurant(Restaurant[] restaurants) {
-        return restaurants[Math.abs(MathUtils.random(0, restaurants.length - 1))];
+        return restaurants[Math.abs(MathUtils.random(0, restaurants.length))];
     }
 }

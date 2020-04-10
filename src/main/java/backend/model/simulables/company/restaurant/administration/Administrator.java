@@ -1,8 +1,13 @@
 package backend.model.simulables.company.restaurant.administration;
 
+import backend.implementations.worker.strategy.WorkerStrategy;
+import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
+import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
+import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
 import backend.model.bill.bills.Payroll;
 import backend.model.bill.bills.ProductPurchase;
 import backend.model.bill.generator.CFDIBillGenerator;
+import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.provider.Product;
@@ -15,18 +20,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Administrator {
+public class Administrator extends EventGenerator {
 
     private List<Contract> contractList;
     private List<Provider> providersList;
     private FinancialData financialData;
     private Restaurant restaurant;
+    private WorkerStrategy currentStrategy;
 
     public Administrator(FinancialData financialData, Restaurant restaurant) {
         this.restaurant = restaurant;
         this.providersList = new LinkedList<>();
         this.contractList = new LinkedList<>();
         this.financialData = financialData;
+        this.currentStrategy = new BestProportionScoreSalaryStrategy();
     }
 
     public void addProvider(Provider provider){
@@ -120,5 +127,30 @@ public class Administrator {
         return providersList.stream()
                 .filter(provider -> provider.getProduct().equals(product))
                 .findFirst().orElse(null);
+    }
+
+    public WorkerStrategy getCurrentStrategy() {
+        return currentStrategy;
+    }
+
+    public void payDebts() {
+        getWorkerList().forEach(worker -> addEvent(payWorker(worker)));
+        providersList.forEach(provider -> addEvent(payProvider(provider)));
+    }
+
+    public boolean manageFinances() {
+        financialData.reset();
+        selectStrategy();
+        return financialData.getTreasury() <= -5000;
+    }
+
+    private void selectStrategy() {
+        if (isInHighLosses()) currentStrategy = new LowestSalaryStrategy();
+        else if(financialData.getLastMonthLosses()*1.25 <= financialData.getLastMonthIncome()) currentStrategy = new BestWorkerStrategy();
+        else currentStrategy = new BestProportionScoreSalaryStrategy();
+    }
+
+    private boolean isInHighLosses() {
+        return financialData.getLastMonthLosses() >= financialData.getLastMonthIncome()* RestaurantSettings.DIFFERENCE_PERCENTAGE;
     }
 }

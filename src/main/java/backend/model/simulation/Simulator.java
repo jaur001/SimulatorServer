@@ -3,6 +3,7 @@ package backend.model.simulation;
 import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
@@ -91,9 +92,9 @@ public class Simulator{
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
         timeLine = new TimeLine(Simulation.init());
+        test();
         if(thread) executeWithThread();
         else executeNormal();
-        test();
     }
 
     private static void executeWithThread() {
@@ -128,12 +129,12 @@ public class Simulator{
             ex.printStackTrace();
         }
         if(TimeLine.isSameDate(date)){
+            System.out.println("Problem");
             Simulable simulable = SimulableTester.actualSimulable;
             List<Client> clients = Simulation.getClientList();
             List<Worker> workers = Simulation.getWorkerList();
             List<Restaurant> restaurants = Simulation.getRestaurantList();
             List<Provider> providers = Simulation.getProviderList();
-            System.out.println("Problem");
         }
     }
 
@@ -147,10 +148,16 @@ public class Simulator{
     }
 
     public static void diePerson(Client client) {
-        if(client instanceof Worker) Simulation.removeWorker((Worker) client);
-        else Simulation.removeClient(client);
+        if(client instanceof Worker) Simulation.getWorkerList().remove(client);
+        else Simulation.getClientList().remove(client);
         timeLine.removeSimulable(client);
 
+    }
+
+    public static void closeCompany(Company company) {
+        if(company instanceof Restaurant) Simulation.getRestaurantList().remove(company);
+        else if(company instanceof Provider)Simulation.getProviderList().remove(company);
+        timeLine.removeSimulable(company);
     }
 
 }

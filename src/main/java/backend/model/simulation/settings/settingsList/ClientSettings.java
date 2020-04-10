@@ -103,17 +103,6 @@ public class ClientSettings implements Adjustable {
         return MathUtils.random(NUM_OF_RESTAURANT_MIN, NUM_OF_RESTAURANT_MAX+1);
     }
 
-    public static int getLimit(){
-        int limit = 0;
-        try {
-            limit = new SQLiteTableSelector().readCount("Person");
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        limit = Math.max(limit - WorkerSettings.WORKER_SPACE, 0);
-        return Math.min(limit,CLIENT_SPACE);
-    }
-
     public static int getNextVisitDaySample(double salary, double salaryOption) {
         return MathUtils.random(3,30);
     }

@@ -5,13 +5,13 @@ import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Provider extends Company{
     private int NIF;
@@ -98,9 +98,19 @@ public class Provider extends Company{
     public void simulate() {
         SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()) {
-            financialData.reset();
-            changePrice();
+            checkFinances();
         }
+    }
+
+    public void checkFinances() {
+        financialData.reset();
+        changePrice();
+        analyzeFinances();
+    }
+
+    @Override
+    protected boolean manageFinances() {
+        return financialData.getTreasury() <= -5000;
     }
 
     @Override
@@ -114,8 +124,18 @@ public class Provider extends Company{
     }
 
     @Override
+    protected void analyzeFinances() {
+
+    }
+
+    @Override
     protected double getTaxes() {
         return (productPrice*Company.TAXES)/100;
     }
 
+    @Override
+    public String getMessage() {
+        if(!Simulation.getProviderList().contains(this)) return "The Provider " + companyName + " has closed.";
+        return "";
+    }
 }

@@ -13,7 +13,7 @@ public class ProductInitializerThread{
 
     public static void initProducts(List<Provider> providerList) {
         providerList.parallelStream().forEach(ProductInitializerThread::initProduct);
-        initOneProviderPerProduct(providerList);
+        if(providerList.size()>Product.values().length)initOneProviderPerProduct(providerList);
     }
 
     private static void initProduct(Provider provider) {

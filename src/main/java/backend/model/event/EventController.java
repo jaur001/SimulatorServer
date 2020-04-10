@@ -17,7 +17,7 @@ public class EventController {
     public static void addEvent(Event event){
         if(isTheFirstDay()) return;
         if(event instanceof SimulationDate) reset();
-        if(count.getAndIncrement() < MAX_EVENTS_PER_DAY) System.out.println(event.getMessage());
+        if(count.getAndIncrement() < MAX_EVENTS_PER_DAY) //System.out.println(event.getMessage());
         addToWeb(event);
     }
 
@@ -28,7 +28,6 @@ public class EventController {
 
     public static void reset(){
         count.set(0);
-        eventList = new LinkedList<>();
     }
 
     private static boolean isTheFirstDay() {

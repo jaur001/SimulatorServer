@@ -41,12 +41,12 @@ public class TripAdvisorPriceParser{
         return new PriceRange(getMinPrice(price),getMaxPrice(price));
     }
 
-    private static int getMaxPrice(String price) {
-        return Integer.parseInt(price.substring(price.indexOf(BAR) + 2, price.length() - 2));
+    private static double getMaxPrice(String price) {
+        return Double.parseDouble(price.substring(price.indexOf(BAR) + 2, price.length() - 2));
     }
 
-    private static int getMinPrice(String price) {
-        return Integer.parseInt(price.substring(0, price.indexOf(DOLLAR) - 1));
+    private static double getMinPrice(String price) {
+        return Double.parseDouble(price.substring(0, price.indexOf(DOLLAR) - 1));
     }
 
     private static String getPriceSection(String text) {

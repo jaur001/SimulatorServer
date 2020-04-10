@@ -4,15 +4,12 @@ import backend.model.simulation.timeLine.SimulationDate;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class EventGenerator {
+
     protected void addEvent(Event event) {
-        if(isTheFirstDay()) return;
-        System.out.println(event.getMessage());
         EventController.addEvent(event);
     }
 
-    private boolean isTheFirstDay() {
-        return TimeLine.isSameDate(new Date());
-    }
 }

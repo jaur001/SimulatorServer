@@ -1,11 +1,13 @@
 package backend.model.simulables.company.restaurant;
 
 import backend.model.NIFCreator.RestaurantNIFCreator;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.restaurant.administration.Administrator;
 import backend.model.simulables.company.restaurant.administration.Employer;
 import backend.model.simulables.company.restaurant.administration.OfferManager;
+import backend.model.simulables.company.restaurant.administration.ProviderSearcher;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
@@ -31,8 +33,7 @@ public class Restaurant extends Company{
 
     private Employer employer;
     private Administrator administrator;
-
-
+    private ProviderSearcher searcher;
 
     public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
         super(new FinancialData( RestaurantSettings.getInitialSocialCapital()));
@@ -42,11 +43,15 @@ public class Restaurant extends Company{
         this.street = street;
         this.priceRange = priceRange;
         this.tables = tables;
+        financialData.addDebt(getTaxes());
+        initAdministration(tables);
+    }
+
+    public void initAdministration(int tables) {
         this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
         this.administrator = new Administrator(financialData,this);
         this.employer = new Employer(administrator,new OfferManager(this));
-
-        financialData.addDebt(getTaxes());
+        this.searcher = new ProviderSearcher(administrator);
     }
 
     public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
@@ -94,11 +99,11 @@ public class Restaurant extends Company{
         return telephoneNumber;
     }
 
-    public int getMinPricePlate() {
+    public double getMinPricePlate() {
         return priceRange.getMinPrice();
     }
 
-    public int getMaxPricePlate() {
+    public double getMaxPricePlate() {
         return priceRange.getMaxPrice();
     }
 
@@ -112,13 +117,29 @@ public class Restaurant extends Company{
 
     @Override
     public void simulate() {
+        SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()) {
-            payWorkers();
-            payProviders();
+            payAndCheckFinances();
         }
+        checkContracts();
+        restartTablesAvailable();
+    }
+
+    public void checkContracts() {
         employer.checkExpiredSoonContracts();
         employer.checkExpiredContracts();
-        restartTablesAvailable();
+    }
+
+    public void payAndCheckFinances() {
+        financialData.reset();
+        changePrice();
+        payWorkers();
+        payProviders();
+        checkBetterProviders();
+    }
+
+    private void checkBetterProviders() {
+        searcher.searchBetterOptions();
     }
 
     public void payWorkers() {
@@ -148,5 +169,15 @@ public class Restaurant extends Company{
     @Override
     protected double getTaxes() {
         return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())*Company.TAXES)/10;
+    }
+
+    @Override
+    protected void increasePrice() {
+        priceRange.increasePrice(RestaurantSettings.PRICE_CHANGE);
+    }
+
+    @Override
+    protected void decreasePrice() {
+        priceRange.decreasePrice(RestaurantSettings.PRICE_CHANGE);
     }
 }

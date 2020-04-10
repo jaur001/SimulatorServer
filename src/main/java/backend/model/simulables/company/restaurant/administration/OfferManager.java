@@ -38,7 +38,7 @@ public class OfferManager {
     Worker getBestOption(Worker worker){
         if (checkOffers(worker)) return worker;
         List<JobOffer> jobOffers = workerOffers.get(worker);
-        JobOffer option = jobOffers.stream()
+        JobOffer option = jobOffers.parallelStream()
                 .filter(JobOffer::isAccepted)
                 .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return worker;
@@ -61,7 +61,7 @@ public class OfferManager {
     void deleteOtherOffersSelectedWorker(Worker workerSelected) {
         workerOffers.keySet().forEach(worker -> {
             List<JobOffer> offerList = new LinkedList<>(workerOffers.get(worker));
-            offerList.stream()
+            offerList.parallelStream()
                     .filter(offer -> offer.getWorker().equals(workerSelected))
                     .forEach(offer -> workerOffers.get(worker).remove(offer));
         });

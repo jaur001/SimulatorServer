@@ -13,8 +13,27 @@ import java.util.stream.IntStream;
 
 public class WorkerThread extends Thread {
     public static void setJobs(List<Worker> workerList){
+        workerList.parallelStream()
+                .filter(WorkerSettings::isInRetireAge)
+                .forEach(WorkerThread::changeAge);
         workerList.parallelStream().forEach(WorkerThread::setJob);
         if(workerList.size()>=Job.values().length)setAtLeastOneWorkerPerJob(workerList);
+    }
+
+    private static void changeAge(Worker worker) {
+        worker.getPersonalData().setBirthDate(getMonth() + "/"+ getDay() + "/" + getYear());
+    }
+
+    private static int getMonth(){
+        return MathUtils.random(1,13);
+    }
+
+    private static int getDay(){
+        return MathUtils.random(1,29);
+    }
+
+    private static int getYear(){
+        return MathUtils.random(1965,2000);
     }
 
     public static void setJob(Worker worker){

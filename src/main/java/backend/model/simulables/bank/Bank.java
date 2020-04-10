@@ -2,6 +2,7 @@ package backend.model.simulables.bank;
 
 
 import backend.model.simulables.Simulable;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
@@ -34,6 +35,7 @@ public class Bank implements Simulable {
 
     @Override
     public void simulate() {
+        SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()){
             collectorList.forEach(Collector::collect);
             payerList.forEach(Payer::pay);

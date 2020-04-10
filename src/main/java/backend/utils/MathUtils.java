@@ -16,6 +16,7 @@ public class MathUtils {
         return RANDOM.nextInt(max-min)+min;
     }
 
+
     public static double mean(double[] data){
         double sum = 0.0;
         int length = data.length;

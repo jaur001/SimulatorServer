@@ -71,10 +71,10 @@ public class Initializer {
     private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new LinkedList<>();
         simulableList.add(new Bank());
-        simulableList.addAll(Simulation.getRestaurantList());
-        simulableList.addAll(Simulation.getClientList());
-        simulableList.addAll(Simulation.getWorkerList());
         simulableList.addAll(Simulation.getProviderList());
+        simulableList.addAll(Simulation.getRestaurantList());
+        simulableList.addAll(Simulation.getWorkerList());
+        simulableList.addAll(Simulation.getClientList());
         return simulableList;
     }
 
@@ -85,6 +85,14 @@ public class Initializer {
     public static Worker getWorker() {
         try {
             return getWorkers(1).get(0);
+        } catch (SQLException | ClassNotFoundException e) {
+            return null;
+        }
+    }
+
+    public static Client getClient() {
+        try {
+            return getClients(1).get(0);
         } catch (SQLException | ClassNotFoundException e) {
             return null;
         }

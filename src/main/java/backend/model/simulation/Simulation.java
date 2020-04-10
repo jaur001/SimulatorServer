@@ -10,13 +10,16 @@ import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
+import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.person.client.Client;
+import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
+import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -69,18 +72,10 @@ public class Simulation {
         return restaurantList.subList(from, to);
     }
 
-    public static List<Restaurant> getRestaurantList() {
-        return restaurantList;
-    }
-
     public static List<Provider> getProviderList(int page) {
         int from = getFrom(page);
         int to = getTo(from,providerList.size());
         return providerList.subList(from, to);
-    }
-
-    public static List<Provider> getProviderList() {
-        return providerList;
     }
 
     public static List<Client> getClientList(int page) {
@@ -89,26 +84,11 @@ public class Simulation {
         return clientList.subList(from, to);
     }
 
-    public static List<Client> getClientList() {
-        return clientList;
-    }
-
-    public static List<Worker> getWorkerList(Job job) {
-        return workerList.stream()
-                .filter(worker -> worker.getJob().equals(job.toString()))
-                .collect(Collectors.toCollection(LinkedList::new));
-    }
-
     public static List<Worker> getWorkerList(int page) {
         int from = getFrom(page);
         int to = getTo(from,workerList.size());
         return workerList.subList(from, to);
     }
-
-    public static List<Worker> getWorkerList() {
-        return workerList;
-    }
-
 
     public static List<XMLBill> getBillList(int page) {
         int from = getFrom(page);
@@ -125,6 +105,35 @@ public class Simulation {
         }
         return new LinkedList<>();
     }
+
+    public static List<Restaurant> getRestaurantList() {
+        return restaurantList;
+    }
+
+    public static List<Provider> getProviderList() {
+        return providerList;
+    }
+
+    public static List<Provider> getProviderList(Product product) {
+        return providerList.stream()
+                .filter(provider -> provider.getProduct().equals(product))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public static List<Client> getClientList() {
+        return clientList;
+    }
+
+    public static List<Worker> getWorkerList() {
+        return workerList;
+    }
+
+    public static List<Worker> getWorkerList(Job job) {
+        return workerList.stream()
+                .filter(worker -> worker.getJob().equals(job.toString()))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
 
     public static void addBill(XMLBill bill){
         if(billList.size()<DatabaseUtils.getListLimit())billList.add(bill);
@@ -191,4 +200,25 @@ public class Simulation {
         return worker;
     }
 
+    public static void removeWorker(Worker worker) {
+        workerList.remove(worker);
+    }
+
+    public static void removeClient(Client client) {
+        clientList.remove(client);
+    }
+
+    public static Simulable addClient() {
+        Client client = Initializer.getClient();
+        if(client == null) return null;
+        prepareClient(client);
+        return client;
+    }
+
+    private static void prepareClient(Client client) {
+        double salary = ClientSettings.getSalarySample();
+        client.setSalary(salary);
+        client.setRoutineList(new RoutineList(salary, ClientSettings.getRoutineList(salary)));
+        clientList.add(client);
+    }
 }

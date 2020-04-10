@@ -1,12 +1,11 @@
 package backend.model.simulables.person.worker;
 
-import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.event.Event;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
@@ -94,6 +93,7 @@ public class Worker extends Client implements Event,Cloneable {
 
     @Override
     public void simulate() {
+        SimulableTester.changeSimulable(this);
         if (isNotRetired())work();
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
@@ -104,13 +104,10 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
     private void enjoyTime() {
-        if(routineList==null) routineList = new RoutineList(getSalary(),getRoutineList(getSalary()));
+        if(routineList==null) routineList = new RoutineList(getSalary(),ClientSettings.getRoutineList(getSalary()));
         super.simulate();
     }
 
-    public List<Routine> getRoutineList(double salary) {
-        return new GenericRoutineFactory(Simulation.ROUTINE_STRATEGY,salary).createRoutineList();
-    }
 
     public boolean isNotRetired() {
         return !getJob().equals("Retired");
@@ -132,6 +129,7 @@ public class Worker extends Client implements Event,Cloneable {
 
     @Override
     public String getMessage() {
+        if(!Simulation.getWorkerList().contains(this)) super.getMessage();
         if(!isNotRetired())return getFullName() + " has retired.";
         if(isWorking()) return getFullName() + " has been hired for a salary of "+ getSalary() + "€.";
         return getFullName() + " has been fired.";

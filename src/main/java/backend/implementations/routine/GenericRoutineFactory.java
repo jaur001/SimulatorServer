@@ -9,6 +9,7 @@ import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GenericRoutineFactory implements RoutineFactory {
@@ -21,19 +22,19 @@ public class GenericRoutineFactory implements RoutineFactory {
         this.salary = salary;
     }
 
+    @Override
     public List<Routine> createRoutineList() {
         Integer salaryOption = ClientSettings.getSalaryGroup(salary);
         int restaurantRoutineLengthPerClient = selectNumberOfRestaurants(salaryOption);
-        List<Routine> restaurantRoutines = new ArrayList<>();
-        IntStream.range(0,restaurantRoutineLengthPerClient)
-                .forEach((i) -> restaurantRoutines.add(create()));
-        return restaurantRoutines;
+        return IntStream.range(0,restaurantRoutineLengthPerClient).boxed()
+                .map((i) -> create())
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     @Override
     public Routine create() {
         int salaryOption = ClientSettings.getSalaryGroup(salary);
-        Restaurant[] restaurants = ClientSettings.getRestaurantOptions(salary,Simulation.getRestaurantList());
+        Restaurant[] restaurants = ClientSettings.getRestaurantOptions(salaryOption,Simulation.getRestaurantList());
         return new Routine(strategy.getRestaurant(restaurants), createCounter(salaryOption));
     }
 

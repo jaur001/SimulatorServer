@@ -36,11 +36,13 @@ public class GenericWorkerSearcher implements WorkerSearcher {
     @Override
     public List<Worker> searchBetterOptions(Worker worker) {
         List<Worker> options = new LinkedList<>();
-        while (true){
+        int count = 0;
+        while (count < 10){
             Worker option = strategy.getWorker(Job.valueOf(worker.getJob()),options);
             if (option == null) break;
             if(isBetterOption(worker,option)) options.add(option);
             else break;
+            count++;
         }
         return options;
     }

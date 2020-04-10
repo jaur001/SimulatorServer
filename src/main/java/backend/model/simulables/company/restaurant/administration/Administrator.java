@@ -5,6 +5,7 @@ import backend.model.bill.bills.ProductPurchase;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.FinancialData;
+import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
@@ -113,5 +114,11 @@ public class Administrator {
 
     public List<Provider> getProvidersList() {
         return providersList;
+    }
+
+    public Provider getProvider(Product product){
+        return providersList.stream()
+                .filter(provider -> provider.getProduct().equals(product))
+                .findFirst().orElse(null);
     }
 }

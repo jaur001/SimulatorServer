@@ -1,6 +1,7 @@
 package backend.model.simulables.company.provider;
 
 import backend.model.NIFCreator.ProviderNIFCreator;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.restaurant.Restaurant;
@@ -95,21 +96,20 @@ public class Provider extends Company{
 
     @Override
     public void simulate() {
+        SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()) {
+            financialData.reset();
             changePrice();
         }
     }
 
-    private void changePrice() {
-        if(financialData.getIncome()> financialData.getLosses())increasePrice();
-        else decreasePrice();
-    }
-
-    private void increasePrice() {
+    @Override
+    protected void increasePrice() {
         productPrice*= (1+ProviderSettings.PRICE_CHANGE);
     }
 
-    private void decreasePrice() {
+    @Override
+    protected void decreasePrice() {
         productPrice*= (1-ProviderSettings.PRICE_CHANGE);
     }
 

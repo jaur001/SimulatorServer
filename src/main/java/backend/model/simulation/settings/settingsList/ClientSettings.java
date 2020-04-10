@@ -1,7 +1,10 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.person.client.routineList.routine.Routine;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.ClientData;
@@ -26,10 +29,13 @@ public class ClientSettings implements Adjustable {
     private static final int NUM_OF_RESTAURANT_MIN = 1;
     private static final int NUM_OF_RESTAURANT_MAX = 2;
     private static final int CLIENT_SPACE = 85000;
+    public static final int DEATH_AGE = 75;
 
     private static NormalDistribution salaryDistribution;
     private static double minSalary;
     private static Map<Integer,Integer> restaurantGroup = new HashMap<>();
+    private static Integer[] clientSalaries;
+    private static Integer[] prices;
 
     static {
         getDefaultSettings();
@@ -42,10 +48,10 @@ public class ClientSettings implements Adjustable {
     }
 
     private static void getDefaultSalaryGroups() {
-        Integer[] clientSalaries = {1000,2000,3000,4000};
-        Integer[] prices = {15,25,40,60};
-        IntStream.range(0,clientSalaries.length).boxed()
-                .forEach(i -> restaurantGroup.put(clientSalaries[i],prices[i]));
+        clientSalaries = new Integer[]{1000,2000,3000,4000};
+        prices = new Integer[]{15,25,40,60};
+        IntStream.range(0, clientSalaries.length).boxed()
+                .forEach(i -> restaurantGroup.put(clientSalaries[i], prices[i]));
     }
 
     @Override
@@ -68,6 +74,17 @@ public class ClientSettings implements Adjustable {
                 .findFirst().orElse(salaryOptionList.get(salaryOptionList.size() - 1));
     }
 
+    public static Restaurant[] getRestaurantOptions(int salaryOption, List<Restaurant> restaurantList){
+        int price = getPrices(salaryOption);
+        return restaurantList.stream()
+                .filter(restaurant -> restaurant.getMaxPricePlate() <= price)
+                .toArray(Restaurant[]::new);
+    }
+
+    private static int getPrices(int salaryOption) {
+        return restaurantGroup.get(salaryOption);
+    }
+
     public static double getSalarySample() {
         double salary = Math.max(salaryDistribution.sample(), minSalary);
         if(Double.isNaN(salary)) return getSalarySample();
@@ -86,13 +103,6 @@ public class ClientSettings implements Adjustable {
         return MathUtils.random(NUM_OF_RESTAURANT_MIN, NUM_OF_RESTAURANT_MAX+1);
     }
 
-    public static Restaurant[] getRestaurantOptions(double salary, List<Restaurant> restaurantList){
-        int price = getSalaryGroup(salary);
-        return restaurantList.stream()
-                .filter(restaurant -> restaurant.getMaxPricePlate() <= price)
-                .toArray(Restaurant[]::new);
-    }
-
     public static int getLimit(){
         int limit = 0;
         try {
@@ -105,10 +115,27 @@ public class ClientSettings implements Adjustable {
     }
 
     public static int getNextVisitDaySample(double salary, double salaryOption) {
-        return MathUtils.random(7,14);
+        return MathUtils.random(3,30);
     }
 
     public static double getMinSalary(){
         return minSalary;
+    }
+
+    private static boolean isInDeathAge(double age){
+        return age >= DEATH_AGE;
+    }
+
+    public static boolean isGoingToDie(double age){
+        if(isInDeathAge(age)) return MathUtils.random(0,5000)< 2;
+        return false;
+    }
+
+    public static List<Routine> getRoutineList(double salary) {
+        return new GenericRoutineFactory(Simulation.ROUTINE_STRATEGY,salary).createRoutineList();
+    }
+
+    public static boolean newClient() {
+        return MathUtils.random(0,1000)< 6;
     }
 }

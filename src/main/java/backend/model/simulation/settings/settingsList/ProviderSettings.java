@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class ProviderSettings implements Adjustable {
 
-    public static final double PRICE_CHANGE = 0.05;
+    public static final double PRICE_CHANGE = 0.01;
     private static final int INITIAL_SOCIAL_CAPITAL = 10000;
 
     private static Map<Product, Integer> productCostTable = new LinkedHashMap<>();

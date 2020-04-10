@@ -4,16 +4,16 @@ public class FinancialData implements Cloneable {
     /*
     beneficios, total del activo, total del pasivo, patrimonio neto, capital social, tesoreria, compras, ventas
      */
-    protected double totalActive;   // total del activo
-    protected double totalPassive;  // total del pasivo
+    private double totalActive;   // total del activo
+    private double totalPassive;  // total del pasivo
 
-    protected double netWorth;      // patrimonio neto
-    protected double treasury;      // tesoreria
-    protected final double socialCapital; // capital social
+    private double netWorth;      // patrimonio neto
+    private double treasury;      // tesoreria
+    private final double socialCapital; // capital social
 
-    protected double purchases;     // compras
-    protected double sales;         // ventas
-    protected FinancialData lastMonthData;
+    private double purchases;     // compras
+    private double sales;         // ventas
+    private FinancialData lastMonthData;
 
 
     public FinancialData(double socialCapital) {
@@ -73,10 +73,10 @@ public class FinancialData implements Cloneable {
         }
     }
 
-    protected void reset() {
+    public void reset() {
+        addMonthData();
         this.purchases = 0;
         this.sales = 0;
-        addMonthData();
     }
 
     public double getTreasury() {
@@ -96,6 +96,10 @@ public class FinancialData implements Cloneable {
         return socialCapital;
     }
 
+    public double getBenefits(){
+        return getIncome()-getLosses();
+    }
+
     public double getIncome(){
         return sales+totalActive;
     }
@@ -110,5 +114,9 @@ public class FinancialData implements Cloneable {
 
     public double getSales() {
         return sales;
+    }
+
+    public double getLastMonthBenefits(){
+        return lastMonthData.getBenefits();
     }
 }

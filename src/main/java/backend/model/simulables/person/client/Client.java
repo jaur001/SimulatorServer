@@ -3,18 +3,24 @@ package backend.model.simulables.person.client;
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.bill.bills.EatingSale;
 import backend.model.bill.generator.CFDIBillGenerator;
+import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.company.restaurant.EatingBill;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
+import backend.model.simulation.Simulation;
+import backend.model.simulation.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector {
+
+public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector, Event {
     protected PersonalData personalData;
     protected RoutineList routineList;
     protected int peopleInvited;
@@ -105,6 +111,7 @@ public class Client extends EventGenerator implements Simulable,EconomicAgent, C
     }
 
     public void setSalary(double salary) {
+        if(routineList!=null)routineList.setSalary(salary);
         personalData.setSalary(salary);
     }
 
@@ -115,6 +122,12 @@ public class Client extends EventGenerator implements Simulable,EconomicAgent, C
 
     @Override
     public void simulate() {
+        SimulableTester.changeSimulable(this);
+        doClientsThings();
+    }
+
+    protected void doClientsThings() {
+        if(ClientSettings.isGoingToDie(this.getAge())) Simulator.diePerson(this);
         routineList.checkRoutines().forEach(this::goToEat);
         //this.printRoutines();
     }
@@ -147,5 +160,11 @@ public class Client extends EventGenerator implements Simulable,EconomicAgent, C
     @Override
     public void collect() {
         routineList.restartBudget();
+    }
+
+    @Override
+    public String getMessage() {
+        if(!Simulation.getClientList().contains(this)) return this.getFullName() + " has died.";
+        return "";
     }
 }

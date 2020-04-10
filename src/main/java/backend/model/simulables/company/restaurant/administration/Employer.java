@@ -20,7 +20,7 @@ public class Employer {
 
 
     public void checkExpiredSoonContracts() {
-        administrator.getWorkersWithExpiredSoonContracts().stream()
+        administrator.getWorkersWithExpiredSoonContracts().parallelStream()
                 .filter(worker -> !WorkerSettings.isInRetireAge(worker))
                 .forEach(worker -> manager.makeOffers(worker));
 

@@ -22,10 +22,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
 public class Restaurant extends Company{
-    private int NIF;
-    private String name;
-    private String street;
-    private String telephoneNumber;
     private PriceRange priceRange;
     private int tables;
     private AtomicInteger tablesAvailable;
@@ -35,12 +31,12 @@ public class Restaurant extends Company{
     private Administrator administrator;
     private ProviderSearcher searcher;
 
-    public Restaurant(int NIF, String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        super(new FinancialData( RestaurantSettings.getInitialSocialCapital()));
-        this.NIF = NIF;
-        this.name = name;
-        this.telephoneNumber = telephoneNumber;
-        this.street = street;
+    public Restaurant(String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
+        this(new RestaurantNIFCreator().create(), companyName, telephoneNumber, street, priceRange, tables);
+    }
+
+    public Restaurant(int NIF, String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
+        super(NIF,companyName,telephoneNumber,street,new FinancialData( RestaurantSettings.getInitialSocialCapital()));
         this.priceRange = priceRange;
         this.tables = tables;
         financialData.addDebt(getTaxes());
@@ -52,10 +48,6 @@ public class Restaurant extends Company{
         this.administrator = new Administrator(financialData,this);
         this.employer = new Employer(administrator,new OfferManager(this,administrator));
         this.searcher = new ProviderSearcher(administrator);
-    }
-
-    public Restaurant(String name, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        this(new RestaurantNIFCreator().create(),name, telephoneNumber, street, priceRange, tables);
     }
 
 
@@ -81,22 +73,6 @@ public class Restaurant extends Company{
 
     public double getPricePlateMean(){
         return MathUtils.twoNumberMean(this.getMinPricePlate(),this.getMaxPricePlate());
-    }
-
-    public int getNIF() {
-        return NIF;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getTelephoneNumber() {
-        return telephoneNumber;
     }
 
     public double getMinPricePlate() {
@@ -177,7 +153,7 @@ public class Restaurant extends Company{
 
     @Override
     public String getMessage() {
-        if(!Simulation.getRestaurantList().contains(this)) return "The restaurant " + name + " has closed.";
+        if(!Simulation.getRestaurantList().contains(this)) return "The restaurant " + companyName + " has closed.";
         return "";
     }
 }

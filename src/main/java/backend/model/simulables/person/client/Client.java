@@ -157,7 +157,7 @@ public class Client extends EventGenerator implements Simulable,EconomicAgent, C
     }
 
     @Override
-    public void collect() {
+    public void collectSalary() {
         routineList.restartBudget();
     }
 

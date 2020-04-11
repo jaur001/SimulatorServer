@@ -2,7 +2,7 @@ let webSocket = prepareSocket();
 
 onmessage = function getEvents() {
     if(webSocket.readyState === webSocket.OPEN) wsSendMessage();
-    setTimeout(getEvents,500);
+    setTimeout(getEvents,100);
 };
 
 

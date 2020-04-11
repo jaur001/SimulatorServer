@@ -13,7 +13,7 @@ public class RestaurantBuilder extends Builder<Restaurant> {
     @Override
     protected List<Object> getRow(Restaurant restaurant){
         return Arrays.asList(new Object[]{restaurant.getNIF()
-                ,restaurant.getName(),restaurant.getTelephoneNumber()
+                ,restaurant.getCompanyName(),restaurant.getTelephoneNumber()
                 ,restaurant.getStreet(),restaurant.getMinPricePlate()
                 ,restaurant.getMaxPricePlate(),restaurant.getTables()});
     }

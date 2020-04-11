@@ -1,8 +1,10 @@
 package backend.model.event;
 
+import backend.model.simulation.Simulator;
 import backend.model.simulation.timeLine.SimulationDate;
 import backend.model.simulation.timeLine.TimeLine;
 
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class EventController {
 
 
     public static void resizeList() {
-        if(eventList.size()>1000) eventList = eventList.subList(0,MAX_SIZE);
+        if(eventList.size()>MAX_SIZE) eventList = eventList.subList(eventList.size()-MAX_SIZE,eventList.size());
     }
 
     public static void resetEvents() {

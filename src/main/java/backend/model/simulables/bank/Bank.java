@@ -7,7 +7,6 @@ import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Bank implements Simulable {
 
@@ -37,8 +36,8 @@ public class Bank implements Simulable {
     public void simulate() {
         SimulableTester.changeSimulable(this);
         if(TimeLine.isLastDay()){
-            collectorList.forEach(Collector::collect);
-            payerList.forEach(Payer::pay);
+            collectorList.forEach(Collector::collectSalary);
+            payerList.forEach(Payer::payTaxes);
         }
     }
 

@@ -140,8 +140,12 @@ public class Simulator{
 
 
     public static void waitForDatabaseOrThread() {
+        waitForOtherElements(500);
+    }
+
+    public static void waitForOtherElements(int milliseconds) {
         try {
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(milliseconds);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

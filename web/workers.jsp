@@ -69,11 +69,11 @@
             <% } %>
             <td><%=worker.getQuality()%></td>
             <%
-                if(worker.getRestaurant() == null){
+                if(worker.getCompany() == null){
             %>
             <td>Unemployed</td>
             <% } else {%>
-            <td><%=worker.getRestaurant().getName()%></td>
+            <td><%=worker.getCompany().getCompanyName()%></td>
             <% } %>
             <td><%=worker.getCountry()%></td>
             <td><%=worker.getTelephoneNumber()%></td>

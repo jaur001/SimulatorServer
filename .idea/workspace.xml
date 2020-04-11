@@ -6,42 +6,31 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/FirstWorkerStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/complexStrategy/ComplexWorkerStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/complexStrategy/strategies/BestWorkerStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/complexStrategy/strategies/LowestSalaryStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/timeLine/SimulationController.java" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="Refactoring of code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListToDoForTheNextTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RandomRoutineStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RandomRoutineStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/BestWorkerStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/complexStrategy/strategies/BestProportionScoreSalaryStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/FirstWorkerStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/strategies/GenericWorkerStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/WorkerStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/worker/strategy/WorkerStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/RoutineThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/RoutineThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/WorkerSearcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/WorkerSearcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/provider/ProductInitializerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/provider/ProductInitializerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/provider/ProvidingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/provider/ProvidingThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingSale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/EventGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/EventGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Collector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Collector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Payer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/Payer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/provider/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/provider/Provider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/Restaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Employer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Employer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/OfferManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/OfferManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Initializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/RoutineList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/RoutineList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/JobOffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/JobOffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/GeneralSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/GeneralSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/RestaurantSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/RestaurantSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/timeLine/TimeLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/timeLine/TimeLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EventWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/EventWebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/JS/eventWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/JS/eventWorker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/restaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/restaurants.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/workers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/workers.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,12 +115,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="backend.model.simulables.restaurant.worker" />
-      <recent name="backend.model.simulation.settings.data" />
-      <recent name="backend.model.simulation" />
-      <recent name="backend.server.frontcontroller" />
-      <recent name="backend.server.control" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java" />
+      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\web" />
+      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\xmlFiles" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\web\JQuery" />
@@ -140,13 +127,15 @@
       <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\client\routineList\routine" />
       <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\out\artifacts\RestaurantSimulator_war_exploded" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java" />
-      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\web" />
-      <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\xmlFiles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="backend.model.simulables.restaurant.worker" />
+      <recent name="backend.model.simulation.settings.data" />
+      <recent name="backend.model.simulation" />
+      <recent name="backend.server.frontcontroller" />
+      <recent name="backend.server.control" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Tomcat Server.SimulatorServer">
     <configuration name="Lab" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="backend.main.Lab" />
       <module name="RestaurantSimulator" />
@@ -358,6 +347,8 @@
       <workItem from="1586455318461" duration="26198000" />
       <workItem from="1586524838349" duration="13614000" />
       <workItem from="1586552630621" duration="8575000" />
+      <workItem from="1586561233885" duration="294000" />
+      <workItem from="1586611399938" duration="4303000" />
     </task>
     <task id="LOCAL-00001" summary="Added views for the webage and the routes for it.">
       <created>1583604541086</created>
@@ -534,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586482886885</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Now companies can close when its going bad and there can be new companies. Also restaurants choose a different strategy depending on the finances. Finally, some refactoring of all code.">
+      <created>1586561495591</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1586561495592</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +563,9 @@
     <MESSAGE value="All bugs fixed for contracts." />
     <MESSAGE value="Solved more Bugs for the contract and looks that works fine.&#10;Now there is a possibility that new worker enter to the simulation." />
     <MESSAGE value="Solved bugs of client routines when used BestRoutineStrategy." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved bugs of client routines when used BestRoutineStrategy." />
+    <MESSAGE value="Now companies can close when its going bad and there can be new companies. Also restaurants choose a different strategy depending on the finances. Finally, some refactoring of all code." />
+    <MESSAGE value="Refactoring of code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of code." />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="198" key="#Inspections" timestamp="1584658979601">
@@ -606,10 +606,10 @@
     </state>
     <state x="322" y="71" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1366.768@0.0.1366.768" timestamp="1583404788429" />
     <state x="453" y="100" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583523901321" />
-    <state x="1044" y="383" key="#com.intellij.ide.util.MemberChooser" timestamp="1586559973513">
+    <state x="1044" y="383" key="#com.intellij.ide.util.MemberChooser" timestamp="1586612740178">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1044" y="383" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1586559973513" />
+    <state x="1044" y="383" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1586612740178" />
     <state x="690" y="316" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1585272324875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -634,14 +634,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="785" y="403" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586266231522" />
-    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586388171776">
+    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586613698183">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586388171776" />
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586280638442">
+    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586613698183" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586613397301">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586280638442" />
+    <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586613397301" />
     <state x="690" y="287" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1584644533170">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -654,11 +654,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="715" y="243" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586477840001" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1586561423428">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1586616483118">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="259" y="0" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1583432665590" />
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1586561423428" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483118" />
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog" timestamp="1583785997626">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -667,90 +667,90 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1584660742898" />
-    <state width="1293" height="300" key="GridCell.Tab.0.bottom" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.0.bottom" timestamp="1586616483224">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.0.center" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483224" />
+    <state width="1293" height="300" key="GridCell.Tab.0.center" timestamp="1586616483224">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="300" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.0.left" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483224" />
+    <state width="1293" height="300" key="GridCell.Tab.0.left" timestamp="1586616483224">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942803" />
     <state width="905" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653575" />
-    <state width="1293" height="300" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.0.right" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483224" />
+    <state width="1293" height="300" key="GridCell.Tab.0.right" timestamp="1586616483224">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743933" />
     <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942804" />
     <state width="905" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653576" />
-    <state width="1293" height="300" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.1.bottom" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483224" />
+    <state width="1293" height="300" key="GridCell.Tab.1.bottom" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.1.center" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.1.center" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="300" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.1.left" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.1.left" timestamp="1586616483224">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653357" />
-    <state width="1293" height="300" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.1.right" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483224" />
+    <state width="1293" height="300" key="GridCell.Tab.1.right" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743928" />
     <state width="905" height="201" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.2.bottom" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.2.bottom" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.bottom/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.2.center" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.2.center" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.center/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.center/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.2.left" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.2.left" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.left/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.left/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
-    <state width="1293" height="300" key="GridCell.Tab.2.right" timestamp="1586561213928">
+    <state width="1293" height="300" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
+    <state width="1293" height="300" key="GridCell.Tab.2.right" timestamp="1586616483225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1024.768@0.0.1366.768" timestamp="1583407743929" />
     <state width="905" height="201" key="GridCell.Tab.2.right/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583417942797" />
     <state width="905" height="192" key="GridCell.Tab.2.right/0.0.1366.768@0.0.1366.768" timestamp="1583404653358" />
-    <state width="1293" height="300" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586561213928" />
+    <state width="1293" height="300" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586616483225" />
     <state width="1293" height="300" key="GridCell.Tab.3.bottom" timestamp="1586543695088">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -805,12 +805,12 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="676" y="153" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584660711898" />
-    <state x="533" y="293" key="com.intellij.ide.util.TipDialog" timestamp="1586561237472">
+    <state x="533" y="293" key="com.intellij.ide.util.TipDialog" timestamp="1586611572570">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768/1366.0.1366.768@0.0.1366.768" timestamp="1583411786415" />
     <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1583432429808" />
-    <state x="533" y="293" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586561237472" />
+    <state x="533" y="293" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586611572570" />
     <state x="769" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585866480032">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -846,7 +846,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/backend/model/simulation/Simulator.java</url>
-          <line>157</line>
+          <line>161</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>

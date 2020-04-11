@@ -1,7 +1,7 @@
 package backend.model.simulables.company.restaurant.administration;
 
 import backend.implementations.worker.GenericWorkerSearcher;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
@@ -13,12 +13,12 @@ import java.util.Map;
 
 public class OfferManager {
 
-    private Restaurant restaurant;
+    private Company company;
     private Map<Worker,List<JobOffer>> workerOffers;
     private Administrator administrator;
 
-    public OfferManager(Restaurant restaurant, Administrator administrator) {
-        this.restaurant = restaurant;
+    public OfferManager(Company company, Administrator administrator) {
+        this.company = company;
         this.administrator = administrator;
         this.workerOffers = new LinkedHashMap<>();
 
@@ -29,7 +29,7 @@ public class OfferManager {
     }
 
     private void makeOffer(Worker current, Worker option) {
-        JobOffer jobOffer = new JobOffer(restaurant, option, option.getSalaryDesired());
+        JobOffer jobOffer = new JobOffer(company, option, option.getSalaryDesired());
         if(!workerOffers.containsKey(current)) workerOffers.put(current, new LinkedList<>());
         workerOffers.get(current).add(jobOffer);
         jobOffer.acceptOfferRestaurant();

@@ -14,24 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Provider extends Company{
-    private int NIF;
+
     private Product product;
-    private String companyName;
     private String creationDate;
     private String ownerName;
-    private String street;
-    private String telephoneNumber;
     private double productPrice;
     private List<Restaurant> restaurantList = new ArrayList<>();
 
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
-        super(new FinancialData(RestaurantSettings.getInitialSocialCapital()));
-        this.NIF = NIF;
-        this.companyName = companyName;
+        super(NIF,companyName,street,telephoneNumber,new FinancialData(RestaurantSettings.getInitialSocialCapital()));
         this.creationDate = creationDate;
         this.ownerName = ownerName;
-        this.street = street;
-        this.telephoneNumber = telephoneNumber;
         this.product = null;
         this.productPrice = 0;
         financialData.addDebt(getTaxes());
@@ -54,10 +47,6 @@ public class Provider extends Company{
         }
     }
 
-    public int getNIF() {
-        return NIF;
-    }
-
     public String getCreationDate() {
         return creationDate;
     }
@@ -66,20 +55,8 @@ public class Provider extends Company{
         return ownerName;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public String getTelephoneNumber() {
-        return telephoneNumber;
-    }
-
     public Product getProduct() {
         return product;
-    }
-
-    public String getCompanyName() {
-        return companyName;
     }
 
     public double getProductPrice() {

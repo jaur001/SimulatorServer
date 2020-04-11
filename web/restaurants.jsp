@@ -57,7 +57,7 @@
                 %>
                 <tr>
                     <td><%=restaurant.getNIF()%></td>
-                    <td><%=restaurant.getName()%></td>
+                    <td><%=restaurant.getCompanyName()%></td>
                     <td><%=restaurant.getScore()%></td>
                     <td><%=restaurant.getTables()%></td>
                     <td><%=restaurant.getMinPricePlate()%></td>

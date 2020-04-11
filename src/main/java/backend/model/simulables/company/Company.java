@@ -10,11 +10,35 @@ import backend.model.simulation.settings.settingsList.ProviderSettings;
 
 public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable, Event {
 
+    protected int NIF;
+    protected String companyName;
+    protected String street;
+    protected String telephoneNumber;
     protected FinancialData financialData;
     protected static final double TAXES = 1000;
 
-    public Company(FinancialData financialData) {
+    public Company(int NIF, String companyName, String street, String telephoneNumber, FinancialData financialData) {
+        this.NIF = NIF;
+        this.companyName = companyName;
+        this.street = street;
+        this.telephoneNumber = telephoneNumber;
         this.financialData = financialData;
+    }
+
+    public int getNIF() {
+        return NIF;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
     }
 
     public FinancialData getFinancialData() {
@@ -53,7 +77,7 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
     }
 
     @Override
-    public void pay(){
+    public void payTaxes(){
         financialData.pay(getTaxes());
     }
 

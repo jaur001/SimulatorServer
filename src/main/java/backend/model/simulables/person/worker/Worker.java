@@ -2,9 +2,9 @@ package backend.model.simulables.person.worker;
 
 import backend.model.event.Event;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
-import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.Simulation;
@@ -20,7 +20,7 @@ public class Worker extends Client implements Event,Cloneable {
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
-    private Restaurant restaurant = null;
+    private Company company = null;
     private List<JobOffer> jobOfferList;
 
 
@@ -33,8 +33,8 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Company getCompany() {
+        return company;
     }
 
 
@@ -65,9 +65,9 @@ public class Worker extends Client implements Event,Cloneable {
         return isWorking.get();
     }
 
-    public void hire(Restaurant restaurant, double salary) {
+    public void hire(Company company, double salary) {
         this.isWorking.set(true);
-        this.restaurant = restaurant;
+        this.company = company;
         setSalary(salary);
         salaryDesired = getSalary();
         this.jobOfferList = new LinkedList<>();
@@ -76,7 +76,7 @@ public class Worker extends Client implements Event,Cloneable {
 
     public void fire() {
         this.isWorking.set(false);
-        restaurant = null;
+        company = null;
         salaryDesired = getSalary();
         setSalary(0);
         routineList = null;
@@ -85,7 +85,7 @@ public class Worker extends Client implements Event,Cloneable {
 
     public void retire() {
         this.isWorking.set(false);
-        restaurant = null;
+        company = null;
         setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
         setJob("Retired");
         addEvent(this);

@@ -9,10 +9,10 @@ import backend.model.bill.bills.ProductPurchase;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
-import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -25,11 +25,11 @@ public class Administrator extends EventGenerator {
     private List<Contract> contractList;
     private List<Provider> providersList;
     private FinancialData financialData;
-    private Restaurant restaurant;
+    private Company company;
     private WorkerStrategy currentStrategy;
 
-    public Administrator(FinancialData financialData, Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public Administrator(FinancialData financialData, Company company) {
+        this.company = company;
         this.providersList = new LinkedList<>();
         this.contractList = new LinkedList<>();
         this.financialData = financialData;
@@ -49,7 +49,7 @@ public class Administrator extends EventGenerator {
     }
 
     public void addWorker(Worker worker, double salary){
-        worker.hire(restaurant,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
+        worker.hire(company,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
         addContract(worker);
         financialData.addDebt(salary);
     }
@@ -80,16 +80,16 @@ public class Administrator extends EventGenerator {
     }
 
     public ProductPurchase payProvider(Provider provider) {
-        ProductPurchase bill = new ProductPurchase(provider, restaurant);
+        ProductPurchase bill = new ProductPurchase(provider, company);
         new CFDIBillGenerator().generateBill(bill);
-        Bank.makeTransaction(restaurant,provider,provider.getProductPrice());
+        Bank.makeTransaction(company,provider,provider.getProductPrice());
         return bill;
     }
 
     public Payroll payWorker(Worker worker) {
-        Payroll payroll= new Payroll(worker, restaurant);
+        Payroll payroll= new Payroll(worker, company);
         new CFDIBillGenerator().generateBill(payroll);
-        Bank.makeTransaction(restaurant,worker,worker.getSalary());
+        Bank.makeTransaction(company,worker,worker.getSalary());
         return payroll;
     }
 

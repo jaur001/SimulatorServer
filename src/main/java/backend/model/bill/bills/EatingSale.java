@@ -14,7 +14,7 @@ public class EatingSale extends CFDIBill implements Event {
     private Restaurant restaurant;
 
     public EatingSale(Restaurant restaurant, Client client, EatingBill eatingBill) {
-        super(restaurant.getStreet(),type,restaurant.getName(),restaurant.getNIF(),client.getFullName(),client.getNIF(), eatingBill.getFinalPrice(),BillSettings.getConcept("EatingSale"));
+        super(restaurant.getStreet(),type,restaurant.getCompanyName(),restaurant.getNIF(),client.getFullName(),client.getNIF(), eatingBill.getFinalPrice(),BillSettings.getConcept("EatingSale"));
         this.client = client;
         this.restaurant = restaurant;
         restaurant.collectEating(eatingBill.getFinalPrice());

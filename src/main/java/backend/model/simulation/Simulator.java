@@ -155,7 +155,6 @@ public class Simulator{
         if(client instanceof Worker) Simulation.getWorkerList().remove(client);
         else Simulation.getClientList().remove(client);
         timeLine.removeSimulable(client);
-
     }
 
     public static void closeCompany(Company company) {

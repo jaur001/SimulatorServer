@@ -95,7 +95,7 @@ public class CFDIBillGenerator implements BillGenerator {
     }
 
     private void appendIssuerData(Element billElement) {
-        Element clientElement = appendElement("cfdi:Transmitter");
+        Element clientElement = appendElement("cfdi:Issuer");
         clientElement.setAttribute("IssuerName", bill.getIssuerName());
         clientElement.setAttribute("IssuerRFC", bill.getIssuerRFC()+"");
         billElement.appendChild(clientElement);

@@ -18,7 +18,6 @@ import backend.utils.MathUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-// No se tiene en cuenta que el plato puede acabarse ni que el plato use productos de un proveedor.
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
 public class Restaurant extends Company{
@@ -36,7 +35,7 @@ public class Restaurant extends Company{
     }
 
     public Restaurant(int NIF, String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        super(NIF,companyName,telephoneNumber,street,new FinancialData( RestaurantSettings.getInitialSocialCapital()));
+        super(NIF,companyName,street,telephoneNumber,new FinancialData( RestaurantSettings.getInitialSocialCapital()));
         this.priceRange = priceRange;
         this.tables = tables;
         financialData.addDebt(getTaxes());

@@ -71,7 +71,6 @@ public class Worker extends Client implements Event,Cloneable {
         setSalary(salary);
         salaryDesired = getSalary();
         this.jobOfferList = new LinkedList<>();
-        addEvent(this);
     }
 
     public void fire() {
@@ -80,7 +79,6 @@ public class Worker extends Client implements Event,Cloneable {
         salaryDesired = getSalary();
         setSalary(0);
         routineList = null;
-        addEvent(this);
     }
 
     public void retire() {
@@ -88,7 +86,6 @@ public class Worker extends Client implements Event,Cloneable {
         company = null;
         setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
         setJob("Retired");
-        addEvent(this);
     }
 
     @Override

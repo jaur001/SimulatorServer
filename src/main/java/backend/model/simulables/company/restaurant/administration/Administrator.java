@@ -9,6 +9,8 @@ import backend.model.bill.bills.ProductPurchase;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
+import backend.model.simulables.bank.transactions.PayrollTransaction;
+import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.provider.Product;
@@ -50,6 +52,7 @@ public class Administrator extends EventGenerator {
 
     public void addWorker(Worker worker, double salary){
         worker.hire(company,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
+        addEvent(worker);
         addContract(worker);
         financialData.addDebt(salary);
     }
@@ -57,9 +60,15 @@ public class Administrator extends EventGenerator {
     public void removeWorker(Worker worker){
         if(getWorkerList().contains(worker)){
             worker.fire();
+            addEvent(worker);
             removeContract(worker);
             financialData.removeDebt(worker.getSalary());
         }
+    }
+
+    public void retireWorker(Worker worker) {
+        worker.retire();
+        addEvent(worker);
     }
 
     private void addContract(Worker worker) {
@@ -79,18 +88,17 @@ public class Administrator extends EventGenerator {
         return new Contract(worker, RestaurantSettings.getExpireDateContract());
     }
 
-    public ProductPurchase payProvider(Provider provider) {
-        ProductPurchase bill = new ProductPurchase(provider, company);
-        new CFDIBillGenerator().generateBill(bill);
-        Bank.makeTransaction(company,provider,provider.getProductPrice());
-        return bill;
+    public void payDebts() {
+        getWorkerList().forEach(this::payWorker);
+        providersList.forEach(this::payProvider);
     }
 
-    public Payroll payWorker(Worker worker) {
-        Payroll payroll= new Payroll(worker, company);
-        new CFDIBillGenerator().generateBill(payroll);
-        Bank.makeTransaction(company,worker,worker.getSalary());
-        return payroll;
+    public void payProvider(Provider provider) {
+        Bank.makeTransaction(new ProductPurchaseTransaction(provider,company,provider.getProductPrice()));
+    }
+
+    public void payWorker(Worker worker) {
+        Bank.makeTransaction(new PayrollTransaction(company,worker,worker.getSalary()));
     }
 
 
@@ -131,11 +139,6 @@ public class Administrator extends EventGenerator {
 
     public WorkerStrategy getCurrentStrategy() {
         return currentStrategy;
-    }
-
-    public void payDebts() {
-        getWorkerList().forEach(worker -> addEvent(payWorker(worker)));
-        providersList.forEach(provider -> addEvent(payProvider(provider)));
     }
 
     public boolean manageFinances() {

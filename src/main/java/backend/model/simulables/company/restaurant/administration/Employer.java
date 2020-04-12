@@ -38,7 +38,8 @@ public class Employer {
     private void changeRetiredWorker(Worker worker) {
         Worker workerSelected = manager.searchBestWorker(Job.valueOf(worker.getJob()));
         administrator.addWorker(workerSelected,workerSelected.getSalaryDesired());
-        worker.retire();
+        administrator.retireWorker(worker);
+
     }
 
     private void decideContract(Worker worker) {

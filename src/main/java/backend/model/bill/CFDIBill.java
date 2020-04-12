@@ -1,9 +1,10 @@
 package backend.model.bill;
 
 import backend.model.NIFCreator.BillNIFCreator;
+import backend.model.event.Event;
 import backend.model.simulation.timeLine.TimeLine;
 
-public class CFDIBill {
+public abstract class CFDIBill implements Event {
     protected int UUID;
     protected String street;
     protected Type type;

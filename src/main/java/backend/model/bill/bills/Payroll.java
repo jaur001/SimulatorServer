@@ -7,11 +7,11 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
-public class Payroll extends CFDIBill implements Event {
+public class Payroll extends CFDIBill{
     private static final Type type = Type.payroll;
     private Worker worker;
     private Company company;
-    public Payroll(Worker worker, Company company) {
+    public Payroll(Company company, Worker worker) {
         super(company.getStreet(),type,company.getCompanyName(),company.getNIF(),worker.getFullName(),worker.getNIF(),worker.getSalary(), BillSettings.getConcept("Payroll"));
         this.worker = worker;
         this.company = company;

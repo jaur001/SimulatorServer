@@ -31,4 +31,9 @@ public class XMLBill extends CFDIBill {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
+    @Override
+    public String getMessage() {
+        return "New XML Bill generated.";
+    }
 }

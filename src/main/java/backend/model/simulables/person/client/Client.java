@@ -1,8 +1,6 @@
 package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
-import backend.model.bill.bills.EatingSale;
-import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
@@ -10,7 +8,7 @@ import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.EconomicAgent;
-import backend.model.simulables.company.restaurant.EatingBill;
+import backend.model.simulables.bank.transactions.EatingSaleTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.Simulation;
@@ -19,7 +17,7 @@ import backend.model.simulation.settings.settingsList.ClientSettings;
 
 
 
-public class Client extends EventGenerator implements Simulable,EconomicAgent, Collector, Event {
+public class Client implements Simulable,EconomicAgent, Collector, Event {
     protected PersonalData personalData;
     protected RoutineList routineList;
     protected int peopleInvited;
@@ -134,15 +132,12 @@ public class Client extends EventGenerator implements Simulable,EconomicAgent, C
     protected void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
-        addEvent(payRestaurant(restaurant));
+        payRestaurant(restaurant);
     }
 
-    protected EatingSale payRestaurant(Restaurant restaurant) {
+    protected void payRestaurant(Restaurant restaurant) {
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
-        EatingSale bill = new EatingSale(restaurant, this, new EatingBill(amount));
-        Bank.makeTransaction(this,restaurant,amount);
-        new CFDIBillGenerator().generateBill(bill);
-        return bill;
+        Bank.makeTransaction(new EatingSaleTransaction(restaurant,this,amount));
     }
 
 

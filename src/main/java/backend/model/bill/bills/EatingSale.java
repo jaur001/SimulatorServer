@@ -2,22 +2,20 @@ package backend.model.bill.bills;
 
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
-import backend.model.event.Event;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.restaurant.EatingBill;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
-public class EatingSale extends CFDIBill implements Event {
+public class EatingSale extends CFDIBill{
     private static final Type type = Type.income;
     private Client client;
     private Restaurant restaurant;
 
-    public EatingSale(Restaurant restaurant, Client client, EatingBill eatingBill) {
-        super(restaurant.getStreet(),type,restaurant.getCompanyName(),restaurant.getNIF(),client.getFullName(),client.getNIF(), eatingBill.getFinalPrice(),BillSettings.getConcept("EatingSale"));
+    public EatingSale(Restaurant restaurant, Client client, double amount) {
+        super(restaurant.getStreet(),type,restaurant.getCompanyName(),restaurant.getNIF(),client.getFullName(),client.getNIF(), amount,BillSettings.getConcept("EatingSale"));
         this.client = client;
         this.restaurant = restaurant;
-        restaurant.collectEating(eatingBill.getFinalPrice());
+        restaurant.collectEating(amount);
     }
 
     public Client getClient() {

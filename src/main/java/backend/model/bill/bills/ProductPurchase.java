@@ -7,7 +7,7 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
-public class ProductPurchase extends CFDIBill implements Event {
+public class ProductPurchase extends CFDIBill{
 
     private static final Type type = Type.income;
     private Provider provider;

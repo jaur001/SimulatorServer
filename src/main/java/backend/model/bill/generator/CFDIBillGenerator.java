@@ -4,6 +4,7 @@ import backend.implementations.database.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.event.Event;
+import backend.model.event.EventGenerator;
 import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -23,7 +24,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-public class CFDIBillGenerator implements BillGenerator {
+public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private static String urlSales = "./xmlFiles/EatingBills/";
     private static String urlPayrolls = "./xmlFiles/Payrolls/";
     private Document document;
@@ -50,7 +51,7 @@ public class CFDIBillGenerator implements BillGenerator {
         this.bill = bill;
         try {
             createBill();
-
+            addEvent(bill);
         } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
         }

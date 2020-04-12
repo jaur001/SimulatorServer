@@ -14,9 +14,8 @@ public class Bank implements Simulable {
     private static List<Payer> payerList = new LinkedList<>();
 
 
-    public static void makeTransaction(EconomicAgent transmitter, EconomicAgent receiver, double amount){
-        transmitter.pay(amount);
-        receiver.collect(amount);
+    public static void makeTransaction(Transaction transaction){
+        transaction.makeTransaction();
     }
 
     public static void addCollector(Collector collector){

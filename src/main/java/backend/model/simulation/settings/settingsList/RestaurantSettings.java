@@ -2,6 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.timeLine.TimeLine;
@@ -55,10 +56,6 @@ public class RestaurantSettings implements Adjustable {
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
     }
 
-    public static boolean newRestaurant() {
-        return MathUtils.random(0,100) < 3;
-    }
-
     @Override
     public void init(SettingsData data) {
         initialSocialCapital = data.getRestaurantData().getInitialSocialCapital();
@@ -100,5 +97,9 @@ public class RestaurantSettings implements Adjustable {
 
     public static int getContractLength() {
         return MathUtils.random(MIN_LENGTH_CONTRACT, MAX_LENGTH_CONTRACT);
+    }
+
+    public static boolean newRestaurant() {
+        return MathUtils.random(0,10 * Simulation.getRestaurantSize()) < 3;
     }
 }

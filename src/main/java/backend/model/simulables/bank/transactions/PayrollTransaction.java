@@ -14,15 +14,15 @@ public class PayrollTransaction extends Transaction {
     }
 
     @Override
+    protected boolean checkBill() {
+        return issuer instanceof Company && receiver instanceof Worker;
+    }
+
+    @Override
     protected void generateBill() {
         if(checkBill())
             new CFDIBillGenerator().generateBill(new Payroll((Company)issuer,(Worker)receiver));
         else System.out.println("Error generating the Bill, not found the elements of Payroll.");
-    }
-
-    @Override
-    protected boolean checkBill() {
-        return issuer instanceof Company && receiver instanceof Worker;
     }
 
     @Override

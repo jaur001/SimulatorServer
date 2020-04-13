@@ -5,7 +5,7 @@ import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.person.client.Client;
+import backend.model.simulation.SimulationController;
 
 import java.time.Month;
 import java.util.Date;

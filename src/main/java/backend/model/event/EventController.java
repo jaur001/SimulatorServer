@@ -3,6 +3,7 @@ package backend.model.event;
 import backend.model.simulation.Simulator;
 import backend.model.simulation.timeLine.SimulationDate;
 import backend.model.simulation.timeLine.TimeLine;
+import backend.utils.MathUtils;
 
 import java.util.ConcurrentModificationException;
 import java.util.Date;
@@ -23,7 +24,12 @@ public class EventController {
     }
 
     public static void addToWeb(Event event) {
-        eventList.add(event.getMessage());
+        try {
+            eventList.add(event.getMessage());
+        } catch (ConcurrentModificationException | IndexOutOfBoundsException e){
+            Simulator.waitForOtherElements(MathUtils.random(100,500));
+            addToWeb(event);
+        }
     }
 
 

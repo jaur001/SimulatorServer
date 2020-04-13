@@ -11,7 +11,7 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/eventSocketEndpoint")
 public class EventWebSocket {
 
-    public static final String ERROR = "";
+    private static final String ERROR = "";
 
     @OnOpen
     public void onOpen(){

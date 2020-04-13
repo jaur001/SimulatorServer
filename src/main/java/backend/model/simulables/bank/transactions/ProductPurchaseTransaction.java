@@ -14,15 +14,15 @@ public class ProductPurchaseTransaction extends Transaction {
     }
 
     @Override
+    protected boolean checkBill() {
+        return issuer instanceof Provider && receiver instanceof Company;
+    }
+
+    @Override
     protected void generateBill() {
         if(checkBill())
             new CFDIBillGenerator().generateBill(new ProductPurchase((Provider) issuer,(Company) receiver));
         else System.out.println("Error generating the Bill, not found the elements of Product Purchase.");
-    }
-
-    @Override
-    protected boolean checkBill() {
-        return issuer instanceof Provider && receiver instanceof Company;
     }
 
 

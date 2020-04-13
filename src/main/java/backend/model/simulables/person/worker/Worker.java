@@ -82,6 +82,7 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
     public void retire() {
+        SimulableTester.changeMethod(2);
         this.isWorking.set(false);
         company = null;
         setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
@@ -91,7 +92,9 @@ public class Worker extends Client implements Event,Cloneable {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
+        SimulableTester.changeMethod(0);
         if (isNotRetired())work();
+        SimulableTester.changeMethod(1);
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
 
@@ -111,6 +114,7 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
     public void searchJob() {
+        SimulableTester.changeMethod(3);
         if (jobOfferList.stream().anyMatch(JobOffer::isAccepted)) return;
         jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
         if(!new OfferSelector(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();

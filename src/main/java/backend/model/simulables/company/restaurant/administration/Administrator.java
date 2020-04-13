@@ -11,26 +11,32 @@ import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.PayrollTransaction;
 import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
+import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
+import backend.utils.MathUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Administrator extends EventGenerator {
 
+    private int tables;
     private List<Contract> contractList;
     private List<Provider> providersList;
     private FinancialData financialData;
     private Company company;
     private WorkerStrategy currentStrategy;
 
-    public Administrator(FinancialData financialData, Company company) {
+    public Administrator(FinancialData financialData, int tables, Company company) {
+        this.tables = tables;
         this.company = company;
         this.providersList = new LinkedList<>();
         this.contractList = new LinkedList<>();
@@ -126,6 +132,11 @@ public class Administrator extends EventGenerator {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    public List<Worker> getWorkerList(Job job) {
+        return getWorkerList().stream()
+                .filter(worker -> worker.getJob().equals(job.toString()))
+                .collect(Collectors.toList());
+    }
 
     public List<Provider> getProvidersList() {
         return providersList;
@@ -135,6 +146,10 @@ public class Administrator extends EventGenerator {
         return providersList.stream()
                 .filter(provider -> provider.getProduct().equals(product))
                 .findFirst().orElse(null);
+    }
+
+    public int getTables() {
+        return tables;
     }
 
     public WorkerStrategy getCurrentStrategy() {
@@ -155,5 +170,11 @@ public class Administrator extends EventGenerator {
 
     private boolean isInHighLosses() {
         return financialData.getLastMonthLosses() >= financialData.getLastMonthIncome()* RestaurantSettings.DIFFERENCE_PERCENTAGE;
+    }
+
+    public void checkProducts() {
+        if(!ProviderSettings.isBadProduct()) return;
+        Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
+        Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getProductPrice()/30));
     }
 }

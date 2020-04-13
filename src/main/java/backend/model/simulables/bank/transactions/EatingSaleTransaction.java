@@ -14,15 +14,15 @@ public class EatingSaleTransaction extends Transaction {
     }
 
     @Override
+    protected boolean checkBill() {
+        return issuer instanceof Restaurant && receiver instanceof Client;
+    }
+
+    @Override
     protected void generateBill() {
         if(checkBill())
             new CFDIBillGenerator().generateBill(new EatingSale((Restaurant)issuer,(Client)receiver,amount));
         else System.out.println("Error generating the Bill, not found the elements of Eating Sale.");
-    }
-
-    @Override
-    protected boolean checkBill() {
-        return issuer instanceof Restaurant && receiver instanceof Client;
     }
 
     @Override

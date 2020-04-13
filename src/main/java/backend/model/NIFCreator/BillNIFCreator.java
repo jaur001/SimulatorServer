@@ -1,6 +1,6 @@
 package backend.model.NIFCreator;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicInteger;

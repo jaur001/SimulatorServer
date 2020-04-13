@@ -1,12 +1,11 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.model.simulables.company.provider.Product;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.utils.MathUtils;
 
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -34,10 +33,6 @@ public class ProviderSettings implements Adjustable {
                 .forEach(i -> productCostTable.put(Product.values()[i],cost[i]));
     }
 
-    public static boolean newProvider() {
-        return MathUtils.random(0,100) < 3;
-    }
-
     @Override
     public void init(SettingsData data) {
         initialSocialCapital = data.getProviderData().getInitialSocialCapital();
@@ -55,6 +50,14 @@ public class ProviderSettings implements Adjustable {
 
     public static int getProductCost(Product product){
         return productCostTable.get(product);
+    }
+
+    public static boolean isBadProduct(){
+        return MathUtils.random(0,1000)<1000;
+    }
+
+    public static boolean newProvider() {
+        return MathUtils.random(0,10* Simulation.getProviderSize()) < 3;
     }
 
 }

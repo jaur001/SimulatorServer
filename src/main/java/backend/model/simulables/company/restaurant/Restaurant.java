@@ -4,6 +4,7 @@ import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.restaurant.administration.Administrator;
 import backend.model.simulables.company.restaurant.administration.Employer;
 import backend.model.simulables.company.restaurant.administration.OfferManager;
@@ -16,6 +17,7 @@ import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
@@ -44,21 +46,10 @@ public class Restaurant extends Company{
 
     public void initAdministration(int tables) {
         this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
-        this.administrator = new Administrator(financialData,this);
+        this.administrator = new Administrator(financialData,tables,this);
         this.employer = new Employer(administrator,new OfferManager(this,administrator));
         this.searcher = new ProviderSearcher(administrator);
     }
-
-
-    public void addProvider(Provider provider){
-        administrator.addProvider(provider);
-    }
-
-
-    public void addWorker(Worker worker, double salary){
-        administrator.addWorker(worker,salary);
-    }
-
 
     public double getScore(){
         return administrator.getWorkerList().stream()
@@ -90,6 +81,18 @@ public class Restaurant extends Company{
         return administrator.getContractsSize();
     }
 
+    public List<Worker> getWorkers(){
+        return administrator.getWorkerList();
+    }
+
+    public List<Provider> getProviders(){
+        return administrator.getProvidersList();
+    }
+
+    public Administrator getAdministrator() {
+        return administrator;
+    }
+
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
@@ -97,11 +100,18 @@ public class Restaurant extends Company{
             payAndCheckDebts();
             analyzeFinances();
         }
+        checkProducts();
         checkContracts();
         restartTablesAvailable();
     }
 
+    private void checkProducts() {
+        if(getProviders().size()< Product.values().length) searcher.addMissingProvider();
+        administrator.checkProducts();
+    }
+
     public void checkContracts() {
+        employer.checkStaff();
         employer.checkExpiredSoonContracts();
         employer.checkExpiredContracts();
     }

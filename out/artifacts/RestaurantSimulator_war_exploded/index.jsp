@@ -67,9 +67,9 @@
       <input type="button" id="changeSpeed"  value="Change Speed">
     </form>
     <label for="text-area"></label>
-    <div style="height: 40vh; overflow-y: scroll; border: 1px solid black">
-        <p id="text-area"></p>
-    </div>
+    <textarea id="text-area" rows="10" cols="50">
+
+    </textarea>
   </body>
   <footer>
     <div class="footer">

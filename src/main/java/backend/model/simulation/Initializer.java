@@ -1,6 +1,6 @@
 package backend.model.simulation;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.initializers.WorkerThread;
 import backend.model.NIFCreator.PersonNIFCreator;
 import backend.model.NIFCreator.ProviderNIFCreator;
@@ -26,7 +26,6 @@ import backend.view.loaders.database.elements.Row;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Initializer {
 
@@ -88,7 +87,7 @@ public class Initializer {
     public static Worker getWorker() {
         try {
             return getWorkers(1).get(0);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             return null;
         }
     }
@@ -99,7 +98,7 @@ public class Initializer {
             client.setRoutineList(new RoutineList(client.getSalary(), ClientSettings.getRoutineList(client.getSalary())));
             Bank.addCollector(client);
             return client;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             return null;
         }
     }
@@ -110,7 +109,7 @@ public class Initializer {
             WorkerSearcherThread.addWorker(restaurant);
             ProvidingThread.initProvidersForRestaurant(restaurant);
             return restaurant;
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             return null;
         }
     }

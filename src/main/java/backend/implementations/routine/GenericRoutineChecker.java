@@ -5,6 +5,7 @@ import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineChecker;
 import backend.model.simulation.settings.settingsList.ClientSettings;
@@ -35,6 +36,7 @@ public class GenericRoutineChecker implements RoutineChecker {
         List<Routine> routinesForToday = getRoutines();
         restartRoutines(routinesForToday);
         return routinesForToday.stream()
+                .filter(this::isNotClosed)
                 .limit(3)
                 .map(Routine::getRestaurant)
                 .collect(Collectors.toList());
@@ -49,6 +51,10 @@ public class GenericRoutineChecker implements RoutineChecker {
     private void restartRoutines(List<Routine> routines) {
         RoutineFactory routineFactory = new GenericRoutineFactory(strategy, salary);
         routines.forEach(routine -> routine = routineFactory.create());
+    }
+
+    private boolean isNotClosed(Routine routine) {
+        return Simulation.getRestaurantList().contains(routine.getRestaurant());
     }
 
     private List<Restaurant> addIfClientHasBudget(List<Restaurant> restaurantOptions) {

@@ -120,11 +120,16 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
+        SimulableTester.changeMethod(0);
         doClientsThings();
     }
 
     protected void doClientsThings() {
-        if(ClientSettings.isGoingToDie(this.getAge())) Simulator.diePerson(this);
+        if(ClientSettings.isGoingToDie(this.getAge())) {
+            SimulableTester.changeMethod(1);
+            Simulator.diePerson(this);
+        }
+        SimulableTester.changeMethod(2);
         routineList.checkRoutines().forEach(this::goToEat);
         //this.printRoutines();
     }
@@ -132,7 +137,9 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
     protected void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
+        SimulableTester.changeMethod(3);
         payRestaurant(restaurant);
+        SimulableTester.changeMethod(4);
     }
 
     protected void payRestaurant(Restaurant restaurant) {
@@ -143,17 +150,17 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
 
     @Override
     public void pay(double amount) {
-        this.getRoutineList().decreaseBudget(amount);
+        if(routineList != null) this.getRoutineList().decreaseBudget(amount);
     }
 
     @Override
     public void collect(double amount) {
-        this.getRoutineList().increaseBudget(amount);
+        if(routineList != null) this.getRoutineList().increaseBudget(amount);
     }
 
     @Override
     public void collectSalary() {
-        routineList.restartBudget();
+        if(routineList != null) routineList.restartBudget();
     }
 
     @Override

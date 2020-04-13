@@ -1,6 +1,7 @@
 package backend.model.simulables.person.client.routineList;
 
 import backend.implementations.routine.GenericRoutineChecker;
+import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.Simulation;
@@ -22,6 +23,7 @@ public class RoutineList {
     }
 
     public List<Restaurant> checkRoutines(){
+        if(isEmpty()) restaurantRoutines = new GenericRoutineFactory(Simulation.ROUTINE_STRATEGY,salary).createRoutineList();
         return new GenericRoutineChecker(salary, budget,restaurantRoutines, Simulation.ROUTINE_STRATEGY).checkRoutines();
     }
 

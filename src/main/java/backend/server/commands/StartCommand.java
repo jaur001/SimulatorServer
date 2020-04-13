@@ -1,6 +1,6 @@
 package backend.server.commands;
 
-import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
+import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.Simulator;
 import backend.server.servlets.FrontCommand;

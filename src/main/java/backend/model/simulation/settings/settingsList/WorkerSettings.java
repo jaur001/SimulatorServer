@@ -3,6 +3,7 @@ package backend.model.simulation.settings.settingsList;
 import backend.model.simulables.company.restaurant.administration.Contract;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.utils.MathUtils;
 
 import java.util.LinkedHashMap;
@@ -11,7 +12,6 @@ import java.util.stream.IntStream;
 
 public class WorkerSettings{
 
-    public static final int WORKER_SPACE = 15000;
     public static final int MIN_SALARY = 500;
     public static final double SALARY_CHANGE = 0.05;
     public static final double SALARY_DESIRED_CHANGE = 0.001;
@@ -38,6 +38,6 @@ public class WorkerSettings{
     }
 
     public static boolean newWorker() {
-        return MathUtils.random(0,100) < 3;
+        return MathUtils.random(0, Simulation.getWorkerSize()/2) < 10;
     }
 }

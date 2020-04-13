@@ -1,9 +1,12 @@
 package backend.implementations.worker;
 
 import backend.implementations.worker.strategy.WorkerStrategy;
+import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulables.company.restaurant.administration.WorkerSearcher;
 
@@ -30,7 +33,9 @@ public class GenericWorkerSearcher implements WorkerSearcher {
         int numWorkers = RestaurantSettings.getWorkerLength(job,restaurant.getTables());
         IntStream.range(0,numWorkers).boxed()
                 .map(integer -> strategy.getWorker(job))
-                .forEach(worker -> restaurant.addWorker(worker,worker.getSalaryDesired()));
+                .forEach(worker -> {
+                    if(worker!=null)restaurant.getAdministrator().addWorker(worker,worker.getSalaryDesired());
+                });
     }
 
     @Override

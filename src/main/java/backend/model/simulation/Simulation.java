@@ -1,7 +1,7 @@
 package backend.model.simulation;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableDeleter;
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
+import backend.implementations.SQLite.controllers.SQLiteRowDeleter;
+import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.routine.strategy.BestRoutineStrategy;
 import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.bill.generator.XMLBill;
@@ -171,7 +171,7 @@ public class Simulation {
         billList = new LinkedList<>();
         try {
             if(new SQLiteTableSelector().readCount("Bill")==0)return;
-            new SQLiteTableDeleter().deleteAll("Bill");
+            new SQLiteRowDeleter().deleteAll("Bill");
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Database is locked, could not delete Bills of last Simulation");
         }

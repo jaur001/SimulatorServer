@@ -2,7 +2,10 @@ package backend.model.simulables.company.restaurant.administration;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
+
+import java.util.Arrays;
 
 
 public class Employer {
@@ -36,10 +39,15 @@ public class Employer {
     }
 
     private void changeRetiredWorker(Worker worker) {
-        Worker workerSelected = manager.searchBestWorker(Job.valueOf(worker.getJob()));
-        administrator.addWorker(workerSelected,workerSelected.getSalaryDesired());
+        addBestWorker(Job.valueOf(worker.getJob()));
         administrator.retireWorker(worker);
 
+    }
+
+    private void addBestWorker(Job job) {
+        Worker workerSelected = manager.searchBestWorker(job);
+        if(workerSelected!=null)
+            administrator.addWorker(workerSelected,workerSelected.getSalaryDesired());
     }
 
     private void decideContract(Worker worker) {
@@ -57,5 +65,15 @@ public class Employer {
         manager.deleteOtherOffersSelectedWorker(workerSelected);
         administrator.removeWorker(oldWorker);
         administrator.addWorker(workerSelected,manager.getSalary(oldWorker, workerSelected));
+    }
+
+    public void checkStaff() {
+        Arrays.stream(Job.values())
+                .filter(this::thereIsEnoughWorkers)
+                .forEach(this::addBestWorker);
+    }
+
+    private boolean thereIsEnoughWorkers(Job job) {
+        return RestaurantSettings.getWorkerLength(job,administrator.getTables())>administrator.getWorkerList().size();
     }
 }

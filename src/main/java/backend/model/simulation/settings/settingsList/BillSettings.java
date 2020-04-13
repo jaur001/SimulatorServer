@@ -20,9 +20,10 @@ public class BillSettings implements Adjustable {
 
     static {
         getDefaultSettings();
-        conceptsTable.put("EatingSale","Bill of a eating");
-        conceptsTable.put("ProductPurchase","Purchase of a product for the restaurant");
-        conceptsTable.put("Payroll","Payroll o a worker");
+        conceptsTable.put("EatingSale","Bill of a eating.");
+        conceptsTable.put("ProductPurchase","Purchase of a product for the restaurant.");
+        conceptsTable.put("ProductRefund","Refund of a product in bad conditions.");
+        conceptsTable.put("Payroll","Payroll o a worker.");
     }
 
     private static void getDefaultSettings() {

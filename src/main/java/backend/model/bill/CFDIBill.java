@@ -8,6 +8,7 @@ public abstract class CFDIBill implements Event {
     protected int UUID;
     protected String street;
     protected Type type;
+    protected Use use;
     protected String issuerName;
     protected int issuerRFC;
     protected String receiverName;
@@ -19,10 +20,11 @@ public abstract class CFDIBill implements Event {
     protected String concept;
     protected String date;
 
-    public CFDIBill(int UUID,String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
+    public CFDIBill(int UUID,String street, Type type, Use use, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
         this.UUID = UUID;
         this.street = street;
         this.type = type;
+        this.use = use;
         this.issuerName = issuerName;
         this.issuerRFC = issuerRFC;
         this.receiverName = receiverName;
@@ -35,8 +37,8 @@ public abstract class CFDIBill implements Event {
         this.date = TimeLine.getDate().toString();
     }
 
-    public CFDIBill(String street, Type type, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
-        this(new BillNIFCreator().create(),street,type,issuerName,issuerRFC,receiverName,receiverRFC,subtotal,concept);
+    public CFDIBill(String street, Type type, Use use, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
+        this(new BillNIFCreator().create(),street,type, use,issuerName,issuerRFC,receiverName,receiverRFC,subtotal,concept);
     }
 
 
@@ -59,6 +61,10 @@ public abstract class CFDIBill implements Event {
 
     public Type getType() {
         return type;
+    }
+
+    public Use getUse() {
+        return use;
     }
 
     public String getConcept() {
@@ -107,6 +113,10 @@ public abstract class CFDIBill implements Event {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public void setUse(Use use) {
+        this.use = use;
     }
 
     public void setIssuerName(String issuerName) {

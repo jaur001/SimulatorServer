@@ -47,6 +47,10 @@ public class Provider extends Company{
         }
     }
 
+    public List<Restaurant> getRestaurantList() {
+        return restaurantList;
+    }
+
     public String getCreationDate() {
         return creationDate;
     }

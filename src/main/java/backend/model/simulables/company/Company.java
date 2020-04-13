@@ -29,6 +29,10 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
         return NIF;
     }
 
+    public void setNIF(int NIF) {
+        this.NIF = NIF;
+    }
+
     public String getCompanyName() {
         return companyName;
     }

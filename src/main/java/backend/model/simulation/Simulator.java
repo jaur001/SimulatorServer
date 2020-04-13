@@ -1,6 +1,6 @@
 package backend.model.simulation;
 
-import backend.implementations.database.SQLite.SQLiteDatabaseConnector;
+import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.Company;
@@ -129,12 +129,13 @@ public class Simulator{
             ex.printStackTrace();
         }
         if(TimeLine.isSameDate(date)){
-            System.out.println("Problem");
             Simulable simulable = SimulableTester.actualSimulable;
+            int method = SimulableTester.method;
             List<Client> clients = Simulation.getClientList();
             List<Worker> workers = Simulation.getWorkerList();
             List<Restaurant> restaurants = Simulation.getRestaurantList();
             List<Provider> providers = Simulation.getProviderList();
+            System.out.println("Problem");
         }
     }
 
@@ -152,15 +153,15 @@ public class Simulator{
     }
 
     public static void diePerson(Client client) {
-        if(client instanceof Worker) Simulation.getWorkerList().remove(client);
-        else Simulation.getClientList().remove(client);
+        SimulationController.diePerson(client);
         timeLine.removeSimulable(client);
     }
 
     public static void closeCompany(Company company) {
-        if(company instanceof Restaurant) Simulation.getRestaurantList().remove(company);
-        else if(company instanceof Provider)Simulation.getProviderList().remove(company);
+        SimulationController.closeCompany(company);
         timeLine.removeSimulable(company);
     }
+
+
 
 }

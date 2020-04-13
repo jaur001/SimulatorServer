@@ -1,6 +1,5 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.implementations.database.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
@@ -11,7 +10,6 @@ import backend.model.simulation.settings.data.ClientData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -125,6 +123,6 @@ public class ClientSettings implements Adjustable {
     }
 
     public static boolean newClient() {
-        return MathUtils.random(0,1000)< 6;
+        return MathUtils.random(0,Simulation.getClientSize()/10)< 6;
     }
 }

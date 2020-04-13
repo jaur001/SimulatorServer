@@ -70,6 +70,7 @@ public class DatabaseUtils {
         parameters.put("UUID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
         parameters.put("street",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("type",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("use",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("issuerName",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("issuerRFC",new Field(Restriction.NOT_NULL, DataType.integer));
         parameters.put("receiverName",new Field(Restriction.NOT_NULL, DataType.text));

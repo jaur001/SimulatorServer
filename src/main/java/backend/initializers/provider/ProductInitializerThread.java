@@ -1,7 +1,7 @@
 package backend.initializers.provider;
 
-import backend.implementations.loaders.providing.product.ConstantProductPriceInitializer;
-import backend.implementations.loaders.providing.product.RandomProductInitializer;
+import backend.implementations.providing.product.ConstantProductPriceInitializer;
+import backend.implementations.providing.product.RandomProductInitializer;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
 
@@ -13,7 +13,7 @@ public class ProductInitializerThread{
 
     public static void initProducts(List<Provider> providerList) {
         providerList.parallelStream().forEach(ProductInitializerThread::initProduct);
-        if(providerList.size()>Product.values().length)initOneProviderPerProduct(providerList);
+        if(providerList.size()>=Product.values().length)initOneProviderPerProduct(providerList);
     }
 
     private static void initProduct(Provider provider) {

@@ -1,6 +1,6 @@
 package backend.server.servlets;
 
-import backend.model.simulation.Simulator;
+import backend.model.simulation.simulator.Simulator;
 import backend.utils.DatabaseUtils;
 
 import java.util.List;

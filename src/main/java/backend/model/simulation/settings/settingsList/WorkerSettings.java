@@ -38,6 +38,6 @@ public class WorkerSettings{
     }
 
     public static boolean newWorker() {
-        return MathUtils.random(0, Simulation.getWorkerSize()/2) < 10;
+        return MathUtils.random(0, 1 + Simulation.getWorkerSize()/20) < 10;
     }
 }

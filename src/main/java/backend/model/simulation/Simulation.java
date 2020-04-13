@@ -17,25 +17,26 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
+import backend.model.simulation.simulator.Simulator;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 public class Simulation {
 
-    private static List<Restaurant> restaurantList = new LinkedList<>();
-    private static List<Provider> providerList = new LinkedList<>();
-    private static List<Client> clientList = new LinkedList<>();
-    private static List<Worker> workerList = new LinkedList<>();
+    private static List<Restaurant> restaurantList = new CopyOnWriteArrayList<>();
+    private static List<Provider> providerList = new CopyOnWriteArrayList<>();
+    private static List<Client> clientList = new CopyOnWriteArrayList<>();
+    private static List<Worker> workerList = new CopyOnWriteArrayList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
     public static final SelectOfferStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
-
 
     public static int getProviderSize() {
         return providerList.size();
@@ -105,26 +106,42 @@ public class Simulation {
         return new LinkedList<>();
     }
 
-    public static List<Restaurant> getRestaurantList() {
+    public static List<Restaurant> getRestaurantListCopy() {
+        return new CopyOnWriteArrayList<>(restaurantList);
+    }
+
+    public static List<Provider> getProviderListCopy() {
+        return new CopyOnWriteArrayList<>(providerList);
+    }
+
+    public static List<Client> getClientListCopy() {
+        return new CopyOnWriteArrayList<>(clientList);
+    }
+
+    public static List<Worker> getWorkerListCopy() {
+        return new CopyOnWriteArrayList<>(workerList);
+    }
+
+    static List<Restaurant> getRestaurantList() {
         return restaurantList;
     }
 
-    public static List<Provider> getProviderList() {
+    static List<Provider> getProviderList() {
         return providerList;
+    }
+
+    static List<Client> getClientList() {
+        return clientList;
+    }
+
+    static List<Worker> getWorkerList() {
+        return workerList;
     }
 
     public static List<Provider> getProviderList(Product product) {
         return providerList.stream()
                 .filter(provider -> provider.getProduct().equals(product))
                 .collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    public static List<Client> getClientList() {
-        return clientList;
-    }
-
-    public static List<Worker> getWorkerList() {
-        return workerList;
     }
 
     public static List<Worker> getWorkerList(Job job) {
@@ -152,7 +169,7 @@ public class Simulation {
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
         } catch (SQLException | ClassNotFoundException e) {
-            Simulator.waitForDatabaseOrThread();
+            Simulator.waitForOtherElements();
             initElements();
         }
     }
@@ -183,10 +200,13 @@ public class Simulation {
 
     public static List<Worker> getUnemployedWorkers(Job job){
         return Simulation.getWorkerList(job).stream()
+                .filter(Simulator::isNotAlreadyHired)
+                .filter(Simulator::isNotAlreadyRetired)
                 .filter(worker -> !worker.isWorking())
                 .filter(Worker::isNotRetired)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
+
 
     public static List<Worker> getEmployedWorkers() {
         return workerList.stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
@@ -195,6 +215,7 @@ public class Simulation {
     public static Simulable addWorker() {
         Worker worker = Initializer.getWorker();
         if(worker == null) return null;
+        Simulator.makeChanges();
         workerList.add(worker);
         return worker;
     }
@@ -202,6 +223,7 @@ public class Simulation {
     public static Simulable addClient() {
         Client client = Initializer.getClient();
         if(client == null) return null;
+        Simulator.makeChanges();
         clientList.add(client);
         return client;
     }
@@ -209,14 +231,25 @@ public class Simulation {
     public static Simulable addRestaurant() {
         Restaurant restaurant = Initializer.getRestaurant();
         if(restaurant == null) return null;
+        Simulator.makeChanges();
+        if(restaurant.getNumberOfWorkers()==0) return null;
         restaurantList.add(restaurant);
         return restaurant;
     }
 
     public static Simulable addProvider() {
         Provider provider = Initializer.getProvider();
+        Simulator.makeChanges();
         if(provider == null) return null;
         providerList.add(provider);
         return provider;
+    }
+
+    public static List<Worker> getUnemployedWorkers() {
+        return Simulation.getWorkerList().stream()
+                .filter(Simulator::isNotAlreadyHired)
+                .filter(worker -> !worker.isWorking())
+                .filter(Worker::isNotRetired)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 }

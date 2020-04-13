@@ -10,10 +10,7 @@ import backend.model.simulation.settings.data.ClientData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class ClientSettings implements Adjustable {
@@ -72,9 +69,10 @@ public class ClientSettings implements Adjustable {
                 .findFirst().orElse(salaryOptionList.get(salaryOptionList.size() - 1));
     }
 
-    public static Restaurant[] getRestaurantOptions(int salaryOption, List<Restaurant> restaurantList){
+    public static Restaurant[] getRestaurantOptions(int salaryOption){
         int price = getPrices(salaryOption);
-        return restaurantList.stream()
+        return Simulation.getRestaurantListCopy().stream()
+                .filter(Objects::nonNull)
                 .filter(restaurant -> restaurant.getMaxPricePlate() <= price)
                 .toArray(Restaurant[]::new);
     }
@@ -123,6 +121,6 @@ public class ClientSettings implements Adjustable {
     }
 
     public static boolean newClient() {
-        return MathUtils.random(0,Simulation.getClientSize()/10)< 6;
+        return MathUtils.random(0, 1 + Simulation.getClientSize()/10)< 6;
     }
 }

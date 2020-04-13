@@ -2,7 +2,7 @@ package backend.server.commands;
 
 import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
-import backend.model.simulation.Simulator;
+import backend.model.simulation.simulator.Simulator;
 import backend.server.servlets.FrontCommand;
 
 public class StartCommand extends FrontCommand {

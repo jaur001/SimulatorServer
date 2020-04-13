@@ -19,7 +19,7 @@ public class Provider extends Company{
     private String creationDate;
     private String ownerName;
     private double productPrice;
-    private List<Restaurant> restaurantList = new ArrayList<>();
+    private List<Company> companyList = new ArrayList<>();
 
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF,companyName,street,telephoneNumber,new FinancialData(RestaurantSettings.getInitialSocialCapital()));
@@ -35,20 +35,20 @@ public class Provider extends Company{
     }
 
 
-    public void addRestaurant(Restaurant restaurant){
-        restaurantList.add(restaurant);
+    public void addClient(Company company){
+        companyList.add(company);
         financialData.addIncome(productPrice);
     }
 
-    public void removeRestaurant(Restaurant restaurant){
-        if(restaurantList.contains(restaurant)){
-            restaurantList.remove(restaurant);
+    public void removeClient(Company company){
+        if(companyList.contains(company)){
+            companyList.remove(company);
             financialData.removeIncome(productPrice);
         }
     }
 
-    public List<Restaurant> getRestaurantList() {
-        return restaurantList;
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
     public String getCreationDate() {
@@ -72,7 +72,9 @@ public class Provider extends Company{
     }
 
     public void setProductPrice(double productPrice) {
+        financialData.removeDebt(getTaxes());
         this.productPrice = productPrice;
+        financialData.addDebt(getTaxes());
     }
 
     @Override
@@ -86,7 +88,7 @@ public class Provider extends Company{
     public void checkFinances() {
         financialData.reset();
         changePrice();
-        analyzeFinances();
+        //analyzeFinances();
     }
 
     @Override
@@ -116,7 +118,7 @@ public class Provider extends Company{
 
     @Override
     public String getMessage() {
-        if(!Simulation.getProviderList().contains(this)) return "The Provider " + companyName + " has closed.";
+        if(!Simulation.getProviderListCopy().contains(this)) return "The Provider " + companyName + " has closed.";
         return "";
     }
 }

@@ -6,5 +6,5 @@ import backend.model.simulables.company.provider.Provider;
 import java.util.List;
 
 public interface ProvidingController {
-    Provider provide(List<Provider> providerList, Product product);
+    Provider provide(Product product);
 }

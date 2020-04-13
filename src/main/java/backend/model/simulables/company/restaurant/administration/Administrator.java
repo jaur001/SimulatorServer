@@ -4,9 +4,8 @@ import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
-import backend.model.bill.bills.Payroll;
-import backend.model.bill.bills.ProductPurchase;
-import backend.model.bill.generator.CFDIBillGenerator;
+import backend.model.simulation.Simulation;
+import backend.model.simulation.simulator.Simulator;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.PayrollTransaction;
@@ -24,6 +23,7 @@ import backend.utils.MathUtils;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 public class Administrator extends EventGenerator {
@@ -38,44 +38,30 @@ public class Administrator extends EventGenerator {
     public Administrator(FinancialData financialData, int tables, Company company) {
         this.tables = tables;
         this.company = company;
-        this.providersList = new LinkedList<>();
-        this.contractList = new LinkedList<>();
+        this.providersList = new CopyOnWriteArrayList<>();
+        this.contractList = new CopyOnWriteArrayList<>();
         this.financialData = financialData;
         this.currentStrategy = new BestProportionScoreSalaryStrategy();
     }
 
     public void addProvider(Provider provider){
-        providersList.add(provider);
-        financialData.addDebt(provider.getProductPrice());
+        Simulator.addSimulableForCompany(company,provider);
     }
 
     public void removeProvider(Provider provider){
-        if(providersList.contains(provider)){
-            providersList.remove(provider);
-            financialData.removeDebt(provider.getProductPrice());
-        }
+        Simulator.removeSimulableForCompany(company,provider);
     }
 
-    public void addWorker(Worker worker, double salary){
-        worker.hire(company,RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
-        addEvent(worker);
+    public void addWorker(Worker worker){
         addContract(worker);
-        financialData.addDebt(salary);
+        Simulator.addSimulableForCompany(company,worker);
     }
 
     public void removeWorker(Worker worker){
-        if(getWorkerList().contains(worker)){
-            worker.fire();
-            addEvent(worker);
-            removeContract(worker);
-            financialData.removeDebt(worker.getSalary());
-        }
+        removeContract(worker);
+        Simulator.removeSimulableForCompany(company,worker);
     }
 
-    public void retireWorker(Worker worker) {
-        worker.retire();
-        addEvent(worker);
-    }
 
     private void addContract(Worker worker) {
         contractList.add(createContract(worker));
@@ -96,7 +82,9 @@ public class Administrator extends EventGenerator {
 
     public void payDebts() {
         getWorkerList().forEach(this::payWorker);
-        providersList.forEach(this::payProvider);
+        providersList.stream()
+                .filter(provider -> Simulation.getProviderListCopy().contains(provider))
+                .forEach(this::payProvider);
     }
 
     public void payProvider(Provider provider) {

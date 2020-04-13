@@ -34,7 +34,7 @@ public class GenericWorkerSearcher implements WorkerSearcher {
         IntStream.range(0,numWorkers).boxed()
                 .map(integer -> strategy.getWorker(job))
                 .forEach(worker -> {
-                    if(worker!=null)restaurant.getAdministrator().addWorker(worker,worker.getSalaryDesired());
+                    if(worker!=null)restaurant.getAdministrator().addWorker(worker);
                 });
     }
 

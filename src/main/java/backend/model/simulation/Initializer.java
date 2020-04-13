@@ -17,6 +17,7 @@ import backend.initializers.RoutineThread;
 import backend.initializers.WorkerSearcherThread;
 import backend.initializers.provider.ProductInitializerThread;
 import backend.initializers.provider.ProvidingThread;
+import backend.model.simulation.simulator.Simulator;
 import backend.view.loaders.database.builder.builders.ClientBuilder;
 import backend.view.loaders.database.builder.builders.ProviderBuilder;
 import backend.view.loaders.database.builder.builders.RestaurantBuilder;
@@ -24,8 +25,8 @@ import backend.view.loaders.database.builder.builders.WorkerBuilder;
 import backend.view.loaders.database.elements.Row;
 
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Initializer {
 
@@ -62,6 +63,7 @@ public class Initializer {
         ProvidingThread.initRestaurantsProviders();
         WorkerSearcherThread.addWorkers();
         RoutineThread.setClientRoutines();
+        Simulator.makeChanges();
     }
 
     private static void addPayersAndCollectors() {
@@ -71,7 +73,7 @@ public class Initializer {
     }
 
     private static List<Simulable> createSimulables() {
-        List<Simulable> simulableList = new LinkedList<>();
+        List<Simulable> simulableList = new CopyOnWriteArrayList<>();
         simulableList.add(new Bank());
         simulableList.addAll(Simulation.getProviderList());
         simulableList.addAll(Simulation.getRestaurantList());
@@ -110,6 +112,7 @@ public class Initializer {
             ProvidingThread.initProvidersForRestaurant(restaurant);
             return restaurant;
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -117,7 +120,8 @@ public class Initializer {
     public static Provider getProvider() {
         try {
             return getProviders(1).get(0);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
             return null;
         }
     }

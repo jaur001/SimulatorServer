@@ -7,7 +7,6 @@ import backend.utils.MathUtils;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class BestRoutineStrategy implements RoutineStrategy {
@@ -20,7 +19,7 @@ public class BestRoutineStrategy implements RoutineStrategy {
     }
 
     public Restaurant getRandomRestaurant() {
-        return Simulation.getRestaurantList().get(MathUtils.random(0,Simulation.getRestaurantList().size()));
+        return Simulation.getRestaurantListCopy().get(MathUtils.random(0,Simulation.getRestaurantListCopy().size()));
     }
 
     private List<Restaurant> getHalfBest(Restaurant[] restaurants) {

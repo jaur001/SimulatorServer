@@ -53,11 +53,11 @@ public class ProviderSettings implements Adjustable {
     }
 
     public static boolean isBadProduct(){
-        return MathUtils.random(0,1000)<1000;
+        return MathUtils.random(0,1000)<1;
     }
 
     public static boolean newProvider() {
-        return MathUtils.random(0,10* Simulation.getProviderSize()) < 3;
+        return MathUtils.random(0, 1 + 10* Simulation.getProviderSize()) < 3;
     }
 
 }

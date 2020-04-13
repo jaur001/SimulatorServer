@@ -1,18 +1,15 @@
-package backend.model.simulation;
+package backend.model.simulation.simulator;
 
 import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.provider.Provider;
-import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
+import backend.utils.MathUtils;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +23,7 @@ public class Simulator{
     private static String uriProvider;
     private static String uriClient;
     private static TimeLine timeLine;
-
+    private static SimulatorAdministrator helper;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -91,8 +88,10 @@ public class Simulator{
     private static void execute(boolean thread) {
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
+        helper = new SimulatorAdministrator();
         timeLine = new TimeLine(Simulation.init());
-        test();
+        helper.setTimeLine(timeLine);
+        //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeNormal();
     }
@@ -110,58 +109,46 @@ public class Simulator{
         }
     }
 
-    private static void test() {
-        ThreadPoolExecutor tester = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
-        tester.submit(() -> {
-            while (!restart.get()){
-                if(isRunning()){
-                    checkProgram();
-                }
-            }
-        });
-    }
-
-    private static void checkProgram() {
-        Date date = (Date) TimeLine.getDate().clone();
+    public static void waitForOtherElements() {
         try {
-            TimeUnit.MILLISECONDS.sleep(10000);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-        if(TimeLine.isSameDate(date)){
-            Simulable simulable = SimulableTester.actualSimulable;
-            int method = SimulableTester.method;
-            List<Client> clients = Simulation.getClientList();
-            List<Worker> workers = Simulation.getWorkerList();
-            List<Restaurant> restaurants = Simulation.getRestaurantList();
-            List<Provider> providers = Simulation.getProviderList();
-            System.out.println("Problem");
-        }
-    }
-
-
-    public static void waitForDatabaseOrThread() {
-        waitForOtherElements(500);
-    }
-
-    public static void waitForOtherElements(int milliseconds) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(milliseconds);
+            TimeUnit.MILLISECONDS.sleep(MathUtils.random(100,500));
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void diePerson(Client client) {
-        SimulationController.diePerson(client);
-        timeLine.removeSimulable(client);
+    public static boolean isNotAlreadyHired(Worker worker) {
+        return helper.isNotAlreadyRetired(worker);
     }
 
-    public static void closeCompany(Company company) {
-        SimulationController.closeCompany(company);
-        timeLine.removeSimulable(company);
+    public static boolean isNotAlreadyRetired(Worker worker) {
+        return helper.isNotAlreadyRetired(worker);
     }
 
+    public static void retire(Worker worker) {
+        helper.retire(worker);
+    }
 
+    public static void addSimulableForCompany(Company company, Simulable simulable) {
+        helper.addSimulableForCompany(company,simulable);
+    }
 
+    public static void removeSimulableForCompany(Company company, Simulable simulable) {
+        helper.removeSimulableForCompany(company,simulable);
+    }
+
+    public static void makeChanges() {
+        helper.makeChanges();
+    }
+    public static void isGoingToDie(Client client){
+        helper.isGoingToDie(client);
+    }
+
+    public static void isGoingToClose(Company company){
+        helper.isGoingToClose(company);
+    }
+
+    public static TimeLine getTimeLine() {
+        return timeLine;
+    }
 }

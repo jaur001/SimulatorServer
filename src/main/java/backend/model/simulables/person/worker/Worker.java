@@ -8,12 +8,15 @@ import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.Simulation;
+import backend.model.simulation.simulator.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Worker extends Client implements Event,Cloneable {
@@ -29,7 +32,7 @@ public class Worker extends Client implements Event,Cloneable {
         super.setJob("");
         salaryDesired = 0;
         setSalary(0);
-        jobOfferList = new LinkedList<>();
+        jobOfferList = new CopyOnWriteArrayList<>();
     }
 
 
@@ -82,7 +85,6 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
     public void retire() {
-        SimulableTester.changeMethod(2);
         this.isWorking.set(false);
         company = null;
         setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
@@ -92,14 +94,12 @@ public class Worker extends Client implements Event,Cloneable {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        SimulableTester.changeMethod(0);
         if (isNotRetired())work();
-        SimulableTester.changeMethod(1);
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
 
     private void work() {
-        if(WorkerSettings.isInRetireAge(this)&&!isWorking()) retire();
+        if(WorkerSettings.isInRetireAge(this)&&!isWorking()) Simulator.retire(this);
         else if(!isWorking()) searchJob();
     }
 
@@ -114,9 +114,13 @@ public class Worker extends Client implements Event,Cloneable {
     }
 
     public void searchJob() {
-        SimulableTester.changeMethod(3);
+        try {
+            if(jobOfferList.size()>0)jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
+        } catch (ConcurrentModificationException e){
+            Simulator.waitForOtherElements();
+            searchJob();
+        }
         if (jobOfferList.stream().anyMatch(JobOffer::isAccepted)) return;
-        jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
         if(!new OfferSelector(jobOfferList,Simulation.SEARCHER_STRATEGY).searchJob()) reduceSalaryDesired();
     }
 
@@ -130,7 +134,7 @@ public class Worker extends Client implements Event,Cloneable {
 
     @Override
     public String getMessage() {
-        if(!Simulation.getWorkerList().contains(this)) super.getMessage();
+        if(!Simulation.getWorkerListCopy().contains(this)) super.getMessage();
         if(!isNotRetired())return getFullName() + " has retired.";
         if(isWorking()) return getFullName() + " has been hired for a salary of "+ getSalary() + "€.";
         return getFullName() + " has been fired.";

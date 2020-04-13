@@ -1,16 +1,13 @@
 package backend.model.event;
 
-import backend.model.simulation.Simulator;
-import backend.model.simulation.timeLine.SimulationDate;
+import backend.model.simulation.simulator.Simulator;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.utils.MathUtils;
 
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class EventController {
 
@@ -27,7 +24,7 @@ public class EventController {
         try {
             eventList.add(event.getMessage());
         } catch (ConcurrentModificationException | IndexOutOfBoundsException e){
-            Simulator.waitForOtherElements(MathUtils.random(100,500));
+            Simulator.waitForOtherElements();
             addToWeb(event);
         }
     }

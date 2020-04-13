@@ -8,7 +8,7 @@ import backend.model.simulation.Simulation;
 public class WorkerSearcherThread{
 
     public static void addWorkers(){
-        Simulation.getRestaurantList().parallelStream().forEach(WorkerSearcherThread::addWorker);
+        Simulation.getRestaurantListCopy().parallelStream().forEach(WorkerSearcherThread::addWorker);
     }
 
     public static void addWorker(Restaurant restaurant){

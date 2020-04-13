@@ -5,8 +5,7 @@ import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Payer;
-import backend.model.simulation.Simulator;
-import backend.model.simulation.settings.settingsList.ProviderSettings;
+import backend.model.simulation.simulator.Simulator;
 
 public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable, Event {
 
@@ -52,12 +51,14 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
     protected abstract double getTaxes();
 
     protected void changePrice() {
+        financialData.removeDebt(getTaxes());
         if(financialData.getLastMonthBenefits()>0)increasePrice();
         else decreasePrice();
+        financialData.addDebt(getTaxes());
     }
 
     protected void declareBankruptcy() {
-        Simulator.closeCompany(this);
+        Simulator.isGoingToClose(this);
     }
 
     protected void analyzeFinances(){

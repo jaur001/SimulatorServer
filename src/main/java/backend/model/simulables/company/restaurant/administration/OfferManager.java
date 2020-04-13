@@ -60,23 +60,6 @@ public class OfferManager {
         return administrator.getCurrentStrategy().getBetterWorker(worker1,worker2);
     }
 
-
-    void deleteOtherOffersSelectedWorker(Worker workerSelected) {
-        workerOffers.keySet().forEach(worker -> {
-            List<JobOffer> offerList = new LinkedList<>(workerOffers.get(worker));
-            offerList.parallelStream()
-                    .filter(offer -> offer.getWorker().equals(workerSelected))
-                    .forEach(offer -> workerOffers.get(worker).remove(offer));
-        });
-    }
-
-    double getSalary(Worker oldWorker, Worker workerSelected) {
-        return workerOffers.get(oldWorker).stream()
-                .filter(offer -> offer.getWorker().equals(workerSelected))
-                .map(JobOffer::getSalary).findFirst()
-                .orElse(workerSelected.getSalary());
-    }
-
     void removeOffers(Worker worker) {
         if(!workerOffers.containsKey(worker)) return;
         cancelOffers(worker);

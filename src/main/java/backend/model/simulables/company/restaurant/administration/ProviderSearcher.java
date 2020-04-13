@@ -5,6 +5,7 @@ import backend.model.simulables.company.provider.Provider;
 import backend.model.simulation.Simulation;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -36,12 +37,9 @@ public class ProviderSearcher {
     }
 
     private void changeProvider(Provider provider) {
-        administrator.removeProvider(getActualProvider(provider));
+        Provider actualProvider = administrator.getProvider(provider.getProduct());
+        if(actualProvider!=null) administrator.removeProvider(actualProvider);
         administrator.addProvider(provider);
-    }
-
-    private Provider getActualProvider(Provider provider) {
-        return administrator.getProvider(provider.getProduct());
     }
 
     public void addMissingProvider() {
@@ -54,5 +52,21 @@ public class ProviderSearcher {
                 .filter(product -> administrator.getProvidersList().stream()
                     .noneMatch(provider -> provider.getProduct().equals(product)))
                 .collect(Collectors.toList());
+    }
+
+    public void removeUnnecessaryProviders() {
+        List<Provider> providerList = Arrays.stream(Product.values())
+                .flatMap(product -> administrator.getProvidersList().stream()
+                        .filter(Objects::nonNull)
+                            .filter(provider -> provider.getProduct().equals(product))
+                            .limit(1))
+                .collect(Collectors.toCollection(LinkedList::new));
+        removeUnnecessaryProviders(providerList);
+    }
+
+    private void removeUnnecessaryProviders(List<Provider> providerList) {
+        administrator.getProvidersList().stream()
+                .filter(provider -> !providerList.contains(provider))
+                .forEach(provider -> administrator.removeProvider(provider));
     }
 }

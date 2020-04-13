@@ -10,9 +10,5 @@ public class SimulableTester {
         actualSimulable = simulable;
     }
 
-    public static void changeMethod(int method){
-        SimulableTester.method = method;
-    }
-
 
 }

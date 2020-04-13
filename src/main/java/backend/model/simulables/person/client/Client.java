@@ -2,7 +2,6 @@ package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.event.Event;
-import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
@@ -12,7 +11,7 @@ import backend.model.simulables.bank.transactions.EatingSaleTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.Simulation;
-import backend.model.simulation.Simulator;
+import backend.model.simulation.simulator.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 
@@ -120,16 +119,14 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        SimulableTester.changeMethod(0);
         doClientsThings();
     }
 
     protected void doClientsThings() {
         if(ClientSettings.isGoingToDie(this.getAge())) {
-            SimulableTester.changeMethod(1);
-            Simulator.diePerson(this);
+            Simulator.isGoingToDie(this);
+            return;
         }
-        SimulableTester.changeMethod(2);
         routineList.checkRoutines().forEach(this::goToEat);
         //this.printRoutines();
     }
@@ -137,9 +134,7 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
     protected void goToEat(Restaurant restaurant) {
         if(!restaurant.acceptClient(this)) return;
         this.invitePeople();
-        SimulableTester.changeMethod(3);
         payRestaurant(restaurant);
-        SimulableTester.changeMethod(4);
     }
 
     protected void payRestaurant(Restaurant restaurant) {
@@ -165,7 +160,7 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
 
     @Override
     public String getMessage() {
-        if(!Simulation.getClientList().contains(this)) return this.getFullName() + " has died.";
+        if(!Simulation.getClientListCopy().contains(this)) return this.getFullName() + " has died.";
         return "";
     }
 }

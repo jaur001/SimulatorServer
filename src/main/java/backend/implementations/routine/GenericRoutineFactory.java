@@ -35,7 +35,7 @@ public class GenericRoutineFactory implements RoutineFactory {
     @Override
     public Routine create() {
         int salaryOption = ClientSettings.getSalaryGroup(salary);
-        Restaurant[] restaurants = ClientSettings.getRestaurantOptions(salaryOption,Simulation.getRestaurantList());
+        Restaurant[] restaurants = ClientSettings.getRestaurantOptions(salaryOption);
         if(restaurants.length==0) return null;
         return new Routine(strategy.getRestaurant(restaurants), createCounter(salaryOption));
     }

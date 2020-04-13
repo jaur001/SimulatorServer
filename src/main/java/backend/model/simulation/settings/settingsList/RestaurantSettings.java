@@ -77,7 +77,7 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static int getWorkerLength(Job job, int numTables) {
-        if(job.equals(Job.Chef) || job.equals(Job.Maitre)) return numTables>=40? 1: 0;
+        if(job.equals(Job.Chef) || job.equals(Job.Maitre)) return numTables>=30? 1: 0;
         return (int)Math.max(Math.round(((lengthWorkerTable.get(job)/10.0))*numTables), WORKERS_MIN);
     }
 
@@ -100,6 +100,6 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static boolean newRestaurant() {
-        return MathUtils.random(0,10 * Simulation.getRestaurantSize()) < 3;
+        return MathUtils.random(0,1 + 10 * Simulation.getRestaurantSize()) < 3;
     }
 }

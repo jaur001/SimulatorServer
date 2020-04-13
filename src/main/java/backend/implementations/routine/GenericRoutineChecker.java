@@ -1,7 +1,7 @@
 package backend.implementations.routine;
 
-import backend.implementations.routine.GenericRoutineFactory;
 import backend.implementations.routine.strategy.RoutineStrategy;
+import backend.model.simulables.SimulableTester;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
@@ -50,14 +50,19 @@ public class GenericRoutineChecker implements RoutineChecker {
 
     private void restartRoutines(List<Routine> routines) {
         RoutineFactory routineFactory = new GenericRoutineFactory(strategy, salary);
-        routines.forEach(routine -> routine = routineFactory.create());
+        routines.forEach(routine -> {
+            Routine newRoutine = routineFactory.create();
+            if(newRoutine!=null) routine = newRoutine;
+            else restaurantRoutines.remove(routine);
+        });
     }
 
     private boolean isNotClosed(Routine routine) {
-        return Simulation.getRestaurantList().contains(routine.getRestaurant());
+        return Simulation.getRestaurantListCopy().contains(routine.getRestaurant());
     }
 
     private List<Restaurant> addIfClientHasBudget(List<Restaurant> restaurantOptions) {
+        if(restaurantOptions.size()==0)return new ArrayList<>();
         return restaurantOptions.stream()
                 .filter(this::thereIsEnoughBudget)
                 .collect(Collectors.toCollection(ArrayList::new));

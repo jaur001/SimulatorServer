@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.model.simulation.Simulator;
+import backend.model.simulation.simulator.Simulator;
 
 import backend.server.servlets.FrontCommand;
 

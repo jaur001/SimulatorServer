@@ -19,16 +19,19 @@ public class TimeLine extends EventGenerator{
     private List<Simulable> simulableList;
     SimulationController controller;
 
+    public static Simulable actualSimulable;
+
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
         controller = new SimulationController(simulableList);
         date = new SimulationDate();
     }
 
+
     public void play(){
-        simulableList.parallelStream().forEach(Simulable::simulate);
-        passDay();
+        simulableList.forEach(Simulable::simulate);
         SimulableTester.changeSimulable(null);
+        passDay();
         controller.manageSimulation();
         EventController.resizeList();
     }
@@ -78,11 +81,7 @@ public class TimeLine extends EventGenerator{
         return date.getDate();
     }
 
-    public void addSimulable(Simulable simulable) {
-        controller.addSimulableAtTheEnd(simulable);
-    }
-
     public void removeSimulable(Simulable simulable) {
-        controller.removeSimulableAtTheEnd(simulable);
+        controller.removeSimulable(simulable);
     }
 }

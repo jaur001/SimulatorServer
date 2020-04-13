@@ -107,6 +107,7 @@ public class Restaurant extends Company{
 
     private void checkProducts() {
         if(getProviders().size()< Product.values().length) searcher.addMissingProvider();
+        if(getProviders().size()> Product.values().length) searcher.removeUnnecessaryProviders();
         administrator.checkProducts();
     }
 
@@ -162,7 +163,7 @@ public class Restaurant extends Company{
 
     @Override
     public String getMessage() {
-        if(!Simulation.getRestaurantList().contains(this)) return "The restaurant " + companyName + " has closed.";
+        if(!Simulation.getRestaurantListCopy().contains(this)) return "The restaurant " + companyName + " has closed.";
         return "";
     }
 }

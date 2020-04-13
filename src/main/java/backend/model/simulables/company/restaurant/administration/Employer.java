@@ -2,10 +2,13 @@ package backend.model.simulables.company.restaurant.administration;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class Employer {
@@ -40,14 +43,15 @@ public class Employer {
 
     private void changeRetiredWorker(Worker worker) {
         addBestWorker(Job.valueOf(worker.getJob()));
-        administrator.retireWorker(worker);
+        administrator.removeWorker(worker);
 
     }
 
-    private void addBestWorker(Job job) {
+    private boolean addBestWorker(Job job) {
         Worker workerSelected = manager.searchBestWorker(job);
-        if(workerSelected!=null)
-            administrator.addWorker(workerSelected,workerSelected.getSalaryDesired());
+        if(workerSelected==null) return false;
+        administrator.addWorker(workerSelected);
+        return true;
     }
 
     private void decideContract(Worker worker) {
@@ -62,18 +66,30 @@ public class Employer {
     }
 
     private void changeWorker(Worker oldWorker, Worker workerSelected) {
-        manager.deleteOtherOffersSelectedWorker(workerSelected);
         administrator.removeWorker(oldWorker);
-        administrator.addWorker(workerSelected,manager.getSalary(oldWorker, workerSelected));
+        administrator.addWorker(workerSelected);
     }
 
     public void checkStaff() {
-        Arrays.stream(Job.values())
-                .filter(this::thereIsEnoughWorkers)
-                .forEach(this::addBestWorker);
+        while (thereIsNotEnoughWorkers()) if(addEnoughWorkers()) break;
     }
 
-    private boolean thereIsEnoughWorkers(Job job) {
-        return RestaurantSettings.getWorkerLength(job,administrator.getTables())>administrator.getWorkerList().size();
+    private boolean thereIsNotEnoughWorkers() {
+        return Arrays.stream(Job.values())
+                .anyMatch(this::thereIsNotEnoughWorkers);
+    }
+
+    public boolean addEnoughWorkers() {
+        AtomicBoolean thereNotIsWorker = new AtomicBoolean(false);
+        Arrays.stream(Job.values())
+                .filter(this::thereIsNotEnoughWorkers)
+                .forEach(job -> {
+                    if(!addBestWorker(job)) thereNotIsWorker.set(true);
+                });
+        return thereNotIsWorker.get();
+    }
+
+    private boolean thereIsNotEnoughWorkers(Job job) {
+        return RestaurantSettings.getWorkerLength(job,administrator.getTables())>administrator.getWorkerList(job).size();
     }
 }

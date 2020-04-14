@@ -2,7 +2,7 @@ package backend.implementations.providing;
 
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.provider.providing.ProvidingController;
 

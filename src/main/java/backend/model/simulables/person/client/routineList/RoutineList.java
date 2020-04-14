@@ -4,7 +4,7 @@ import backend.implementations.routine.GenericRoutineChecker;
 import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 import java.util.List;

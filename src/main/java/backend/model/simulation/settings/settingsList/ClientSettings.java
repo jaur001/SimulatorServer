@@ -3,7 +3,7 @@ package backend.model.simulation.settings.settingsList;
 import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.ClientData;
@@ -121,6 +121,10 @@ public class ClientSettings implements Adjustable {
     }
 
     public static boolean newClient() {
-        return MathUtils.random(0, 1 + Simulation.getClientSize()/10)< 6;
+        return MathUtils.calculateProbability(100-(int)getClientRestaurantPercentage());
+    }
+
+    private static double getClientRestaurantPercentage(){
+        return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0;
     }
 }

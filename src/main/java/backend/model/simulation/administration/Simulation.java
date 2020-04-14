@@ -1,4 +1,4 @@
-package backend.model.simulation;
+package backend.model.simulation.administration;
 
 import backend.implementations.SQLite.controllers.SQLiteRowDeleter;
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
@@ -8,6 +8,7 @@ import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Job;
@@ -114,6 +115,12 @@ public class Simulation {
         return new CopyOnWriteArrayList<>(providerList);
     }
 
+    public static List<Company> getCompanyListCopy() {
+        List<Company> companies = new CopyOnWriteArrayList<>(providerList);
+        companies.addAll(restaurantList);
+        return companies;
+    }
+
     public static List<Client> getClientListCopy() {
         return new CopyOnWriteArrayList<>(clientList);
     }
@@ -150,7 +157,6 @@ public class Simulation {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
-
     public static void addBill(XMLBill bill){
         if(billList.size()<DatabaseUtils.getListLimit())billList.add(bill);
     }
@@ -168,6 +174,7 @@ public class Simulation {
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
+            clientList.addAll(workerList);
         } catch (SQLException | ClassNotFoundException e) {
             Simulator.waitForOtherElements();
             initElements();
@@ -177,11 +184,6 @@ public class Simulation {
     private static void reset(){
         resetBills();
         resetEvents();
-        resetBank();
-    }
-
-    private static void resetBank() {
-        Bank.reset();
     }
 
     private static void resetBills(){
@@ -207,42 +209,8 @@ public class Simulation {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
-
     public static List<Worker> getEmployedWorkers() {
         return workerList.stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    public static Simulable addWorker() {
-        Worker worker = Initializer.getWorker();
-        if(worker == null) return null;
-        Simulator.makeChanges();
-        workerList.add(worker);
-        return worker;
-    }
-
-    public static Simulable addClient() {
-        Client client = Initializer.getClient();
-        if(client == null) return null;
-        Simulator.makeChanges();
-        clientList.add(client);
-        return client;
-    }
-
-    public static Simulable addRestaurant() {
-        Restaurant restaurant = Initializer.getRestaurant();
-        if(restaurant == null) return null;
-        Simulator.makeChanges();
-        if(restaurant.getNumberOfWorkers()==0) return null;
-        restaurantList.add(restaurant);
-        return restaurant;
-    }
-
-    public static Simulable addProvider() {
-        Provider provider = Initializer.getProvider();
-        Simulator.makeChanges();
-        if(provider == null) return null;
-        providerList.add(provider);
-        return provider;
     }
 
     public static List<Worker> getUnemployedWorkers() {

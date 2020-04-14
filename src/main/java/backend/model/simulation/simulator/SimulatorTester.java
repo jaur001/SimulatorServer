@@ -6,7 +6,7 @@ import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.Date;

@@ -15,20 +15,23 @@ public class EventController {
     private static List<String> eventList = new CopyOnWriteArrayList<>();
 
     public static void addEvent(Event event){
+        addEvent(event.getMessage());
+    }
+
+    public static void addEvent(String event) {
         if(isTheFirstDay()) return;
-        System.out.println(event.getMessage());
+        System.out.println(event);
         addToWeb(event);
     }
 
-    public static void addToWeb(Event event) {
+    public static void addToWeb(String event) {
         try {
-            eventList.add(event.getMessage());
+            eventList.add(event);
         } catch (ConcurrentModificationException | IndexOutOfBoundsException e){
             Simulator.waitForOtherElements();
             addToWeb(event);
         }
     }
-
 
     private static boolean isTheFirstDay() {
         return TimeLine.isSameDate(new Date());

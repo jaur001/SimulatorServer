@@ -1,11 +1,10 @@
 package backend.implementations.routine;
 
 import backend.implementations.routine.strategy.RoutineStrategy;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineChecker;
 import backend.model.simulation.settings.settingsList.ClientSettings;

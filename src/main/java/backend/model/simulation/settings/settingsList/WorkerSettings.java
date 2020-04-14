@@ -1,14 +1,9 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.company.restaurant.administration.Contract;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.IntStream;
 
 public class WorkerSettings{
 
@@ -26,7 +21,7 @@ public class WorkerSettings{
     }
 
     private static int getPosition() {
-        return MathUtils.calculateProbability(percentages);
+        return MathUtils.calculateProbabilities(percentages);
     }
 
     public static double reduceSalaryDesired(double salaryDesired) {
@@ -38,6 +33,10 @@ public class WorkerSettings{
     }
 
     public static boolean newWorker() {
-        return MathUtils.random(0, 1 + Simulation.getWorkerSize()/20) < 10;
+        return MathUtils.calculateProbability(100- (int)getUnemployedWorkersPercentage());
+    }
+
+    public static double getUnemployedWorkersPercentage(){
+        return ((double)Simulation.getUnemployedWorkers().size()/(double)(1+Simulation.getWorkerSize()))*100.0;
     }
 }

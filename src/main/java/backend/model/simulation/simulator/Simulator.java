@@ -5,7 +5,8 @@ import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.SimulableAdministrator;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 
@@ -23,7 +24,7 @@ public class Simulator{
     private static String uriProvider;
     private static String uriClient;
     private static TimeLine timeLine;
-    private static SimulatorAdministrator helper;
+    private static SimulableAdministrator helper;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -88,7 +89,7 @@ public class Simulator{
     private static void execute(boolean thread) {
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
-        helper = new SimulatorAdministrator();
+        helper = new SimulableAdministrator();
         timeLine = new TimeLine(Simulation.init());
         helper.setTimeLine(timeLine);
         //SimulatorTester.test();
@@ -118,7 +119,7 @@ public class Simulator{
     }
 
     public static boolean isNotAlreadyHired(Worker worker) {
-        return helper.isNotAlreadyRetired(worker);
+        return helper.isNotAlreadyHired(worker);
     }
 
     public static boolean isNotAlreadyRetired(Worker worker) {

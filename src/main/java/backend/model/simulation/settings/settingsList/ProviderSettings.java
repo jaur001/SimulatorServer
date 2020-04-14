@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.provider.Product;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.utils.MathUtils;
@@ -57,7 +57,10 @@ public class ProviderSettings implements Adjustable {
     }
 
     public static boolean newProvider() {
-        return MathUtils.random(0, 1 + 10* Simulation.getProviderSize()) < 3;
+        return MathUtils.calculateProbability(100-(int)getProviderRestaurantPercentage());
     }
 
+    private static double getProviderRestaurantPercentage(){
+        return ((double)Simulation.getProviderSize()/(double)(1+Simulation.getRestaurantSize()))*100.0;
+    }
 }

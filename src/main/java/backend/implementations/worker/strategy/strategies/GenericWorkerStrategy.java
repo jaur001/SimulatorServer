@@ -3,8 +3,7 @@ package backend.implementations.worker.strategy.strategies;
 import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
-import backend.model.simulation.settings.settingsList.RestaurantSettings;
+import backend.model.simulation.administration.Simulation;
 
 import java.util.ArrayList;
 import java.util.List;

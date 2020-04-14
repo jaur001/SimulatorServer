@@ -5,7 +5,7 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.event.EventGenerator;
 import backend.model.simulation.simulator.SimulatorThreadPool;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 import org.w3c.dom.Document;

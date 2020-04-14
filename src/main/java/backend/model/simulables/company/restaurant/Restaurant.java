@@ -12,7 +12,7 @@ import backend.model.simulables.company.restaurant.administration.ProviderSearch
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
@@ -26,7 +26,6 @@ public class Restaurant extends Company{
     private PriceRange priceRange;
     private int tables;
     private AtomicInteger tablesAvailable;
-    private static final int eatingsPerTable = 6;
 
     private Employer employer;
     private Administrator administrator;
@@ -45,7 +44,7 @@ public class Restaurant extends Company{
     }
 
     public void initAdministration(int tables) {
-        this.tablesAvailable = new AtomicInteger(tables*eatingsPerTable);
+        this.tablesAvailable = new AtomicInteger(tables*RestaurantSettings.EATINGS_PER_TABLE);
         this.administrator = new Administrator(financialData,tables,this);
         this.employer = new Employer(administrator,new OfferManager(this,administrator));
         this.searcher = new ProviderSearcher(administrator);
@@ -118,7 +117,7 @@ public class Restaurant extends Company{
     }
 
     private void restartTablesAvailable() {
-        tablesAvailable.set(tables*eatingsPerTable);
+        tablesAvailable.set(tables*RestaurantSettings.EATINGS_PER_TABLE);
     }
 
     public void payAndCheckDebts() {
@@ -163,7 +162,6 @@ public class Restaurant extends Company{
 
     @Override
     public String getMessage() {
-        if(!Simulation.getRestaurantListCopy().contains(this)) return "The restaurant " + companyName + " has closed.";
-        return "";
+        return super.getMessage();
     }
 }

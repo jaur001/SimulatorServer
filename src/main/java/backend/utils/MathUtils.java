@@ -39,10 +39,14 @@ public class MathUtils {
         return mean(new double[]{min,max});
     }
 
-    public static int calculateProbability(int[] percentages) {
+    public static int calculateProbabilities(int[] percentages) {
         int probSelected = random(0,100);
         return IntStream.range(0,percentages.length).boxed()
                 .filter(position-> percentages[position] >= probSelected).findFirst().orElse(0);
+    }
+
+    public static boolean calculateProbability(int number) {
+        return random(0,100)<number;
     }
 
 }

@@ -4,7 +4,7 @@ import backend.implementations.worker.strategy.WorkerStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.simulator.Simulator;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.bank.Bank;
@@ -157,7 +157,7 @@ public class Administrator extends EventGenerator {
     }
 
     private boolean isInHighLosses() {
-        return financialData.getLastMonthLosses() >= financialData.getLastMonthIncome()* RestaurantSettings.DIFFERENCE_PERCENTAGE;
+        return financialData.getLastMonthLosses() >= financialData.getLastMonthIncome()* RestaurantSettings.FINANCIAL_DIFFERENCE_PERCENTAGE;
     }
 
     public void checkProducts() {

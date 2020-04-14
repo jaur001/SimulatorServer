@@ -1,22 +1,20 @@
 package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
-import backend.model.event.Event;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
-import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.transactions.EatingSaleTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.simulator.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 
 
-public class Client implements Simulable,EconomicAgent, Collector, Event {
+public class Client implements Simulable, Collector{
     protected PersonalData personalData;
     protected RoutineList routineList;
     protected int peopleInvited;
@@ -161,6 +159,6 @@ public class Client implements Simulable,EconomicAgent, Collector, Event {
     @Override
     public String getMessage() {
         if(!Simulation.getClientListCopy().contains(this)) return this.getFullName() + " has died.";
-        return "";
+        return this.getFullName() + " has entered to the simulation.";
     }
 }

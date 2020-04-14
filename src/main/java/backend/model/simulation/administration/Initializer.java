@@ -1,4 +1,4 @@
-package backend.model.simulation;
+package backend.model.simulation.administration;
 
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.initializers.WorkerThread;
@@ -55,7 +55,6 @@ public class Initializer {
 
     public static List<Simulable> init() {
         prepareSimulables();
-        addPayersAndCollectors();
         return createSimulables();
     }
 
@@ -66,18 +65,11 @@ public class Initializer {
         Simulator.makeChanges();
     }
 
-    private static void addPayersAndCollectors() {
-        Simulation.getRestaurantList().forEach(Bank::addPayer);
-        Simulation.getProviderList().forEach(Bank::addPayer);
-        Simulation.getClientList().forEach(Bank::addCollector);
-    }
-
     private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new CopyOnWriteArrayList<>();
         simulableList.add(new Bank());
         simulableList.addAll(Simulation.getProviderList());
         simulableList.addAll(Simulation.getRestaurantList());
-        simulableList.addAll(Simulation.getWorkerList());
         simulableList.addAll(Simulation.getClientList());
         return simulableList;
     }
@@ -98,7 +90,6 @@ public class Initializer {
         try {
             Client client = getClients(1).get(0);
             client.setRoutineList(new RoutineList(client.getSalary(), ClientSettings.getRoutineList(client.getSalary())));
-            Bank.addCollector(client);
             return client;
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             return null;

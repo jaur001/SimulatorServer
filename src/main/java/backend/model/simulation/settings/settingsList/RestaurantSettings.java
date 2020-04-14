@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.timeLine.TimeLine;
@@ -23,10 +23,11 @@ public class RestaurantSettings implements Adjustable {
     private static final int MAX_TABLES = 50;
     private static final int WORKERS_MIN = 1;
 
+    public static final int EATINGS_PER_TABLE = 6;
     public static final int MIN_LENGTH_CONTRACT = 90;
     public static final int MAX_LENGTH_CONTRACT = 360;
     public static final double PRICE_CHANGE = 0.02;
-    public static final double DIFFERENCE_PERCENTAGE = 1.25;
+    public static final double FINANCIAL_DIFFERENCE_PERCENTAGE = 1.25;
 
 
     private static Map<Job, Integer> lengthWorkerTable = new HashMap<>();
@@ -85,6 +86,14 @@ public class RestaurantSettings implements Adjustable {
         return workerSalaryTable.get(job);
     }
 
+    public static int getNumTablesMean(){
+        return (int)MathUtils.twoNumberMean(MIN_TABLES,MAX_TABLES);
+    }
+
+    public static int getClientLimitMean(){
+        return getNumTablesMean()*EATINGS_PER_TABLE;
+    }
+
     public static int getNumTablesSample(){
         return (int)Math.max(MIN_TABLES,Math.round(numTablesDistribution.sample()* MAX_TABLES));
     }
@@ -100,6 +109,6 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static boolean newRestaurant() {
-        return MathUtils.random(0,1 + 10 * Simulation.getRestaurantSize()) < 3;
+        return MathUtils.calculateProbability((int)WorkerSettings.getUnemployedWorkersPercentage());
     }
 }

@@ -3,7 +3,7 @@ package backend.initializers;
 import backend.implementations.worker.GenericWorkerSearcher;
 import backend.implementations.worker.strategy.strategies.FirstWorkerStrategy;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 
 public class WorkerSearcherThread{
 

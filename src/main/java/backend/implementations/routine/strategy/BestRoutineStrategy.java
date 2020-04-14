@@ -1,7 +1,7 @@
 package backend.implementations.routine.strategy;
 
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
 
 import java.util.Arrays;

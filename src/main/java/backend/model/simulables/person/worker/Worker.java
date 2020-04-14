@@ -1,13 +1,12 @@
 package backend.model.simulables.person.worker;
 
-import backend.model.event.Event;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.simulator.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Worker extends Client implements Event,Cloneable {
+public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);

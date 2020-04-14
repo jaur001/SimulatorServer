@@ -2,7 +2,7 @@ package backend.model.simulables.company.restaurant.administration;
 
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.company.provider.Provider;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 
 import java.util.Arrays;
 import java.util.LinkedList;

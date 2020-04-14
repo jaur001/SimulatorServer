@@ -1,13 +1,11 @@
 package backend.model.simulables.company;
 
-import backend.model.event.Event;
-import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Payer;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.simulator.Simulator;
 
-public abstract class Company extends EventGenerator implements EconomicAgent, Payer, Simulable, Event {
+public abstract class Company implements Payer, Simulable{
 
     protected int NIF;
     protected String companyName;
@@ -86,4 +84,9 @@ public abstract class Company extends EventGenerator implements EconomicAgent, P
         financialData.pay(getTaxes());
     }
 
+    @Override
+    public String getMessage() {
+        if(!Simulation.getCompanyListCopy().contains(this)) return "The company " + companyName + " has closed. NIF: " + getNIF();
+        return "The company " + companyName + " has opened. NIF: " + getNIF();
+    }
 }

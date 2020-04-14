@@ -4,8 +4,7 @@ import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.timeLine.TimeLine;
@@ -118,7 +117,6 @@ public class Provider extends Company{
 
     @Override
     public String getMessage() {
-        if(!Simulation.getProviderListCopy().contains(this)) return "The Provider " + companyName + " has closed.";
-        return "";
+        return super.getMessage();
     }
 }

@@ -2,12 +2,10 @@ package backend.model.simulables.company.restaurant.administration;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.Simulation;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 

@@ -1,4 +1,4 @@
-package backend.model.simulation.simulator;
+package backend.model.simulation.administration;
 
 import backend.model.event.EventController;
 import backend.model.simulables.company.provider.Provider;
@@ -7,7 +7,7 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 
-public class SimulatorCommitter {
+public class SimulationCommitter {
 
 
     public static void commitAddProvider(Restaurant restaurant, Provider provider){
@@ -39,7 +39,11 @@ public class SimulatorCommitter {
     }
 
     public static void commitRetireWorker(Restaurant restaurant, Worker worker) {
-        worker.retire();
-        EventController.addEvent(worker);
+        if(restaurant.getWorkers().contains(worker)){
+            worker.retire();
+            Simulation.getWorkerList().remove(worker);
+            restaurant.getFinancialData().removeDebt(worker.getSalary());
+            EventController.addEvent(worker);
+        }
     }
 }

@@ -1,43 +1,46 @@
 package backend.model.simulables.bank;
 
 
+import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.company.Company;
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class Bank implements Simulable {
-
-    private static List<Collector> collectorList = new LinkedList<>();
-    private static List<Payer> payerList = new LinkedList<>();
-
+public class Bank extends EventGenerator implements Simulable {
 
     public static void makeTransaction(Transaction transaction){
         transaction.makeTransaction();
     }
 
-    public static void addCollector(Collector collector){
-        if(!collectorList.contains(collector)) collectorList.add(collector);
-    }
-
-    public static void addPayer(Payer payer){
-        if(!payerList.contains(payer)) payerList.add(payer);
-    }
-
-    public static void reset() {
-        collectorList = new LinkedList<>();
-        payerList = new LinkedList<>();
-    }
-
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
+        addEvent(this);
         if(TimeLine.isLastDay()){
-            collectorList.forEach(Collector::collectSalary);
-            payerList.forEach(Payer::payTaxes);
+            Simulation.getClientListCopy().forEach(Collector::collectSalary);
+            Simulation.getCompanyListCopy().forEach(Company::payTaxes);
         }
     }
 
+    public void payTaxes(Payer payer) {
+        //makeTransaction(new);
+        payer.payTaxes();
+    }
+
+    @Override
+    public String getMessage() {
+        return "The bank has collect taxes from the companies";
+    }
+
+    @Override
+    public void pay(double amount) {
+
+    }
+
+    @Override
+    public void collect(double amount) {
+
+    }
 }

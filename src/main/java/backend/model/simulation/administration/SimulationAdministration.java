@@ -1,5 +1,6 @@
-package backend.model.simulation;
+package backend.model.simulation.administration;
 
+import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
@@ -11,17 +12,16 @@ import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
-import backend.model.simulation.simulator.SimulatorCommitter;
 import backend.model.simulation.simulator.Simulator;
 
 import java.util.List;
 
-public class SimulationController extends EventGenerator {
+public class SimulationAdministration extends EventGenerator {
 
     private List<Simulable> simulableList;
 
 
-    public SimulationController(List<Simulable> simulableList) {
+    public SimulationAdministration(List<Simulable> simulableList) {
         this.simulableList = simulableList;
     }
 
@@ -38,13 +38,15 @@ public class SimulationController extends EventGenerator {
 
     private void checkThereIsNewWorker() {
         if(!WorkerSettings.newWorker()) return;
-        Simulable simulable = Simulation.addWorker();
+        Worker simulable = (Worker) addWorker();
+        if(simulable!=null)
+            EventController.addEvent(simulable.getFullName() + " has entered to the simulation.");
         addSimulable(simulable);
     }
 
     private void checkThereIsNewClient() {
         if(!ClientSettings.newClient()) return;
-        Simulable simulable = Simulation.addClient();
+        Simulable simulable = addClient();
         addSimulable(simulable);
     }
 
@@ -55,33 +57,64 @@ public class SimulationController extends EventGenerator {
 
     private void checkThereIsNewRestaurant() {
         if(!RestaurantSettings.newRestaurant()) return;
-        Simulable simulable = Simulation.addRestaurant();
+        Simulable simulable = addRestaurant();
         addSimulable(simulable);
     }
 
     private void checkThereIsNewProvider() {
         if(!ProviderSettings.newProvider()) return;
-        Simulable simulable = Simulation.addProvider();
+        Simulable simulable = addProvider();
         addSimulable(simulable);
     }
 
     public void addSimulable(Simulable simulable){
-        if(simulable!=null)simulableList.add(simulable);
+        if(simulable==null) return;
+        if(!(simulable instanceof Worker))addEvent(simulable);
+        simulableList.add(simulable);
     }
 
     public void removeSimulable(Simulable simulable) {
-        checkSimulable(simulable);
+        addEvent(simulable);
         simulableList.remove(simulable);
     }
 
-    private void checkSimulable(Simulable simulable) {
-        if(simulable instanceof Client) addEvent((Client)simulable);
-        if (simulable instanceof Company) addEvent((Company)simulable);
+    public static Simulable addWorker() {
+        Worker worker = Initializer.getWorker();
+        if(worker == null) return null;
+        Simulator.makeChanges();
+        Simulation.getWorkerList().add(worker);
+        Simulation.getClientList().add(worker);
+        return worker;
+    }
+
+    public static Simulable addClient() {
+        Client client = Initializer.getClient();
+        if(client == null) return null;
+        Simulator.makeChanges();
+        Simulation.getClientList().add(client);
+        return client;
+    }
+
+    public static Simulable addRestaurant() {
+        Restaurant restaurant = Initializer.getRestaurant();
+        if(restaurant == null) return null;
+        Simulator.makeChanges();
+        if(restaurant.getNumberOfWorkers()==0) return null;
+        Simulation.getRestaurantList().add(restaurant);
+        return restaurant;
+    }
+
+    public static Simulable addProvider() {
+        Provider provider = Initializer.getProvider();
+        Simulator.makeChanges();
+        if(provider == null) return null;
+        Simulation.getProviderList().add(provider);
+        return provider;
     }
 
     public static void diePerson(Client client) {
         if(client instanceof Worker) Simulation.getWorkerList().remove(client);
-        else Simulation.getClientList().remove(client);
+        Simulation.getClientList().remove(client);
     }
 
     public static void closeCompany(Company company) {
@@ -102,7 +135,7 @@ public class SimulationController extends EventGenerator {
 
     private static void removeWorkers(Restaurant restaurant) {
         restaurant.getWorkers()
-                .forEach(worker -> SimulatorCommitter.commitRemoveWorker(restaurant,worker));
+                .forEach(worker -> SimulationCommitter.commitRemoveWorker(restaurant,worker));
     }
 
     public static void closeProvider(Provider provider) {
@@ -114,6 +147,6 @@ public class SimulationController extends EventGenerator {
         provider.getCompanyList().stream()
                 .filter(companyClient -> companyClient instanceof Restaurant)
                 .map(companyClient -> (Restaurant) companyClient)
-                .forEach(restaurant -> SimulatorCommitter.commitRemoveProvider(restaurant,provider));
+                .forEach(restaurant -> SimulationCommitter.commitRemoveProvider(restaurant,provider));
     }
 }

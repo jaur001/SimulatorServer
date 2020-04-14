@@ -2,7 +2,7 @@ package backend.server.commands.bills;
 
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
-import backend.model.simulation.Simulation;
+import backend.model.simulation.administration.Simulation;
 import backend.server.servlets.PageableFrontCommand;
 
 import java.sql.SQLException;

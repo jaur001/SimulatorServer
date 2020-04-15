@@ -39,8 +39,8 @@ public class MathUtils {
         return mean(new double[]{min,max});
     }
 
-    public static int calculateProbabilities(int[] percentages) {
-        int probSelected = random(0,100);
+    public static int calculateProbabilities(Integer[] percentages) {
+        int probSelected = random(0,percentages[percentages.length-1]);
         return IntStream.range(0,percentages.length).boxed()
                 .filter(position-> percentages[position] >= probSelected).findFirst().orElse(0);
     }

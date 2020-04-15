@@ -80,3 +80,5 @@ P - Mirar clases que calculen probabilidades
 P - Clientes y trabajadores muertos ser reinsertados en el futuro.
 P - Añadir estrategia a la hora de selecionar trabajo.
 P - Mandar al front los eventos, no los mensajes.
+Posibilidad - Poner las facturas y las transacciones como una unica clase
+P - Eliminar las comillas en las calles de los proveedores

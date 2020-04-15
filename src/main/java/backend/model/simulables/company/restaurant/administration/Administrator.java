@@ -1,9 +1,12 @@
 package backend.model.simulables.company.restaurant.administration;
 
-import backend.implementations.worker.strategy.WorkerStrategy;
-import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
-import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
-import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
+import backend.implementations.workerSearcher.strategy.WorkerStrategy;
+import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
+import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
+import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
+import backend.model.simulables.bank.transactions.ServiceBillTransaction;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.administration.Simulator;
 import backend.model.simulables.bank.Bank;
@@ -12,8 +15,8 @@ import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.provider.Product;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
@@ -80,14 +83,20 @@ public class Administrator{
     }
 
     public void payDebts() {
+        payCleaning();
         getWorkerList().forEach(this::payWorker);
         providersList.stream()
                 .filter(provider -> Simulation.getProviderListCopy().contains(provider))
                 .forEach(this::payProvider);
     }
 
+    private void payCleaning() {
+        ServiceCompany serviceCompany = company.getService(Service.Cleaning);
+        if(serviceCompany != null)Bank.makeTransaction(new ServiceBillTransaction(serviceCompany,company,serviceCompany.getPrice()));
+    }
+
     public void payProvider(Provider provider) {
-        Bank.makeTransaction(new ProductPurchaseTransaction(provider,company,provider.getProductPrice()));
+        Bank.makeTransaction(new ProductPurchaseTransaction(provider,company,provider.getPrice()));
     }
 
     public void payWorker(Worker worker) {
@@ -160,8 +169,9 @@ public class Administrator{
     }
 
     public void checkProducts() {
+        if(providersList.size()==0) return;
         if(!ProviderSettings.isBadProduct()) return;
         Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
-        Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getProductPrice()/30));
+        Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getPrice()/30));
     }
 }

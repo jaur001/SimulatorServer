@@ -1,7 +1,7 @@
 package backend.initializers;
 
-import backend.implementations.worker.GenericWorkerSearcher;
-import backend.implementations.worker.strategy.strategies.FirstWorkerStrategy;
+import backend.implementations.workerSearcher.GenericWorkerSearcher;
+import backend.implementations.workerSearcher.strategy.strategies.FirstWorkerStrategy;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.administration.Simulation;
 

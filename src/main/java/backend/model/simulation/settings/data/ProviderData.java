@@ -1,6 +1,6 @@
 package backend.model.simulation.settings.data;
 
-import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 
 import java.util.Map;
 

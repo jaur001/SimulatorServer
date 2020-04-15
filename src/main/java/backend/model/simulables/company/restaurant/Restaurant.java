@@ -4,15 +4,14 @@ import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.restaurant.administration.Administrator;
 import backend.model.simulables.company.restaurant.administration.Employer;
 import backend.model.simulables.company.restaurant.administration.OfferManager;
 import backend.model.simulables.company.restaurant.administration.ProviderSearcher;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
@@ -160,8 +159,4 @@ public class Restaurant extends Company{
         priceRange.decreasePrice(RestaurantSettings.PRICE_CHANGE);
     }
 
-    @Override
-    public String getMessage() {
-        return super.getMessage();
-    }
 }

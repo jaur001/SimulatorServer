@@ -12,17 +12,6 @@ public class WorkerSettings{
     public static final double SALARY_DESIRED_CHANGE = 0.001;
     public static final int RETIRE_AGE = 65;
     public static final double PERCENTAGE_RETIREMENT = 0.60;
-    private  static int[] percentages = {50,80,95,97,100};
-
-
-
-    public static String selectJob() {
-        return Job.values()[getPosition()].toString();
-    }
-
-    private static int getPosition() {
-        return MathUtils.calculateProbabilities(percentages);
-    }
 
     public static double reduceSalaryDesired(double salaryDesired) {
         return Math.max(MIN_SALARY,salaryDesired-WorkerSettings.SALARY_DESIRED_CHANGE *salaryDesired);
@@ -39,4 +28,10 @@ public class WorkerSettings{
     public static double getUnemployedWorkersPercentage(){
         return ((double)Simulation.getUnemployedWorkers().size()/(double)(1+Simulation.getWorkerSize()))*100.0;
     }
+
+    public static double getUnemployedWorkersPerJob(Job job){
+        return ((double)Simulation.getUnemployedWorkers(job).size()/(double)(1+Simulation.getWorkerList(job).size()))*100.0;
+    }
+
+
 }

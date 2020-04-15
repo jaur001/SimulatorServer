@@ -53,7 +53,7 @@ public class RestaurantSettings implements Adjustable {
 
     private static void getWorkersSalary(){
         Integer[] salaries = {800,1000,1500,3000,3000};
-        IntStream.range(0,salaries.length).boxed()
+        IntStream.range(0,Job.values().length).boxed()
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
     }
 

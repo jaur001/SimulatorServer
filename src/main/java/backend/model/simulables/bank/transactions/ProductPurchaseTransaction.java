@@ -5,7 +5,7 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 
 public class ProductPurchaseTransaction extends Transaction {
 

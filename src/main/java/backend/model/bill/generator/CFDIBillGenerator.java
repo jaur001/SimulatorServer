@@ -25,26 +25,17 @@ import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
-    private static String urlSales = "./xmlFiles/EatingBills/";
-    private static String urlPayrolls = "./xmlFiles/Payrolls/";
+    private static String uri= "./xmlFiles/";
     private Document document;
     private CFDIBill bill;
 
 
-    public static String getUrlSales() {
-        return urlSales;
+    public static String getUri() {
+        return uri;
     }
 
-    public static void setUriSales(String urlSales) {
-        CFDIBillGenerator.urlSales = urlSales;
-    }
-
-    public static String getUrlPayrolls() {
-        return urlPayrolls;
-    }
-
-    public static void setUriPayrolls(String urlPayrolls) {
-        CFDIBillGenerator.urlPayrolls = urlPayrolls;
+    public static void setUri(String uri) {
+        CFDIBillGenerator.uri = uri;
     }
 
     public void generateBill(CFDIBill bill){
@@ -118,12 +109,18 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void saveXMLInFile() throws TransformerException {
         Transformer transformer = getTransformer();
         DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(new File(getFilePath()+getFileName()));
+        File file = new File(getFilePath() + getFileName());
+        if(file.isDirectory()) transformXML(transformer, source, file);
+        else if(file.mkdir()) transformXML(transformer, source, file);
+    }
+
+    private void transformXML(Transformer transformer, DOMSource source, File file) throws TransformerException {
+        StreamResult result = new StreamResult(file);
         transformer.transform(source, result);
     }
 
     private String getFilePath() {
-        return (bill.getType()== Type.income?urlSales:urlPayrolls);
+        return uri + bill.getClass().getSimpleName() +"/";
     }
 
     private String getFileName() {

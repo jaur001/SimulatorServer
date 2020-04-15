@@ -1,7 +1,7 @@
 package backend.model.simulables.company.restaurant.administration;
 
-import backend.model.simulables.company.provider.Product;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulation.administration.Simulation;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class ProviderSearcher {
     }
 
     private Provider getBetterProvider(Provider provider1, Provider provider2) {
-        return provider1.getProductPrice()<=provider2.getProductPrice()? provider1 : provider2;
+        return provider1.getPrice()<=provider2.getPrice()? provider1 : provider2;
     }
 
     private void changeProvider(Provider provider) {

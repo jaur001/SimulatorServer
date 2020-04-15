@@ -8,10 +8,12 @@ import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Job;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
@@ -30,6 +32,7 @@ public class Simulation {
 
     private static List<Restaurant> restaurantList = new CopyOnWriteArrayList<>();
     private static List<Provider> providerList = new CopyOnWriteArrayList<>();
+    private static List<ServiceCompany> serviceCompanyList = new CopyOnWriteArrayList<>();
     private static List<Client> clientList = new CopyOnWriteArrayList<>();
     private static List<Worker> workerList = new CopyOnWriteArrayList<>();
     private static List<XMLBill> billList = new LinkedList<>();
@@ -39,6 +42,10 @@ public class Simulation {
 
     public static int getProviderSize() {
         return providerList.size();
+    }
+
+    public static int getServiceCompanySize() {
+        return serviceCompanyList.size();
     }
 
     public static int getRestaurantSize() {
@@ -105,6 +112,13 @@ public class Simulation {
         return new LinkedList<>();
     }
 
+    public static List<Company> getCompanyListCopy() {
+        List<Company> companies = new CopyOnWriteArrayList<>(providerList);
+        companies.addAll(restaurantList);
+        companies.addAll(serviceCompanyList);
+        return companies;
+    }
+
     public static List<Restaurant> getRestaurantListCopy() {
         return new CopyOnWriteArrayList<>(restaurantList);
     }
@@ -113,10 +127,8 @@ public class Simulation {
         return new CopyOnWriteArrayList<>(providerList);
     }
 
-    public static List<Company> getCompanyListCopy() {
-        List<Company> companies = new CopyOnWriteArrayList<>(providerList);
-        companies.addAll(restaurantList);
-        return companies;
+    public static List<ServiceCompany> getServiceCompanyListCopy() {
+        return new CopyOnWriteArrayList<>(serviceCompanyList);
     }
 
     public static List<Client> getClientListCopy() {
@@ -135,6 +147,10 @@ public class Simulation {
         return providerList;
     }
 
+    static List<ServiceCompany> getServiceCompanyList() {
+        return serviceCompanyList;
+    }
+
     static List<Client> getClientList() {
         return clientList;
     }
@@ -146,6 +162,12 @@ public class Simulation {
     public static List<Provider> getProviderList(Product product) {
         return providerList.stream()
                 .filter(provider -> provider.getProduct().equals(product))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public static List<ServiceCompany> getServiceCompanyList(Service service) {
+        return serviceCompanyList.stream()
+                .filter(serviceCompany -> serviceCompany.getProduct().equals(service))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -169,6 +191,7 @@ public class Simulation {
     private static void initElements() {
         try {
             providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
+            serviceCompanyList = Initializer.getServiceCompany(GeneralSettings.getServiceCount());
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
@@ -203,7 +226,6 @@ public class Simulation {
                 .filter(Simulator::isNotAlreadyHired)
                 .filter(Simulator::isNotAlreadyRetired)
                 .filter(worker -> !worker.isWorking())
-                .filter(Worker::isNotRetired)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -215,7 +237,6 @@ public class Simulation {
         return Simulation.getWorkerList().stream()
                 .filter(Simulator::isNotAlreadyHired)
                 .filter(worker -> !worker.isWorking())
-                .filter(Worker::isNotRetired)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 }

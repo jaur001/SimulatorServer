@@ -1,7 +1,7 @@
 package backend.model.event.provider;
 
 import backend.model.event.GenericEvent;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 
 public class NewClientProviderEvent extends GenericEvent<Provider> {
@@ -15,6 +15,6 @@ public class NewClientProviderEvent extends GenericEvent<Provider> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " has new Client: " + restaurant.getCompanyName() + ", Price: " + simulable.getProductPrice();
+        return simulable.getCompanyName() + " has new Client: " + restaurant.getCompanyName() + ", Price: " + simulable.getPrice();
     }
 }

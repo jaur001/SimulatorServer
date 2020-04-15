@@ -130,6 +130,7 @@ public class Simulator{
     }
 
     public static void addSimulableForCompany(Company company, Simulable simulable) {
+        if(simulable instanceof Worker)
         simulableAdministrator.addSimulableForCompany(company,simulable);
     }
 

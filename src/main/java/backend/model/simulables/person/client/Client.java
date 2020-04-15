@@ -5,10 +5,9 @@ import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
-import backend.model.simulables.bank.transactions.EatingSaleTransaction;
+import backend.model.simulables.bank.transactions.EatingBillTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
@@ -137,7 +136,7 @@ public class Client implements Simulable, Collector{
 
     protected void payRestaurant(Restaurant restaurant) {
         double amount = new DistributionAmountGenerator().generate(restaurant,this);
-        Bank.makeTransaction(new EatingSaleTransaction(restaurant,this,amount));
+        Bank.makeTransaction(new EatingBillTransaction(restaurant,this,amount));
     }
 
 
@@ -156,9 +155,4 @@ public class Client implements Simulable, Collector{
         if(routineList != null) routineList.restartBudget();
     }
 
-    @Override
-    public String getMessage() {
-        if(!Simulation.getClientListCopy().contains(this)) return this.getFullName() + " has died.";
-        return this.getFullName() + " has entered to the simulation.";
-    }
 }

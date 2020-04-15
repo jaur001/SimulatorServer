@@ -1,4 +1,4 @@
-<%@ page import="backend.model.simulables.company.provider.Provider" %>
+<%@ page import="backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
@@ -58,7 +58,7 @@
                     <td><%=provider.getNIF()%></td>
                     <td><%=provider.getCompanyName()%></td>
                     <td><%=provider.getProduct()%></td>
-                    <td><%=provider.getProductPrice()%></td>
+                    <td><%=provider.getPrice()%></td>
                     <td><%=provider.getOwnerName()%></td>
                     <td><%=provider.getCreationDate()%></td>
                     <td><%=provider.getStreet()%></td>

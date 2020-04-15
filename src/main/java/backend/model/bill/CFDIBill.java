@@ -3,6 +3,7 @@ package backend.model.bill;
 import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.event.Event;
 import backend.model.simulation.timeLine.TimeLine;
+import backend.utils.MathUtils;
 
 public abstract class CFDIBill implements Event {
     protected int UUID;
@@ -30,8 +31,8 @@ public abstract class CFDIBill implements Event {
         this.receiverName = receiverName;
         this.receiverRFC = receiverRFC;
         this.subtotal = subtotal;
-        this.taxRate = 1.0;
-        this.total = this.taxRate*subtotal;
+        this.taxRate = (double)MathUtils.random(0,50)/100;
+        this.total = (1+ this.taxRate)*subtotal;
         this.currency = "euro";
         this.concept = concept;
         this.date = TimeLine.getDate().toString();

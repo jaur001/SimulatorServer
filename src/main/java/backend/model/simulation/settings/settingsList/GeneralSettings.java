@@ -1,6 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 
@@ -10,6 +11,7 @@ public class GeneralSettings implements Adjustable {
     private static int clientCount;
     private static int restaurantCount;
     private static int providerCount;
+    private static int serviceCount;
     private static int workerCount;
 
     static {
@@ -20,6 +22,7 @@ public class GeneralSettings implements Adjustable {
         clientCount = 10;
         restaurantCount = 1;
         providerCount = (int)Math.max(restaurantCount* PERCENTAGE_PROVIDERS,Product.values().length);
+        serviceCount = Math.max(restaurantCount/5, Service.values().length);
         workerCount = restaurantCount*40;
     }
 
@@ -49,5 +52,9 @@ public class GeneralSettings implements Adjustable {
 
     public static int getWorkerCount() {
         return workerCount;
+    }
+
+    public static int getServiceCount() {
+        return serviceCount;
     }
 }

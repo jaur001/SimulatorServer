@@ -1,7 +1,9 @@
 package backend.initializers;
 
 
+import backend.implementations.jobSelector.ProportionalJobSelector;
 import backend.model.simulables.person.worker.Job;
+import backend.model.simulables.person.worker.JobSelector;
 import backend.model.simulables.person.worker.Quality;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -13,9 +15,6 @@ import java.util.stream.IntStream;
 
 public class WorkerThread extends Thread {
     public static void setJobs(List<Worker> workerList){
-        workerList.parallelStream()
-                .filter(WorkerSettings::isInRetireAge)
-                .forEach(WorkerThread::changeAge);
         workerList.parallelStream().forEach(WorkerThread::setJob);
         if(workerList.size()>=Job.values().length)setAtLeastOneWorkerPerJob(workerList);
     }
@@ -37,10 +36,15 @@ public class WorkerThread extends Thread {
     }
 
     public static void setJob(Worker worker){
-        worker.setJob(WorkerSettings.selectJob());
+        setJob(worker,new ProportionalJobSelector());
+    }
+
+    public static void setJob(Worker worker, JobSelector selector){
+        if(WorkerSettings.isInRetireAge(worker))changeAge(worker);
+        worker.setJob(selector.selectJob().toString());
         worker.setSalaryDesired(RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
-        int position = MathUtils.random(0,Quality.values().length);
-        worker.setQuality(Quality.values()[position]);
+        int quality = MathUtils.random(0,Quality.values().length);
+        worker.setQuality(Quality.values()[quality]);
     }
 
     private static void setAtLeastOneWorkerPerJob(List<Worker> workerList) {

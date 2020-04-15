@@ -1,10 +1,11 @@
 package backend.model.simulables.company.restaurant.administration;
 
-import backend.implementations.worker.GenericWorkerSearcher;
+import backend.implementations.workerSearcher.GenericWorkerSearcher;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.Simulator;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class OfferManager {
     }
 
     void makeOffers(Worker current) {
-        searchBestWorkers(current).forEach(worker -> makeOffer(current,worker));
+        searchBetterWorkers(current).forEach(worker -> makeOffer(current,worker));
     }
 
     private void makeOffer(Worker current, Worker option) {
@@ -41,7 +42,8 @@ public class OfferManager {
         List<JobOffer> jobOffers = workerOffers.get(worker);
         JobOffer option = jobOffers.parallelStream()
                 .filter(JobOffer::isAccepted)
-                .filter(offer -> offer.getWorker().isNotRetired())
+                .filter(offer -> Simulator.isNotAlreadyHired(offer.getWorker()))
+                .filter(offer -> Simulator.isNotAlreadyRetired(offer.getWorker()))
                 .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return worker;
         else return option.getWorker();
@@ -70,7 +72,7 @@ public class OfferManager {
         workerOffers.get(worker).forEach(JobOffer::cancel);
     }
 
-    private List<Worker> searchBestWorkers(Worker worker) {
+    private List<Worker> searchBetterWorkers(Worker worker) {
         return new GenericWorkerSearcher(administrator.getCurrentStrategy()).searchBetterOptions(worker);
     }
 

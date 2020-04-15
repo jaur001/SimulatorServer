@@ -1,12 +1,11 @@
 package backend.model.simulables.bank.transactions;
 
-import backend.model.bill.bills.ProductPurchase;
 import backend.model.bill.bills.ProductRefund;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 
 public class ProductRefundTransaction extends Transaction {
 

@@ -1,6 +1,6 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.company.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
@@ -29,7 +29,7 @@ public class ProviderSettings implements Adjustable {
 
     private static void getDefaultProductCost() {
         Integer[] cost = {150,160,160,80,80,100,90};
-        IntStream.range(0,cost.length).boxed()
+        IntStream.range(0,Product.values().length).boxed()
                 .forEach(i -> productCostTable.put(Product.values()[i],cost[i]));
     }
 

@@ -1,6 +1,7 @@
 package backend.model.simulables.bank;
 
 
+import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
@@ -8,7 +9,7 @@ import backend.model.simulables.company.Company;
 import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
-public class Bank extends EventGenerator implements Simulable {
+public class Bank extends EventGenerator implements Simulable, Event {
 
     public static void makeTransaction(Transaction transaction){
         transaction.makeTransaction();

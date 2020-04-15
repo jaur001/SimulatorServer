@@ -10,9 +10,7 @@ public class StartCommand extends FrontCommand {
     public void process() {
         Simulator.setUriClient(context.getRealPath("/CSVFiles/Clients.csv"));
         Simulator.setUriProvider(context.getRealPath("/CSVFiles/Providers.csv"));
-
-        CFDIBillGenerator.setUriSales(context.getRealPath("/xmlFiles/EatingBills")+"/");
-        CFDIBillGenerator.setUriPayrolls(context.getRealPath("/xmlFiles/Payrolls")+"/");
+        CFDIBillGenerator.setUri(context.getRealPath("/xmlFiles")+"/");
         SQLiteDatabaseConnector.setUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
         Simulator.startStop(true);
         setToRequest("isRunning",Simulator.isRunning());

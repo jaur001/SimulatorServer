@@ -1,6 +1,8 @@
 package backend.model.simulation.settings.settingsList;
 
+import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulation.settings.Adjustable;
 import backend.model.simulation.settings.SettingsData;
 import backend.model.simulation.settings.data.BillData;
@@ -20,10 +22,11 @@ public class BillSettings implements Adjustable {
 
     static {
         getDefaultSettings();
-        conceptsTable.put("EatingSale","Bill of a eating.");
-        conceptsTable.put("ProductPurchase","Purchase of a product for the restaurant.");
-        conceptsTable.put("ProductRefund","Refund of a product in bad conditions.");
-        conceptsTable.put("Payroll","Payroll o a worker.");
+        conceptsTable.put(EatingBill.class.getSimpleName(),"Bill of a eating.");
+        conceptsTable.put(ProductPurchase.class.getSimpleName(),"Purchase of a product for the restaurant.");
+        conceptsTable.put(ProductRefund.class.getSimpleName(),"Refund of a product in bad conditions.");
+        conceptsTable.put(Payroll.class.getSimpleName(),"Payroll o a worker.");
+        conceptsTable.put(ServiceBill.class.getSimpleName(),"Service for company.");
     }
 
     private static void getDefaultSettings() {

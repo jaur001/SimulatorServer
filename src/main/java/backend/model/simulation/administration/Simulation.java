@@ -7,7 +7,6 @@ import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.provider.Product;
 import backend.model.simulables.person.client.Client;
@@ -18,7 +17,6 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
-import backend.model.simulation.simulator.Simulator;
 import backend.utils.DatabaseUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 

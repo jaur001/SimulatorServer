@@ -1,12 +1,10 @@
-package backend.model.simulation.simulator;
+package backend.model.simulation.administration;
 
 import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulableAdministrator;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 
@@ -24,7 +22,8 @@ public class Simulator{
     private static String uriProvider;
     private static String uriClient;
     private static TimeLine timeLine;
-    private static SimulableAdministrator helper;
+    private static SimulableAdministrator simulableAdministrator;
+    private static SimulationAdministrator simulationAdministrator;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -41,7 +40,6 @@ public class Simulator{
     public static void setUriClient(String uriClient) {
         Simulator.uriClient = uriClient;
     }
-
 
     public static void restart(){
         restart.set(true);
@@ -89,9 +87,9 @@ public class Simulator{
     private static void execute(boolean thread) {
         executing = new AtomicBoolean(true);
         restart = new AtomicBoolean(false);
-        helper = new SimulableAdministrator();
+        simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
         timeLine = new TimeLine(Simulation.init());
-        helper.setTimeLine(timeLine);
+        simulationAdministrator = new SimulationAdministrator(timeLine.getSimulableList(),new SimulationCommitter());
         //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeNormal();
@@ -106,6 +104,7 @@ public class Simulator{
         while (!restart.get()){
             if(isRunning()){
                 timeLine.play();
+                simulationAdministrator.manageSimulation();
             }
         }
     }
@@ -119,37 +118,45 @@ public class Simulator{
     }
 
     public static boolean isNotAlreadyHired(Worker worker) {
-        return helper.isNotAlreadyHired(worker);
+        return simulableAdministrator.isNotAlreadyHired(worker);
     }
 
     public static boolean isNotAlreadyRetired(Worker worker) {
-        return helper.isNotAlreadyRetired(worker);
+        return simulableAdministrator.isNotAlreadyRetired(worker);
     }
 
     public static void retire(Worker worker) {
-        helper.retire(worker);
+        simulableAdministrator.retire(worker);
     }
 
     public static void addSimulableForCompany(Company company, Simulable simulable) {
-        helper.addSimulableForCompany(company,simulable);
+        simulableAdministrator.addSimulableForCompany(company,simulable);
     }
 
     public static void removeSimulableForCompany(Company company, Simulable simulable) {
-        helper.removeSimulableForCompany(company,simulable);
+        simulableAdministrator.removeSimulableForCompany(company,simulable);
     }
 
     public static void makeChanges() {
-        helper.makeChanges();
+        simulableAdministrator.makeChanges();
     }
     public static void isGoingToDie(Client client){
-        helper.isGoingToDie(client);
+        simulableAdministrator.isGoingToDie(client);
     }
 
     public static void isGoingToClose(Company company){
-        helper.isGoingToClose(company);
+        simulableAdministrator.isGoingToClose(company);
     }
 
     public static TimeLine getTimeLine() {
         return timeLine;
+    }
+
+    public static void diePerson(Client client) {
+        simulationAdministrator.diePerson(client);
+    }
+
+    public static void closeCompany(Company company) {
+        simulationAdministrator.closeCompany(company);
     }
 }

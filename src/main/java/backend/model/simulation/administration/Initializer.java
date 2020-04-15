@@ -17,7 +17,6 @@ import backend.initializers.RoutineThread;
 import backend.initializers.WorkerSearcherThread;
 import backend.initializers.provider.ProductInitializerThread;
 import backend.initializers.provider.ProvidingThread;
-import backend.model.simulation.simulator.Simulator;
 import backend.view.loaders.database.builder.builders.ClientBuilder;
 import backend.view.loaders.database.builder.builders.ProviderBuilder;
 import backend.view.loaders.database.builder.builders.RestaurantBuilder;

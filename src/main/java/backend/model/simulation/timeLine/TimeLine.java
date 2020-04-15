@@ -5,7 +5,9 @@ import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulation.administration.SimulationAdministration;
+import backend.model.simulables.person.worker.Job;
+import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.SimulationAdministrator;
 
 import java.time.Month;
 import java.util.Date;
@@ -17,14 +19,16 @@ public class TimeLine extends EventGenerator{
     public static int TIMEOUT = 100;
     private static SimulationDate date = new SimulationDate();
     private List<Simulable> simulableList;
-    SimulationAdministration controller;
 
     public static Simulable actualSimulable;
 
     public TimeLine(List<Simulable> simulableList) {
         this.simulableList = simulableList;
-        controller = new SimulationAdministration(simulableList);
         date = new SimulationDate();
+    }
+
+    public List<Simulable> getSimulableList() {
+        return simulableList;
     }
 
 
@@ -32,8 +36,6 @@ public class TimeLine extends EventGenerator{
         simulableList.forEach(Simulable::simulate);
         SimulableTester.changeSimulable(null);
         passDay();
-        controller.manageSimulation();
-        EventController.resizeList();
     }
 
 
@@ -46,8 +48,6 @@ public class TimeLine extends EventGenerator{
             System.out.println("Simulation stopped");
         }
     }
-
-
 
     public static void setTIMEOUT(int TIMEOUT) {
         TimeLine.TIMEOUT = TIMEOUT;
@@ -79,9 +79,5 @@ public class TimeLine extends EventGenerator{
 
     public static int getDay() {
         return date.getDate();
-    }
-
-    public void removeSimulable(Simulable simulable) {
-        controller.removeSimulable(simulable);
     }
 }

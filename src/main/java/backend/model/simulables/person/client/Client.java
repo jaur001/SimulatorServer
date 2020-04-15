@@ -9,7 +9,7 @@ import backend.model.simulables.bank.transactions.EatingSaleTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.simulator.Simulator;
+import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 

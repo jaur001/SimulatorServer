@@ -68,12 +68,14 @@ Dudas:
 Proximos Pasos:
 H - Usar Ajax para mostrar los eventos y cambiar la velocidad
 
-- añadir factura de impuestos de company.
-- Darle pesos de puntuacion a cada trabajo.
+P - añadir factura de impuestos de company.
+P/H - Darle pesos de puntuacion a cada trabajo.
 H - Los clientes y trabajadores pueden morir cuando son viejos.
-- añadir los eventos correspondientes para bajadas de salario deseado, contratos, renovacios y despidos.
-- plantear que cuando se produzca una trasaccion el banco haga la factura.
-- Solucionar dependencias circulares.
-- cambiar el numero de restaurantes por cliente
-- y los dias que tardan en ir
-- Mirar clases que calculen probabilidades
+H - añadir los eventos correspondientes para bajadas de salario deseado, contratos, renovacios y despidos.
+H - plantear que cuando se produzca una trasaccion el banco haga la factura.
+H - Solucionar dependencias circulares.
+P - cambiar el numero de restaurantes por cliente
+H - y los dias que tardan en ir
+P - Mirar clases que calculen probabilidades
+P - Clientes y trabajadores muertos ser reinsertados en el futuro.
+P - Añadir estrategia a la hora de selecionar trabajo.

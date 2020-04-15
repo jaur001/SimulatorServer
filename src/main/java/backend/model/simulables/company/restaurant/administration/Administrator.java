@@ -5,8 +5,7 @@ import backend.implementations.worker.strategy.strategies.complexStrategy.strate
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.worker.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.simulator.Simulator;
-import backend.model.event.EventGenerator;
+import backend.model.simulation.administration.Simulator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.PayrollTransaction;
 import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
@@ -26,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
-public class Administrator extends EventGenerator {
+public class Administrator{
 
     private int tables;
     private List<Contract> contractList;

@@ -4,7 +4,7 @@ import backend.implementations.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.event.EventGenerator;
-import backend.model.simulation.simulator.SimulatorThreadPool;
+import backend.model.simulation.administration.SimulatorThreadPool;
 import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
@@ -63,7 +63,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
         appendData();
         saveXMLInFile();
         saveInList();
-        saveInDatabase(bill,getFilePath(),getFileName());
+        //saveInDatabase(bill,getFilePath(),getFileName());
     }
 
     private void getXMLDocument() throws ParserConfigurationException {

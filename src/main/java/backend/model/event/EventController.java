@@ -1,6 +1,6 @@
 package backend.model.event;
 
-import backend.model.simulation.simulator.Simulator;
+import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ConcurrentModificationException;

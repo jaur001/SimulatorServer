@@ -12,7 +12,7 @@ public class WorkerSettings{
     public static final double SALARY_DESIRED_CHANGE = 0.001;
     public static final int RETIRE_AGE = 65;
     public static final double PERCENTAGE_RETIREMENT = 0.60;
-    private  static int[] percentages = {45,75,90,95,100};
+    private  static int[] percentages = {50,80,95,97,100};
 
 
 

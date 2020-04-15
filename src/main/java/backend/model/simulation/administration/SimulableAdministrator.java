@@ -6,10 +6,7 @@ import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.SimulationAdministration;
-import backend.model.simulation.administration.SimulationCommitter;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
-import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -18,23 +15,20 @@ import java.util.Map;
 
 public class SimulableAdministrator {
 
-    private TimeLine timeLine;
     private Map<Restaurant,List<Simulable>> restaurantAddingList;
     private Map<Restaurant,List<Simulable>> restaurantRemovingList;
     private List<Worker> retiredWorkers;
     private List<Client> deadClientList;
     private List<Company> closedCompanyList;
+    private SimulationCommitter committer;
 
-    public SimulableAdministrator() {
+    public SimulableAdministrator(SimulationCommitter committer) {
+        this.committer = committer;
         restaurantAddingList = new HashMap<>();
         restaurantRemovingList = new HashMap<>();
         retiredWorkers = new LinkedList<>();
         deadClientList = new LinkedList<>();
         closedCompanyList = new LinkedList<>();
-    }
-
-    public void setTimeLine(TimeLine timeLine) {
-        this.timeLine = timeLine;
     }
 
     public void retire(Worker worker) {
@@ -88,8 +82,8 @@ public class SimulableAdministrator {
     }
 
     private void addSimulable(Restaurant restaurant, Simulable simulable) {
-        if(simulable instanceof Provider) SimulationCommitter.commitAddProvider(restaurant,(Provider)simulable);
-        else if(simulable instanceof Worker) SimulationCommitter.commitAddWorker(restaurant,(Worker)simulable);
+        if(simulable instanceof Provider) committer.commitAddProvider(restaurant,(Provider)simulable);
+        else if(simulable instanceof Worker) committer.commitAddWorker(restaurant,(Worker)simulable);
     }
 
     private void removeSimulablesFromRestaurant() {
@@ -102,13 +96,13 @@ public class SimulableAdministrator {
     }
 
     private void removeSimulable(Restaurant restaurant, Simulable simulable) {
-        if(simulable instanceof Provider) SimulationCommitter.commitRemoveProvider(restaurant,(Provider)simulable);
+        if(simulable instanceof Provider) committer.commitRemoveProvider(restaurant,(Provider)simulable);
         else if(simulable instanceof Worker) removeWorkerFromRestaurant(restaurant,(Worker)simulable);
     }
 
     private void removeWorkerFromRestaurant(Restaurant restaurant, Worker worker) {
-        if(WorkerSettings.isInRetireAge(worker)) SimulationCommitter.commitRetireWorker(restaurant,worker);
-        else SimulationCommitter.commitRemoveWorker(restaurant,worker);
+        if(WorkerSettings.isInRetireAge(worker)) committer.commitRetireWorker(restaurant,worker);
+        else committer.commitRemoveWorker(restaurant,worker);
     }
 
     public void isGoingToDie(Client client){
@@ -121,8 +115,7 @@ public class SimulableAdministrator {
     }
 
     private void diePerson(Client client) {
-        SimulationAdministration.diePerson(client);
-        timeLine.removeSimulable(client);
+        Simulator.diePerson(client);
     }
 
     public void isGoingToClose(Company company){
@@ -135,7 +128,6 @@ public class SimulableAdministrator {
     }
 
     private void closeCompany(Company company) {
-        SimulationAdministration.closeCompany(company);
-        timeLine.removeSimulable(company);
+        Simulator.closeCompany(company);
     }
 }

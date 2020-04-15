@@ -1,4 +1,4 @@
-package backend.model.simulation.simulator;
+package backend.model.simulation.administration;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
@@ -6,7 +6,6 @@ import backend.model.simulables.company.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.Date;

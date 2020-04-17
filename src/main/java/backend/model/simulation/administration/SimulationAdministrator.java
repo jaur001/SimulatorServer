@@ -8,6 +8,7 @@ import backend.model.event.events.company.ClosedCompanyEvent;
 import backend.model.event.events.company.NewCompanyEvent;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
@@ -63,14 +64,14 @@ public class SimulationAdministrator extends EventGenerator {
     private void checkThereIsNewRestaurant() {
         if(!RestaurantSettings.newRestaurant()) return;
         Simulable simulable = addRestaurant();
-        if(simulable != null)addEvent(new NewCompanyEvent((Company)simulable));
+        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
         addSimulable(simulable);
     }
 
     private void checkThereIsNewProvider() {
         if(!ProviderSettings.newProvider()) return;
         Simulable simulable = addProvider();
-        if(simulable != null)addEvent(new NewCompanyEvent((Company)simulable));
+        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
         addSimulable(simulable);
     }
 
@@ -124,10 +125,14 @@ public class SimulationAdministrator extends EventGenerator {
     }
 
     public void closeCompany(Company company) {
-        if(company instanceof Restaurant) closeRestaurant((Restaurant)company);
-        else if(company instanceof Provider) closeProvider((Provider)company);
+        if(company instanceof ComplexCompany)closeComplexCompany(company);
         removeSimulable(company);
         addEvent(new ClosedCompanyEvent(company));
+    }
+
+    public void closeComplexCompany(Company company) {
+        if(company instanceof Restaurant) closeRestaurant((Restaurant)company);
+        else if(company instanceof Provider) closeProvider((Provider)company);
     }
 
     private void closeRestaurant(Restaurant restaurant) {

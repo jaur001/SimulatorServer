@@ -1,11 +1,11 @@
 package backend.model.event.events.company;
 
 import backend.model.event.GenericEvent;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 
-public class NewCompanyEvent extends GenericEvent<Company> {
+public class NewCompanyEvent extends GenericEvent<ComplexCompany> {
 
-    public NewCompanyEvent(Company company) {
+    public NewCompanyEvent(ComplexCompany company) {
         super(company);
     }
 

@@ -2,8 +2,9 @@ package backend.model.simulation.administration;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
@@ -15,8 +16,8 @@ import java.util.Map;
 
 public class SimulableAdministrator {
 
-    private Map<Restaurant,List<Simulable>> restaurantAddingList;
-    private Map<Restaurant,List<Simulable>> restaurantRemovingList;
+    private Map<ComplexCompany,List<Simulable>> companiesAddingChanges;
+    private Map<ComplexCompany,List<Simulable>> companiesRemovingChanges;
     private List<Worker> retiredWorkers;
     private List<Client> deadClientList;
     private List<Company> closedCompanyList;
@@ -24,8 +25,8 @@ public class SimulableAdministrator {
 
     public SimulableAdministrator(SimulationCommitter committer) {
         this.committer = committer;
-        restaurantAddingList = new HashMap<>();
-        restaurantRemovingList = new HashMap<>();
+        companiesAddingChanges = new HashMap<>();
+        companiesRemovingChanges = new HashMap<>();
         retiredWorkers = new LinkedList<>();
         deadClientList = new LinkedList<>();
         closedCompanyList = new LinkedList<>();
@@ -35,23 +36,19 @@ public class SimulableAdministrator {
         retiredWorkers.add(worker);
     }
 
-    public void addSimulableForCompany(Company company, Simulable simulable) {
-        if(company instanceof Restaurant){
-            if(!restaurantAddingList.containsKey(company)) restaurantAddingList.put((Restaurant)company,new LinkedList<>());
-            restaurantAddingList.get(company).add(simulable);
-        }
+    public void addSimulableForCompany(ComplexCompany company, Simulable simulable) {
+        if(!companiesAddingChanges.containsKey(company)) companiesAddingChanges.put(company,new LinkedList<>());
+        companiesAddingChanges.get(company).add(simulable);
     }
 
-    public void removeSimulableForCompany(Company company, Simulable simulable) {
-        if(company instanceof Restaurant){
-            if(!restaurantRemovingList.containsKey(company)) restaurantRemovingList.put((Restaurant)company,new LinkedList<>());
-            restaurantRemovingList.get(company).add(simulable);
-        }
+    public void removeSimulableForCompany(ComplexCompany company, Simulable simulable) {
+        if(!companiesRemovingChanges.containsKey(company)) companiesRemovingChanges.put(company,new LinkedList<>());
+        companiesRemovingChanges.get(company).add(simulable);
     }
 
     public boolean isNotAlreadyHired(Worker worker) {
-        return restaurantAddingList.keySet().stream()
-                .noneMatch(restaurant-> restaurantAddingList.get(restaurant).contains(worker));
+        return companiesAddingChanges.keySet().stream()
+                .noneMatch(company-> companiesAddingChanges.get(company).contains(worker));
     }
 
     public boolean isNotAlreadyRetired(Worker worker) {
@@ -62,14 +59,14 @@ public class SimulableAdministrator {
     public void makeChanges() {
         diePeople();
         closeCompanies();
-        addSimulablesFromRestaurant();
-        removeSimulablesFromRestaurant();
+        addChangesForCompany();
+        removeChangesFromCompany();
     }
 
-    private void addSimulablesFromRestaurant() {
+    private void addChangesForCompany() {
         retireWorkers();
-        restaurantAddingList.forEach(this::addSimulables);
-        restaurantAddingList = new HashMap<>();
+        companiesAddingChanges.forEach(this::addSimulables);
+        companiesAddingChanges = new HashMap<>();
     }
 
     private void retireWorkers() {
@@ -77,32 +74,34 @@ public class SimulableAdministrator {
         retiredWorkers = new LinkedList<>();
     }
 
-    private void addSimulables(Restaurant restaurant, List<Simulable> simulables) {
-        simulables.forEach(simulable -> addSimulable(restaurant,simulable));
+    private void addSimulables(ComplexCompany company, List<Simulable> simulables) {
+        simulables.forEach(simulable -> addSimulable(company,simulable));
     }
 
-    private void addSimulable(Restaurant restaurant, Simulable simulable) {
-        if(simulable instanceof Provider) committer.commitAddProvider(restaurant,(Provider)simulable);
-        else if(simulable instanceof Worker) committer.commitAddWorker(restaurant,(Worker)simulable);
+    private void addSimulable(ComplexCompany company, Simulable simulable) {
+        if(simulable instanceof Provider) committer.commitAddProvider(company,(Provider)simulable);
+        else if(simulable instanceof ServiceCompany) committer.commitAddService(company,(ServiceCompany) simulable);
+        else if(simulable instanceof Worker) committer.commitAddWorker(company,(Worker)simulable);
     }
 
-    private void removeSimulablesFromRestaurant() {
-        restaurantRemovingList.forEach(this::removeSimulables);
-        restaurantRemovingList = new HashMap<>();
+    private void removeChangesFromCompany() {
+        companiesRemovingChanges.forEach(this::removeSimulables);
+        companiesRemovingChanges = new HashMap<>();
     }
 
-    private void removeSimulables(Restaurant restaurant, List<Simulable> simulables) {
-        simulables.forEach(simulable -> removeSimulable(restaurant,simulable));
+    private void removeSimulables(ComplexCompany company, List<Simulable> simulables) {
+        simulables.forEach(simulable -> removeSimulable(company,simulable));
     }
 
-    private void removeSimulable(Restaurant restaurant, Simulable simulable) {
-        if(simulable instanceof Provider) committer.commitRemoveProvider(restaurant,(Provider)simulable);
-        else if(simulable instanceof Worker) removeWorkerFromRestaurant(restaurant,(Worker)simulable);
+    private void removeSimulable(ComplexCompany company, Simulable simulable) {
+        if(simulable instanceof Provider) committer.commitRemoveProvider(company,(Provider)simulable);
+        else if(simulable instanceof ServiceCompany) committer.commitRemoveService(company,(ServiceCompany) simulable);
+        else if(simulable instanceof Worker) removeWorkerFromRestaurant(company,(Worker)simulable);
     }
 
-    private void removeWorkerFromRestaurant(Restaurant restaurant, Worker worker) {
-        if(WorkerSettings.isInRetireAge(worker)) committer.commitRetireWorker(restaurant,worker);
-        else committer.commitRemoveWorker(restaurant,worker);
+    private void removeWorkerFromRestaurant(ComplexCompany company, Worker worker) {
+        if(WorkerSettings.isInRetireAge(worker)) committer.commitRetireWorker(company,worker);
+        else committer.commitRemoveWorker(company,worker);
     }
 
     public void isGoingToDie(Client client){

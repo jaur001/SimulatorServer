@@ -3,7 +3,7 @@ package backend.model.bill.bills;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
@@ -12,10 +12,10 @@ public class ProductPurchase extends CFDIBill{
     private static final Type type = Type.income;
     private static final Use use = Use.G01;
     private Provider provider;
-    private Company company;
+    private ComplexCompany company;
 
 
-    public ProductPurchase(Provider provider, Company company) {
+    public ProductPurchase(Provider provider, ComplexCompany company) {
         super(company.getStreet(), type, use, provider.getCompanyName()
                 ,provider.getNIF(), company.getCompanyName(), company.getNIF(), provider.getPrice()
                 , BillSettings.getConcept(ProductPurchase.class.getSimpleName()));
@@ -27,7 +27,7 @@ public class ProductPurchase extends CFDIBill{
         return provider;
     }
 
-    public Company getCompany() {
+    public ComplexCompany getCompany() {
         return company;
     }
 

@@ -3,15 +3,18 @@ package backend.model.simulables.company.restaurant;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.restaurant.administration.Administrator;
 import backend.model.simulables.company.restaurant.administration.Employer;
 import backend.model.simulables.company.restaurant.administration.OfferManager;
 import backend.model.simulables.company.restaurant.administration.ProviderSearcher;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
@@ -21,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 // Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
-public class Restaurant extends Company{
+public class Restaurant extends ComplexCompany {
     private PriceRange priceRange;
     private int tables;
     private AtomicInteger tablesAvailable;
@@ -46,7 +49,7 @@ public class Restaurant extends Company{
         this.tablesAvailable = new AtomicInteger(tables*RestaurantSettings.EATINGS_PER_TABLE);
         this.administrator = new Administrator(financialData,tables,this);
         this.employer = new Employer(administrator,new OfferManager(this,administrator));
-        this.searcher = new ProviderSearcher(administrator);
+        this.searcher = new ProviderSearcher(administrator,this);
     }
 
     public double getScore(){
@@ -94,13 +97,19 @@ public class Restaurant extends Company{
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if(TimeLine.isLastDay()) {
-            payAndCheckDebts();
-            analyzeFinances();
-        }
+        if(!hasThisService(Service.Transport)) addService();
         checkProducts();
         checkContracts();
         restartTablesAvailable();
+        if(TimeLine.isLastDay()) {
+            checkFinances();
+            checkBetterProviders();
+        }
+    }
+
+    public void addService() {
+        ServiceCompany simulable = searchService(Service.Transport);
+        if(simulable!=null)Simulator.addSimulableForCompany(this, simulable);
     }
 
     private void checkProducts() {
@@ -119,11 +128,6 @@ public class Restaurant extends Company{
         tablesAvailable.set(tables*RestaurantSettings.EATINGS_PER_TABLE);
     }
 
-    public void payAndCheckDebts() {
-        administrator.payDebts();
-        changePrice();
-        checkBetterProviders();
-    }
 
     @Override
     protected boolean manageFinances() {
@@ -146,7 +150,7 @@ public class Restaurant extends Company{
 
     @Override
     protected double getTaxes() {
-        return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())*Company.TAXES)/10;
+        return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())* ComplexCompany.TAXES)/10;
     }
 
     @Override

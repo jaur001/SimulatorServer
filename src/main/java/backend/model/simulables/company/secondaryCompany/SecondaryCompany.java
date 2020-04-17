@@ -1,10 +1,10 @@
 package backend.model.simulables.company.secondaryCompany;
 
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 
-public abstract class SecondaryCompany extends Company {
+public abstract class SecondaryCompany extends ComplexCompany {
 
     protected String creationDate;
     protected String ownerName;
@@ -21,11 +21,5 @@ public abstract class SecondaryCompany extends Company {
 
     public String getOwnerName() {
         return ownerName;
-    }
-
-    protected void checkFinances() {
-        financialData.reset();
-        changePrice();
-        analyzeFinances();
     }
 }

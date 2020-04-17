@@ -8,10 +8,13 @@ import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Provider extends MonthlyCompany<Product> {
 
@@ -34,19 +37,16 @@ public class Provider extends MonthlyCompany<Product> {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if(!hasThisService(Service.Transport))searchTransportService();
+        if(!hasThisService(Service.Transport)) addService();
         if(TimeLine.isLastDay()) {
-            payTransport();
             checkFinances();
         }
     }
 
-    private void payTransport() {
-        ServiceCompany company = getService(Service.Transport);
-        if(company != null) Bank.makeTransaction(new ServiceBillTransaction(company,this,company.getPrice()));
+    public void addService() {
+        ServiceCompany simulable = searchService(Service.Transport);
+        if(simulable!=null)Simulator.addSimulableForCompany(this, simulable);
     }
 
-    private void searchTransportService() {
 
-    }
 }

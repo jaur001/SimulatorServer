@@ -1,8 +1,9 @@
 package backend.model.simulation.administration;
 
 import backend.model.event.EventGenerator;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -10,37 +11,38 @@ import backend.model.simulation.settings.settingsList.RestaurantSettings;
 public class SimulationCommitter extends EventGenerator {
 
 
-    public void commitAddProvider(Restaurant restaurant, Provider provider){
-        restaurant.getProviders().add(provider);
-        restaurant.getFinancialData().addDebt(provider.getPrice());
-        provider.addClient(restaurant);
+    public void commitAddProvider(ComplexCompany company, Provider provider){
+        company.addProvider(provider);
+        provider.addClient(company);
     }
 
-    public void commitRemoveProvider(Restaurant restaurant, Provider provider){
-        if(restaurant.getProviders().contains(provider)){
-            restaurant.getProviders().remove(provider);
-            restaurant.getFinancialData().removeDebt(provider.getPrice());
-            provider.removeClient(restaurant);
+    public void commitRemoveProvider(ComplexCompany company, Provider provider){
+        if(company.getProviders().contains(provider)){
+            company.removeProvider(provider);
+            provider.removeClient(company);
         }
     }
 
-    public void commitAddWorker(Restaurant restaurant, Worker worker){
-        worker.hire(restaurant, RestaurantSettings.getSalary(Job.valueOf(worker.getJob())));
-        restaurant.getFinancialData().addDebt(worker.getSalaryDesired());
+    public void commitAddWorker(ComplexCompany company, Worker worker){
+        company.addWorker(worker);
     }
 
-    public void commitRemoveWorker(Restaurant restaurant, Worker worker){
-        if(restaurant.getWorkers().contains(worker)){
-            worker.fire();
-            restaurant.getFinancialData().removeDebt(worker.getSalary());
-        }
+    public void commitRemoveWorker(ComplexCompany company, Worker worker){
+        company.removeWorker(worker);
     }
 
-    public void commitRetireWorker(Restaurant restaurant, Worker worker) {
-        if(restaurant.getWorkers().contains(worker)){
-            worker.retire();
-            Simulation.getWorkerList().remove(worker);
-            restaurant.getFinancialData().removeDebt(worker.getSalary());
-        }
+    public void commitRetireWorker(ComplexCompany company, Worker worker) {
+        Simulation.getWorkerList().remove(worker);
+        company.retireWorker(worker);
+    }
+
+    public void commitAddService(ComplexCompany company, ServiceCompany serviceCompany) {
+        serviceCompany.addClient(company);
+        company.addService(serviceCompany);
+    }
+
+    public void commitRemoveService(ComplexCompany company, ServiceCompany serviceCompany) {
+        serviceCompany.removeClient(company);
+        company.removeService(serviceCompany);
     }
 }

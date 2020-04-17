@@ -7,7 +7,8 @@ import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
@@ -31,8 +32,7 @@ import java.util.stream.Collectors;
 public class Simulation {
 
     private static List<Restaurant> restaurantList = new CopyOnWriteArrayList<>();
-    private static List<Provider> providerList = new CopyOnWriteArrayList<>();
-    private static List<ServiceCompany> serviceCompanyList = new CopyOnWriteArrayList<>();
+    private static List<MonthlyCompany> monthlyCompanies = new CopyOnWriteArrayList<>();
     private static List<Client> clientList = new CopyOnWriteArrayList<>();
     private static List<Worker> workerList = new CopyOnWriteArrayList<>();
     private static List<XMLBill> billList = new LinkedList<>();
@@ -41,11 +41,11 @@ public class Simulation {
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
 
     public static int getProviderSize() {
-        return providerList.size();
+        return getProviderList().size();
     }
 
     public static int getServiceCompanySize() {
-        return serviceCompanyList.size();
+        return getServiceCompanyList().size();
     }
 
     public static int getRestaurantSize() {
@@ -80,8 +80,8 @@ public class Simulation {
 
     public static List<Provider> getProviderList(int page) {
         int from = getFrom(page);
-        int to = getTo(from,providerList.size());
-        return providerList.subList(from, to);
+        int to = getTo(from,getProviderSize());
+        return getProviderList().subList(from, to);
     }
 
     public static List<Client> getClientList(int page) {
@@ -112,10 +112,9 @@ public class Simulation {
         return new LinkedList<>();
     }
 
-    public static List<Company> getCompanyListCopy() {
-        List<Company> companies = new CopyOnWriteArrayList<>(providerList);
+    public static List<ComplexCompany> getCompanyListCopy() {
+        List<ComplexCompany> companies = new CopyOnWriteArrayList<>(monthlyCompanies);
         companies.addAll(restaurantList);
-        companies.addAll(serviceCompanyList);
         return companies;
     }
 
@@ -124,11 +123,11 @@ public class Simulation {
     }
 
     public static List<Provider> getProviderListCopy() {
-        return new CopyOnWriteArrayList<>(providerList);
+        return new CopyOnWriteArrayList<>(getProviderList());
     }
 
     public static List<ServiceCompany> getServiceCompanyListCopy() {
-        return new CopyOnWriteArrayList<>(serviceCompanyList);
+        return new CopyOnWriteArrayList<>(getServiceCompanyList());
     }
 
     public static List<Client> getClientListCopy() {
@@ -144,11 +143,17 @@ public class Simulation {
     }
 
     static List<Provider> getProviderList() {
-        return providerList;
+        return monthlyCompanies.stream()
+                .filter(monthlyCompany -> monthlyCompany instanceof Provider)
+                .map(monthlyCompany -> (Provider) monthlyCompany)
+                .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<ServiceCompany> getServiceCompanyList() {
-        return serviceCompanyList;
+        return monthlyCompanies.stream()
+                .filter(monthlyCompany -> monthlyCompany instanceof ServiceCompany)
+                .map(monthlyCompany -> (ServiceCompany) monthlyCompany)
+                .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<Client> getClientList() {
@@ -160,13 +165,13 @@ public class Simulation {
     }
 
     public static List<Provider> getProviderList(Product product) {
-        return providerList.stream()
+        return getProviderList().stream()
                 .filter(provider -> provider.getProduct().equals(product))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
     public static List<ServiceCompany> getServiceCompanyList(Service service) {
-        return serviceCompanyList.stream()
+        return getServiceCompanyList().stream()
                 .filter(serviceCompany -> serviceCompany.getProduct().equals(service))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -190,8 +195,8 @@ public class Simulation {
 
     private static void initElements() {
         try {
-            providerList = Initializer.getProviders(GeneralSettings.getProviderCount());
-            serviceCompanyList = Initializer.getServiceCompany(GeneralSettings.getServiceCount());
+            monthlyCompanies.addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
+            monthlyCompanies.addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
             restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());

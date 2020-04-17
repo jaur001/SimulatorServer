@@ -1,5 +1,6 @@
 package backend.model.simulables.company.restaurant.administration;
 
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulation.administration.Simulation;
@@ -13,44 +14,34 @@ import java.util.stream.Collectors;
 public class ProviderSearcher {
 
     private Administrator administrator;
+    private ComplexCompany company;
 
-    public ProviderSearcher(Administrator administrator) {
+    public ProviderSearcher(Administrator administrator, ComplexCompany company) {
         this.administrator = administrator;
+        this.company = company;
     }
 
     public void searchBetterOptions(){
         Arrays.stream(Product.values())
-                .map(this::getBestOption)
+                .map(product -> company.searchProvider(product))
                 .filter(Objects::nonNull)
                 .forEach(this::changeProvider);
     }
 
-    private Provider getBestOption(Product product) {
-        List<Provider> providerList = Simulation.getProviderList(product);
-        if(providerList.size()==0) return null;
-        return providerList.stream()
-                .reduce(providerList.get(0),this::getBetterProvider);
-    }
-
-    private Provider getBetterProvider(Provider provider1, Provider provider2) {
-        return provider1.getPrice()<=provider2.getPrice()? provider1 : provider2;
-    }
-
     private void changeProvider(Provider provider) {
-        Provider actualProvider = administrator.getProvider(provider.getProduct());
+        Provider actualProvider = company.getProvider(provider.getProduct());
         if(actualProvider!=null) administrator.removeProvider(actualProvider);
         administrator.addProvider(provider);
     }
 
     public void addMissingProvider() {
-        List<Product> products = getMissingProvider();
-        products.forEach(product -> administrator.addProvider(getBestOption(product)));
+        List<Product> products = getMissingProducts();
+        products.forEach(product -> administrator.addProvider(company.searchProvider(product)));
     }
 
-    private List<Product> getMissingProvider() {
+    private List<Product> getMissingProducts() {
         return Arrays.stream(Product.values())
-                .filter(product -> administrator.getProvidersList().stream()
-                    .noneMatch(provider -> provider.getProduct().equals(product)))
+                .filter(product -> !company.hasThisProvider(product))
                 .collect(Collectors.toList());
     }
 
@@ -64,9 +55,9 @@ public class ProviderSearcher {
         removeUnnecessaryProviders(providerList);
     }
 
-    private void removeUnnecessaryProviders(List<Provider> providerList) {
+    private void removeUnnecessaryProviders(List<Provider> providersNeeded) {
         administrator.getProvidersList().stream()
-                .filter(provider -> !providerList.contains(provider))
+                .filter(provider -> !providersNeeded.contains(provider))
                 .forEach(provider -> administrator.removeProvider(provider));
     }
 }

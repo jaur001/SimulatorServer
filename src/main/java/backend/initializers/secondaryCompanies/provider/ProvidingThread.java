@@ -21,7 +21,7 @@ public class ProvidingThread{
                 .map(integer -> new RandomProvidingInitializer().provide(Product.values()[integer]))
                 .filter(Objects::nonNull)
                 .forEach(provider -> {
-                    restaurant.getAdministrator().addProvider(provider);
+                    restaurant.addProvider(provider);
                     provider.addClient(restaurant);
                 });
     }

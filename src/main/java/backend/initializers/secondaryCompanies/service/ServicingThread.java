@@ -1,7 +1,7 @@
 package backend.initializers.secondaryCompanies.service;
 
 import backend.implementations.secondaryCompanies.service.RandomServicingInitializer;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.Simulation;
@@ -18,12 +18,12 @@ public class ServicingThread {
         Simulation.getProviderListCopy().forEach((provider -> initCompanyWithService(provider,Service.Transport)));
     }
 
-    public static void initCompaniesWithService(List<Company> companyList, Service service){
+    public static void initCompaniesWithService(List<ComplexCompany> companyList, Service service){
         companyList.parallelStream().forEach(company -> initCompanyWithService(company,service));
     }
 
 
-    public static void initCompanyWithService(Company company, Service service) {
+    public static void initCompanyWithService(ComplexCompany company, Service service) {
         ServiceCompany serviceCompany = new RandomServicingInitializer().provide(service);
         company.addService(serviceCompany);
         serviceCompany.addClient(company);

@@ -1,7 +1,7 @@
 package backend.model.simulables.person.worker;
 
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
@@ -22,7 +22,7 @@ public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
-    private Company company = null;
+    private ComplexCompany company = null;
     private List<JobOffer> jobOfferList;
 
 
@@ -35,7 +35,7 @@ public class Worker extends Client{
     }
 
 
-    public Company getCompany() {
+    public ComplexCompany getCompany() {
         return company;
     }
 
@@ -67,7 +67,7 @@ public class Worker extends Client{
         return isWorking.get();
     }
 
-    public void hire(Company company, double salary) {
+    public void hire(ComplexCompany company, double salary) {
         this.isWorking.set(true);
         this.company = company;
         setSalary(salary);

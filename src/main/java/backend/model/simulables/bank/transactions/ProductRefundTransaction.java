@@ -4,7 +4,7 @@ import backend.model.bill.bills.ProductRefund;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 
 public class ProductRefundTransaction extends Transaction {
@@ -15,13 +15,13 @@ public class ProductRefundTransaction extends Transaction {
 
     @Override
     protected boolean checkBill() {
-        return issuer instanceof Provider && receiver instanceof Company;
+        return issuer instanceof Provider && receiver instanceof ComplexCompany;
     }
 
     @Override
     protected void generateBill() {
         if(checkBill())
-            new CFDIBillGenerator().generateBill(new ProductRefund((Provider) issuer,(Company) receiver));
+            new CFDIBillGenerator().generateBill(new ProductRefund((Provider) issuer,(ComplexCompany) receiver));
         else System.out.println("Error generating the Bill, not found the elements of Product Refund.");
     }
 

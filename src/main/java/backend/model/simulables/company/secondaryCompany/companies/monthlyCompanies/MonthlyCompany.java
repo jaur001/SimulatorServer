@@ -1,6 +1,6 @@
 package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies;
 
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
-    protected List<Company> companyList;
+    protected List<ComplexCompany> companyList;
     protected Product product;
     protected double price;
 
@@ -20,19 +20,19 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
         this.price = 0;
     }
 
-    public void addClient(Company company){
+    public void addClient(ComplexCompany company){
         companyList.add(company);
         financialData.addIncome(price);
     }
 
-    public void removeClient(Company company){
+    public void removeClient(ComplexCompany company){
         if(companyList.contains(company)){
             companyList.remove(company);
             financialData.removeIncome(price);
         }
     }
 
-    public List<Company> getCompanyList() {
+    public List<ComplexCompany> getCompanyList() {
         return companyList;
     }
 
@@ -74,6 +74,6 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     @Override
     protected double getTaxes() {
-        return (price*Company.TAXES)/100;
+        return (price* ComplexCompany.TAXES)/100;
     }
 }

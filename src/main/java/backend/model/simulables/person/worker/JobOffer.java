@@ -1,16 +1,16 @@
 package backend.model.simulables.person.worker;
 
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 
 public class JobOffer {
-    private Company company;
+    private ComplexCompany company;
     private Worker worker;
     private double salary;
     private boolean canceled;
     private boolean acceptedByWorker;
     private boolean acceptedByRestaurant;
 
-    public JobOffer(Company company, Worker worker, double salary) {
+    public JobOffer(ComplexCompany company, Worker worker, double salary) {
         this.company = company;
         this.worker = worker;
         this.salary = salary;
@@ -19,7 +19,7 @@ public class JobOffer {
         acceptedByRestaurant = false;
     }
 
-    public Company getCompany() {
+    public ComplexCompany getCompany() {
         return company;
     }
 

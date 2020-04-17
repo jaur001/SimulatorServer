@@ -3,6 +3,7 @@ package backend.model.simulation.administration;
 import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
@@ -129,12 +130,11 @@ public class Simulator{
         simulableAdministrator.retire(worker);
     }
 
-    public static void addSimulableForCompany(Company company, Simulable simulable) {
-        if(simulable instanceof Worker)
+    public static void addSimulableForCompany(ComplexCompany company, Simulable simulable) {
         simulableAdministrator.addSimulableForCompany(company,simulable);
     }
 
-    public static void removeSimulableForCompany(Company company, Simulable simulable) {
+    public static void removeSimulableForCompany(ComplexCompany company, Simulable simulable) {
         simulableAdministrator.removeSimulableForCompany(company,simulable);
     }
 

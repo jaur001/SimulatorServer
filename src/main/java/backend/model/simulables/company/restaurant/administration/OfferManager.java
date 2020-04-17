@@ -1,7 +1,7 @@
 package backend.model.simulables.company.restaurant.administration;
 
 import backend.implementations.workerSearcher.GenericWorkerSearcher;
-import backend.model.simulables.company.Company;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
@@ -14,11 +14,11 @@ import java.util.Map;
 
 public class OfferManager {
 
-    private Company company;
+    private ComplexCompany company;
     private Map<Worker,List<JobOffer>> workerOffers;
     private Administrator administrator;
 
-    public OfferManager(Company company, Administrator administrator) {
+    public OfferManager(ComplexCompany company, Administrator administrator) {
         this.company = company;
         this.administrator = administrator;
         this.workerOffers = new LinkedHashMap<>();

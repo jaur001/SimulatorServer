@@ -1,5 +1,10 @@
 package backend.model.simulables.company;
 
+import backend.model.simulables.person.worker.Worker;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class FinancialData implements Cloneable {
     /*
     beneficios, total del activo, total del pasivo, patrimonio neto, capital social, tesoreria, compras, ventas
@@ -14,6 +19,8 @@ public class FinancialData implements Cloneable {
     private double purchases;     // compras
     private double sales;         // ventas
     private FinancialData lastMonthData;
+    private Map<ComplexCompany,Double> debtsTable = new LinkedHashMap<>();
+    private Map<Worker,Double> payrolls = new LinkedHashMap<>();
 
 
     public FinancialData(double socialCapital) {
@@ -26,6 +33,14 @@ public class FinancialData implements Cloneable {
         reset();
     }
 
+    public Map<ComplexCompany, Double> getDebtsTable() {
+        return debtsTable;
+    }
+
+    public Map<Worker, Double> getPayrolls() {
+        return payrolls;
+    }
+
     public void addSale(double amount){
         sales += amount;
     }
@@ -34,13 +49,32 @@ public class FinancialData implements Cloneable {
         purchases += amount;
     }
 
-
     public void addDebt(double amount) {
         totalPassive+=amount;
     }
 
     public void removeDebt(double amount) {
         totalPassive-=amount;
+    }
+
+    public void addDebt(ComplexCompany company, double amount) {
+        totalPassive+=amount;
+        debtsTable.put(company,amount);
+    }
+
+    public void removeDebt(ComplexCompany company) {
+        totalPassive-=debtsTable.get(company);
+        debtsTable.remove(company);
+    }
+
+    public void addDebt(Worker worker, double amount) {
+        totalPassive+=amount;
+        payrolls.put(worker,amount);
+    }
+
+    public void removeDebt(Worker worker) {
+        totalPassive-=payrolls.get(worker);
+        payrolls.remove(worker);
     }
 
     public void addIncome(double amount) {

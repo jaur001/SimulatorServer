@@ -2,7 +2,6 @@ package backend.model.simulables.company;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Payer;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.Simulator;
 
 
@@ -47,7 +46,7 @@ public abstract class Company implements Payer, Simulable {
         return financialData;
     }
 
-    protected abstract double getTaxes();
+    public abstract double getMortgage();
 
     protected void checkFinances() {
         financialData.reset();
@@ -56,10 +55,10 @@ public abstract class Company implements Payer, Simulable {
     }
 
     protected void changePrice() {
-        financialData.removeDebt(getTaxes());
+        financialData.removeDebt(getMortgage());
         if(financialData.getLastMonthBenefits()>0)increasePrice();
         else decreasePrice();
-        financialData.addDebt(getTaxes());
+        financialData.addDebt(getMortgage());
     }
 
     protected void analyzeFinances(){
@@ -87,7 +86,7 @@ public abstract class Company implements Payer, Simulable {
     }
 
     @Override
-    public void payTaxes(){
-        financialData.pay(getTaxes());
+    public void payMortgage(){
+        financialData.pay(getMortgage());
     }
 }

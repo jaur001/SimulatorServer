@@ -27,6 +27,7 @@ public class BillSettings implements Adjustable {
         conceptsTable.put(ProductRefund.class.getSimpleName(),"Refund of a product in bad conditions.");
         conceptsTable.put(Payroll.class.getSimpleName(),"Payroll o a worker.");
         conceptsTable.put(ServiceBill.class.getSimpleName(),"Service for company.");
+        conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }
 
     private static void getDefaultSettings() {

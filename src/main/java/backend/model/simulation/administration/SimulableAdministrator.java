@@ -96,10 +96,10 @@ public class SimulableAdministrator {
     private void removeSimulable(ComplexCompany company, Simulable simulable) {
         if(simulable instanceof Provider) committer.commitRemoveProvider(company,(Provider)simulable);
         else if(simulable instanceof ServiceCompany) committer.commitRemoveService(company,(ServiceCompany) simulable);
-        else if(simulable instanceof Worker) removeWorkerFromRestaurant(company,(Worker)simulable);
+        else if(simulable instanceof Worker) removeWorkerFromCompany(company,(Worker)simulable);
     }
 
-    private void removeWorkerFromRestaurant(ComplexCompany company, Worker worker) {
+    private void removeWorkerFromCompany(ComplexCompany company, Worker worker) {
         if(WorkerSettings.isInRetireAge(worker)) committer.commitRetireWorker(company,worker);
         else committer.commitRemoveWorker(company,worker);
     }

@@ -5,6 +5,7 @@ import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.bank.transactions.BuildingInversionTransaction;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulation.administration.Simulation;
@@ -22,13 +23,15 @@ public class Bank extends EventGenerator implements Simulable, Event {
         addEvent(this);
         if(TimeLine.isLastDay()){
             Simulation.getClientListCopy().forEach(Collector::collectSalary);
-            Simulation.getCompanyListCopy().forEach(Company::payTaxes);
+            Simulation.getCompanyListCopy().forEach(this::payMortgage);
         }
     }
 
-    public void payTaxes(Payer payer) {
-        //makeTransaction(new);
-        payer.payTaxes();
+    public void payMortgage(Payer payer) {
+        if(payer instanceof ComplexCompany) {
+            ComplexCompany company = (ComplexCompany) payer;
+            new BuildingInversionTransaction(this,company, company.getMortgage()).makeTransaction();
+        }
     }
 
     @Override

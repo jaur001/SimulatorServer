@@ -2,7 +2,6 @@ package backend.model.bill.generator;
 
 import backend.implementations.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
-import backend.model.bill.Type;
 import backend.model.event.EventGenerator;
 import backend.model.simulation.administration.SimulatorThreadPool;
 import backend.model.simulation.administration.Simulation;
@@ -25,7 +24,7 @@ import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
-    private static String uri= "./xmlFiles/";
+    private static String uri= "./out/artifacts/RestaurantSimulator_war_exploded/xmlFiles";
     private Document document;
     private CFDIBill bill;
 
@@ -78,6 +77,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void setAttributes(Element billElement) {
         billElement.setAttribute("Date", bill.getDate());
         billElement.setAttribute("Type",bill.getType().toString());
+        billElement.setAttribute("Use",bill.getUse().toString());
         billElement.setAttribute("Location", bill.getStreet());
         billElement.setAttribute("Currency", bill.getCurrency());
         billElement.setAttribute("SubTotal", bill.getSubtotal()+"");
@@ -109,9 +109,14 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void saveXMLInFile() throws TransformerException {
         Transformer transformer = getTransformer();
         DOMSource source = new DOMSource(document);
-        File file = new File(getFilePath() + getFileName());
-        if(file.isDirectory()) transformXML(transformer, source, file);
-        else if(file.mkdir()) transformXML(transformer, source, file);
+        File file = new File(getFilePath() + "/" + getFileName());
+        saveInDirectory(transformer, source, file);
+    }
+
+    private void saveInDirectory(Transformer transformer, DOMSource source, File file) throws TransformerException {
+        File filePath = new File(getFilePath());
+        if(filePath.isDirectory()) transformXML(transformer, source, file);
+        else if(filePath.mkdirs()) transformXML(transformer, source, file);
     }
 
     private void transformXML(Transformer transformer, DOMSource source, File file) throws TransformerException {
@@ -120,7 +125,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     }
 
     private String getFilePath() {
-        return uri + bill.getClass().getSimpleName() +"/";
+        return uri + bill.getClass().getSimpleName();
     }
 
     private String getFileName() {

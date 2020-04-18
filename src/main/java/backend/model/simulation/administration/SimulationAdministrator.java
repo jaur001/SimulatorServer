@@ -9,12 +9,10 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.settings.settingsList.ClientSettings;
-import backend.model.simulation.settings.settingsList.ProviderSettings;
-import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.model.simulation.settings.settingsList.WorkerSettings;
+import backend.model.simulation.settings.settingsList.*;
 
 import java.util.List;
 
@@ -57,6 +55,7 @@ public class SimulationAdministrator extends EventGenerator {
     private void checkThereIsNewCompany() {
         checkThereIsNewRestaurant();
         checkThereIsNewProvider();
+        checkThereIsNewService();
     }
 
     private void checkThereIsNewRestaurant() {
@@ -73,6 +72,13 @@ public class SimulationAdministrator extends EventGenerator {
         addSimulable(simulable);
     }
 
+    private void checkThereIsNewService() {
+        if(!ServiceSettings.newService()) return;
+        Simulable simulable = addService();
+        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
+        addSimulable(simulable);
+    }
+
     public void addSimulable(Simulable simulable){
         if(simulable!=null) simulableList.add(simulable);
     }
@@ -84,7 +90,6 @@ public class SimulationAdministrator extends EventGenerator {
     private Simulable addWorker() {
         Worker worker = Initializer.getWorker();
         if(worker == null) return null;
-        Simulator.makeChanges();
         Simulation.getWorkerList().add(worker);
         Simulation.getClientList().add(worker);
         return worker;
@@ -93,7 +98,6 @@ public class SimulationAdministrator extends EventGenerator {
     private Simulable addClient() {
         Client client = Initializer.getClient();
         if(client == null) return null;
-        Simulator.makeChanges();
         Simulation.getClientList().add(client);
         return client;
     }
@@ -103,16 +107,22 @@ public class SimulationAdministrator extends EventGenerator {
         if(restaurant == null) return null;
         Simulator.makeChanges();
         if(restaurant.getNumberOfWorkers()==0) return null;
-        Simulation.getRestaurantList().add(restaurant);
+        Simulation.getCompanyList().add(restaurant);
         return restaurant;
     }
 
     private Simulable addProvider() {
         Provider provider = Initializer.getProvider();
-        Simulator.makeChanges();
         if(provider == null) return null;
-        Simulation.getProviderList().add(provider);
+        Simulation.getCompanyList().add(provider);
         return provider;
+    }
+
+    private Simulable addService() {
+        ServiceCompany serviceCompany = Initializer.getService();
+        if(serviceCompany == null) return null;
+        Simulation.getCompanyList().add(serviceCompany);
+        return serviceCompany;
     }
 
     public void diePerson(Client client) {

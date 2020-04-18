@@ -23,7 +23,7 @@ public abstract class CFDIBill implements Event {
 
     public CFDIBill(int UUID,String street, Type type, Use use, String issuerName, int issuerRFC, String receiverName, int receiverRFC, double subtotal, String concept) {
         this.UUID = UUID;
-        this.street = street;
+        this.street = MathUtils.random(35000,40000)+"";
         this.type = type;
         this.use = use;
         this.issuerName = issuerName;

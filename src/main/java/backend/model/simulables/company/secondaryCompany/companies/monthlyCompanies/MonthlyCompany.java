@@ -52,9 +52,9 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
     public abstract void setPrice();
 
     public void setPrice(double productPrice) {
-        financialData.removeDebt(getTaxes());
+        financialData.removeDebt(getMortgage());
         this.price = productPrice;
-        financialData.addDebt(getTaxes());
+        financialData.addDebt(getMortgage());
     }
 
     @Override
@@ -73,7 +73,7 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
     }
 
     @Override
-    protected double getTaxes() {
+    public double getMortgage() {
         return (price* ComplexCompany.TAXES)/100;
     }
 }

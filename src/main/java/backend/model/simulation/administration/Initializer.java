@@ -48,13 +48,13 @@ public class Initializer {
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        List<Client> clientList = new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getPersonSize(), clientCount));
+        List<Client> clientList = new ClientBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getClientSize(), clientCount));
         clientList.forEach(client -> client.setSalary(ClientSettings.getSalarySample()));
         return clientList;
     }
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getPersonSize(), workerCount));
+        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", PersonNIFCreator.getInitialValue() + Simulation.getClientSize(), workerCount));
         if(workerCount==1) WorkerThread.setJob(workerList.get(0),new MostEmployedJobSelector());
         else WorkerThread.setJobs(workerList);
         return workerList;
@@ -67,10 +67,10 @@ public class Initializer {
 
     private static void prepareSimulables() {
         ProvidingThread.initRestaurantsProviders();
-        WorkerSearcherThread.addWorkers();
-        RoutineThread.setClientRoutines();
         ServicingThread.initProvidersWithTransport();
         ServicingThread.initRestaurantsWithCleaning();
+        WorkerSearcherThread.addWorkers();
+        RoutineThread.setClientRoutines();
         Simulator.makeChanges();
     }
 
@@ -109,6 +109,7 @@ public class Initializer {
             Restaurant restaurant = getRestaurants(1).get(0);
             WorkerSearcherThread.addWorker(restaurant);
             ProvidingThread.initProvidersForRestaurant(restaurant);
+            ServicingThread.initRestaurantsWithCleaning();
             return restaurant;
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             e.printStackTrace();
@@ -118,7 +119,18 @@ public class Initializer {
 
     public static Provider getProvider() {
         try {
-            return getProviders(1).get(0);
+            Provider provider = getProviders(1).get(0);
+            ServicingThread.initProvidersWithTransport();
+            return provider;
+        } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ServiceCompany getService() {
+        try {
+            return getServiceCompany(1).get(0);
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
             e.printStackTrace();
             return null;

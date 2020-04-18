@@ -58,10 +58,6 @@ public class Simulation {
         return workerList.size();
     }
 
-    public static int getPersonSize() {
-        return clientList.size()+workerList.size();
-    }
-
     private static int getFrom(int page) {
         return DatabaseUtils.getPageLength()*(page-1);
     }
@@ -120,10 +116,6 @@ public class Simulation {
 
     public static List<Provider> getProviderListCopy() {
         return new CopyOnWriteArrayList<>(getProviderList());
-    }
-
-    public static List<ServiceCompany> getServiceCompanyListCopy() {
-        return new CopyOnWriteArrayList<>(getServiceCompanyList());
     }
 
     public static List<Client> getClientListCopy() {

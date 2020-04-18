@@ -39,7 +39,7 @@ public class Restaurant extends ComplexCompany {
         super(NIF,companyName,street,telephoneNumber,new FinancialData( RestaurantSettings.getInitialSocialCapital()));
         this.priceRange = priceRange;
         this.tables = tables;
-        financialData.addDebt(getTaxes());
+        financialData.addDebt(getMortgage());
         initAdministration(tables);
     }
 
@@ -148,7 +148,7 @@ public class Restaurant extends ComplexCompany {
     }
 
     @Override
-    protected double getTaxes() {
+    public double getMortgage() {
         return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())* ComplexCompany.TAXES)/10;
     }
 

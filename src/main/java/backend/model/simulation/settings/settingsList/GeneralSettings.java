@@ -22,7 +22,7 @@ public class GeneralSettings implements Adjustable {
         clientCount = 10;
         restaurantCount = 1;
         providerCount = (int)Math.max(restaurantCount* PERCENTAGE_PROVIDERS,Product.values().length);
-        serviceCount = Math.max(restaurantCount/5, Service.values().length*10);
+        serviceCount = Math.max((restaurantCount+providerCount)/5, Service.values().length);
         workerCount = restaurantCount*40;
     }
 

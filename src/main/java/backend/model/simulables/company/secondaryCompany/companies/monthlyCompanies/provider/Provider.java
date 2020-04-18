@@ -4,8 +4,6 @@ import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.timeLine.TimeLine;
 
@@ -16,7 +14,7 @@ public class Provider extends MonthlyCompany<Product> {
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street,telephoneNumber);
         companyList = new ArrayList<>();
-        financialData.addDebt(getTaxes());
+        financialData.addDebt(getMortgage());
     }
 
     public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {

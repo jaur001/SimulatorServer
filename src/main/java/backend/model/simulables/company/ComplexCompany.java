@@ -154,7 +154,7 @@ public abstract class ComplexCompany extends Company{
     }
 
     protected void checkBetterServices(Service service) {
-        if(this.getService(service)==null) searchAndAddService(service);
+        if(this.getService(service)==null)return;
         ServiceCompany serviceCompany = searchService(service);
         if(serviceCompany == null) return;
         if(serviceCompany.getPrice()<this.getService(service).getPrice())changeService(serviceCompany);

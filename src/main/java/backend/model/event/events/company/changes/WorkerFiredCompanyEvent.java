@@ -1,15 +1,16 @@
-package backend.model.event.events.restaurant;
+package backend.model.event.events.company.changes;
 
 import backend.model.event.GenericEvent;
+import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Worker;
 
-public class WorkerFiredRestaurantEvent extends GenericEvent<Restaurant> {
+public class WorkerFiredCompanyEvent extends GenericEvent<ComplexCompany> {
 
     private Worker worker;
 
-    public WorkerFiredRestaurantEvent(Restaurant restaurant, Worker worker) {
-        super(restaurant);
+    public WorkerFiredCompanyEvent(ComplexCompany company, Worker worker) {
+        super(company);
         this.worker = worker;
     }
 

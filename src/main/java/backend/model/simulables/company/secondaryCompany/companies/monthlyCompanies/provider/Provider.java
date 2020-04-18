@@ -2,19 +2,14 @@ package backend.model.simulables.company.secondaryCompany.companies.monthlyCompa
 
 import backend.model.NIFCreator.ProviderNIFCreator;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.bank.Bank;
-import backend.model.simulables.bank.transactions.ServiceBillTransaction;
-import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Provider extends MonthlyCompany<Product> {
 
@@ -37,16 +32,21 @@ public class Provider extends MonthlyCompany<Product> {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if(!hasThisService(Service.Transport)) addService();
+        if(hasNotThisService(Service.Transport)) searchAndAddService(Service.Transport);
         if(TimeLine.isLastDay()) {
             checkFinances();
         }
     }
 
-    public void addService() {
-        ServiceCompany simulable = searchService(Service.Transport);
-        if(simulable!=null)Simulator.addSimulableForCompany(this, simulable);
+
+    @Override
+    protected void checkBetterProviders() {
+
     }
 
+    @Override
+    protected void checkBetterServices() {
+        checkBetterServices(Service.Transport);
+    }
 
 }

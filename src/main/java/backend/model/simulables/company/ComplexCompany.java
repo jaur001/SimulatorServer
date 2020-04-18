@@ -1,8 +1,6 @@
 package backend.model.simulables.company;
 
-import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
-import backend.model.simulables.bank.Payer;
 import backend.model.simulables.bank.transactions.PayrollTransaction;
 import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
 import backend.model.simulables.bank.transactions.ServiceBillTransaction;
@@ -44,14 +42,18 @@ public abstract class ComplexCompany extends Company{
         return services;
     }
 
+    public List<Worker> getWorkers() {
+        return workers;
+    }
+
     public void removeService(ServiceCompany serviceCompany) {
         services.remove(serviceCompany);
         financialData.removeDebt(serviceCompany);
     }
 
-    public boolean hasThisService(Service service){
+    public boolean hasNotThisService(Service service){
         return services.stream()
-                .anyMatch(serviceCompany -> serviceCompany.getProduct().equals(service));
+                .noneMatch(serviceCompany -> serviceCompany.getProduct().equals(service));
     }
 
     public ServiceCompany getService(Service service){
@@ -60,7 +62,7 @@ public abstract class ComplexCompany extends Company{
                 .findFirst().orElse(null);
     }
 
-    protected ServiceCompany searchService(Service service) {
+    public ServiceCompany searchService(Service service) {
         List<ServiceCompany> options = Simulation.getServiceCompanyList(service);
         if(options.size() == 0) return null;
         return options.stream()
@@ -128,20 +130,39 @@ public abstract class ComplexCompany extends Company{
 
     @Override
     protected void checkFinances() {
-        payDebts();
+        payCompanyDebts();
         financialData.reset();
         changePrice();
+        checkBetterProviders();
+        checkBetterServices();
         analyzeFinances();
-    }
-
-    protected void payDebts(){
-        payCompanyDebts();
     }
 
     protected void payCompanyDebts() {
         payProvider();
         payServices();
         payWorkers();
+    }
+
+    protected abstract void checkBetterProviders();
+
+    protected abstract void checkBetterServices();
+
+    protected void searchAndAddService(Service service) {
+        ServiceCompany simulable = searchService(service);
+        if(simulable!=null)Simulator.addSimulableForCompany(this, simulable);
+    }
+
+    protected void checkBetterServices(Service service) {
+        if(this.getService(service)==null) searchAndAddService(service);
+        ServiceCompany serviceCompany = searchService(service);
+        if(serviceCompany == null) return;
+        if(serviceCompany.getPrice()<this.getService(service).getPrice())changeService(serviceCompany);
+    }
+
+    public void changeService(ServiceCompany company) {
+        Simulator.removeSimulableForCompany(this,this.getService(Service.Transport));
+        Simulator.addSimulableForCompany(this,company);
     }
 
     private void payWorkers() {

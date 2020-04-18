@@ -3,7 +3,9 @@ package backend.model.simulables.company.restaurant.administration;
 import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulation.administration.Simulator;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -11,17 +13,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ProviderSearcher {
+public class CompaniesSearcher {
 
     private Administrator administrator;
     private ComplexCompany company;
 
-    public ProviderSearcher(Administrator administrator, ComplexCompany company) {
+    public CompaniesSearcher(Administrator administrator, ComplexCompany company) {
         this.administrator = administrator;
         this.company = company;
     }
 
-    public void searchBetterOptions(){
+    public void searchBetterProviders(){
         Arrays.stream(Product.values())
                 .map(product -> company.searchProvider(product))
                 .filter(Objects::nonNull)

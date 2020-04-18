@@ -27,4 +27,14 @@ public class ServiceCompany extends MonthlyCompany<Service> {
             checkFinances();
         }
     }
+
+    @Override
+    protected void checkBetterProviders() {
+
+    }
+
+    @Override
+    protected void checkBetterServices() {
+
+    }
 }

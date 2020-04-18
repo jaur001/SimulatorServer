@@ -77,8 +77,7 @@ public class Initializer {
     private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new CopyOnWriteArrayList<>();
         simulableList.add(new Bank());
-        simulableList.addAll(Simulation.getProviderList());
-        simulableList.addAll(Simulation.getRestaurantList());
+        simulableList.addAll(Simulation.getCompanyList());
         simulableList.addAll(Simulation.getClientList());
         return simulableList;
     }

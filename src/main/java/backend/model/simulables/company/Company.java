@@ -2,6 +2,7 @@ package backend.model.simulables.company;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Payer;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.Simulator;
 
 

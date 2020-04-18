@@ -2,9 +2,7 @@ package backend.model.simulation.administration;
 
 import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
-import backend.model.event.events.client.DeadClientEvent;
 import backend.model.event.events.client.NewClientEvent;
-import backend.model.event.events.company.ClosedCompanyEvent;
 import backend.model.event.events.company.NewCompanyEvent;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
@@ -118,48 +116,12 @@ public class SimulationAdministrator extends EventGenerator {
     }
 
     public void diePerson(Client client) {
-        if(client instanceof Worker) Simulation.getWorkerList().remove(client);
-        Simulation.getClientList().remove(client);
+        committer.commitDiePerson(client);
         removeSimulable(client);
-        addEvent(new DeadClientEvent(client));
     }
 
     public void closeCompany(Company company) {
-        if(company instanceof ComplexCompany)closeComplexCompany(company);
+        committer.commitCloseCompany(company);
         removeSimulable(company);
-        addEvent(new ClosedCompanyEvent(company));
-    }
-
-    public void closeComplexCompany(Company company) {
-        if(company instanceof Restaurant) closeRestaurant((Restaurant)company);
-        else if(company instanceof Provider) closeProvider((Provider)company);
-    }
-
-    private void closeRestaurant(Restaurant restaurant) {
-        Simulation.getRestaurantList().remove(restaurant);
-        removeProviders(restaurant);
-        removeWorkers(restaurant);
-    }
-
-    private void removeProviders(Restaurant restaurant) {
-        restaurant.getAdministrator().getProvidersList()
-                .forEach(provider -> provider.removeClient(restaurant));
-    }
-
-    private void removeWorkers(Restaurant restaurant) {
-        restaurant.getWorkers()
-                .forEach(worker -> committer.commitRemoveWorker(restaurant,worker));
-    }
-
-    public void closeProvider(Provider provider) {
-        Simulation.getProviderList().remove(provider);
-        removeRestaurants(provider);
-    }
-
-    private void removeRestaurants(Provider provider) {
-        provider.getCompanyList().stream()
-                .filter(companyClient -> companyClient instanceof Restaurant)
-                .map(companyClient -> (Restaurant) companyClient)
-                .forEach(restaurant -> committer.commitRemoveProvider(restaurant,provider));
     }
 }

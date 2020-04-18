@@ -7,8 +7,7 @@ import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.company.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
@@ -31,8 +30,7 @@ import java.util.stream.Collectors;
 
 public class Simulation {
 
-    private static List<Restaurant> restaurantList = new CopyOnWriteArrayList<>();
-    private static List<MonthlyCompany> monthlyCompanies = new CopyOnWriteArrayList<>();
+    private static List<Company> companyList = new CopyOnWriteArrayList<>();
     private static List<Client> clientList = new CopyOnWriteArrayList<>();
     private static List<Worker> workerList = new CopyOnWriteArrayList<>();
     private static List<XMLBill> billList = new LinkedList<>();
@@ -49,7 +47,7 @@ public class Simulation {
     }
 
     public static int getRestaurantSize() {
-        return restaurantList.size();
+        return getRestaurantList().size();
     }
 
     public static int getClientSize() {
@@ -74,8 +72,8 @@ public class Simulation {
 
     public static List<Restaurant> getRestaurantList(int page) {
         int from = getFrom(page);
-        int to = getTo(from,restaurantList.size());
-        return restaurantList.subList(from, to);
+        int to = getTo(from,getRestaurantSize());
+        return getRestaurantList().subList(from, to);
     }
 
     public static List<Provider> getProviderList(int page) {
@@ -112,14 +110,12 @@ public class Simulation {
         return new LinkedList<>();
     }
 
-    public static List<ComplexCompany> getCompanyListCopy() {
-        List<ComplexCompany> companies = new CopyOnWriteArrayList<>(monthlyCompanies);
-        companies.addAll(restaurantList);
-        return companies;
+    public static List<Company> getCompanyListCopy() {
+        return new CopyOnWriteArrayList<>(getCompanyList());
     }
 
     public static List<Restaurant> getRestaurantListCopy() {
-        return new CopyOnWriteArrayList<>(restaurantList);
+        return new CopyOnWriteArrayList<>(getRestaurantList());
     }
 
     public static List<Provider> getProviderListCopy() {
@@ -138,21 +134,28 @@ public class Simulation {
         return new CopyOnWriteArrayList<>(workerList);
     }
 
+    static List<Company> getCompanyList(){
+        return companyList;
+    }
+
     static List<Restaurant> getRestaurantList() {
-        return restaurantList;
+        return companyList.stream()
+                .filter(company -> company instanceof Restaurant)
+                .map(company -> (Restaurant) company)
+                .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<Provider> getProviderList() {
-        return monthlyCompanies.stream()
-                .filter(monthlyCompany -> monthlyCompany instanceof Provider)
-                .map(monthlyCompany -> (Provider) monthlyCompany)
+        return companyList.stream()
+                .filter(company -> company instanceof Provider)
+                .map(company -> (Provider) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<ServiceCompany> getServiceCompanyList() {
-        return monthlyCompanies.stream()
-                .filter(monthlyCompany -> monthlyCompany instanceof ServiceCompany)
-                .map(monthlyCompany -> (ServiceCompany) monthlyCompany)
+        return companyList.stream()
+                .filter(company -> company instanceof ServiceCompany)
+                .map(company -> (ServiceCompany) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
@@ -195,10 +198,10 @@ public class Simulation {
 
     private static void initElements() {
         try {
-            monthlyCompanies.addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
-            monthlyCompanies.addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
+            companyList.addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
+            companyList.addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
+            companyList.addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
             workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
-            restaurantList = Initializer.getRestaurants(GeneralSettings.getRestaurantCount());
             clientList = Initializer.getClients(GeneralSettings.getClientCount());
             clientList.addAll(workerList);
         } catch (SQLException | ClassNotFoundException e) {

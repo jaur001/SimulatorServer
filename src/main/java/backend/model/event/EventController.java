@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class EventController {
 
     public static final int MAX_SIZE = 1000;
-    private static List<String> eventList = new CopyOnWriteArrayList<>();
+    private static List<Event> eventList = new CopyOnWriteArrayList<>();
 
     public static void addEvent(Event event){
         if(isTheFirstDay()) return;
@@ -23,7 +23,7 @@ public class EventController {
 
     public static void addToWeb(Event event) {
         try {
-            eventList.add(event.getMessage());
+            eventList.add(event);
         } catch (ConcurrentModificationException | IndexOutOfBoundsException e){
             Simulator.waitForOtherElements();
             addToWeb(event);
@@ -34,7 +34,7 @@ public class EventController {
         return TimeLine.isSameDate(new Date());
     }
 
-    public static List<String> getEvents(){
+    public static List<Event> getEvents(){
         return eventList;
     }
 

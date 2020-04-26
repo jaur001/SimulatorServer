@@ -1,16 +1,15 @@
 package backend.model.simulation.administration;
 
-import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
+import backend.server.sockets.PersonWebSocket;
 import backend.utils.MathUtils;
 
-import java.sql.SQLException;
-import java.util.concurrent.Executors;
+import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -18,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Simulator{
 
     private static AtomicBoolean executing;
-    private static AtomicBoolean restart = new AtomicBoolean(false);
+    private static AtomicBoolean restart = new AtomicBoolean(true);
 
     private static String uriProvider;
     private static String uriClient;
@@ -44,7 +43,6 @@ public class Simulator{
 
     public static void restart(){
         restart.set(true);
-        executing = null;
     }
 
     public static boolean isRunning() {
@@ -59,55 +57,51 @@ public class Simulator{
 
     public static void stopSimulation() {
         executing.set(false);
-        try {
-            new SQLiteDatabaseConnector().disconnect();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void startSimulation(){
         executing.set(true);
-        try {
-            new SQLiteDatabaseConnector().connect();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static boolean isInitialized(){
-        return executing != null;
+    public static boolean isNotInitialized(){
+        return restart.get();
     }
 
 
     public static void startStop(boolean thread){
-        if(!Simulator.isInitialized()) Simulator.execute(thread);
+        if(Simulator.isNotInitialized()) Simulator.initExecution(thread);
         else Simulator.changeExecuting();
     }
 
-    private static void execute(boolean thread) {
-        executing = new AtomicBoolean(true);
-        restart = new AtomicBoolean(false);
-        simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
-        timeLine = new TimeLine(Simulation.init());
-        simulationAdministrator = new SimulationAdministrator(timeLine.getSimulableList(),new SimulationCommitter());
+    private static void initExecution(boolean thread) {
+        initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeNormal();
     }
 
+    private static void initSimulatorElements() {
+        executing = new AtomicBoolean(true);
+        restart = new AtomicBoolean(false);
+        simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
+        List<Simulable> simulables = Simulation.init();
+        timeLine = new TimeLine(simulables);
+        simulationAdministrator = new SimulationAdministrator(timeLine.getSimulableList(),new SimulationCommitter());
+    }
+
     private static void executeWithThread() {
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
+        ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
         executor.submit(Simulator::executeNormal);
     }
 
     private static void executeNormal() {
-        while (!restart.get()){
-            if(isRunning()){
+        while (!restart.get()) {
+            if (isRunning()) {
                 timeLine.play();
                 simulationAdministrator.manageSimulation();
             }
         }
+        Simulation.reset();
     }
 
     public static void waitForOtherElements() {

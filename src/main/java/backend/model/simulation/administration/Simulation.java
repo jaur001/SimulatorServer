@@ -183,7 +183,6 @@ public class Simulation {
 
 
     public static List<Simulable> init(){
-        reset();
         initElements();
         return Initializer.init();
     }
@@ -202,7 +201,10 @@ public class Simulation {
         }
     }
 
-    private static void reset(){
+    public static void reset(){
+        companyList = new CopyOnWriteArrayList<>();
+        clientList = new CopyOnWriteArrayList<>();
+        workerList = new CopyOnWriteArrayList<>();
         resetBills();
         resetEvents();
     }
@@ -210,8 +212,8 @@ public class Simulation {
     private static void resetBills(){
         billList = new LinkedList<>();
         try {
-            if(new SQLiteTableSelector().readCount("Bill")==0)return;
-            new SQLiteRowDeleter().deleteAll("Bill");
+            if(new SQLiteTableSelector().readCount("Bill")!=0)
+                new SQLiteRowDeleter().deleteAll("Bill");
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Database is locked, could not delete Bills of last Simulation");
         }

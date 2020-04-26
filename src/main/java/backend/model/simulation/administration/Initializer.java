@@ -6,7 +6,7 @@ import backend.initializers.WorkerThread;
 import backend.initializers.secondaryCompanies.service.ServiceThread;
 import backend.initializers.secondaryCompanies.service.ServicingThread;
 import backend.model.NIFCreator.PersonNIFCreator;
-import backend.model.NIFCreator.ProviderNIFCreator;
+import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
@@ -31,13 +31,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Initializer {
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue()+Simulation.getProviderSize(), providerCount));
+        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", SecondaryNIFCreator.getInitialValue()+Simulation.getProviderSize(), providerCount));
         ProductThread.initProducts(providerList);
         return providerList;
     }
 
     public static List<ServiceCompany> getServiceCompany(int providerCount) throws SQLException, ClassNotFoundException {
-        List<ServiceCompany> companies = new ServiceCompanyBuilder().buildList(getRows("Provider", ProviderNIFCreator.getInitialValue()+Simulation.getProviderSize(), providerCount));
+        List<ServiceCompany> companies = new ServiceCompanyBuilder().buildList(getRows("Provider", SecondaryNIFCreator.getInitialValue()+Simulation.getProviderSize(), providerCount));
         ServiceThread.initProducts(companies);
         return companies;
     }

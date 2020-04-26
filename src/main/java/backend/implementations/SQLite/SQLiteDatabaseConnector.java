@@ -24,5 +24,6 @@ public class SQLiteDatabaseConnector extends DatabaseConnector {
     @Override
     public void disconnect() throws SQLException {
         connection.close();
+        connection = null;
     }
 }

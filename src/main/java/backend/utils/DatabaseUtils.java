@@ -2,7 +2,7 @@ package backend.utils;
 
 import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.NIFCreator.PersonNIFCreator;
-import backend.model.NIFCreator.ProviderNIFCreator;
+import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.view.loaders.database.elements.DataType;
 import backend.view.loaders.database.elements.Restriction;
@@ -46,7 +46,7 @@ public class DatabaseUtils {
         parameters.put("street",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("telephoneNumber",new Field(Restriction.NOT_NULL, DataType.text));
         headers.add(new Header("Provider",parameters));
-        headers.get(1).setInitialPrimaryKeyValue(ProviderNIFCreator.getInitialValue());
+        headers.get(1).setInitialPrimaryKeyValue(SecondaryNIFCreator.getInitialValue());
     }
 
     private static void createPersonTable() {

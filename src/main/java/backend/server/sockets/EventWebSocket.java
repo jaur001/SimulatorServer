@@ -1,4 +1,4 @@
-package backend.server;
+package backend.server.sockets;
 import backend.model.event.EventController;
 
 import javax.websocket.OnClose;
@@ -26,7 +26,8 @@ public class EventWebSocket {
     @OnMessage
     public String onMessage(String message){
         StringBuilder events = new StringBuilder();
-        EventController.getEvents().forEach(event -> events.append(event).append("\n"));
+        EventController.getEvents()
+                .forEach(event -> events.append(event.getMessage()).append("\n"));
         return events.toString();
     }
 

@@ -70,6 +70,7 @@
     <textarea id="text-area" rows="10" cols="50">
 
     </textarea>
+    <div id="table"></div>
   </body>
   <footer>
     <div class="footer">

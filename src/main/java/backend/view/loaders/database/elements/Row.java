@@ -12,4 +12,5 @@ public class Row {
     public List<Object> getParameters() {
         return parameters;
     }
+
 }

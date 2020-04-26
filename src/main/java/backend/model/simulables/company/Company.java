@@ -89,4 +89,10 @@ public abstract class Company implements Payer, Simulable {
     public void payMortgage(){
         financialData.pay(getMortgage());
     }
+
+    @Override
+    public String[] getSimulable() {
+        return new String[]{getNIF()+"",getCompanyName(),getStreet(),getTelephoneNumber()
+                ,getFinancialData().getTreasury()+"",getFinancialData().getBenefits()+""};
+    }
 }

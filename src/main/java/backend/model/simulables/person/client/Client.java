@@ -119,6 +119,13 @@ public class Client implements Simulable, Collector{
         doClientsThings();
     }
 
+    @Override
+    public String[] getSimulable() {
+        return new String[]{getNIF()+"",getFirstName(),getLastName(),getEmail(),getGender()
+                ,getBirthDate(),getJob(),getSalary()+"",getCountry(),getTelephoneNumber()
+                ,getCardNumber()};
+    }
+
     protected void doClientsThings() {
         if(ClientSettings.isGoingToDie(this.getAge())) {
             Simulator.isGoingToDie(this);

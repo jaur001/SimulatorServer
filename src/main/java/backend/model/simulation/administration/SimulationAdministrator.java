@@ -13,6 +13,7 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.*;
+import backend.server.sockets.PersonWebSocket;
 
 import java.util.List;
 
@@ -80,7 +81,9 @@ public class SimulationAdministrator extends EventGenerator {
     }
 
     public void addSimulable(Simulable simulable){
-        if(simulable!=null) simulableList.add(simulable);
+        if(simulable!=null){
+            simulableList.add(simulable);
+        }
     }
 
     public void removeSimulable(Simulable simulable) {

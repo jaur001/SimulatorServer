@@ -27,6 +27,11 @@ public class Bank extends EventGenerator implements Simulable, Event {
         }
     }
 
+    @Override
+    public String[] getSimulable() {
+        return new String[]{"Bank"};
+    }
+
     public void payMortgage(Payer payer) {
         if(payer instanceof ComplexCompany) {
             ComplexCompany company = (ComplexCompany) payer;

@@ -1,6 +1,6 @@
 package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider;
 
-import backend.model.NIFCreator.ProviderNIFCreator;
+import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
@@ -18,7 +18,7 @@ public class Provider extends MonthlyCompany<Product> {
     }
 
     public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
-        this(new ProviderNIFCreator().create(),companyName, creationDate, ownerName, street, telephoneNumber);
+        this(new SecondaryNIFCreator().create(),companyName, creationDate, ownerName, street, telephoneNumber);
     }
 
     @Override

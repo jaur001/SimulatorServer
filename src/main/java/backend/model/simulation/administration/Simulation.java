@@ -19,7 +19,9 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
+import backend.server.EJB.SessionDataStatefulBean;
 import backend.utils.DatabaseUtils;
+import backend.utils.MathUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 
 import java.sql.SQLException;
@@ -30,13 +32,23 @@ import java.util.stream.Collectors;
 
 public class Simulation {
 
-    private static List<Company> companyList = new CopyOnWriteArrayList<>();
-    private static List<Client> clientList = new CopyOnWriteArrayList<>();
-    private static List<Worker> workerList = new CopyOnWriteArrayList<>();
     private static List<XMLBill> billList = new LinkedList<>();
 
     public static final SelectOfferStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
+    private static SessionDataStatefulBean sessionData;
+
+    public static void followSimulable(Simulable simulable){
+        sessionData.getFollowedSimulables().add(simulable);
+    }
+
+    public static void unfollowSimulable(Simulable simulable){
+        sessionData.getFollowedSimulables().remove(simulable);
+    }
+
+    public static List<Simulable> getFollowedSimulables(){
+        return sessionData.getFollowedSimulables();
+    }
 
     public static int getProviderSize() {
         return getProviderList().size();
@@ -51,11 +63,11 @@ public class Simulation {
     }
 
     public static int getClientSize() {
-        return clientList.size();
+        return getClientList().size();
     }
 
     public static int getWorkerSize() {
-        return workerList.size();
+        return getWorkerList().size();
     }
 
     private static int getFrom(int page) {
@@ -80,14 +92,14 @@ public class Simulation {
 
     public static List<Client> getClientList(int page) {
         int from = getFrom(page);
-        int to = getTo(from,clientList.size());
-        return clientList.subList(from, to);
+        int to = getTo(from,getClientSize());
+        return getClientList().subList(from, to);
     }
 
     public static List<Worker> getWorkerList(int page) {
         int from = getFrom(page);
-        int to = getTo(from,workerList.size());
-        return workerList.subList(from, to);
+        int to = getTo(from,getWorkerSize());
+        return getWorkerList().subList(from, to);
     }
 
     public static List<XMLBill> getBillList(int page) {
@@ -119,44 +131,44 @@ public class Simulation {
     }
 
     public static List<Client> getClientListCopy() {
-        return new CopyOnWriteArrayList<>(clientList);
+        return new CopyOnWriteArrayList<>(getClientList());
     }
 
     public static List<Worker> getWorkerListCopy() {
-        return new CopyOnWriteArrayList<>(workerList);
+        return new CopyOnWriteArrayList<>(getWorkerList());
     }
 
     static List<Company> getCompanyList(){
-        return companyList;
+        return sessionData.getCompanyList();
     }
 
     static List<Restaurant> getRestaurantList() {
-        return companyList.stream()
+        return getCompanyList().stream()
                 .filter(company -> company instanceof Restaurant)
                 .map(company -> (Restaurant) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<Provider> getProviderList() {
-        return companyList.stream()
+        return getCompanyList().stream()
                 .filter(company -> company instanceof Provider)
                 .map(company -> (Provider) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<ServiceCompany> getServiceCompanyList() {
-        return companyList.stream()
+        return getCompanyList().stream()
                 .filter(company -> company instanceof ServiceCompany)
                 .map(company -> (ServiceCompany) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
     static List<Client> getClientList() {
-        return clientList;
+        return sessionData.getClientList();
     }
 
     static List<Worker> getWorkerList() {
-        return workerList;
+        return sessionData.getWorkerList();
     }
 
     public static List<Provider> getProviderList(Product product) {
@@ -172,7 +184,7 @@ public class Simulation {
     }
 
     public static List<Worker> getWorkerList(Job job) {
-        return workerList.stream()
+        return getWorkerList().stream()
                 .filter(worker -> worker.getJob().equals(job.toString()))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -182,29 +194,34 @@ public class Simulation {
     }
 
 
-    public static List<Simulable> init(){
-        initElements();
+    public static List<Simulable> init(SessionDataStatefulBean sessionData){
+        Simulation.sessionData = sessionData;
+        initSimulables();
+        followFirstOptions();
         return Initializer.init();
     }
 
-    private static void initElements() {
+
+    private static void initSimulables(){
         try {
-            companyList.addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
-            companyList.addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
-            companyList.addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
-            workerList = Initializer.getWorkers(GeneralSettings.getWorkerCount());
-            clientList = Initializer.getClients(GeneralSettings.getClientCount());
-            clientList.addAll(workerList);
+            sessionData.getCompanyList().addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
+            sessionData.getCompanyList().addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
+            sessionData.getCompanyList().addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
+            sessionData.getClientList().addAll(Initializer.getClients(GeneralSettings.getClientCount()));
+            sessionData.getWorkerList().addAll(Initializer.getWorkers(GeneralSettings.getWorkerCount()));
+            sessionData.getClientList().addAll(sessionData.getWorkerList());
         } catch (SQLException | ClassNotFoundException e) {
-            Simulator.waitForOtherElements();
-            initElements();
+            e.printStackTrace();
         }
     }
 
+    private static void followFirstOptions() {
+        followSimulable(getCompanyList().get(MathUtils.random(0,getCompanyList().size())));
+        followSimulable(getClientList().get(MathUtils.random(0,getClientSize())));
+    }
+
     public static void reset(){
-        companyList = new CopyOnWriteArrayList<>();
-        clientList = new CopyOnWriteArrayList<>();
-        workerList = new CopyOnWriteArrayList<>();
+        sessionData.reset();
         resetBills();
         resetEvents();
     }
@@ -232,7 +249,7 @@ public class Simulation {
     }
 
     public static List<Worker> getEmployedWorkers() {
-        return workerList.stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
+        return getWorkerList().stream().filter(Worker::isWorking).collect(Collectors.toCollection(LinkedList::new));
     }
 
     public static List<Worker> getUnemployedWorkers() {

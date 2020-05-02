@@ -15,8 +15,8 @@ public class ServiceBill extends CFDIBill {
     private ComplexCompany company;
 
     public ServiceBill(ServiceCompany serviceCompany, ComplexCompany company) {
-        super(company.getStreet(), type, use, serviceCompany.getCompanyName()
-                , serviceCompany.getNIF(), company.getCompanyName(), company.getNIF()
+        super(company.getStreet(), type, use, serviceCompany.getName()
+                , serviceCompany.getNIF(), company.getName(), company.getNIF()
                 , serviceCompany.getPrice(), BillSettings.getConcept(ServiceBill.class.getSimpleName()));
         this.company = company;
         this.serviceCompany = serviceCompany;
@@ -24,6 +24,6 @@ public class ServiceBill extends CFDIBill {
 
     @Override
     public String getMessage() {
-        return company.getCompanyName() + " has payed the " + serviceCompany.getProduct().toString() + " service to " + serviceCompany.getCompanyName() + ".";
+        return company.getName() + " has payed the " + serviceCompany.getProduct().toString() + " service to " + serviceCompany.getName() + ".";
     }
 }

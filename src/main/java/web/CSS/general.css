@@ -3,16 +3,16 @@ body{
     margin-bottom: 40px;
     padding-bottom: 40px;
 }
-.header, .footer{
+header, footer{
     width: 100%;
     background: #333;
     padding: 10px 0;
     color: #fff;
 }
-.header{
+header{
     top: 0;
 }
-.footer{
+footer{
     bottom: 0;
 }
 .container{

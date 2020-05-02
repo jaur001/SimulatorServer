@@ -11,6 +11,6 @@ public class DeadClientEvent extends GenericEvent<Client> {
 
     @Override
     public String getMessage() {
-        return simulable.getFullName() + " has died.";
+        return simulable.getName() + " has died.";
     }
 }

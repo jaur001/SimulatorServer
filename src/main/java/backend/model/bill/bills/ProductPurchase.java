@@ -16,8 +16,8 @@ public class ProductPurchase extends CFDIBill{
 
 
     public ProductPurchase(Provider provider, ComplexCompany company) {
-        super(company.getStreet(), type, use, provider.getCompanyName()
-                ,provider.getNIF(), company.getCompanyName(), company.getNIF(), provider.getPrice()
+        super(company.getStreet(), type, use, provider.getName()
+                ,provider.getNIF(), company.getName(), company.getNIF(), provider.getPrice()
                 , BillSettings.getConcept(ProductPurchase.class.getSimpleName()));
         this.company = company;
         this.provider = provider;

@@ -15,6 +15,6 @@ public class FiredWorkerEvent extends GenericEvent<Worker> {
 
     @Override
     public String getMessage() {
-        return simulable.getFullName() + " has been fired from " + company.getCompanyName() + ".";
+        return simulable.getName() + " has been fired from " + company.getName() + ".";
     }
 }

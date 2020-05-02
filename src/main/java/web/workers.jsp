@@ -73,7 +73,7 @@
             %>
             <td>Unemployed</td>
             <% } else {%>
-            <td><%=worker.getCompany().getCompanyName()%></td>
+            <td><%=worker.getCompany().getName()%></td>
             <% } %>
             <td><%=worker.getCountry()%></td>
             <td><%=worker.getTelephoneNumber()%></td>

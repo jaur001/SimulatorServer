@@ -40,7 +40,7 @@ public class CompanyWebSocket {
     private void appendRow(Company company, StringBuilder simulables) {
         simulables.append("<tr>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getNIF()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getCompanyName()).append("</td>");
+        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getName()).append("</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getFinancialData().getBenefits()).append("</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getFinancialData().getTreasury()).append("</td>");
         simulables.append("</tr>");

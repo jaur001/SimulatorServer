@@ -1,6 +1,7 @@
 package backend.model.simulables.bank;
 
 
+import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.event.Event;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
@@ -11,6 +12,8 @@ import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
+import java.util.List;
+
 public class Bank extends EventGenerator implements Simulable, Event {
 
     public static void makeTransaction(Transaction transaction){
@@ -20,16 +23,26 @@ public class Bank extends EventGenerator implements Simulable, Event {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        addEvent(this);
         if(TimeLine.isLastDay()){
             Simulation.getClientListCopy().forEach(Collector::collectSalary);
             Simulation.getCompanyListCopy().forEach(this::payMortgage);
+            addEvent(this);
         }
     }
 
     @Override
     public String[] getSimulable() {
         return new String[]{"Bank"};
+    }
+
+    @Override
+    public int getNIF() {
+        return RestaurantNIFCreator.getInitialValue()-1;
+    }
+
+    @Override
+    public String getName() {
+        return "Bank";
     }
 
     public void payMortgage(Payer payer) {
@@ -42,6 +55,11 @@ public class Bank extends EventGenerator implements Simulable, Event {
     @Override
     public String getMessage() {
         return "The bank has collect taxes from the companies";
+    }
+
+    @Override
+    public boolean isFollowed(List<Simulable> simulableList) {
+        return true;
     }
 
     @Override

@@ -7,6 +7,5 @@ public class RestartCommand extends FrontCommand {
     @Override
     public void process() {
         Simulator.restart();
-        forward("/index.jsp");
     }
 }

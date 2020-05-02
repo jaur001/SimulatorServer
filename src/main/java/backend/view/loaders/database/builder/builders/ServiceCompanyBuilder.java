@@ -11,7 +11,7 @@ public class ServiceCompanyBuilder extends Builder<ServiceCompany> {
 
     @Override
     protected List<Object> getRow(ServiceCompany company) {
-        return Arrays.asList(new Object[]{company.getNIF(),company.getCompanyName()
+        return Arrays.asList(new Object[]{company.getNIF(),company.getName()
                 ,company.getCreationDate(),company.getOwnerName()
                 ,company.getStreet(),company.getTelephoneNumber()});
     }

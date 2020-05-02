@@ -4,13 +4,24 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/index.js"></script>
+    <script src="JS/frontAdministrator.js"></script>
   </head>
   <script>
     let isRunning = false;
+    function changeOptions(){
+      let val = $('#simulableOptions').val();
+      if (val === "person") {
+        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
+                "<option value='Name'>Name</option>" +
+                "<option value='Job'>Job</option>");
+      } else {
+        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
+                "<option value='Name'>Name</option>");
+      }
+    }
   </script>
   <body>
-  <h1 class="header">Bill Data Generator</h1>
+    <h1 class="header">Bill Data Generator</h1>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -68,9 +79,53 @@
     </form>
     <label for="text-area"></label>
     <textarea id="text-area" rows="10" cols="50">
-
     </textarea>
+    <h3>Search Simulable</h3>
+    <form>
+      <br>
+      <label for="simulableOptions">Search</label>
+      <select onchange="changeOptions()" id="simulableOptions">
+        <option value="person">Person</option>
+        <option value="company">Company</option>
+      </select>
+      <br>
+      <label for="searchText">Text to search</label>
+      <input type="text" id="searchText" value="">
+      <br>
+      <label>
+        <label for="searchOptions">Search by</label>
+        <select id="searchOptions">
+          <option value="NIF">NIF</option>
+          <option value="Name">Name</option>
+          <option value="Job">Job</option>
+        </select>
+      </label>
+      <br>
+      <input type="hidden" id="searchCommand" value="SearchCommand">
+      <input type="button" id="search"  value="Search">
+    </form>
     <div id="table"></div>
+    <br>
+    <table id="peopleTable">
+      <tr>
+        <th>NIF</th>
+        <th>Full Name</th>
+        <th>Age</th>
+        <th>Job</th>
+        <th>Salary</th>
+        <th>Budget</th>
+      </tr>
+    </table>
+  <br>
+    <table id="companyTable">
+      <tr>
+        <th>NIF</th>
+        <th>Company Name</th>
+        <th>Company Type</th>
+        <th>Treasury</th>
+        <th>Benefits</th>
+      </tr>
+    </table>
   </body>
   <footer>
     <div class="footer">

@@ -14,8 +14,8 @@ public class EatingBill extends CFDIBill{
     private Restaurant restaurant;
 
     public EatingBill(Restaurant restaurant, Client client, double amount) {
-        super(restaurant.getStreet(),type, use,restaurant.getCompanyName()
-                ,restaurant.getNIF(),client.getFullName(),client.getNIF()
+        super(restaurant.getStreet(),type, use,restaurant.getName()
+                ,restaurant.getNIF(),client.getName(),client.getNIF()
                 , amount,BillSettings.getConcept(EatingBill.class.getSimpleName()));
         this.client = client;
         this.restaurant = restaurant;

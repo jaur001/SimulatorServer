@@ -16,8 +16,8 @@ public class ProductRefund extends CFDIBill {
 
 
     public ProductRefund(Provider provider, ComplexCompany company) {
-        super(company.getStreet(), type, use, provider.getCompanyName(),provider.getNIF(),
-                company.getCompanyName(), company.getNIF(), provider.getPrice()/30,
+        super(company.getStreet(), type, use, provider.getName(),provider.getNIF(),
+                company.getName(), company.getNIF(), provider.getPrice()/30,
                 BillSettings.getConcept(ProductRefund.class.getSimpleName()));
         this.company = company;
         this.provider = provider;

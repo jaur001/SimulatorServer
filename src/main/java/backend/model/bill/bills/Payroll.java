@@ -13,8 +13,8 @@ public class Payroll extends CFDIBill{
     private Worker worker;
     private ComplexCompany company;
     public Payroll(ComplexCompany company, Worker worker) {
-        super(company.getStreet(),type,use,company.getCompanyName()
-                ,company.getNIF(),worker.getFullName(),worker.getNIF()
+        super(company.getStreet(),type,use,company.getName()
+                ,company.getNIF(),worker.getName(),worker.getNIF()
                 ,worker.getSalary(), BillSettings.getConcept(Payroll.class.getSimpleName()));
         this.worker = worker;
         this.company = company;

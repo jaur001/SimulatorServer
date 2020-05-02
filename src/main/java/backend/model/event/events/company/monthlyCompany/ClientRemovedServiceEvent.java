@@ -2,7 +2,6 @@ package backend.model.event.events.company.monthlyCompany;
 
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 
 public class ClientRemovedServiceEvent extends GenericEvent<ServiceCompany> {
@@ -16,6 +15,6 @@ public class ClientRemovedServiceEvent extends GenericEvent<ServiceCompany> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " has lost the client, " + company.getCompanyName() + ".";
+        return simulable.getName() + " has lost the client, " + company.getName() + ".";
     }
 }

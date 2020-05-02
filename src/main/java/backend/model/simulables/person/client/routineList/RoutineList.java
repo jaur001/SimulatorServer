@@ -52,7 +52,7 @@ public class RoutineList {
     }
 
     public void printCount() {
-        restaurantRoutines.forEach((routine -> System.out.print(routine.getRestaurant().getCompanyName() + ": " + routine.getCount()+", ")));
+        restaurantRoutines.forEach((routine -> System.out.print(routine.getRestaurant().getName() + ": " + routine.getCount()+", ")));
         System.out.print("\n");
     }
 

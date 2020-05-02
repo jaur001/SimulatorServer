@@ -7,8 +7,11 @@ import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.bills.Payroll;
+import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.administration.Simulator;
+import backend.server.searcher.SearchBy;
 import backend.view.loaders.database.builder.builders.RestaurantBuilder;
 
 import java.sql.SQLException;
@@ -18,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Lab {
 
     public static void main(String[] args){
+
     }
 
 }

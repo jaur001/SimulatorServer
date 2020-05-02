@@ -26,6 +26,7 @@ public class Client implements Simulable, Collector{
         return personalData;
     }
 
+    @Override
     public int getNIF() {
         return personalData.getNIF();
     }
@@ -38,7 +39,8 @@ public class Client implements Simulable, Collector{
         return personalData.getLastName();
     }
 
-    public String getFullName(){
+    @Override
+    public String getName(){
         return personalData.getFirstName() + " " + personalData.getLastName();
     }
 

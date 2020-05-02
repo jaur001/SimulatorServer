@@ -33,6 +33,9 @@
           <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.28.0" />
         </element>
       </element>
+      <element id="directory" name="RestaurantSimulator.jar">
+        <element id="artifact" artifact-name="RestaurantSimulator:ejb exploded" />
+      </element>
     </root>
   </artifact>
 </component>

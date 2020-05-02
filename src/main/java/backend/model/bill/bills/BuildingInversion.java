@@ -16,8 +16,8 @@ public class BuildingInversion extends CFDIBill {
     private ComplexCompany company;
 
     public BuildingInversion(Bank bank, ComplexCompany company, double amount) {
-        super(company.getStreet(),type, getInversion(),company.getCompanyName()
-                ,company.getNIF(),"Bank", RestaurantNIFCreator.getInitialValue()-1,
+        super(company.getStreet(),type, getInversion(),company.getName()
+                ,company.getNIF(),bank.getName(), bank.getNIF(),
                 amount, BillSettings.getConcept(BuildingInversion.class.getSimpleName()));
         this.company = company;
     }
@@ -28,6 +28,6 @@ public class BuildingInversion extends CFDIBill {
 
     @Override
     public String getMessage() {
-        return "The bank has collect the mortgage from " + company.getCompanyName() + ".";
+        return "The bank has collect the mortgage from " + company.getName() + ".";
     }
 }

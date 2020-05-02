@@ -1,4 +1,4 @@
-package backend.server.commands.simulables;
+package backend.server.commands.tables;
 
 
 import backend.model.simulables.company.restaurant.Restaurant;

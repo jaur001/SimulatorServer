@@ -15,6 +15,6 @@ private Restaurant restaurant;
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " lost Client: " + restaurant.getCompanyName() + ", Price: " + simulable.getPrice();
+        return simulable.getName() + " lost Client: " + restaurant.getName() + ", Price: " + simulable.getPrice();
     }
 }

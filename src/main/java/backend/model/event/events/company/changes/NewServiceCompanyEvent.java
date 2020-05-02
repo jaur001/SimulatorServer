@@ -15,7 +15,7 @@ public class NewServiceCompanyEvent extends GenericEvent<ComplexCompany> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " has new Service: " + serviceCompany.getCompanyName()
+        return simulable.getName() + " has new Service: " + serviceCompany.getName()
                 + " with a cost of " + serviceCompany.getPrice() + ".";
     }
 }

@@ -40,7 +40,7 @@ public class PersonWebSocket {
     private void appendRow(Client client, StringBuilder simulables) {
         simulables.append("<tr>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getNIF()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getFullName()).append("</td>");
+        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getName()).append("</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getSalary()).append("</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getJob()).append("</td>");
         simulables.append("</tr>");

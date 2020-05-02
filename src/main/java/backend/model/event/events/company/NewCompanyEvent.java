@@ -11,6 +11,6 @@ public class NewCompanyEvent extends GenericEvent<ComplexCompany> {
 
     @Override
     public String getMessage() {
-        return "The company " + simulable.getCompanyName() + " has opened. NIF: " + simulable.getNIF();
+        return "The company " + simulable.getName() + " has opened. NIF: " + simulable.getNIF();
     }
 }

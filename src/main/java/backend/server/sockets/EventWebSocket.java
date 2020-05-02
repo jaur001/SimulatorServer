@@ -1,5 +1,6 @@
 package backend.server.sockets;
 import backend.model.event.EventController;
+import backend.model.simulation.administration.Simulation;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -26,7 +27,8 @@ public class EventWebSocket {
     @OnMessage
     public String onMessage(String message){
         StringBuilder events = new StringBuilder();
-        EventController.getEvents()
+        EventController.getEvents().stream()
+                .filter(event -> event.isFollowed(Simulation.getFollowedSimulables()))
                 .forEach(event -> events.append(event.getMessage()).append("\n"));
         return events.toString();
     }

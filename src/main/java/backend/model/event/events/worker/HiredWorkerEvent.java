@@ -15,7 +15,7 @@ public class HiredWorkerEvent extends GenericEvent<Worker> {
 
     @Override
     public String getMessage() {
-        return simulable.getFullName() + " has been hired in " + company.getCompanyName() + " for a salary of "+ simulable.getSalary() + "€.";
+        return simulable.getName() + " has been hired in " + company.getName() + " for a salary of "+ simulable.getSalary() + "€.";
 
     }
 }

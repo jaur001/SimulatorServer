@@ -56,7 +56,7 @@
                 %>
                 <tr>
                     <td><%=provider.getNIF()%></td>
-                    <td><%=provider.getCompanyName()%></td>
+                    <td><%=provider.getName()%></td>
                     <td><%=provider.getProduct()%></td>
                     <td><%=provider.getPrice()%></td>
                     <td><%=provider.getOwnerName()%></td>

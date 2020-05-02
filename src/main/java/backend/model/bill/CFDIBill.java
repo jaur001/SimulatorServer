@@ -2,8 +2,11 @@ package backend.model.bill;
 
 import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.event.Event;
+import backend.model.simulables.Simulable;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
+
+import java.util.List;
 
 public abstract class CFDIBill implements Event {
     protected int UUID;
@@ -46,7 +49,15 @@ public abstract class CFDIBill implements Event {
     public CFDIBill() {
     }
 
+    @Override
+    public boolean isFollowed(List<Simulable> simulableList){
+        return simulableList.stream()
+                .anyMatch(this::isInBill);
+    }
 
+    public boolean isInBill(Simulable simulable) {
+        return simulable.getNIF()==issuerRFC || simulable.getNIF()==receiverRFC;
+    }
 
     public int getUUID() {
         return UUID;

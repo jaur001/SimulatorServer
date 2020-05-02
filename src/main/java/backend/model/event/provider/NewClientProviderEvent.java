@@ -15,6 +15,6 @@ public class NewClientProviderEvent extends GenericEvent<Provider> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " has new Client: " + restaurant.getCompanyName() + ", Price: " + simulable.getPrice();
+        return simulable.getName() + " has new Client: " + restaurant.getName() + ", Price: " + simulable.getPrice();
     }
 }

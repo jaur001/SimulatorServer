@@ -15,6 +15,6 @@ public class RetiredWorkerEvent extends GenericEvent<Worker> {
 
     @Override
     public String getMessage() {
-        return simulable.getFullName() + " has retired from " + company.getCompanyName() + ".";
+        return simulable.getName() + " has retired from " + company.getName() + ".";
     }
 }

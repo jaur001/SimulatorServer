@@ -15,7 +15,6 @@ public class StartCommand extends FrontCommand {
         SQLiteDatabaseConnector.setUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
         Simulator.startStop(true);
         setToRequest("simulables", getSimulables());
-        forward("/index.jsp");
     }
 
     private String getSimulables() {

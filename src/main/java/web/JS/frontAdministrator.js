@@ -9,7 +9,7 @@ function receiveData() {
 
 function startWorkers() {
     startEventWorker();
-    startSimulableWorker();
+    //startSimulableWorker();
 }
 
 function startEventWorker() {
@@ -69,6 +69,27 @@ $(document).ready(function() {
         }, function() {
             isRunning = false;
             $('#text-area').val("");
+        });
+    });
+    $('#search').click(function() {
+        let command = $('#searchCommand').val();
+        let searchText = $('#searchText').val();
+        let searchBy = $('#searchOptions').val();
+        let type = $('#simulableOptions').val();
+        $.post('FrontControllerServlet', {
+            command: command,
+            searchText: searchText,
+            searchBy: searchBy,
+            type: type
+        }, function(response) {
+            $('#table').html(response);
+        });
+    });
+    $('#searchTable tr').click(function() {
+        let NIF = $(this).find("td")[0].html();
+        $.post('FrontControllerServlet', {
+            command: "FollowSimulableCommand",
+            NIF: NIF
         });
     });
 });

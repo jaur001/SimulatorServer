@@ -15,6 +15,6 @@ public class ClientRemovedProviderEvent extends GenericEvent<Provider> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " has lost the client, " + company.getCompanyName() + ".";
+        return simulable.getName() + " has lost the client, " + company.getName() + ".";
     }
 }

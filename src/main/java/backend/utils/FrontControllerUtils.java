@@ -1,6 +1,17 @@
 package backend.utils;
 
+import backend.server.commands.bills.DownloadCommand;
 import backend.server.commands.bills.ShowBillsCommand;
+import backend.server.commands.settings.CancelCommand;
+import backend.server.commands.settings.ChangeSpeedCommand;
+import backend.server.commands.settings.SaveSettingsCommand;
+import backend.server.commands.settings.ShowSettingsCommand;
+import backend.server.commands.simulables.FollowSimulableCommand;
+import backend.server.commands.simulables.SearchCommand;
+import backend.server.commands.tables.ShowClientsCommand;
+import backend.server.commands.tables.ShowProvidersCommand;
+import backend.server.commands.tables.ShowRestaurantsCommand;
+import backend.server.commands.tables.ShowWorkersCommand;
 
 import java.util.*;
 
@@ -9,13 +20,15 @@ public class FrontControllerUtils {
     private static Map<String, List<String>> folderTable = new LinkedHashMap<>();
 
     static {
-        String[] folders = {"bills.","settings.","simulables."};
-        List<String> billsFolder = Arrays.asList("DownloadCommand", "ShowBillsCommand");
-        List<String> settingsFolder = Arrays.asList("CancelCommand", "SaveSettingsCommand","ShowSettingsCommand","ChangeSpeedCommand");
-        List<String> simulablesFolder = Arrays.asList("ShowClientsCommand", "ShowProvidersCommand","ShowRestaurantsCommand","ShowWorkersCommand");
+        String[] folders = {"bills.","settings.","tables.","simulables."};
+        List<String> billsFolder = Arrays.asList(DownloadCommand.class.getSimpleName(), ShowBillsCommand.class.getSimpleName());
+        List<String> settingsFolder = Arrays.asList(CancelCommand.class.getSimpleName(), SaveSettingsCommand.class.getSimpleName(), ShowSettingsCommand.class.getSimpleName(), ChangeSpeedCommand.class.getSimpleName());
+        List<String> tablesFolder = Arrays.asList(ShowClientsCommand.class.getSimpleName(), ShowProvidersCommand.class.getSimpleName(), ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName());
+        List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName());
         folderTable.put(folders[0],billsFolder);
         folderTable.put(folders[1],settingsFolder);
-        folderTable.put(folders[2],simulablesFolder);
+        folderTable.put(folders[2],tablesFolder);
+        folderTable.put(folders[3],simulablesFolder);
     }
 
     public static String getFolder(String name){

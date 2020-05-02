@@ -22,6 +22,7 @@ public abstract class Company implements Payer, Simulable {
         this.financialData = financialData;
     }
 
+    @Override
     public int getNIF() {
         return NIF;
     }
@@ -30,7 +31,8 @@ public abstract class Company implements Payer, Simulable {
         this.NIF = NIF;
     }
 
-    public String getCompanyName() {
+    @Override
+    public String getName() {
         return companyName;
     }
 
@@ -92,7 +94,7 @@ public abstract class Company implements Payer, Simulable {
 
     @Override
     public String[] getSimulable() {
-        return new String[]{getNIF()+"",getCompanyName(),getStreet(),getTelephoneNumber()
+        return new String[]{getNIF()+"",getName(),getStreet(),getTelephoneNumber()
                 ,getFinancialData().getTreasury()+"",getFinancialData().getBenefits()+""};
     }
 }

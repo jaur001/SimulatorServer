@@ -11,7 +11,7 @@ public class ProviderBuilder extends Builder<Provider> {
 
     @Override
     protected List<Object> getRow(Provider provider) {
-        return Arrays.asList(new Object[]{provider.getNIF(),provider.getCompanyName()
+        return Arrays.asList(new Object[]{provider.getNIF(),provider.getName()
                 ,provider.getCreationDate(),provider.getOwnerName()
                 ,provider.getStreet(),provider.getTelephoneNumber()});
     }

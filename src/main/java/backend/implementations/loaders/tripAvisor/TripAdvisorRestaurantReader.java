@@ -25,7 +25,7 @@ public class TripAdvisorRestaurantReader implements GenericReader<Restaurant> {
         for (Element i : topRestaurantList){
             Restaurant restaurant = readRestaurant(i);
             restaurantList.add(restaurant);
-            System.out.println(page + ") " + restaurant.getCompanyName());
+            System.out.println(page + ") " + restaurant.getName());
         }
 
         return restaurantList;

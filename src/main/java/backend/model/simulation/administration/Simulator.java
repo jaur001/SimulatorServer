@@ -6,24 +6,24 @@ import backend.model.simulables.company.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.sockets.PersonWebSocket;
+import backend.server.EJB.SessionDataStatefulBean;
 import backend.utils.MathUtils;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Simulator{
 
-    private static AtomicBoolean executing;
-    private static AtomicBoolean restart = new AtomicBoolean(true);
-
     private static String uriProvider;
     private static String uriClient;
-    private static TimeLine timeLine;
     private static SimulableAdministrator simulableAdministrator;
     private static SimulationAdministrator simulationAdministrator;
+    private static SessionDataStatefulBean sessionData;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -41,12 +41,20 @@ public class Simulator{
         Simulator.uriClient = uriClient;
     }
 
+    private static AtomicBoolean getRestart() {
+        return sessionData.getRestart();
+    }
+
+    private static AtomicBoolean getExecuting(){
+        return sessionData.getExecuting();
+    }
+
     public static void restart(){
-        restart.set(true);
+        getRestart().set(true);
     }
 
     public static boolean isRunning() {
-        return executing.get();
+        return getExecuting().get();
     }
 
 
@@ -56,15 +64,16 @@ public class Simulator{
     }
 
     public static void stopSimulation() {
-        executing.set(false);
+        getExecuting().set(false);
     }
 
     public static void startSimulation(){
-        executing.set(true);
+        getExecuting().set(true);
     }
 
     public static boolean isNotInitialized(){
-        return restart.get();
+        if (sessionData == null) return true;
+        return getRestart().get();
     }
 
 
@@ -74,30 +83,46 @@ public class Simulator{
     }
 
     private static void initExecution(boolean thread) {
-        initSimulatorElements();
+        initSimulatorElements(thread);
         //SimulatorTester.test();
         if(thread) executeWithThread();
-        else executeNormal();
+        else executeLocal();
     }
 
-    private static void initSimulatorElements() {
-        executing = new AtomicBoolean(true);
-        restart = new AtomicBoolean(false);
+    private static void initSimulatorElements(boolean thread) {
         simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
-        List<Simulable> simulables = Simulation.init();
-        timeLine = new TimeLine(simulables);
-        simulationAdministrator = new SimulationAdministrator(timeLine.getSimulableList(),new SimulationCommitter());
+        List<Simulable> simulables;
+        if(thread) simulables = initWithSession();
+        else simulables = initLocal();
+        sessionData.initTimeLine(simulables);
+        simulationAdministrator = new SimulationAdministrator(getTimeLine().getSimulableList(),new SimulationCommitter());
+        sessionData.getRestart().set(false);
+    }
+
+    private static List<Simulable> initWithSession() {
+        try {
+            sessionData = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SessionDataStatefulEJB");
+            return Simulation.init(sessionData);
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return new CopyOnWriteArrayList<>();
+    }
+
+    private static List<Simulable> initLocal() {
+        sessionData = new SessionDataStatefulBean();
+        return Simulation.init(sessionData);
     }
 
     private static void executeWithThread() {
         ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
-        executor.submit(Simulator::executeNormal);
+        executor.submit(Simulator::executeLocal);
     }
 
-    private static void executeNormal() {
-        while (!restart.get()) {
+    private static void executeLocal() {
+        while (!getRestart().get()) {
             if (isRunning()) {
-                timeLine.play();
+                getTimeLine().play();
                 simulationAdministrator.manageSimulation();
             }
         }
@@ -144,7 +169,7 @@ public class Simulator{
     }
 
     public static TimeLine getTimeLine() {
-        return timeLine;
+        return sessionData.getTimeLine();
     }
 
     public static void diePerson(Client client) {

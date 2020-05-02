@@ -1,4 +1,4 @@
-package backend.server.commands.simulables;
+package backend.server.commands.tables;
 
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.Simulation;

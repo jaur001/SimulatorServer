@@ -15,7 +15,7 @@ public class RemovedServiceCompanyEvent extends GenericEvent<ComplexCompany> {
 
     @Override
     public String getMessage() {
-        return simulable.getCompanyName() + " removed Service: " + serviceCompany.getCompanyName()
+        return simulable.getName() + " removed Service: " + serviceCompany.getName()
                 + " with a cost of " + serviceCompany.getPrice() + ".";
     }
 }

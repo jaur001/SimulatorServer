@@ -3,7 +3,6 @@ package backend.server.commands.simulables;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.server.EJB.SearchControllerStatelessBean;
-import backend.server.EJB.SearchStatelessBean;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
 import backend.server.servlets.FrontCommand;
@@ -32,7 +31,7 @@ public class SearchCommand extends FrontCommand {
         String type = request.getParameter("type");
         try {
             PrintWriter out = response.getWriter();
-            out.println("<table>");
+            out.println("<table id='searchTable'>");
             if(type.equals("person")) createTablePerson(getPeople(searchBy,text),out);
             if(type.equals("company")) createTableCompany(getCompanies(searchBy,text),out);
             out.println("</table>");
@@ -53,20 +52,20 @@ public class SearchCommand extends FrontCommand {
 
     private void createTablePerson(List<Client> simulables, PrintWriter out) {
         out.println("<tr>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Full Name</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Salary</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Job</td>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Full Name</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Salary</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Job</th>");
         out.println("</tr>");
         simulables.forEach(simulable -> appendPerson(simulable,out));
     }
 
     private void createTableCompany(List<Company> simulables, PrintWriter out) {
         out.println("<tr>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Company Name</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</td>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Company Name</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</th>");
+        out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</th>");
         out.println("</tr>");
         simulables.forEach(simulable -> appendCompany(simulable,out));
     }

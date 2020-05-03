@@ -8,6 +8,7 @@ import backend.model.bill.generator.XMLBill;
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
@@ -56,6 +57,12 @@ public class Simulation {
 
     public static int getServiceCompanySize() {
         return getServiceCompanyList().size();
+    }
+
+    public static int getSecondaryCompanySize(){
+        return (int)getCompanyList().stream()
+                .filter(company -> company instanceof SecondaryCompany)
+                .count();
     }
 
     public static int getRestaurantSize() {
@@ -204,7 +211,7 @@ public class Simulation {
 
     private static void initSimulables(){
         try {
-            sessionData.getCompanyList().addAll(Initializer.getServiceCompany(GeneralSettings.getServiceCount()));
+            sessionData.getCompanyList().addAll(Initializer.getServiceCompanies(GeneralSettings.getServiceCount()));
             sessionData.getCompanyList().addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
             sessionData.getCompanyList().addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
             sessionData.getClientList().addAll(Initializer.getClients(GeneralSettings.getClientCount()));

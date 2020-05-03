@@ -104,7 +104,8 @@
       <input type="hidden" id="searchCommand" value="SearchCommand">
       <input type="button" id="search"  value="Search">
     </form>
-    <div id="table"></div>
+    <div id="table">
+    </div>
     <br>
     <table id="peopleTable">
       <tr>

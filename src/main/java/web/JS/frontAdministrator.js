@@ -85,8 +85,9 @@ $(document).ready(function() {
             $('#table').html(response);
         });
     });
-    $('#searchTable tr').click(function() {
-        let NIF = $(this).find("td")[0].html();
+    $('#table').on('click', '#searchTable tr' ,function() {
+        console.log($(this).find("td"));
+        let NIF = $(this).find("td")[0].innerHTML;
         $.post('FrontControllerServlet', {
             command: "FollowSimulableCommand",
             NIF: NIF

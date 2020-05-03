@@ -1,12 +1,24 @@
 package backend.server.commands.simulables;
 
+import backend.server.EJB.FollowersControllerStatelessBean;
 import backend.server.servlets.FrontCommand;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class FollowSimulableCommand extends FrontCommand {
 
     @Override
     public void process() {
-        Integer NIF = Integer.parseInt(request.getParameter("NIF"));
-        System.out.println(NIF);
+        int NIF = Integer.parseInt(request.getParameter("NIF"));
+        FollowersControllerStatelessBean followersController;
+        {
+            try {
+                followersController = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/FollowersControllerStatelessEJB");
+                followersController.followSimulable(NIF);
+            } catch (NamingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

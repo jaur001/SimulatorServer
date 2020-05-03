@@ -19,8 +19,6 @@ import java.util.Map;
 @Stateless(name = "SearchControllerStatelessEJB")
 public class SearchControllerStatelessBean {
 
-
-
     private Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
     private Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
 

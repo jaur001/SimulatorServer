@@ -6,12 +6,7 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.searcher.SearchBy;
-import backend.server.searcher.searchers.company.CompanyNIFSearch;
-import backend.server.searcher.searchers.company.CompanyNameSearch;
-import backend.server.searcher.searchers.person.JobSearch;
-import backend.server.searcher.searchers.person.PersonNIFSearch;
-import backend.server.searcher.searchers.person.PersonNameSearch;
+
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

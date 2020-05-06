@@ -40,7 +40,7 @@ public class Simulation {
     private static SessionDataStatefulBean sessionData;
 
     public static void followSimulable(Simulable simulable){
-        sessionData.getFollowedSimulables().add(simulable);
+        if(!sessionData.getFollowedSimulables().contains(simulable))sessionData.getFollowedSimulables().add(simulable);
     }
 
     public static void unfollowSimulable(Simulable simulable){

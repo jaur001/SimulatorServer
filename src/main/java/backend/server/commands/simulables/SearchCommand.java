@@ -6,6 +6,7 @@ import backend.server.EJB.SearchControllerStatelessBean;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
 import backend.server.servlets.FrontCommand;
+import backend.utils.DatabaseUtils;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -57,7 +58,9 @@ public class SearchCommand extends FrontCommand {
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Salary</th>");
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Job</th>");
         out.println("</tr>");
-        simulables.forEach(simulable -> appendPerson(simulable,out));
+        simulables.stream()
+                .limit(DatabaseUtils.getPageLength())
+                .forEach(simulable -> appendPerson(simulable,out));
     }
 
     private void createTableCompany(List<Company> simulables, PrintWriter out) {
@@ -67,15 +70,17 @@ public class SearchCommand extends FrontCommand {
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</th>");
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</th>");
         out.println("</tr>");
-        simulables.forEach(simulable -> appendCompany(simulable,out));
+        simulables.stream()
+                .limit(DatabaseUtils.getPageLength())
+                .forEach(simulable -> appendCompany(simulable,out));
     }
 
-    private void appendPerson(Client simulable, PrintWriter out) {
+    private void appendPerson(Client client, PrintWriter out) {
         out.println("<tr>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + simulable.getNIF() + "</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + simulable.getName() + "</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + simulable.getSalary() + "</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + simulable.getJob() + "</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + client.getNIF() + "</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + client.getName() + "</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + client.getSalaryToShow() + "</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + client.getJob() + "</td>");
         out.println("</tr>");
     }
 

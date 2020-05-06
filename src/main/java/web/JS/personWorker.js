@@ -1,8 +1,8 @@
 let webSocket = prepareSocket();
 
-onmessage = function getEvents() {
+onmessage = function getPeople() {
     if(webSocket.readyState === webSocket.OPEN) wsSendMessage();
-    setTimeout(getEvents,100);
+    setTimeout(getPeople,100);
 };
 
 

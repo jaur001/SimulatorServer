@@ -1,5 +1,6 @@
 package backend.server.sockets;
 import backend.model.simulables.company.Company;
+import backend.model.simulables.person.client.Client;
 import backend.model.simulation.administration.Simulation;
 
 import javax.websocket.OnClose;
@@ -27,12 +28,15 @@ public class CompanyWebSocket {
     @OnMessage
     public String onMessage(String message){
         StringBuilder simulables = new StringBuilder();
-        simulables.append("<table style= cellspacing='1' bgcolor='#0099cc'>").append("<tr>");
+        simulables.append("<table id='companyTable'>").append("<tr>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Name</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</td>").append("</tr>");
-        Simulation.getCompanyListCopy().forEach(company -> appendRow(company,simulables));
+        Simulation.getFollowedSimulables().stream()
+                .filter(simulable -> simulable instanceof Company)
+                .map(simulable -> (Company) simulable)
+                .forEach(company -> appendRow(company,simulables));
         simulables.append("</table>");
         return simulables.toString();
     }

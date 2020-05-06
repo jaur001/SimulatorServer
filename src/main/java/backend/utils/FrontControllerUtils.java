@@ -8,6 +8,7 @@ import backend.server.commands.settings.SaveSettingsCommand;
 import backend.server.commands.settings.ShowSettingsCommand;
 import backend.server.commands.simulables.FollowSimulableCommand;
 import backend.server.commands.simulables.SearchCommand;
+import backend.server.commands.simulables.UnfollowSimulableCommand;
 import backend.server.commands.tables.ShowClientsCommand;
 import backend.server.commands.tables.ShowProvidersCommand;
 import backend.server.commands.tables.ShowRestaurantsCommand;
@@ -24,7 +25,7 @@ public class FrontControllerUtils {
         List<String> billsFolder = Arrays.asList(DownloadCommand.class.getSimpleName(), ShowBillsCommand.class.getSimpleName());
         List<String> settingsFolder = Arrays.asList(CancelCommand.class.getSimpleName(), SaveSettingsCommand.class.getSimpleName(), ShowSettingsCommand.class.getSimpleName(), ChangeSpeedCommand.class.getSimpleName());
         List<String> tablesFolder = Arrays.asList(ShowClientsCommand.class.getSimpleName(), ShowProvidersCommand.class.getSimpleName(), ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName());
-        List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName());
+        List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName(), UnfollowSimulableCommand.class.getSimpleName());
         folderTable.put(folders[0],billsFolder);
         folderTable.put(folders[1],settingsFolder);
         folderTable.put(folders[2],tablesFolder);

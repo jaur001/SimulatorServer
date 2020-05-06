@@ -13,7 +13,6 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.*;
-import backend.server.sockets.PersonWebSocket;
 
 import java.util.List;
 

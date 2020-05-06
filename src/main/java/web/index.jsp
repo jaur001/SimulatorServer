@@ -103,30 +103,35 @@
       <br>
       <input type="hidden" id="searchCommand" value="SearchCommand">
       <input type="button" id="search"  value="Search">
+      <input type="button" id="deleteSearch"  value="End Search">
     </form>
-    <div id="table">
+    <div id="divSearchTable">
     </div>
     <br>
-    <table id="peopleTable">
-      <tr>
-        <th>NIF</th>
-        <th>Full Name</th>
-        <th>Age</th>
-        <th>Job</th>
-        <th>Salary</th>
-        <th>Budget</th>
-      </tr>
-    </table>
-  <br>
-    <table id="companyTable">
-      <tr>
-        <th>NIF</th>
-        <th>Company Name</th>
-        <th>Company Type</th>
-        <th>Treasury</th>
-        <th>Benefits</th>
-      </tr>
-    </table>
+    <div id="divPersonTable">
+      <table id="personTable">
+        <tr>
+          <th>NIF</th>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Job</th>
+          <th>Salary</th>
+          <th>Budget</th>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div id="divCompanyTable">
+      <table id="companyTable">
+        <tr>
+          <th>NIF</th>
+          <th>Company Name</th>
+          <th>Company Type</th>
+          <th>Treasury</th>
+          <th>Benefits</th>
+        </tr>
+      </table>
+    </div>
   </body>
   <footer>
     <div class="footer">

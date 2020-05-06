@@ -97,8 +97,8 @@ public class Worker extends Client{
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if (!isRetired())work();
-        if(isWorking() || !isRetired()) enjoyTime();
+        if (isNotRetired())work();
+        if(isWorking() || isNotRetired()) enjoyTime();
     }
 
     private void work() {
@@ -112,8 +112,8 @@ public class Worker extends Client{
     }
 
 
-    public boolean isRetired() {
-        return getJob().equals("Retired");
+    private boolean isNotRetired() {
+        return !getJob().equals("Retired");
     }
 
     public void searchJob() {

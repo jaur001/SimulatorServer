@@ -1,6 +1,5 @@
 package backend.model.bill.bills;
 
-import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;

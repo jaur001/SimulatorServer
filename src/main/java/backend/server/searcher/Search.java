@@ -13,11 +13,13 @@ public interface Search<Filterable> {
 
     static List<Client> searchPeople(Predicate<Client> filter){
         return Simulation.getClientListCopy().stream()
+                .filter(client -> !Simulation.getFollowedSimulables().contains(client))
                 .filter(filter).collect(Collectors.toCollection(LinkedList::new));
     }
 
     static List<Company> searchCompanies(Predicate<Company> filter){
         return Simulation.getCompanyListCopy().stream()
+                .filter(company -> !Simulation.getFollowedSimulables().contains(company))
                 .filter(filter).collect(Collectors.toCollection(LinkedList::new));
     }
 

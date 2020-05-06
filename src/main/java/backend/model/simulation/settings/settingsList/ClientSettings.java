@@ -4,66 +4,29 @@ import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.settings.Adjustable;
-import backend.model.simulation.settings.SettingsData;
-import backend.model.simulation.settings.data.ClientData;
+import backend.server.EJB.dataSettings.dataSettingsEJB.ClientSettingsStatefulBean;
 import backend.utils.MathUtils;
-import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
-public class ClientSettings implements Adjustable {
+public class ClientSettings{
 
     public static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
-    private static final int SALARY_MEAN = 1717;
-    private static final double SALARY_SD = 979.28;
-    private static final double MIN_SALARY = 500;
     private static final int INVITED_PEOPLE_MIN = 0;
     private static final int INVITED_PEOPLE_MAX = 3;
     private static final int NUM_OF_RESTAURANT_MIN = 1;
-    private static final int NUM_OF_RESTAURANT_MAX = 2;
-    private static final int CLIENT_SPACE = 85000;
+    private static final int NUM_OF_RESTAURANT_MAX = 5;
     public static final int DEATH_AGE = 75;
 
-    private static NormalDistribution salaryDistribution;
-    private static double minSalary;
-    private static Map<Integer,Integer> restaurantGroup = new HashMap<>();
-    private static Integer[] clientSalaries;
-    private static Integer[] prices;
+    private static ClientSettingsStatefulBean clientDataSettings;
 
-    static {
-        getDefaultSettings();
-    }
 
-    private static void getDefaultSettings() {
-        salaryDistribution = new NormalDistribution(SALARY_MEAN, SALARY_SD);
-        minSalary = MIN_SALARY;
-        getDefaultSalaryGroups();
-    }
-
-    private static void getDefaultSalaryGroups() {
-        clientSalaries = new Integer[]{1000,2000,3000,4000};
-        prices = new Integer[]{15,25,40,60};
-        IntStream.range(0, clientSalaries.length).boxed()
-                .forEach(i -> restaurantGroup.put(clientSalaries[i], prices[i]));
-    }
-
-    @Override
-    public void init(SettingsData data) {
-        ClientData clientData = data.getClientData();
-        salaryDistribution = new NormalDistribution(clientData.getSalaryMean(),clientData.getSalarySd());
-        minSalary = clientData.getMinSalary();
-        restaurantGroup = clientData.getRestaurantGroup();
-    }
-
-    @Override
-    public void setDefault() {
-        getDefaultSettings();
+    public static void init(ClientSettingsStatefulBean dataSettings) {
+        clientDataSettings = dataSettings;
     }
 
     public static int getSalaryGroup(double salary) {
-        List<Integer> salaryOptionList = new ArrayList<>(restaurantGroup.keySet());
+        List<Integer> salaryOptionList = new ArrayList<>(clientDataSettings.getRestaurantGroup().keySet());
         return salaryOptionList.stream()
                 .filter(salaryAuxOption -> salary<=salaryAuxOption)
                 .findFirst().orElse(salaryOptionList.get(salaryOptionList.size() - 1));
@@ -78,11 +41,11 @@ public class ClientSettings implements Adjustable {
     }
 
     private static int getPrices(int salaryOption) {
-        return restaurantGroup.get(salaryOption);
+        return clientDataSettings.getRestaurantGroup().get(salaryOption);
     }
 
     public static double getSalarySample() {
-        double salary = Math.max(salaryDistribution.sample(), minSalary);
+        double salary = Math.max(clientDataSettings.getSalaryDistribution().sample(), clientDataSettings.getMinSalary());
         if(Double.isNaN(salary)) return getSalarySample();
         return salary;
     }
@@ -95,16 +58,18 @@ public class ClientSettings implements Adjustable {
         return MathUtils.random(INVITED_PEOPLE_MIN, INVITED_PEOPLE_MAX+1);
     }
 
-    public static int getNumOfRestaurantSample(){
-        return MathUtils.random(NUM_OF_RESTAURANT_MIN, NUM_OF_RESTAURANT_MAX+1);
+    public static int getNumOfRestaurantSample(double salary, double salaryOption){
+        double percentage = salary / (salaryOption + 1);
+        return Math.max((int)(percentage*(NUM_OF_RESTAURANT_MAX)),NUM_OF_RESTAURANT_MIN);
     }
 
     public static int getNextVisitDaySample(double salary, double salaryOption) {
-        return MathUtils.random(3,30);
+        double percentage = 1.0 - salary / (salaryOption + 1);
+        return (int)((double)MathUtils.random(3+(int)(percentage*10),30+(int)(percentage*50)));
     }
 
     public static double getMinSalary(){
-        return minSalary;
+        return clientDataSettings.getMinSalary();
     }
 
     private static boolean isInDeathAge(double age){

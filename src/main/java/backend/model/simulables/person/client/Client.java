@@ -124,7 +124,7 @@ public class Client implements Simulable, Collector{
     @Override
     public String[] getSimulable() {
         return new String[]{getNIF()+"",getFirstName(),getLastName(),getEmail(),getGender()
-                ,getBirthDate(),getJob(),getSalary()+"",getCountry(),getTelephoneNumber()
+                ,getBirthDate(),getJob(),getSalary()>0.0?getSalary()+"":"Unemployed",getCountry(),getTelephoneNumber()
                 ,getCardNumber()};
     }
 
@@ -164,4 +164,7 @@ public class Client implements Simulable, Collector{
         if(routineList != null) routineList.restartBudget();
     }
 
+    public String getSalaryToShow() {
+        return this.getSalary()==0.0?"Unemployed":this.getSalary()+"";
+    }
 }

@@ -1,4 +1,4 @@
-package backend.model.simulation.settings.data;
+package backend.server.EJB.dataSettings.data;
 
 import backend.model.simulables.person.worker.Job;
 
@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class RestaurantData {
 
+    private double initialSocialCapital;
     private Map<Job, Integer> workerSalaryTable;
-    public double initialSocialCapital;
 
-    public RestaurantData(Map<Job, Integer> workerSalaryTable, double initialSocialCapital) {
+    public RestaurantData(double initialSocialCapital, Map<Job, Integer> workerSalaryTable) {
         this.workerSalaryTable = workerSalaryTable;
         this.initialSocialCapital = initialSocialCapital;
     }

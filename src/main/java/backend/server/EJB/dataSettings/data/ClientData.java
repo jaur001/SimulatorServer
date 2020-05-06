@@ -1,6 +1,5 @@
-package backend.model.simulation.settings.data;
+package backend.server.EJB.dataSettings.data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ClientData {

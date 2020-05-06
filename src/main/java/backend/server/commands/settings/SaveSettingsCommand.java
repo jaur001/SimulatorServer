@@ -1,8 +1,7 @@
 package backend.server.commands.settings;
 
-import backend.model.simulation.settings.SettingsBuilder;
-import backend.model.simulation.settings.data.GeneralData;
-import backend.model.simulation.settings.settingsList.GeneralSettings;
+import backend.server.EJB.dataSettings.SettingsBuilder;
+import backend.server.EJB.dataSettings.data.GeneralData;
 import backend.server.servlets.FrontCommand;
 
 public class SaveSettingsCommand extends FrontCommand {
@@ -13,6 +12,6 @@ public class SaveSettingsCommand extends FrontCommand {
     }
 
     private GeneralData getGeneralData() {
-        return new GeneralData(getIntParameter("clients"),getIntParameter("restaurants"),getIntParameter("providers"));
+        return new GeneralData(getIntParameter("clients"),getIntParameter("restaurants"),getIntParameter("providers"),0,0);
     }
 }

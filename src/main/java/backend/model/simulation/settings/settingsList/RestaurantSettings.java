@@ -2,10 +2,10 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.settings.Adjustable;
-import backend.model.simulation.settings.SettingsData;
+import backend.server.EJB.dataSettings.Adjustable;
+import backend.server.EJB.dataSettings.SettingsData;
 import backend.model.simulation.timeLine.TimeLine;
+import backend.server.EJB.dataSettings.dataSettingsEJB.RestaurantSettingsStatefulBean;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.BetaDistribution;
 
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class RestaurantSettings implements Adjustable {
+public class RestaurantSettings{
 
     private static final int ALPHA = 2;
     private static final int BETA = 4;
@@ -22,6 +22,7 @@ public class RestaurantSettings implements Adjustable {
     private static final int MIN_TABLES = 4;
     private static final int MAX_TABLES = 50;
     private static final int WORKERS_MIN = 1;
+    private static final Map<Job, Integer> lengthWorkerTable = new HashMap<>();
 
     public static final int EATINGS_PER_TABLE = 6;
     public static final int MIN_LENGTH_CONTRACT = 90;
@@ -29,19 +30,10 @@ public class RestaurantSettings implements Adjustable {
     public static final double PRICE_CHANGE = 0.02;
     public static final double FINANCIAL_DIFFERENCE_PERCENTAGE = 1.25;
 
-
-    private static Map<Job, Integer> lengthWorkerTable = new HashMap<>();
-    private static Map<Job, Integer> workerSalaryTable = new HashMap<>();
-    private static double initialSocialCapital = 10000;
+    private static RestaurantSettingsStatefulBean restaurantDataSettings;
 
     static {
-        getDefaultSettings();
-    }
-
-    private static void getDefaultSettings() {
-        initialSocialCapital = 10000;
         getNumberOfWorkers();
-        getWorkersSalary();
     }
 
     private static void getNumberOfWorkers(){
@@ -51,22 +43,10 @@ public class RestaurantSettings implements Adjustable {
 
     }
 
-    private static void getWorkersSalary(){
-        Integer[] salaries = {800,1000,1500,3000,3000};
-        IntStream.range(0,Job.values().length).boxed()
-                .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
+    public static void init(RestaurantSettingsStatefulBean dataSettings) {
+        restaurantDataSettings = dataSettings;
     }
 
-    @Override
-    public void init(SettingsData data) {
-        initialSocialCapital = data.getRestaurantData().getInitialSocialCapital();
-        workerSalaryTable = data.getRestaurantData().getWorkerSalaryTable();
-    }
-
-    @Override
-    public void setDefault() {
-        getDefaultSettings();
-    }
 
 
     public static double getSalaryPerQuality(Worker worker) {
@@ -74,7 +54,7 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static double getInitialSocialCapital() {
-        return initialSocialCapital;
+        return restaurantDataSettings.getInitialSocialCapital();
     }
 
     public static int getWorkerLength(Job job, int numTables) {
@@ -83,7 +63,7 @@ public class RestaurantSettings implements Adjustable {
     }
 
     public static int getSalary(Job job){
-        return workerSalaryTable.get(job);
+        return restaurantDataSettings.getWorkerSalaryTable().get(job);
     }
 
     public static int getNumTablesMean(){

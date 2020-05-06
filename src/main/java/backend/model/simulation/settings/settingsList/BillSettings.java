@@ -2,26 +2,20 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
-import backend.model.simulation.settings.Adjustable;
-import backend.model.simulation.settings.SettingsData;
-import backend.model.simulation.settings.data.BillData;
+import backend.server.EJB.dataSettings.dataSettingsEJB.BillSettingsStatefulBean;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillSettings implements Adjustable {
+public class BillSettings{
 
-    private static final int PLATE_NUMBER_MEAN = 2;
-    private static final double PLATE_NUMBER_SD = 0.7;
     private static final Map<String,String> conceptsTable = new HashMap<>();
+    private static BillSettingsStatefulBean billDataSettings;
 
-    private static NormalDistribution plateNumberDistribution;
 
     static {
-        getDefaultSettings();
         conceptsTable.put(EatingBill.class.getSimpleName(),"Bill of a eating.");
         conceptsTable.put(ProductPurchase.class.getSimpleName(),"Purchase of a product for the restaurant.");
         conceptsTable.put(ProductRefund.class.getSimpleName(),"Refund of a product in bad conditions.");
@@ -30,22 +24,8 @@ public class BillSettings implements Adjustable {
         conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }
 
-    private static void getDefaultSettings() {
-        plateNumberDistribution = new NormalDistribution(PLATE_NUMBER_MEAN,PLATE_NUMBER_SD);
-    }
-    @Override
-    public void init(SettingsData data) {
-        BillData billData = data.getBillData();
-        plateNumberDistribution = new NormalDistribution(billData.getPlateNumberMean(), billData.getPlateNumberSd());
-    }
-
-    @Override
-    public void setDefault() {
-        getDefaultSettings();
-    }
-
-    public static double getPlateNumberMean(){
-        return plateNumberDistribution.getMean();
+    public static void init(BillSettingsStatefulBean dataSettings) {
+        billDataSettings = dataSettings;
     }
 
 
@@ -59,8 +39,12 @@ public class BillSettings implements Adjustable {
 
     }
 
+    public static double getPlateNumberMean(){
+        return new NormalDistribution(billDataSettings.getPlateNumberMean(),billDataSettings.getPlateNumberSD()).getMean();
+    }
+
     private static int getPlateNumberSample() {
-        double sample = Math.round(Math.abs(plateNumberDistribution.sample()));
+        double sample = Math.round(Math.abs(new NormalDistribution(billDataSettings.getPlateNumberMean(),billDataSettings.getPlateNumberSD()).sample()));
         return (int)(sample<1? 1: sample);
     }
 

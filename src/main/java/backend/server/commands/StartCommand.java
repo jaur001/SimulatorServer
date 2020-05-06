@@ -14,17 +14,5 @@ public class StartCommand extends FrontCommand {
         CFDIBillGenerator.setUri(context.getRealPath("/xmlFiles")+"/");
         SQLiteDatabaseConnector.setUrl("jdbc:sqlite:" + context.getRealPath("/Simulator.db"));
         Simulator.startStop(true);
-        setToRequest("simulables", getSimulables());
-    }
-
-    private String getSimulables() {
-        StringBuilder simulables = new StringBuilder();
-        Simulator.getTimeLine().getSimulableList()
-                .forEach(simulable -> simulables.append(appendSimulable(simulable)).append("!!\n"));
-        return simulables.toString();
-    }
-
-    public String appendSimulable(Simulable simulable) {
-        return String.join(",",simulable.getSimulable());
     }
 }

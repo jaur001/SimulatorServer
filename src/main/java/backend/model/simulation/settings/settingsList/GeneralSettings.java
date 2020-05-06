@@ -1,60 +1,32 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
-import backend.model.simulation.settings.Adjustable;
-import backend.model.simulation.settings.SettingsData;
+import backend.server.EJB.dataSettings.dataSettingsEJB.GeneralSettingsStatefulBean;
 
-public class GeneralSettings implements Adjustable {
+public class GeneralSettings {
 
-    private static final double PERCENTAGE_PROVIDERS = 0.9;
-    private static int clientCount;
-    private static int restaurantCount;
-    private static int providerCount;
-    private static int serviceCount;
-    private static int workerCount;
-
-    static {
-        getDefaultSettings();
-    }
-
-    private static void getDefaultSettings() {
-        clientCount = 10;
-        restaurantCount = 1;
-        providerCount = (int)Math.max(restaurantCount* PERCENTAGE_PROVIDERS,Product.values().length);
-        serviceCount = Math.max((restaurantCount+providerCount)/5, Service.values().length);
-        workerCount = restaurantCount*40;
-    }
-
-    @Override
-    public void init(SettingsData data) {
-        clientCount = data.getGeneralData().getClientCount();
-        restaurantCount = data.getGeneralData().getRestaurantCount();
-        providerCount = data.getGeneralData().getProviderCount();
-    }
-
-    @Override
-    public void setDefault() {
-        getDefaultSettings();
-    }
+    private static GeneralSettingsStatefulBean generalDataSettings;
 
     public static int getClientCount() {
-        return clientCount;
+        return generalDataSettings.getClientCount();
     }
 
     public static int getRestaurantCount() {
-        return restaurantCount;
+        return generalDataSettings.getRestaurantCount();
     }
 
     public static int getProviderCount() {
-        return providerCount;
+        return generalDataSettings.getProviderCount();
     }
 
     public static int getWorkerCount() {
-        return workerCount;
+        return generalDataSettings.getWorkerCount();
     }
 
     public static int getServiceCount() {
-        return serviceCount;
+        return generalDataSettings.getServiceCount();
+    }
+
+    public static void init(GeneralSettingsStatefulBean dataSettings) {
+        generalDataSettings = dataSettings;
     }
 }

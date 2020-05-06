@@ -1,15 +1,20 @@
 let eventWorker;
-let simulableWorker;
-let simulableList = [];
+let personWorker;
+let companyWorker;
 
 function receiveData() {
     if(isRunning)startWorkers();
     else stopWorkers();
 }
 
+function startSimulableWorkers() {
+    startPersonWorker();
+    startCompanyWorker();
+}
+
 function startWorkers() {
     startEventWorker();
-    //startSimulableWorker();
+    startSimulableWorkers();
 }
 
 function startEventWorker() {
@@ -22,25 +27,43 @@ function startEventWorker() {
     eventWorker.postMessage("Work");
 }
 
-function startSimulableWorker() {
-    if (typeof (simulableWorker) == "undefined") {
-        simulableWorker = new Worker("JS/simulableWorker.js");
+function startPersonWorker() {
+    if (typeof (personWorker) == "undefined") {
+        personWorker = new Worker("JS/personWorker.js");
     }
-    simulableWorker.onmessage = function (response) {
-        $('#table').html(response.data);
+    personWorker.onmessage = function (response) {
+        $('#personTable').html(response.data);
     };
-    simulableWorker.postMessage("Work");
+    personWorker.postMessage("Work");
 }
 
+
+function startCompanyWorker() {
+    if (typeof (companyWorker) == "undefined") {
+        companyWorker = new Worker("JS/companyWorker.js");
+    }
+    companyWorker.onmessage = function (response) {
+        $('#companyTable').html(response.data);
+    };
+    companyWorker.postMessage("Work");
+}
 
 function stopWorkers(){
     if(eventWorker !== undefined){
         eventWorker.terminate();
         eventWorker = undefined;
     }
-    if(simulableWorker !== undefined){
-        simulableWorker.terminate();
-        simulableWorker = undefined;
+    stopSimulableWorkers();
+}
+
+function stopSimulableWorkers(){
+    if(personWorker !== undefined){
+        personWorker.terminate();
+        personWorker = undefined;
+    }
+    if(companyWorker !== undefined){
+        companyWorker.terminate();
+        companyWorker = undefined;
     }
 }
 
@@ -82,15 +105,62 @@ $(document).ready(function() {
             searchBy: searchBy,
             type: type
         }, function(response) {
-            $('#table').html(response);
+            $('#divSearchTable').html(response);
         });
     });
-    $('#table').on('click', '#searchTable tr' ,function() {
-        console.log($(this).find("td"));
+    $('#deleteSearch').click(function() {
+        $('#divSearchTable').html("");
+    });
+    $('#divSearchTable').on('click', '#searchTable tr' ,function() {
         let NIF = $(this).find("td")[0].innerHTML;
         $.post('FrontControllerServlet', {
             command: "FollowSimulableCommand",
             NIF: NIF
         });
+        startSimulableWorkers();
+        setTimeout(stopSimulableWorkers,500);
+    });
+    $('#divPersonTable').on('click', '#personTable tr' ,function() {
+        if(isRunning){
+            stopSimulableWorkers();
+            console.log("xd");
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+        } else {
+            console.log("xd");
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+            setTimeout(stopSimulableWorkers,500);
+        }
+
+    });
+    $('#divCompanyTable').on('click', '#companyTable tr' ,function() {
+        if(isRunning){
+            stopSimulableWorkers();
+            console.log("xd");
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+        } else {
+            console.log("xd");
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+            setTimeout(stopSimulableWorkers,500);
+        }
     });
 });

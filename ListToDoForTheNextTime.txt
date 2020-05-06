@@ -84,13 +84,3 @@ Posibilidad - Poner las facturas y las transacciones como una unica clase
 P - Eliminar las comillas en las calles de los proveedores
 
 
-
-Practica 2 AS
-Stateless:
-- Searcher
--
-Stateful:
-- Lista de simulables y timeline
--
-Singleton:
-- Conexion base de datos

@@ -7,10 +7,13 @@ import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.SessionDataStatefulBean;
+import backend.server.EJB.dataSettings.SettingsBuilder;
+import backend.server.EJB.dataSettings.SettingsInitializer;
 import backend.utils.MathUtils;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.naming.NoInitialContextException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -83,35 +86,33 @@ public class Simulator{
     }
 
     private static void initExecution(boolean thread) {
-        initSimulatorElements(thread);
+        initSettings();
+        initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeLocal();
     }
 
-    private static void initSimulatorElements(boolean thread) {
+    private static void initSettings() {
+        SettingsBuilder.initBuilder(new SettingsInitializer());
+    }
+
+    private static void initSimulatorElements() {
         simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
-        List<Simulable> simulables;
-        if(thread) simulables = initWithSession();
-        else simulables = initLocal();
+        List<Simulable> simulables = initSessionData();
         sessionData.initTimeLine(simulables);
         simulationAdministrator = new SimulationAdministrator(getTimeLine().getSimulableList(),new SimulationCommitter());
         sessionData.getRestart().set(false);
     }
 
-    private static List<Simulable> initWithSession() {
+    private static List<Simulable> initSessionData() {
         try {
             sessionData = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SessionDataStatefulEJB");
             return Simulation.init(sessionData);
         } catch (NamingException e) {
-            e.printStackTrace();
+            sessionData = new SessionDataStatefulBean();
+            return Simulation.init(sessionData);
         }
-        return new CopyOnWriteArrayList<>();
-    }
-
-    private static List<Simulable> initLocal() {
-        sessionData = new SessionDataStatefulBean();
-        return Simulation.init(sessionData);
     }
 
     private static void executeWithThread() {

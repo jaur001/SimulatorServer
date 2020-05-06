@@ -1,4 +1,4 @@
-package backend.model.simulation.settings.data;
+package backend.server.EJB.dataSettings.data;
 
 public class BillData {
 

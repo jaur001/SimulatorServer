@@ -52,7 +52,7 @@ public class GenericRoutineFactory implements RoutineFactory {
     }
 
     private int selectNumberOfRestaurants(Integer salaryOption) {
-        return ClientSettings.getNumOfRestaurantSample();
+        return ClientSettings.getNumOfRestaurantSample(salary,salaryOption);
     }
 
 

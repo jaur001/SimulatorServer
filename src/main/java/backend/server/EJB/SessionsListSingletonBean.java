@@ -44,6 +44,7 @@ public class SessionsListSingletonBean {
     }
 
     public SessionDataStatefulBean getSessionData(Integer id) {
+        System.out.println(this.getClass().getSimpleName()+ "::getSessionData(" + ")");
         return sessionsTable.get(id);
     }
 

@@ -79,6 +79,7 @@ public class DefaultSettingsSingletonBean {
     }
 
     public GeneralData getDefaultGeneralSettings(){
+        System.out.println(this.getClass().getSimpleName()+ "::getDefaultGeneralSettings(" + ")");
         return new GeneralData(clientCount,restaurantCount,providerCount,serviceCount,workerCount);
     }
 

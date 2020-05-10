@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 public class FollowersControllerStatelessBean {
 
     public void followSimulable(int NIF){
+        System.out.println(this.getClass().getSimpleName()+ "::followSimulable(" + NIF + ")");
         Simulator.getTimeLine().getSimulableList().stream()
                 .filter(simulable -> simulable.getNIF() == NIF)
                 .findFirst().ifPresent(Simulation::followSimulable);

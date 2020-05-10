@@ -39,6 +39,7 @@ public class GeneralSettingsStatefulBean extends GenericDataSettings {
     }
 
     public int getClientCount() {
+        System.out.println(this.getClass().getSimpleName()+ "::getClientCount(" + ")");
         return clientCount;
     }
 

@@ -16,7 +16,7 @@ public class EventController {
 
     public static void addEvent(Event event){
         if(isTheFirstDay()) return;
-        System.out.println(event.getMessage());
+        //System.out.println(event.getMessage());
         addToWeb(event);
     }
 

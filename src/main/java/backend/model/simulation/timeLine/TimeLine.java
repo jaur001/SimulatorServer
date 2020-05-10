@@ -42,11 +42,6 @@ public class TimeLine extends EventGenerator{
     private void passDay() {
         date.setDate(date.getDate()+1);
         addEvent((SimulationDate)date.clone());
-        try {
-            TimeUnit.MILLISECONDS.sleep(TIMEOUT);
-        } catch (InterruptedException e) {
-            System.out.println("Simulation stopped");
-        }
     }
 
     public static void setTIMEOUT(int TIMEOUT) {

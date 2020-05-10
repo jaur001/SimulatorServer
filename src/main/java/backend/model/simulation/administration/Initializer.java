@@ -71,8 +71,7 @@ public class Initializer {
     }
 
     private static int getModuleOfInitialValue(int initialValue,String headerName) throws SQLException, ClassNotFoundException {
-        int i = initialValue % new SQLiteTableSelector().readCount(headerName);
-        return i;
+        return initialValue % new SQLiteTableSelector().readCount(headerName);
     }
 
     public static List<Simulable> init() {

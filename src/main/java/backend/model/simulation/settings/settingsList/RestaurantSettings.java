@@ -2,6 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.Adjustable;
 import backend.server.EJB.dataSettings.SettingsData;
 import backend.model.simulation.timeLine.TimeLine;
@@ -30,7 +31,6 @@ public class RestaurantSettings{
     public static final double PRICE_CHANGE = 0.02;
     public static final double FINANCIAL_DIFFERENCE_PERCENTAGE = 1.25;
 
-    private static RestaurantSettingsStatefulBean restaurantDataSettings;
 
     static {
         getNumberOfWorkers();
@@ -43,18 +43,16 @@ public class RestaurantSettings{
 
     }
 
-    public static void init(RestaurantSettingsStatefulBean dataSettings) {
-        restaurantDataSettings = dataSettings;
+    private static RestaurantSettingsStatefulBean getRestaurantDataSettings() {
+        return Simulator.getRestaurantDataSettings();
     }
-
-
 
     public static double getSalaryPerQuality(Worker worker) {
         return (worker.getQuality().getScore()/worker.getSalaryDesired())*10000;
     }
 
     public static double getInitialSocialCapital() {
-        return restaurantDataSettings.getInitialSocialCapital();
+        return getRestaurantDataSettings().getInitialSocialCapital();
     }
 
     public static int getWorkerLength(Job job, int numTables) {
@@ -63,7 +61,7 @@ public class RestaurantSettings{
     }
 
     public static int getSalary(Job job){
-        return restaurantDataSettings.getWorkerSalaryTable().get(job);
+        return getRestaurantDataSettings().getWorkerSalaryTable().get(job);
     }
 
     public static int getNumTablesMean(){

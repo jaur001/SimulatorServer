@@ -7,16 +7,13 @@ import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.SessionDataStatefulBean;
-import backend.server.EJB.dataSettings.SettingsBuilder;
-import backend.server.EJB.dataSettings.SettingsInitializer;
+import backend.server.EJB.TimerStatelessBean;
+import backend.server.EJB.dataSettings.dataSettingsEJB.*;
 import backend.utils.MathUtils;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.naming.NoInitialContextException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -24,9 +21,7 @@ public class Simulator{
 
     private static String uriProvider;
     private static String uriClient;
-    private static SimulableAdministrator simulableAdministrator;
-    private static SimulationAdministrator simulationAdministrator;
-    private static SessionDataStatefulBean sessionData;
+    private static TimerStatelessBean timer;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -44,12 +39,46 @@ public class Simulator{
         Simulator.uriClient = uriClient;
     }
 
+    public static SessionDataStatefulBean getSessionData(){
+        if(SessionAdministrator.getSessionList().isEmpty())
+            SessionAdministrator.getSessionList().addSession();
+        return SessionAdministrator.getSessionData();
+    }
+
+    public static GeneralSettingsStatefulBean getGeneralDataSettings() {
+        return getSessionData().getGeneralDataSettings();
+    }
+
+    public static RestaurantSettingsStatefulBean getRestaurantDataSettings() {
+        return getSessionData().getRestaurantDataSettings();
+    }
+
+    public static ClientSettingsStatefulBean getClientDataSettings() {
+        return getSessionData().getClientDataSettings();
+    }
+
+    public static ProviderSettingsStatefulBean getProviderDataSettings() {
+        return getSessionData().getProviderDataSettings();
+    }
+
+    public static BillSettingsStatefulBean getBillDataSettings() {
+        return getSessionData().getBillDataSettings();
+    }
+
     private static AtomicBoolean getRestart() {
-        return sessionData.getRestart();
+        return getSessionData().getRestart();
     }
 
     private static AtomicBoolean getExecuting(){
-        return sessionData.getExecuting();
+        return getSessionData().getExecuting();
+    }
+
+    private static SimulableAdministrator getSimulableAdministrator(){
+        return getSessionData().getSimulableAdministrator();
+    }
+
+    private static SimulationAdministrator getSimulationAdministrator(){
+        return getSessionData().getSimulationAdministrator();
     }
 
     public static void restart(){
@@ -75,7 +104,6 @@ public class Simulator{
     }
 
     public static boolean isNotInitialized(){
-        if (sessionData == null) return true;
         return getRestart().get();
     }
 
@@ -86,48 +114,53 @@ public class Simulator{
     }
 
     private static void initExecution(boolean thread) {
-        initSettings();
         initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeLocal();
     }
 
-    private static void initSettings() {
-        SettingsBuilder.initBuilder(new SettingsInitializer());
-    }
 
     private static void initSimulatorElements() {
-        simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
-        List<Simulable> simulables = initSessionData();
-        sessionData.initTimeLine(simulables);
-        simulationAdministrator = new SimulationAdministrator(getTimeLine().getSimulableList(),new SimulationCommitter());
-        sessionData.getRestart().set(false);
+        List<Simulable> simulables = initSimulables();
+        getSessionData().initTimeLine(simulables);
     }
 
-    private static List<Simulable> initSessionData() {
-        try {
-            sessionData = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SessionDataStatefulEJB");
-            return Simulation.init(sessionData);
-        } catch (NamingException e) {
-            sessionData = new SessionDataStatefulBean();
-            return Simulation.init(sessionData);
-        }
+    private static List<Simulable> initSimulables() {
+        return Simulation.init();
     }
 
     private static void executeWithThread() {
-        ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
-        executor.submit(Simulator::executeLocal);
+        try {
+            if(timer==null)timer = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/TimerStatelessEJB");
+            timer.setTimer();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        /*ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
+        executor.submit(() ->{
+
+        });*/
     }
+
 
     private static void executeLocal() {
         while (!getRestart().get()) {
             if (isRunning()) {
                 getTimeLine().play();
-                simulationAdministrator.manageSimulation();
+                delay();
+                getSimulationAdministrator().manageSimulation();
             }
         }
         Simulation.reset();
+    }
+
+    private static void delay() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(TimeLine.TIMEOUT);
+        } catch (InterruptedException e) {
+            System.out.println("Simulation stopped");
+        }
     }
 
     public static void waitForOtherElements() {
@@ -139,45 +172,45 @@ public class Simulator{
     }
 
     public static boolean isNotAlreadyHired(Worker worker) {
-        return simulableAdministrator.isNotAlreadyHired(worker);
+        return getSimulableAdministrator().isNotAlreadyHired(worker);
     }
 
     public static boolean isNotAlreadyRetired(Worker worker) {
-        return simulableAdministrator.isNotAlreadyRetired(worker);
+        return getSimulableAdministrator().isNotAlreadyRetired(worker);
     }
 
     public static void retire(Worker worker) {
-        simulableAdministrator.retire(worker);
+        getSimulableAdministrator().retire(worker);
     }
 
     public static void addSimulableForCompany(ComplexCompany company, Simulable simulable) {
-        simulableAdministrator.addSimulableForCompany(company,simulable);
+        getSimulableAdministrator().addSimulableForCompany(company,simulable);
     }
 
     public static void removeSimulableForCompany(ComplexCompany company, Simulable simulable) {
-        simulableAdministrator.removeSimulableForCompany(company,simulable);
+        getSimulableAdministrator().removeSimulableForCompany(company,simulable);
     }
 
     public static void makeChanges() {
-        simulableAdministrator.makeChanges();
+        getSimulableAdministrator().makeChanges();
     }
     public static void isGoingToDie(Client client){
-        simulableAdministrator.isGoingToDie(client);
+        getSimulableAdministrator().isGoingToDie(client);
     }
 
     public static void isGoingToClose(Company company){
-        simulableAdministrator.isGoingToClose(company);
+        getSimulableAdministrator().isGoingToClose(company);
     }
 
     public static TimeLine getTimeLine() {
-        return sessionData.getTimeLine();
+        return getSessionData().getTimeLine();
     }
 
     public static void diePerson(Client client) {
-        simulationAdministrator.diePerson(client);
+        getSimulationAdministrator().diePerson(client);
     }
 
     public static void closeCompany(Company company) {
-        simulationAdministrator.closeCompany(company);
+        getSimulationAdministrator().closeCompany(company);
     }
 }

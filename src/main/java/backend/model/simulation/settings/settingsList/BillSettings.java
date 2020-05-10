@@ -2,6 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.dataSettingsEJB.BillSettingsStatefulBean;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
@@ -12,7 +13,6 @@ import java.util.Map;
 public class BillSettings{
 
     private static final Map<String,String> conceptsTable = new HashMap<>();
-    private static BillSettingsStatefulBean billDataSettings;
 
 
     static {
@@ -24,9 +24,10 @@ public class BillSettings{
         conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }
 
-    public static void init(BillSettingsStatefulBean dataSettings) {
-        billDataSettings = dataSettings;
+    private static BillSettingsStatefulBean getBillDataSettings() {
+        return Simulator.getBillDataSettings();
     }
+
 
 
     public static String getConcept(String billType){
@@ -40,11 +41,11 @@ public class BillSettings{
     }
 
     public static double getPlateNumberMean(){
-        return new NormalDistribution(billDataSettings.getPlateNumberMean(),billDataSettings.getPlateNumberSD()).getMean();
+        return new NormalDistribution(getBillDataSettings().getPlateNumberMean(),getBillDataSettings().getPlateNumberSD()).getMean();
     }
 
     private static int getPlateNumberSample() {
-        double sample = Math.round(Math.abs(new NormalDistribution(billDataSettings.getPlateNumberMean(),billDataSettings.getPlateNumberSD()).sample()));
+        double sample = Math.round(Math.abs(new NormalDistribution(getBillDataSettings().getPlateNumberMean(),getBillDataSettings().getPlateNumberSD()).sample()));
         return (int)(sample<1? 1: sample);
     }
 

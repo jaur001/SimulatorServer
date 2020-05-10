@@ -14,4 +14,15 @@
         <url-pattern>/FrontControllerServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>InitSessionServlet</servlet-name>
+        <servlet-class>backend.server.servlets.InitSessionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InitSessionServlet</servlet-name>
+        <url-pattern>/initSession</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

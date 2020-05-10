@@ -1,32 +1,32 @@
 package backend.model.simulation.settings.settingsList;
 
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.dataSettingsEJB.GeneralSettingsStatefulBean;
 
 public class GeneralSettings {
 
-    private static GeneralSettingsStatefulBean generalDataSettings;
+
+    private static GeneralSettingsStatefulBean getGeneralDataSettings() {
+        return Simulator.getGeneralDataSettings();
+    }
 
     public static int getClientCount() {
-        return generalDataSettings.getClientCount();
+        return getGeneralDataSettings().getClientCount();
     }
 
     public static int getRestaurantCount() {
-        return generalDataSettings.getRestaurantCount();
+        return getGeneralDataSettings().getRestaurantCount();
     }
 
     public static int getProviderCount() {
-        return generalDataSettings.getProviderCount();
+        return getGeneralDataSettings().getProviderCount();
     }
 
     public static int getWorkerCount() {
-        return generalDataSettings.getWorkerCount();
+        return getGeneralDataSettings().getWorkerCount();
     }
 
     public static int getServiceCount() {
-        return generalDataSettings.getServiceCount();
-    }
-
-    public static void init(GeneralSettingsStatefulBean dataSettings) {
-        generalDataSettings = dataSettings;
+        return getGeneralDataSettings().getServiceCount();
     }
 }

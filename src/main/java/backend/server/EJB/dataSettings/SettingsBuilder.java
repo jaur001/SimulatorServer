@@ -1,30 +1,25 @@
 package backend.server.EJB.dataSettings;
 
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.data.*;
 
 public class SettingsBuilder {
 
-    private static SettingsInitializer settingsInitializer;
-
-    public static void initBuilder(SettingsInitializer settingsInitializer){
-        SettingsBuilder.settingsInitializer = settingsInitializer;
-    }
-
     public static void build() {
-        settingsInitializer.getGeneralDataSettings().setDefault();
+        Simulator.getGeneralDataSettings().setDefault();
         setDefault();
     }
 
     public static void build(GeneralData generalData) {
-        settingsInitializer.getGeneralDataSettings().init(generalData);
+        Simulator.getGeneralDataSettings().init(generalData);
         setDefault();
     }
 
     private static void setDefault() {
-        settingsInitializer.getClientDataSettings().setDefault();
-        settingsInitializer.getRestaurantDataSettings().setDefault();
-        settingsInitializer.getProviderDataSettings().setDefault();
-        settingsInitializer.getBillDataSettings().setDefault();
+        Simulator.getClientDataSettings().setDefault();
+        Simulator.getRestaurantDataSettings().setDefault();
+        Simulator.getProviderDataSettings().setDefault();
+        Simulator.getBillDataSettings().setDefault();
     }
 
     public static void build(GeneralData generalData, ClientData clientData, ProviderData providerData, BillData billData, RestaurantData restaurantData) {
@@ -32,9 +27,9 @@ public class SettingsBuilder {
     }
 
     private static void setSettings(SettingsData data) {
-        settingsInitializer.getClientDataSettings().init(data.getClientData());
-        settingsInitializer.getProviderDataSettings().init(data.getProviderData());
-        settingsInitializer.getBillDataSettings().init(data.getBillData());
-        settingsInitializer.getRestaurantDataSettings().init(data.getRestaurantData());
+        Simulator.getClientDataSettings().init(data.getClientData());
+        Simulator.getProviderDataSettings().init(data.getProviderData());
+        Simulator.getBillDataSettings().init(data.getBillData());
+        Simulator.getRestaurantDataSettings().init(data.getRestaurantData());
     }
 }

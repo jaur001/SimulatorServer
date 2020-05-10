@@ -20,11 +20,13 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
-import backend.server.EJB.SessionDataStatefulBean;
+import backend.server.EJB.BillDataSingletonBean;
 import backend.utils.DatabaseUtils;
 import backend.utils.MathUtils;
 import backend.view.loaders.database.builder.builders.BillBuilder;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,22 +35,21 @@ import java.util.stream.Collectors;
 
 public class Simulation {
 
-    private static List<XMLBill> billList = new LinkedList<>();
+    private static BillDataSingletonBean billData;
 
     public static final SelectOfferStrategy SEARCHER_STRATEGY = new AlwaysAcceptStrategy();
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
-    private static SessionDataStatefulBean sessionData;
 
     public static void followSimulable(Simulable simulable){
-        if(!sessionData.getFollowedSimulables().contains(simulable))sessionData.getFollowedSimulables().add(simulable);
+        if(!Simulator.getSessionData().getFollowedSimulables().contains(simulable))Simulator.getSessionData().getFollowedSimulables().add(simulable);
     }
 
     public static void unfollowSimulable(Simulable simulable){
-        sessionData.getFollowedSimulables().remove(simulable);
+        Simulator.getSessionData().getFollowedSimulables().remove(simulable);
     }
 
     public static List<Simulable> getFollowedSimulables(){
-        return sessionData.getFollowedSimulables();
+        return Simulator.getSessionData().getFollowedSimulables();
     }
 
     public static int getProviderSize() {
@@ -111,8 +112,8 @@ public class Simulation {
 
     public static List<XMLBill> getBillList(int page) {
         int from = getFrom(page);
-        int to = getTo(from,billList.size());
-        if(billList.size()>(page-1)*DatabaseUtils.getPageLength())return billList.subList(from, to);
+        int to = getTo(from,billData.getSize());
+        if(billData.getSize()>(page-1)*DatabaseUtils.getPageLength())return billData.getBillList(from, to);
         else return getFromDatabase(page);
     }
 
@@ -146,7 +147,7 @@ public class Simulation {
     }
 
     static List<Company> getCompanyList(){
-        return sessionData.getCompanyList();
+        return Simulator.getSessionData().getCompanyList();
     }
 
     static List<Restaurant> getRestaurantList() {
@@ -171,11 +172,11 @@ public class Simulation {
     }
 
     static List<Client> getClientList() {
-        return sessionData.getClientList();
+        return Simulator.getSessionData().getClientList();
     }
 
     static List<Worker> getWorkerList() {
-        return sessionData.getWorkerList();
+        return Simulator.getSessionData().getWorkerList();
     }
 
     public static List<Provider> getProviderList(Product product) {
@@ -197,44 +198,52 @@ public class Simulation {
     }
 
     public static void addBill(XMLBill bill){
-        if(billList.size()<DatabaseUtils.getListLimit())billList.add(bill);
+        if(billData.getSize()<DatabaseUtils.getListLimit())billData.addBill(bill);
     }
 
 
-    public static List<Simulable> init(SessionDataStatefulBean sessionData){
-        Simulation.sessionData = sessionData;
+    public static List<Simulable> init(){
+        initBillData();
         initSimulables();
-        followFirstOptions();
+        followRandomOptions();
         return Initializer.init();
+    }
+
+    private static void initBillData() {
+        try {
+            billData = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/BillDataSingletonEJB");
+        } catch (NamingException e) {
+            billData = new BillDataSingletonBean();
+        }
     }
 
 
     private static void initSimulables(){
         try {
-            sessionData.getCompanyList().addAll(Initializer.getServiceCompanies(GeneralSettings.getServiceCount()));
-            sessionData.getCompanyList().addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
-            sessionData.getCompanyList().addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
-            sessionData.getClientList().addAll(Initializer.getClients(GeneralSettings.getClientCount()));
-            sessionData.getWorkerList().addAll(Initializer.getWorkers(GeneralSettings.getWorkerCount()));
-            sessionData.getClientList().addAll(sessionData.getWorkerList());
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(GeneralSettings.getServiceCount()));
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
+            Simulator.getSessionData().getClientList().addAll(Initializer.getClients(GeneralSettings.getClientCount()));
+            Simulator.getSessionData().getWorkerList().addAll(Initializer.getWorkers(GeneralSettings.getWorkerCount()));
+            Simulator.getSessionData().getClientList().addAll(Simulator.getSessionData().getWorkerList());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static void followFirstOptions() {
+    private static void followRandomOptions() {
         followSimulable(getCompanyList().get(MathUtils.random(0,getCompanyList().size())));
         followSimulable(getClientList().get(MathUtils.random(0,getClientSize())));
     }
 
     public static void reset(){
-        sessionData.reset();
+        Simulator.getSessionData().reset();
         resetBills();
         resetEvents();
     }
 
     private static void resetBills(){
-        billList = new LinkedList<>();
+        billData.reset();
         try {
             if(new SQLiteTableSelector().readCount("Bill")!=0)
                 new SQLiteRowDeleter().deleteAll("Bill");

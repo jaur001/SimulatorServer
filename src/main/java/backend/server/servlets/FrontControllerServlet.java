@@ -11,9 +11,7 @@ public class FrontControllerServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-        FrontCommand command = getCommand(request);
-        command.init(getServletContext(), request, response);
-        command.process();
+        doPost(request,response);
     }
 
     @Override

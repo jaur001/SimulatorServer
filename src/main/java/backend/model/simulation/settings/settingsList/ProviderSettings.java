@@ -2,24 +2,24 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.dataSettingsEJB.ProviderSettingsStatefulBean;
 import backend.utils.MathUtils;
 
 public class ProviderSettings{
 
     public static final double PRICE_CHANGE = 0.01;
-    private static ProviderSettingsStatefulBean providerDataSettings;
 
-    public static void init(ProviderSettingsStatefulBean dataSettings) {
-        providerDataSettings = dataSettings;
+    private static ProviderSettingsStatefulBean getProviderDataSettings() {
+        return Simulator.getProviderDataSettings();
     }
 
     public static double getInitialSocialCapital() {
-        return providerDataSettings.getInitialSocialCapital();
+        return getProviderDataSettings().getInitialSocialCapital();
     }
 
     public static int getProductCost(Product product){
-        return providerDataSettings.getProductCostTable().get(product);
+        return getProviderDataSettings().getProductCostTable().get(product);
     }
 
     public static boolean isBadProduct(){

@@ -4,6 +4,7 @@ import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.Simulator;
 import backend.server.EJB.dataSettings.dataSettingsEJB.ClientSettingsStatefulBean;
 import backend.utils.MathUtils;
 
@@ -18,15 +19,14 @@ public class ClientSettings{
     private static final int NUM_OF_RESTAURANT_MAX = 5;
     public static final int DEATH_AGE = 75;
 
-    private static ClientSettingsStatefulBean clientDataSettings;
 
-
-    public static void init(ClientSettingsStatefulBean dataSettings) {
-        clientDataSettings = dataSettings;
+    private static ClientSettingsStatefulBean getClientDataSettings() {
+        return Simulator.getClientDataSettings();
     }
 
+
     public static int getSalaryGroup(double salary) {
-        List<Integer> salaryOptionList = new ArrayList<>(clientDataSettings.getRestaurantGroup().keySet());
+        List<Integer> salaryOptionList = new ArrayList<>(getClientDataSettings().getRestaurantGroup().keySet());
         return salaryOptionList.stream()
                 .filter(salaryAuxOption -> salary<=salaryAuxOption)
                 .findFirst().orElse(salaryOptionList.get(salaryOptionList.size() - 1));
@@ -41,11 +41,11 @@ public class ClientSettings{
     }
 
     private static int getPrices(int salaryOption) {
-        return clientDataSettings.getRestaurantGroup().get(salaryOption);
+        return getClientDataSettings().getRestaurantGroup().get(salaryOption);
     }
 
     public static double getSalarySample() {
-        double salary = Math.max(clientDataSettings.getSalaryDistribution().sample(), clientDataSettings.getMinSalary());
+        double salary = Math.max(getClientDataSettings().getSalaryDistribution().sample(), getClientDataSettings().getMinSalary());
         if(Double.isNaN(salary)) return getSalarySample();
         return salary;
     }
@@ -69,7 +69,7 @@ public class ClientSettings{
     }
 
     public static double getMinSalary(){
-        return clientDataSettings.getMinSalary();
+        return getClientDataSettings().getMinSalary();
     }
 
     private static boolean isInDeathAge(double age){

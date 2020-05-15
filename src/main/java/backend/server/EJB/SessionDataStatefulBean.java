@@ -149,7 +149,6 @@ public class SessionDataStatefulBean {
     }
 
     public GeneralSettingsStatefulBean getGeneralDataSettings() {
-        System.out.println(this.getClass().getSimpleName()+ "::getGeneralDataSettings("  + ")");
         return generalDataSettings;
     }
 

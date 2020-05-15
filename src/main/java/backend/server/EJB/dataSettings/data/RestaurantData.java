@@ -21,4 +21,12 @@ public class RestaurantData {
     public double getInitialSocialCapital() {
         return initialSocialCapital;
     }
+
+    public void setInitialSocialCapital(double initialSocialCapital) {
+        this.initialSocialCapital = initialSocialCapital;
+    }
+
+    public void setWorkerSalaryTable(Map<Job, Integer> workerSalaryTable) {
+        this.workerSalaryTable = workerSalaryTable;
+    }
 }

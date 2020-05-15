@@ -4,19 +4,19 @@ import java.util.Map;
 
 public class ClientData {
 
-    private int salaryMean;
+    private double salaryMean;
     private double salarySd;
-    private int minSalary;
+    private double minSalary;
     private Map<Integer,Integer> restaurantGroup;
 
-    public ClientData(int salaryMean, double salarySd, int minSalary, Map<Integer, Integer> restaurantGroup) {
+    public ClientData(double salaryMean, double salarySd, double minSalary, Map<Integer, Integer> restaurantGroup) {
         this.salaryMean = salaryMean;
         this.salarySd = salarySd;
         this.minSalary = minSalary;
         this.restaurantGroup = restaurantGroup;
     }
 
-    public int getSalaryMean() {
+    public double getSalaryMean() {
         return salaryMean;
     }
 
@@ -24,11 +24,27 @@ public class ClientData {
         return salarySd;
     }
 
-    public int getMinSalary() {
+    public double getMinSalary() {
         return minSalary;
     }
 
     public Map<Integer, Integer> getRestaurantGroup() {
         return restaurantGroup;
+    }
+
+    public void setSalaryMean(double salaryMean) {
+        this.salaryMean = salaryMean;
+    }
+
+    public void setSalarySd(double salarySd) {
+        this.salarySd = salarySd;
+    }
+
+    public void setMinSalary(double minSalary) {
+        this.minSalary = minSalary;
+    }
+
+    public void setRestaurantGroup(Map<Integer, Integer> restaurantGroup) {
+        this.restaurantGroup = restaurantGroup;
     }
 }

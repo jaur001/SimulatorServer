@@ -21,4 +21,12 @@ public class ProviderData {
     public Map<Product, Integer> getProductCostTable() {
         return productCostTable;
     }
+
+    public void setInitialSocialCapital(double initialSocialCapital) {
+        this.initialSocialCapital = initialSocialCapital;
+    }
+
+    public void setProductCostTable(Map<Product, Integer> productCostTable) {
+        this.productCostTable = productCostTable;
+    }
 }

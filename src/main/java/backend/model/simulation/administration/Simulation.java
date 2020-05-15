@@ -220,11 +220,16 @@ public class Simulation {
 
     private static void initSimulables(){
         try {
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(GeneralSettings.getServiceCount()));
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getProviders(GeneralSettings.getProviderCount()));
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(GeneralSettings.getRestaurantCount()));
-            Simulator.getSessionData().getClientList().addAll(Initializer.getClients(GeneralSettings.getClientCount()));
-            Simulator.getSessionData().getWorkerList().addAll(Initializer.getWorkers(GeneralSettings.getWorkerCount()));
+            int serviceCount = GeneralSettings.getServiceCount();
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(serviceCount));
+            int providerCount = GeneralSettings.getProviderCount();
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getProviders(providerCount));
+            int restaurantCount = GeneralSettings.getRestaurantCount();
+            Simulator.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(restaurantCount));
+            int clientCount = GeneralSettings.getClientCount();
+            Simulator.getSessionData().getClientList().addAll(Initializer.getClients(clientCount));
+            int workerCount = GeneralSettings.getWorkerCount();
+            Simulator.getSessionData().getWorkerList().addAll(Initializer.getWorkers(workerCount));
             Simulator.getSessionData().getClientList().addAll(Simulator.getSessionData().getWorkerList());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

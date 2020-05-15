@@ -1,5 +1,6 @@
 package backend.model.event;
 
+import backend.model.simulation.administration.Simulation;
 import backend.model.simulation.administration.Simulator;
 import backend.model.simulation.timeLine.TimeLine;
 
@@ -16,8 +17,8 @@ public class EventController {
 
     public static void addEvent(Event event){
         if(isTheFirstDay()) return;
-        //System.out.println(event.getMessage());
-        addToWeb(event);
+        System.out.println(event.getMessage());
+        if(event.isFollowed(Simulation.getFollowedSimulables()))addToWeb(event);
     }
 
 

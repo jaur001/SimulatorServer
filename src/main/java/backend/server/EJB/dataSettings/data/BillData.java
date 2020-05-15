@@ -17,4 +17,12 @@ public class BillData {
     public double getPlateNumberSd() {
         return plateNumberSd;
     }
+
+    public void setPlateNumberMean(int plateNumberMean) {
+        this.plateNumberMean = plateNumberMean;
+    }
+
+    public void setPlateNumberSd(double plateNumberSd) {
+        this.plateNumberSd = plateNumberSd;
+    }
 }

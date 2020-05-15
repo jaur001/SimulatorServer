@@ -2,7 +2,7 @@ package backend.model.simulables.person.worker;
 
 public enum Job {
     Waiter,
-    KitchenHelper,
+    Kitchen_Helper,
     Cooker,
     Maitre,
     Chef;

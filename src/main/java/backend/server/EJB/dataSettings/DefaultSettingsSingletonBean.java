@@ -47,11 +47,11 @@ public class DefaultSettingsSingletonBean {
     }
 
     private void initDefaultGeneralSettings() {
-        clientCount = 20;
-        restaurantCount = 1;
-        providerCount = (int)Math.max(restaurantCount* PERCENTAGE_PROVIDERS, Product.values().length);
-        serviceCount = Math.max((restaurantCount+providerCount)/5, Service.values().length);
-        workerCount = restaurantCount*30;
+        clientCount = 1000;
+        restaurantCount = 25;
+        providerCount = 500;
+        serviceCount = 100;
+        workerCount = 1000;
     }
 
     private void initDefaultBillSettings() {
@@ -79,7 +79,6 @@ public class DefaultSettingsSingletonBean {
     }
 
     public GeneralData getDefaultGeneralSettings(){
-        System.out.println(this.getClass().getSimpleName()+ "::getDefaultGeneralSettings(" + ")");
         return new GeneralData(clientCount,restaurantCount,providerCount,serviceCount,workerCount);
     }
 

@@ -22,45 +22,31 @@
   </script>
   <body>
     <h1 class="header">Bill Data Generator</h1>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowClientsCommand">
-            <input type="submit"  value="Clients">
-          </form>
-        </div>
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowProvidersCommand">
-            <input type="submit"  value="Providers">
-          </form>
-        </div>
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowRestaurantsCommand">
-            <input type="submit"  value="Restaurants">
-          </form>
-        </div>
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowBillsCommand">
-            <input type="submit"  value="Bills">
-          </form>
-        </div>
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowSettingsCommand">
-            <input type="submit"  value="Settings">
-          </form>
-        </div>
-        <div class="navbar-header">
-          <form method="post" action="FrontControllerServlet">
-            <input type="hidden" name="command" value="ShowWorkersCommand">
-            <input type="submit"  value="Workers">
-          </form>
-        </div>
-      </div>
+    <nav>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowClientsCommand">
+        <input type="submit"  value="Clients">
+      </form>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowProvidersCommand">
+        <input type="submit"  value="Providers">
+      </form>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowRestaurantsCommand">
+        <input type="submit"  value="Restaurants">
+      </form>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowBillsCommand">
+        <input type="submit"  value="Bills">
+      </form>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowWorkersCommand">
+        <input type="submit"  value="Workers">
+      </form>
+      <form method="post" action="FrontControllerServlet">
+        <input type="hidden" name="command" value="ShowSettingsCommand">
+        <input type="submit"  value="Settings">
+      </form>
     </nav>
     Welcome to my Simulator
     <form>

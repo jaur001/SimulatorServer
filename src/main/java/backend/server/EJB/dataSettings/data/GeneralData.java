@@ -34,4 +34,24 @@ public class GeneralData {
     public int getWorkerCount() {
         return workerCount;
     }
+
+    public void setClientCount(int clientCount) {
+        this.clientCount = clientCount;
+    }
+
+    public void setRestaurantCount(int restaurantCount) {
+        this.restaurantCount = restaurantCount;
+    }
+
+    public void setProviderCount(int providerCount) {
+        this.providerCount = providerCount;
+    }
+
+    public void setServiceCount(int serviceCount) {
+        this.serviceCount = serviceCount;
+    }
+
+    public void setWorkerCount(int workerCount) {
+        this.workerCount = workerCount;
+    }
 }

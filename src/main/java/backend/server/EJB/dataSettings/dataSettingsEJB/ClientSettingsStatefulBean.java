@@ -12,7 +12,8 @@ import java.util.Map;
 @Stateful(name = "ClientSettingsStatefulEJB")
 public class ClientSettingsStatefulBean extends GenericDataSettings {
 
-    private NormalDistribution salaryDistribution;
+    private double salaryMean;
+    private double salarySd;
     private double minSalary;
     private Map<Integer,Integer> restaurantGroup = new HashMap<>();
 
@@ -26,7 +27,8 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     public void init(Object data) {
         if(data instanceof ClientData){
             ClientData clientData = (ClientData) data;
-            salaryDistribution = new NormalDistribution(clientData.getSalaryMean(),clientData.getSalarySd());
+            salaryMean = clientData.getSalaryMean();
+            salarySd = clientData.getSalarySd();
             minSalary = clientData.getMinSalary();
             restaurantGroup = clientData.getRestaurantGroup();
         }
@@ -38,7 +40,7 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     }
 
     public NormalDistribution getSalaryDistribution() {
-        return salaryDistribution;
+        return new NormalDistribution(salaryMean,salarySd);
     }
 
     public double getMinSalary() {
@@ -47,5 +49,9 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
 
     public Map<Integer, Integer> getRestaurantGroup() {
         return restaurantGroup;
+    }
+
+    public ClientData getClientData() {
+        return new ClientData(salaryMean,salarySd,minSalary,restaurantGroup);
     }
 }

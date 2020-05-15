@@ -1,4 +1,4 @@
-package backend.server.commands.settings;
+package backend.server.commands;
 
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.servlets.FrontCommand;

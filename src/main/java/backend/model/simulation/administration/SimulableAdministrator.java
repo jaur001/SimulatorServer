@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SimulableAdministrator {
 
@@ -25,8 +26,8 @@ public class SimulableAdministrator {
 
     public SimulableAdministrator(SimulationCommitter committer) {
         this.committer = committer;
-        companiesAddingChanges = new HashMap<>();
-        companiesRemovingChanges = new HashMap<>();
+        companiesAddingChanges = new ConcurrentHashMap<>();
+        companiesRemovingChanges = new ConcurrentHashMap<>();
         retiredWorkers = new LinkedList<>();
         deadClientList = new LinkedList<>();
         closedCompanyList = new LinkedList<>();

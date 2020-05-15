@@ -39,7 +39,6 @@ public class SearchControllerStatelessBean {
     }
 
     public Search<Client> getPersonFilter(SearchBy searchBy){
-        System.out.println(this.getClass().getSimpleName()+ "::getPersonFilter(" + searchBy.name() + ")");
         return personFilterTable.get(searchBy);
     }
 

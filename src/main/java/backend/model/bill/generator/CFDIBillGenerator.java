@@ -75,6 +75,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     }
 
     private void setAttributes(Element billElement) {
+        billElement.setAttribute("UUID", bill.getUUID()+"");
         billElement.setAttribute("Date", bill.getDate());
         billElement.setAttribute("Type",bill.getType().toString());
         billElement.setAttribute("Use",bill.getUse().toString());

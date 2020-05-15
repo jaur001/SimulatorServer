@@ -21,7 +21,6 @@ public class BillDataSingletonBean {
     }
 
     public void addBill(XMLBill bill){
-        System.out.println(this.getClass().getSimpleName()+ "::addBill(" + bill.getUUID() + ")");
         billList.add(bill);
     }
 

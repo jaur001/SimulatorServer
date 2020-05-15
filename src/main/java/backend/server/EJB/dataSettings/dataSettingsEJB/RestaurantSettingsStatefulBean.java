@@ -30,6 +30,10 @@ public class RestaurantSettingsStatefulBean extends GenericDataSettings {
         }
     }
 
+    public RestaurantData getRestaurantData() {
+        return new RestaurantData(initialSocialCapital,workerSalaryTable);
+    }
+
     @Override
     public void setDefault() {
         init(defaultSettings.getDefaultRestaurantSettings());

@@ -42,4 +42,8 @@ public class ProviderSettingsStatefulBean extends GenericDataSettings {
     public Map<Product, Integer> getProductCostTable() {
         return productCostTable;
     }
+
+    public ProviderData getProviderData() {
+        return new ProviderData(initialSocialCapital,productCostTable);
+    }
 }

@@ -39,4 +39,8 @@ public class BillSettingsStatefulBean extends GenericDataSettings {
     public double getPlateNumberSD() {
         return plateNumberSD;
     }
+
+    public BillData getBillData() {
+        return new BillData(plateNumberMean,plateNumberSD);
+    }
 }

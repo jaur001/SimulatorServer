@@ -3,8 +3,6 @@ package backend.model.simulation.settings.settingsList;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.Simulator;
-import backend.server.EJB.dataSettings.Adjustable;
-import backend.server.EJB.dataSettings.SettingsData;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.dataSettingsEJB.RestaurantSettingsStatefulBean;
 import backend.utils.MathUtils;

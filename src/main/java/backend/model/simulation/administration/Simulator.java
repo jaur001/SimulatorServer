@@ -14,6 +14,7 @@ import backend.utils.MathUtils;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,6 +23,7 @@ public class Simulator{
     private static String uriProvider;
     private static String uriClient;
     private static TimerStatelessBean timer;
+    private static SessionDataStatefulBean sessionData;
 
     public static String getUriProvider() {
         return uriProvider;
@@ -40,9 +42,7 @@ public class Simulator{
     }
 
     public static SessionDataStatefulBean getSessionData(){
-        if(SessionAdministrator.getSessionList().isEmpty())
-            SessionAdministrator.getSessionList().addSession();
-        return SessionAdministrator.getSessionData();
+        return sessionData;
     }
 
     public static GeneralSettingsStatefulBean getGeneralDataSettings() {
@@ -109,6 +109,7 @@ public class Simulator{
 
 
     public static void startStop(boolean thread){
+        if(!thread)initSessionData();
         if(Simulator.isNotInitialized()) Simulator.initExecution(thread);
         else Simulator.changeExecuting();
     }
@@ -118,6 +119,14 @@ public class Simulator{
         //SimulatorTester.test();
         if(thread) executeWithThread();
         else executeLocal();
+    }
+
+    public static void initSessionData() {
+        try {
+            sessionData = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SessionDataStatefulEJB");
+        } catch (NamingException e) {
+            sessionData = new SessionDataStatefulBean();
+        }
     }
 
 
@@ -131,16 +140,14 @@ public class Simulator{
     }
 
     private static void executeWithThread() {
-        try {
+        /*try {
             if(timer==null)timer = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/TimerStatelessEJB");
             timer.setTimer();
         } catch (NamingException e) {
             e.printStackTrace();
-        }
-        /*ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
-        executor.submit(() ->{
-
-        });*/
+        }*/
+        ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
+        executor.submit(Simulator::executeLocal);
     }
 
 
@@ -148,8 +155,8 @@ public class Simulator{
         while (!getRestart().get()) {
             if (isRunning()) {
                 getTimeLine().play();
-                delay();
                 getSimulationAdministrator().manageSimulation();
+                delay();
             }
         }
         Simulation.reset();

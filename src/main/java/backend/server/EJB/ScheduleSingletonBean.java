@@ -12,6 +12,6 @@ public class ScheduleSingletonBean {
     public void scheduleTimer(){
         System.out.println("Number of Companies: " + Simulation.getCompanyListCopy().size());
         System.out.println("Number of Clients: " + Simulation.getClientSize());
-        System.out.println("Number of Workers: " + Simulation.getClientSize());
+        System.out.println("Number of Workers: " + Simulation.getWorkerSize());
     }
 }

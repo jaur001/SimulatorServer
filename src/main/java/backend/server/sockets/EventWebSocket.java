@@ -27,8 +27,7 @@ public class EventWebSocket {
     @OnMessage
     public String onMessage(String message){
         StringBuilder events = new StringBuilder();
-        EventController.getEvents().stream()
-                .filter(event -> event.isFollowed(Simulation.getFollowedSimulables()))
+        EventController.getEvents()
                 .forEach(event -> events.append(event.getMessage()).append("\n"));
         return events.toString();
     }

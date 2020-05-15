@@ -68,12 +68,12 @@ function stopSimulableWorkers(){
 }
 
 $(document).ready(function() {
-    $('#changeSpeed').click(function() {
+    $('#speed').on('change',function() {
         let speed = $('#speed').val();
-        let command = $('#speedCommand').val();
+        $('#currentSpeed').text(speed);
         $.post('FrontControllerServlet', {
             speed : speed,
-            command: command
+            command: "ChangeSpeedCommand"
         });
     });
     $('#start').click(function() {
@@ -123,7 +123,6 @@ $(document).ready(function() {
     $('#divPersonTable').on('click', '#personTable tr' ,function() {
         if(isRunning){
             stopSimulableWorkers();
-            console.log("xd");
             let NIF = $(this).find("td")[0].innerHTML;
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",
@@ -131,7 +130,6 @@ $(document).ready(function() {
             });
             startSimulableWorkers();
         } else {
-            console.log("xd");
             let NIF = $(this).find("td")[0].innerHTML;
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",
@@ -145,7 +143,6 @@ $(document).ready(function() {
     $('#divCompanyTable').on('click', '#companyTable tr' ,function() {
         if(isRunning){
             stopSimulableWorkers();
-            console.log("xd");
             let NIF = $(this).find("td")[0].innerHTML;
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",
@@ -153,7 +150,6 @@ $(document).ready(function() {
             });
             startSimulableWorkers();
         } else {
-            console.log("xd");
             let NIF = $(this).find("td")[0].innerHTML;
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",

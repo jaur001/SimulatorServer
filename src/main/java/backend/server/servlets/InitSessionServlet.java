@@ -1,6 +1,8 @@
 package backend.server.servlets;
 
 import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.timeLine.Speed;
+import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.SettingsBuilder;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ public class InitSessionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
         Simulator.initSessionData();
         SettingsBuilder.setCurrentSettingsToSession(request);
+        request.getSession(true).setAttribute(Speed.class.getSimpleName(), TimeLine.getSpeed());
         try {
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServletException | IOException e) {

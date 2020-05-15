@@ -20,7 +20,7 @@ public class TimerStatelessBean {
     }
 
     public void setTimer(){
-        timerService.createSingleActionTimer(TimeLine.TIMEOUT, new TimerConfig());
+        timerService.createSingleActionTimer(TimeLine.getSpeed(), new TimerConfig());
     }
 
     @Timeout
@@ -30,7 +30,7 @@ public class TimerStatelessBean {
             Simulator.getSessionData().getSimulationAdministrator().manageSimulation();
         }
         if (!Simulator.getSessionData().getRestart().get()) {
-            timerService.createSingleActionTimer(TimeLine.TIMEOUT, new TimerConfig());
+            timerService.createSingleActionTimer(TimeLine.getSpeed(), new TimerConfig());
         } else Simulation.reset();
     }
 }

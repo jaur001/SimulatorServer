@@ -164,7 +164,7 @@ public class Simulator{
 
     private static void delay() {
         try {
-            TimeUnit.MILLISECONDS.sleep(TimeLine.TIMEOUT);
+            TimeUnit.MILLISECONDS.sleep(TimeLine.getTimeOut());
         } catch (InterruptedException e) {
             System.out.println("Simulation stopped");
         }

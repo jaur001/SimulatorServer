@@ -1,10 +1,11 @@
+<%@ page import="backend.model.simulation.timeLine.Speed" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/frontAdministrator.js"></script>
+    <script src="JS/frontendAdministrator.js"></script>
   </head>
   <script>
     let isRunning = false;
@@ -54,14 +55,13 @@
       <input type="button" id="start" value="Start/Stop">
     </form>
     <form>
-      <input type="hidden" id="restartCommand" name="command" value="RestartCommand">
+      <input type="hidden" id="restartCommand" value="RestartCommand">
       <input type="button"  id="restart" value="Restart">
     </form>
     <form>
-      <label for="speed"></label>
-      <input type="range" id="speed" name="speed" min="100" max="5000" step="10">
-      <input type="hidden" id="speedCommand" value="ChangeSpeedCommand">
-      <input type="button" id="changeSpeed"  value="Change Speed">
+      <label for="speed">Speed</label>
+      <input type="range" id="speed" min="1" max="100" value="<%=request.getSession(true).getAttribute(Speed.class.getSimpleName())%>">
+      <label id="currentSpeed"><%=request.getSession(true).getAttribute(Speed.class.getSimpleName())%></label>
     </form>
     <label for="text-area"></label>
     <textarea id="text-area" rows="10" cols="50">

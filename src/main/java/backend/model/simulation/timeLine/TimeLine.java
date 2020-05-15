@@ -1,22 +1,17 @@
 package backend.model.simulation.timeLine;
 
 
-import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.person.worker.Job;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulationAdministrator;
 
 import java.time.Month;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class TimeLine extends EventGenerator{
 
-    public static int TIMEOUT = 100;
+    private static Speed speed = new Speed();
     private static SimulationDate date = new SimulationDate();
     private List<Simulable> simulableList;
 
@@ -44,8 +39,16 @@ public class TimeLine extends EventGenerator{
         addEvent((SimulationDate)date.clone());
     }
 
-    public static void setTIMEOUT(int TIMEOUT) {
-        TimeLine.TIMEOUT = TIMEOUT;
+    public static int getTimeOut(){
+        return speed.getTimeout();
+    }
+
+    public static int getSpeed() {
+        return speed.getSpeed();
+    }
+
+    public static void setSpeed(int speedToChange) {
+        speed.setSpeed(speedToChange);
     }
 
     public static boolean isLastDay() {

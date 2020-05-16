@@ -5,6 +5,7 @@ import backend.server.EJB.dataSettings.data.ClientData;
 import backend.server.servlets.FrontCommand;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,7 +25,11 @@ public class UpdateClientDataCommand extends FrontCommand {
         String[] restaurantGroups = request.getParameterValues("restaurantGroups[]");
         Map<Integer,Integer> table = new LinkedHashMap<>();
         Arrays.stream(restaurantGroups)
-                .forEach(group -> addGroup(table,group));
+                .map(group -> group.split(","))
+                .filter(group -> group.length<=2)
+                .map(group -> new int[]{Integer.parseInt(group[0]),Integer.parseInt(group[1])})
+                .sorted(Comparator.comparing(group -> group[0]))
+                .forEach(group -> table.put(group[0],group[1]));
         return table;
     }
 

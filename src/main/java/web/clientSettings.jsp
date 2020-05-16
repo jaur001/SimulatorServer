@@ -72,7 +72,7 @@
             <% } %>
         </table>
         <div>
-            <input type="hidden" name="command" value="SaveSettingsCommand">
+            <input onclick="updateDataWithControl()" type="hidden" name="command" value="SaveSettingsCommand">
             <input type="submit"  value="Save">
         </div>
     </form>

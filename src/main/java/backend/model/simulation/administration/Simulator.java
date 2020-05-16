@@ -109,12 +109,13 @@ public class Simulator{
 
 
     public static void startStop(boolean thread){
-        if(!thread)initSessionData();
+        if(sessionData == null) initExecution(thread);
         if(Simulator.isNotInitialized()) Simulator.initExecution(thread);
         else Simulator.changeExecuting();
     }
 
     private static void initExecution(boolean thread) {
+        initSessionData();
         initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();

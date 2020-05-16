@@ -87,6 +87,10 @@ public class ClientSettings{
     }
 
     private static double getClientRestaurantPercentage(){
-        return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0;
+        return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0*getClientProbability();
+    }
+
+    private static double getClientProbability() {
+        return 1;
     }
 }

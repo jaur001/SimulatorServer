@@ -1,3 +1,5 @@
+let timeout;
+
 function getRestaurantGroups() {
     let restaurantGroups = [];
     let size = document.getElementById("restaurantGroups").rows.length;
@@ -12,7 +14,7 @@ function getRestaurantGroups() {
 function updateData() {
     let salaryMean = $('#salaryMean').val();
     let salarySd = $('#salarySd').val();
-    $('#currentSalarySd').text(salarySd);
+    $('#currentSalarySd').text(salarySd + "%");
     let salaryMin = $('#salaryMin').val();
     let invitedPeopleMin = $('#invitedPeopleMin').val();
     let invitedPeopleMax = $('#invitedPeopleMax').val();
@@ -30,6 +32,11 @@ function updateData() {
         restaurantGroups : restaurantGroups,
         command: "UpdateClientDataCommand"
     });
+}
+
+function updateDataWithControl(){
+    clearTimeout(timeout);
+    timeout = setTimeout(updateData,1000);
 }
 
 $(document).ready(function() {
@@ -54,8 +61,4 @@ $(document).ready(function() {
     $('#numOfRestaurantMax').change(function() {
         updateData();
     });
-    /*document.querySelectorAll('#restaurantGroups td')
-        .forEach(e => e.addEventListener("keyup", function() {
-            updateData();
-        }));*/
 });

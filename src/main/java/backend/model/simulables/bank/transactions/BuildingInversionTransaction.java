@@ -5,7 +5,7 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 
 public class BuildingInversionTransaction extends Transaction {
 

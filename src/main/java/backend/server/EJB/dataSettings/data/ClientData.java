@@ -1,5 +1,7 @@
 package backend.server.EJB.dataSettings.data;
 
+import backend.server.EJB.dataSettings.MinMaxData;
+
 import java.util.Map;
 
 public class ClientData {
@@ -8,12 +10,16 @@ public class ClientData {
     private double salarySd;
     private double minSalary;
     private Map<Integer,Integer> restaurantGroup;
+    private MinMaxData invitedPeople;
+    private MinMaxData numOfRestaurant;
 
-    public ClientData(double salaryMean, double salarySd, double minSalary, Map<Integer, Integer> restaurantGroup) {
+    public ClientData(double salaryMean, double salarySd, double minSalary, Map<Integer, Integer> restaurantGroup, MinMaxData invitedPeople, MinMaxData numOfRestaurant) {
         this.salaryMean = salaryMean;
         this.salarySd = salarySd;
         this.minSalary = minSalary;
         this.restaurantGroup = restaurantGroup;
+        this.invitedPeople = invitedPeople;
+        this.numOfRestaurant = numOfRestaurant;
     }
 
     public double getSalaryMean() {
@@ -32,19 +38,27 @@ public class ClientData {
         return restaurantGroup;
     }
 
-    public void setSalaryMean(double salaryMean) {
-        this.salaryMean = salaryMean;
+    public int getInvitedPeopleMin() {
+        return invitedPeople.getMin();
     }
 
-    public void setSalarySd(double salarySd) {
-        this.salarySd = salarySd;
+    public int getInvitedPeopleMax() {
+        return invitedPeople.getMax();
     }
 
-    public void setMinSalary(double minSalary) {
-        this.minSalary = minSalary;
+    public int getNumOfRestaurantMin() {
+        return numOfRestaurant.getMin();
     }
 
-    public void setRestaurantGroup(Map<Integer, Integer> restaurantGroup) {
-        this.restaurantGroup = restaurantGroup;
+    public int getNumOfRestaurantMax() {
+        return numOfRestaurant.getMax();
+    }
+
+    public MinMaxData getInvitedPeople() {
+        return invitedPeople;
+    }
+
+    public MinMaxData getNumOfRestaurant() {
+        return numOfRestaurant;
     }
 }

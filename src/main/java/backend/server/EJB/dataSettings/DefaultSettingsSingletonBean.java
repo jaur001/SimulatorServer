@@ -1,7 +1,6 @@
 package backend.server.EJB.dataSettings;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.data.*;
 
@@ -14,22 +13,22 @@ import java.util.stream.IntStream;
 @Singleton(name = "DefaultSettingsSingletonEJB")
 public class DefaultSettingsSingletonBean {
 
-    private int plateNumberMean;
-    private double plateNumberSD;
+    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
 
-    private static final double PERCENTAGE_PROVIDERS = 0.9;
-    private int clientCount;
-    private int restaurantCount;
-    private int providerCount;
-    private int serviceCount;
-    private int workerCount;
+    private static final int CLIENT_COUNT = 1000;
+    private static final int RESTAURANT_COUNT = 25;
+    private static final int PROVIDER_COUNT = 500;
+    private static final int SERVICE_COUNT = 100;
+    private static final int WORKER_COUNT = 1000;
 
     private Integer[] clientSalaries;
     private Integer[] prices;
-    private Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
+    private static final Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
     private static final int SALARY_MEAN = 1717;
     private static final double SALARY_SD = 979.28;
     private static final int MIN_SALARY = 500;
+    private static final MinMaxData INVITED_PEOPLE = new MinMaxData(0,3);
+    private static final MinMaxData NUM_OF_RESTAURANT = new MinMaxData(1,5);
 
     private static final int INITIAL_SOCIAL_CAPITAL_PROVIDER = 10000;
     private Map<Product, Integer> productCostTable = new LinkedHashMap<>();
@@ -39,25 +38,11 @@ public class DefaultSettingsSingletonBean {
 
     @PostConstruct
     public void init(){
-        initDefaultGeneralSettings();
-        initDefaultBillSettings();
         initDefaultClientSettings();
         initDefaultProviderSettings();
         initDefaultRestaurantSettings();
     }
 
-    private void initDefaultGeneralSettings() {
-        clientCount = 1000;
-        restaurantCount = 25;
-        providerCount = 500;
-        serviceCount = 100;
-        workerCount = 1000;
-    }
-
-    private void initDefaultBillSettings() {
-        plateNumberSD = 0.7;
-        plateNumberMean = 2;
-    }
 
 
     private void initDefaultClientSettings() {
@@ -79,15 +64,15 @@ public class DefaultSettingsSingletonBean {
     }
 
     public GeneralData getDefaultGeneralSettings(){
-        return new GeneralData(clientCount,restaurantCount,providerCount,serviceCount,workerCount);
+        return new GeneralData(CLIENT_COUNT, RESTAURANT_COUNT, PROVIDER_COUNT, SERVICE_COUNT, WORKER_COUNT);
     }
 
     public BillData getDefaultBillSettings(){
-        return new BillData(plateNumberMean, plateNumberSD);
+        return new BillData(PLATE_NUMBER);
     }
 
     public ClientData getDefaultClientSettings(){
-        return new ClientData(SALARY_MEAN,SALARY_SD,MIN_SALARY,restaurantGroup);
+        return new ClientData(SALARY_MEAN,SALARY_SD,MIN_SALARY,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
     }
 
     /*public WorkerData getDefaultWorkerSettings(){

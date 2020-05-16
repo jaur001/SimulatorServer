@@ -1,28 +1,16 @@
 package backend.server.EJB.dataSettings.data;
 
+import backend.server.EJB.dataSettings.DistributionData;
+
 public class BillData {
 
-    private int plateNumberMean;
-    private double plateNumberSd;
+    private DistributionData plateNumber;
 
-    public BillData(int plateNumberMean, double plateNumberSd) {
-        this.plateNumberMean = plateNumberMean;
-        this.plateNumberSd = plateNumberSd;
+    public BillData(DistributionData plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
-    public int getPlateNumberMean() {
-        return plateNumberMean;
-    }
-
-    public double getPlateNumberSd() {
-        return plateNumberSd;
-    }
-
-    public void setPlateNumberMean(int plateNumberMean) {
-        this.plateNumberMean = plateNumberMean;
-    }
-
-    public void setPlateNumberSd(double plateNumberSd) {
-        this.plateNumberSd = plateNumberSd;
+    public DistributionData getPlateNumber() {
+        return plateNumber;
     }
 }

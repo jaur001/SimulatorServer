@@ -4,7 +4,7 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.simulables.bank.Bank;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.utils.MathUtils;
 

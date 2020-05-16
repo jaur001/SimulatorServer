@@ -29,12 +29,12 @@ public class ServiceCompany extends MonthlyCompany<Service> {
     }
 
     @Override
-    protected void checkBetterProviders() {
+    protected void searchBetterProviders() {
 
     }
 
     @Override
-    protected void checkBetterServices() {
+    protected void searchBetterNeededServices() {
 
     }
 }

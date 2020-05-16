@@ -41,11 +41,11 @@ public class BillSettings{
     }
 
     public static double getPlateNumberMean(){
-        return new NormalDistribution(getBillDataSettings().getPlateNumberMean(),getBillDataSettings().getPlateNumberSD()).getMean();
+        return new NormalDistribution(getBillDataSettings().getPlateNumber().getMean(),getBillDataSettings().getPlateNumber().getSd()).getMean();
     }
 
     private static int getPlateNumberSample() {
-        double sample = Math.round(Math.abs(new NormalDistribution(getBillDataSettings().getPlateNumberMean(),getBillDataSettings().getPlateNumberSD()).sample()));
+        double sample = Math.round(Math.abs(new NormalDistribution(getBillDataSettings().getPlateNumber().getMean(),getBillDataSettings().getPlateNumber().getSd()).sample()));
         return (int)(sample<1? 1: sample);
     }
 

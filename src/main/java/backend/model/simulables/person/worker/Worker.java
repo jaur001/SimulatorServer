@@ -1,7 +1,8 @@
 package backend.model.simulables.person.worker;
 
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
+import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
@@ -13,6 +14,7 @@ import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.ConcurrentModificationException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,7 +24,7 @@ public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
     private AtomicBoolean isWorking = new AtomicBoolean(false);
-    private ComplexCompany company = null;
+    private ComplexWorkerWithStaff company = null;
     private List<JobOffer> jobOfferList;
 
 
@@ -37,6 +39,11 @@ public class Worker extends Client{
 
     public ComplexCompany getCompany() {
         return company;
+    }
+
+    public Date getContractExpireDate(){
+        if(company == null) return null;
+        return company.getContractExpireDate(this);
     }
 
 
@@ -67,7 +74,7 @@ public class Worker extends Client{
         return isWorking.get();
     }
 
-    public void hire(ComplexCompany company, double salary) {
+    public void hire(ComplexWorkerWithStaff company, double salary) {
         this.isWorking.set(true);
         this.company = company;
         setSalary(salary);

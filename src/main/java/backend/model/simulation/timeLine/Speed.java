@@ -7,7 +7,7 @@ public class Speed {
     private double timeout;
 
     public Speed() {
-        timeout = 100;
+        timeout = 1000;
     }
 
     public int getTimeout() {

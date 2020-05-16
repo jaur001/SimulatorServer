@@ -1,5 +1,6 @@
 package backend.server.EJB.dataSettings.dataSettingsEJB;
 
+import backend.server.EJB.dataSettings.MinMaxData;
 import backend.server.EJB.dataSettings.data.ClientData;
 import backend.server.EJB.dataSettings.GenericDataSettings;
 import org.apache.commons.math3.distribution.NormalDistribution;
@@ -12,10 +13,7 @@ import java.util.Map;
 @Stateful(name = "ClientSettingsStatefulEJB")
 public class ClientSettingsStatefulBean extends GenericDataSettings {
 
-    private double salaryMean;
-    private double salarySd;
-    private double minSalary;
-    private Map<Integer,Integer> restaurantGroup = new HashMap<>();
+    private ClientData data;
 
     @PostConstruct
     public void initSettings(){
@@ -26,11 +24,8 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     @Override
     public void init(Object data) {
         if(data instanceof ClientData){
-            ClientData clientData = (ClientData) data;
-            salaryMean = clientData.getSalaryMean();
-            salarySd = clientData.getSalarySd();
-            minSalary = clientData.getMinSalary();
-            restaurantGroup = clientData.getRestaurantGroup();
+            this.data = (ClientData) data;
+
         }
     }
 
@@ -40,18 +35,42 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     }
 
     public NormalDistribution getSalaryDistribution() {
-        return new NormalDistribution(salaryMean,salarySd);
+        return new NormalDistribution(data.getSalaryMean(),data.getSalarySd());
     }
 
     public double getMinSalary() {
-        return minSalary;
+        return data.getMinSalary();
     }
 
     public Map<Integer, Integer> getRestaurantGroup() {
-        return restaurantGroup;
+        return data.getRestaurantGroup();
+    }
+
+    public int getInvitedPeopleMin() {
+        return data.getInvitedPeopleMin();
+    }
+
+    public int getInvitedPeopleMax() {
+        return data.getInvitedPeopleMax();
+    }
+
+    public int getNumOfRestaurantMin() {
+        return data.getNumOfRestaurantMin();
+    }
+
+    public int getNumOfRestaurantMax() {
+        return data.getNumOfRestaurantMax();
+    }
+
+    public MinMaxData getInvitedPeople() {
+        return data.getInvitedPeople();
+    }
+
+    public MinMaxData getNumOfRestaurant() {
+        return data.getNumOfRestaurant();
     }
 
     public ClientData getClientData() {
-        return new ClientData(salaryMean,salarySd,minSalary,restaurantGroup);
+        return data;
     }
 }

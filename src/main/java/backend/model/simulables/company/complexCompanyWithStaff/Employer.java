@@ -1,78 +1,76 @@
-package backend.model.simulables.company.restaurant.administration;
+package backend.model.simulables.company.complexCompanyWithStaff;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public class Employer {
+public abstract class Employer {
 
-    private Administrator administrator;
-    private OfferManager manager;
+    protected AdministratorWithStaff administratorWithStaff;
+    protected OfferManager manager;
 
-    public Employer(Administrator administrator, OfferManager manager) {
-        this.administrator = administrator;
-        this.manager = manager;
+    public Employer(AdministratorWithStaff administratorWithStaff) {
+        this.administratorWithStaff = administratorWithStaff;
+        this.manager = new OfferManager(administratorWithStaff);
     }
 
 
-
     public void checkExpiredSoonContracts() {
-        administrator.getWorkersWithExpiredSoonContracts().parallelStream()
+        administratorWithStaff.getWorkersWithExpiredSoonContracts().parallelStream()
                 .filter(worker -> !WorkerSettings.isInRetireAge(worker))
                 .forEach(worker -> manager.makeOffers(worker));
 
     }
 
     public void checkExpiredContracts() {
-        administrator.getWorkersWithExpiredContracts().forEach(this::checkExpiredContract);
+        administratorWithStaff.getWorkersWithExpiredContracts().forEach(this::checkExpiredContract);
     }
 
-    private void checkExpiredContract(Worker worker) {
+    protected void checkExpiredContract(Worker worker) {
         if(WorkerSettings.isInRetireAge(worker)) changeRetiredWorker(worker);
         else decideContract(worker);
-        administrator.removeWorker(worker);
+        administratorWithStaff.removeWorker(worker);
         manager.removeOffers(worker);
     }
 
-    private void changeRetiredWorker(Worker worker) {
+    protected void changeRetiredWorker(Worker worker) {
         addBestWorker(Job.valueOf(worker.getJob()));
-        administrator.removeWorker(worker);
+        administratorWithStaff.removeWorker(worker);
 
     }
 
-    private boolean addBestWorker(Job job) {
+    protected boolean addBestWorker(Job job) {
         Worker workerSelected = manager.searchBestWorker(job);
         if(workerSelected==null) return false;
-        administrator.addWorker(workerSelected);
+        administratorWithStaff.addWorker(workerSelected);
         return true;
     }
 
-    private void decideContract(Worker worker) {
+    protected void decideContract(Worker worker) {
         Worker workerSelected = manager.getBestOption(worker);
         if (workerSelected.equals(worker))renovateWorker(worker);
         else changeWorker(worker,workerSelected);
     }
 
 
-    private void renovateWorker(Worker worker) {
+    protected void renovateWorker(Worker worker) {
         worker.setSalary(worker.getSalary()+ WorkerSettings.SALARY_CHANGE*worker.getSalary());
     }
 
-    private void changeWorker(Worker oldWorker, Worker workerSelected) {
-        administrator.removeWorker(oldWorker);
-        administrator.addWorker(workerSelected);
+    protected void changeWorker(Worker oldWorker, Worker workerSelected) {
+        administratorWithStaff.removeWorker(oldWorker);
+        administratorWithStaff.addWorker(workerSelected);
     }
 
     public void checkStaff() {
         while (thereIsNotEnoughWorkers()) if(addEnoughWorkers()) break;
     }
 
-    private boolean thereIsNotEnoughWorkers() {
+    protected boolean thereIsNotEnoughWorkers() {
         return Arrays.stream(Job.values())
                 .anyMatch(this::thereIsNotEnoughWorkers);
     }
@@ -87,7 +85,5 @@ public class Employer {
         return thereNotIsWorker.get();
     }
 
-    private boolean thereIsNotEnoughWorkers(Job job) {
-        return RestaurantSettings.getWorkerLength(job,administrator.getTables())>administrator.getWorkerList(job).size();
-    }
+    protected abstract boolean thereIsNotEnoughWorkers(Job job);
 }

@@ -2,7 +2,8 @@ package backend.model.simulation.administration;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
+import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
@@ -82,7 +83,7 @@ public class SimulableAdministrator {
     private void addSimulable(ComplexCompany company, Simulable simulable) {
         if(simulable instanceof Provider) committer.commitAddProvider(company,(Provider)simulable);
         else if(simulable instanceof ServiceCompany) committer.commitAddService(company,(ServiceCompany) simulable);
-        else if(simulable instanceof Worker) committer.commitAddWorker(company,(Worker)simulable);
+        else if(simulable instanceof Worker && company instanceof ComplexWorkerWithStaff) committer.commitAddWorker((ComplexWorkerWithStaff)company,(Worker)simulable);
     }
 
     private void removeChangesFromCompany() {
@@ -97,10 +98,10 @@ public class SimulableAdministrator {
     private void removeSimulable(ComplexCompany company, Simulable simulable) {
         if(simulable instanceof Provider) committer.commitRemoveProvider(company,(Provider)simulable);
         else if(simulable instanceof ServiceCompany) committer.commitRemoveService(company,(ServiceCompany) simulable);
-        else if(simulable instanceof Worker) removeWorkerFromCompany(company,(Worker)simulable);
+        else if(simulable instanceof Worker && company instanceof ComplexWorkerWithStaff) removeWorkerFromCompany((ComplexWorkerWithStaff)company,(Worker)simulable);
     }
 
-    private void removeWorkerFromCompany(ComplexCompany company, Worker worker) {
+    private void removeWorkerFromCompany(ComplexWorkerWithStaff company, Worker worker) {
         if(WorkerSettings.isInRetireAge(worker)) committer.commitRetireWorker(company,worker);
         else committer.commitRemoveWorker(company,worker);
     }

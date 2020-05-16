@@ -4,7 +4,7 @@ import backend.model.bill.bills.Payroll;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
 
 public class PayrollTransaction extends Transaction {

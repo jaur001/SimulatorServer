@@ -12,8 +12,8 @@ import backend.model.event.events.worker.FiredWorkerEvent;
 import backend.model.event.events.worker.HiredWorkerEvent;
 import backend.model.event.events.worker.RetiredWorkerEvent;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.ComplexCompany;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
+import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
@@ -39,19 +39,19 @@ public class SimulationCommitter extends EventGenerator {
         }
     }
 
-    public void commitAddWorker(ComplexCompany company, Worker worker){
+    public void commitAddWorker(ComplexWorkerWithStaff company, Worker worker){
         company.addWorker(worker);
         addEvent(new WorkerHiredCompanyEvent(company,worker));
         addEvent(new HiredWorkerEvent(worker,company));
     }
 
-    public void commitRemoveWorker(ComplexCompany company, Worker worker){
+    public void commitRemoveWorker(ComplexWorkerWithStaff company, Worker worker){
         company.removeWorker(worker);
         addEvent(new WorkerFiredCompanyEvent(company,worker));
         addEvent(new FiredWorkerEvent(worker,company));
     }
 
-    public void commitRetireWorker(ComplexCompany company, Worker worker) {
+    public void commitRetireWorker(ComplexWorkerWithStaff company, Worker worker) {
         Simulation.getWorkerList().remove(worker);
         company.retireWorker(worker);
         addEvent(new WorkerRetiredCompanyEvent(company,worker));
@@ -88,7 +88,7 @@ public class SimulationCommitter extends EventGenerator {
 
     public void commitCloseComplexCompany(ComplexCompany company) {
         removeProviders(company);
-        removeWorkers(company);
+        if(company instanceof ComplexWorkerWithStaff)removeWorkers((ComplexWorkerWithStaff)company);
         removeServices(company);
         if(company instanceof MonthlyCompany) removeCompanyClients(company);
     }
@@ -105,7 +105,7 @@ public class SimulationCommitter extends EventGenerator {
                 .forEach(provider -> provider.removeClient(company));
     }
 
-    private void removeWorkers(ComplexCompany company) {
+    private void removeWorkers(ComplexWorkerWithStaff company) {
         company.getWorkers()
                 .forEach(worker -> commitRemoveWorker(company,worker));
     }

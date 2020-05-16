@@ -1,7 +1,7 @@
 package backend.model.event.events.company;
 
 import backend.model.event.GenericEvent;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 
 public class NewCompanyEvent extends GenericEvent<ComplexCompany> {
 

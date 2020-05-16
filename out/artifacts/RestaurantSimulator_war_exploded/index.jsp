@@ -61,7 +61,7 @@
     <form>
       <label for="speed">Speed</label>
       <input type="range" id="speed" min="1" max="100" value="<%=request.getSession(true).getAttribute(Speed.class.getSimpleName())%>">
-      <label id="currentSpeed"><%=request.getSession(true).getAttribute(Speed.class.getSimpleName())%></label>
+      <label id="currentSpeed"><%=request.getSession(true).getAttribute(Speed.class.getSimpleName()) + "%"%></label>
     </form>
     <label for="text-area"></label>
     <textarea id="text-area" rows="10" cols="50">

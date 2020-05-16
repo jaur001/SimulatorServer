@@ -2,13 +2,13 @@ package backend.model.simulables.company.restaurant;
 
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
+import backend.model.simulables.company.complexCompanyWithStaff.Employer;
+import backend.model.simulables.company.restaurant.administration.RestaurantEmployer;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.restaurant.administration.Administrator;
-import backend.model.simulables.company.restaurant.administration.Employer;
-import backend.model.simulables.company.restaurant.administration.OfferManager;
-import backend.model.simulables.company.restaurant.administration.CompaniesSearcher;
+import backend.model.simulables.company.complexCompanyWithStaff.AdministratorWithStaff;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
@@ -20,16 +20,11 @@ import backend.utils.MathUtils;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// Simplemente se trata al proveedor como una renta mensual que tiene que pagar.
 
-public class Restaurant extends ComplexCompany {
+public class Restaurant extends ComplexWorkerWithStaff {
     private PriceRange priceRange;
     private int tables;
     private AtomicInteger tablesAvailable;
-
-    private Employer employer;
-    private Administrator administrator;
-    private CompaniesSearcher searcher;
 
     public Restaurant(String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
         this(new RestaurantNIFCreator().create(), companyName, telephoneNumber, street, priceRange, tables);
@@ -40,20 +35,14 @@ public class Restaurant extends ComplexCompany {
         this.priceRange = priceRange;
         this.tables = tables;
         financialData.addDebt(getMortgage());
-        initAdministration(tables);
-    }
-
-    public void initAdministration(int tables) {
-        this.tablesAvailable = new AtomicInteger(tables*RestaurantSettings.EATINGS_PER_TABLE);
-        this.administrator = new Administrator(financialData,tables,this);
-        this.employer = new Employer(administrator,new OfferManager(this,administrator));
-        this.searcher = new CompaniesSearcher(administrator,this);
+        this.tablesAvailable = new AtomicInteger(tables* RestaurantSettings.EATINGS_PER_TABLE);
+        initAdministration();
     }
 
     public double getScore(){
-        return administrator.getWorkerList().stream()
+        return administratorWithStaff.getWorkerList().stream()
                 .map(worker -> (double)worker.getQuality().getScore())
-                .reduce(0.0,Double::sum)/ administrator.getWorkerList().size();
+                .reduce(0.0,Double::sum)/ administratorWithStaff.getWorkerList().size();
     }
 
     public void collectEating(double amount){
@@ -77,25 +66,25 @@ public class Restaurant extends ComplexCompany {
     }
 
     public int getNumberOfWorkers(){
-        return administrator.getContractsSize();
+        return administratorWithStaff.getContractsSize();
     }
 
     public List<Worker> getWorkers(){
-        return administrator.getWorkerList();
+        return administratorWithStaff.getWorkerList();
     }
 
     public List<Provider> getProviders(){
-        return administrator.getProvidersList();
+        return administratorWithStaff.getProvidersList();
     }
 
-    public Administrator getAdministrator() {
-        return administrator;
+    public AdministratorWithStaff getAdministrator() {
+        return administratorWithStaff;
     }
 
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if(hasNotThisService(Service.Cleaning)) searchAndAddService(Service.Cleaning);
+        if(hasNotThisService(Service.Cleaning)) searcher.searchBetterService(Service.Cleaning);
         checkProducts();
         checkContracts();
         restartTablesAvailable();
@@ -108,7 +97,7 @@ public class Restaurant extends ComplexCompany {
     private void checkProducts() {
         if(getProviders().size()< Product.values().length) searcher.addMissingProvider();
         if(getProviders().size()> Product.values().length) searcher.removeUnnecessaryProviders();
-        administrator.checkProducts();
+        administratorWithStaff.checkProducts();
     }
 
     public void checkContracts() {
@@ -123,18 +112,23 @@ public class Restaurant extends ComplexCompany {
 
 
     @Override
-    protected boolean manageFinances() {
-        return administrator.manageFinances();
+    protected Employer initEmployer() {
+        return new RestaurantEmployer(administratorWithStaff,tables);
     }
 
     @Override
-    protected void checkBetterProviders() {
+    protected boolean manageFinances() {
+        return administratorWithStaff.manageFinances();
+    }
+
+    @Override
+    protected void searchBetterProviders() {
         searcher.searchBetterProviders();
     }
 
     @Override
-    protected void checkBetterServices() {
-        checkBetterServices(Service.Cleaning);
+    protected void searchBetterNeededServices() {
+        searcher.searchBetterService(Service.Cleaning);
     }
 
 
@@ -161,5 +155,4 @@ public class Restaurant extends ComplexCompany {
     protected void decreasePrice() {
         priceRange.decreasePrice(RestaurantSettings.PRICE_CHANGE);
     }
-
 }

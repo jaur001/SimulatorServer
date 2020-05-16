@@ -2,7 +2,7 @@ package backend.model.simulation.administration;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;

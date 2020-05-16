@@ -6,7 +6,7 @@ import backend.model.event.events.client.NewClientEvent;
 import backend.model.event.events.company.NewCompanyEvent;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;

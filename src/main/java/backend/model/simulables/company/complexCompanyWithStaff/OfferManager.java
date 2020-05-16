@@ -1,7 +1,7 @@
-package backend.model.simulables.company.restaurant.administration;
+package backend.model.simulables.company.complexCompanyWithStaff;
 
 import backend.implementations.workerSearcher.GenericWorkerSearcher;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
@@ -14,13 +14,11 @@ import java.util.Map;
 
 public class OfferManager {
 
-    private ComplexCompany company;
     private Map<Worker,List<JobOffer>> workerOffers;
-    private Administrator administrator;
+    private AdministratorWithStaff administratorWithStaff;
 
-    public OfferManager(ComplexCompany company, Administrator administrator) {
-        this.company = company;
-        this.administrator = administrator;
+    public OfferManager(AdministratorWithStaff administratorWithStaff) {
+        this.administratorWithStaff = administratorWithStaff;
         this.workerOffers = new LinkedHashMap<>();
 
     }
@@ -30,7 +28,7 @@ public class OfferManager {
     }
 
     private void makeOffer(Worker current, Worker option) {
-        JobOffer jobOffer = new JobOffer(company, option, option.getSalaryDesired());
+        JobOffer jobOffer = new JobOffer(administratorWithStaff.getCompany(), option, option.getSalaryDesired());
         if(!workerOffers.containsKey(current)) workerOffers.put(current, new LinkedList<>());
         workerOffers.get(current).add(jobOffer);
         jobOffer.acceptOfferRestaurant();
@@ -59,7 +57,7 @@ public class OfferManager {
     }
 
     private Worker getBetterWorker(Worker worker1, Worker worker2) {
-        return administrator.getCurrentStrategy().getBetterWorker(worker1,worker2);
+        return administratorWithStaff.getCurrentStrategy().getBetterWorker(worker1,worker2);
     }
 
     void removeOffers(Worker worker) {
@@ -73,10 +71,10 @@ public class OfferManager {
     }
 
     private List<Worker> searchBetterWorkers(Worker worker) {
-        return new GenericWorkerSearcher(administrator.getCurrentStrategy()).searchBetterOptions(worker);
+        return new GenericWorkerSearcher(administratorWithStaff.getCurrentStrategy()).searchBetterOptions(worker);
     }
 
     Worker searchBestWorker(Job job) {
-        return new GenericWorkerSearcher(administrator.getCurrentStrategy()).searchBestOptions(job);
+        return new GenericWorkerSearcher(administratorWithStaff.getCurrentStrategy()).searchBestOptions(job);
     }
 }

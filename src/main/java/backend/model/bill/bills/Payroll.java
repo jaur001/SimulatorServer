@@ -3,7 +3,7 @@ package backend.model.bill.bills;
 import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.BillSettings;
 

@@ -13,10 +13,6 @@ import java.util.*;
 public class ClientSettings{
 
     public static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
-    private static final int INVITED_PEOPLE_MIN = 0;
-    private static final int INVITED_PEOPLE_MAX = 3;
-    private static final int NUM_OF_RESTAURANT_MIN = 1;
-    private static final int NUM_OF_RESTAURANT_MAX = 5;
     public static final int DEATH_AGE = 75;
 
 
@@ -27,6 +23,7 @@ public class ClientSettings{
 
     public static int getSalaryGroup(double salary) {
         List<Integer> salaryOptionList = new ArrayList<>(getClientDataSettings().getRestaurantGroup().keySet());
+        if(salaryOptionList.size()==1)return salaryOptionList.get(0);
         return salaryOptionList.stream()
                 .filter(salaryAuxOption -> salary<=salaryAuxOption)
                 .findFirst().orElse(salaryOptionList.get(salaryOptionList.size() - 1));
@@ -51,16 +48,16 @@ public class ClientSettings{
     }
 
     public static double getPeopleInvitedMean() {
-        return MathUtils.twoNumberMean(INVITED_PEOPLE_MIN,INVITED_PEOPLE_MAX);
+        return MathUtils.twoNumberMean(getClientDataSettings().getInvitedPeople());
     }
 
     public static int getPeopleInvitedSample(){
-        return MathUtils.random(INVITED_PEOPLE_MIN, INVITED_PEOPLE_MAX+1);
+        return MathUtils.random(getClientDataSettings().getInvitedPeopleMin(),getClientDataSettings().getInvitedPeopleMax()+1);
     }
 
     public static int getNumOfRestaurantSample(double salary, double salaryOption){
         double percentage = salary / (salaryOption + 1);
-        return Math.max((int)(percentage*(NUM_OF_RESTAURANT_MAX)),NUM_OF_RESTAURANT_MIN);
+        return Math.max((int)(percentage*(getClientDataSettings().getNumOfRestaurantMax())),getClientDataSettings().getNumOfRestaurantMin());
     }
 
     public static int getNextVisitDaySample(double salary, double salaryOption) {

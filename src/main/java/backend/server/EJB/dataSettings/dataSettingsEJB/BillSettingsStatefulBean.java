@@ -1,5 +1,6 @@
 package backend.server.EJB.dataSettings.dataSettingsEJB;
 
+import backend.server.EJB.dataSettings.DistributionData;
 import backend.server.EJB.dataSettings.GenericDataSettings;
 import backend.server.EJB.dataSettings.data.BillData;
 
@@ -9,8 +10,7 @@ import javax.ejb.Stateful;
 @Stateful(name = "BillSettingsStatefulEJB")
 public class BillSettingsStatefulBean extends GenericDataSettings {
 
-    private int plateNumberMean;
-    private double plateNumberSD;
+    private BillData data;
 
     @PostConstruct
     public void initSettings(){
@@ -21,9 +21,7 @@ public class BillSettingsStatefulBean extends GenericDataSettings {
     @Override
     public void init(Object data) {
         if(data instanceof BillData){
-            BillData billData = (BillData) data;
-            plateNumberMean = billData.getPlateNumberMean();
-            plateNumberSD = billData.getPlateNumberSd();
+            this.data = (BillData) data;
         }
     }
 
@@ -32,15 +30,11 @@ public class BillSettingsStatefulBean extends GenericDataSettings {
         init(defaultSettings.getDefaultBillSettings());
     }
 
-    public int getPlateNumberMean() {
-        return plateNumberMean;
-    }
-
-    public double getPlateNumberSD() {
-        return plateNumberSD;
+    public DistributionData getPlateNumber(){
+        return data.getPlateNumber();
     }
 
     public BillData getBillData() {
-        return new BillData(plateNumberMean,plateNumberSD);
+        return data;
     }
 }

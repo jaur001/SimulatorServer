@@ -1,5 +1,6 @@
 package backend.model.simulables.company;
 
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
 
 import java.util.LinkedHashMap;

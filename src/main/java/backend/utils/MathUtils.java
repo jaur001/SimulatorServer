@@ -1,5 +1,7 @@
 package backend.utils;
 
+import backend.server.EJB.dataSettings.MinMaxData;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -37,6 +39,10 @@ public class MathUtils {
 
     public static double twoNumberMean(double min, double max){
         return mean(new double[]{min,max});
+    }
+
+    public static double twoNumberMean(MinMaxData data){
+        return twoNumberMean(data.getMin(),data.getMax());
     }
 
     public static int calculateProbabilities(Integer[] percentages) {

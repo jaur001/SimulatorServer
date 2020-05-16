@@ -28,6 +28,14 @@ public abstract class FrontCommand {
         return Integer.parseInt(request.getParameter(name));
     }
 
+    protected double getDoubleParameter(String name){
+        return Double.parseDouble(request.getParameter(name));
+    }
+
+    protected String getStringParameter(String name){
+        return request.getParameter(name);
+    }
+
     protected void setToRequest(String name, Object value) {
         request.setAttribute(name, value);
     }

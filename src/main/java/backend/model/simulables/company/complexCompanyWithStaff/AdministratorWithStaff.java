@@ -1,13 +1,15 @@
-package backend.model.simulables.company.restaurant.administration;
+package backend.model.simulables.company.complexCompanyWithStaff;
 
 import backend.implementations.workerSearcher.strategy.WorkerStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
+import backend.model.simulables.company.complexCompany.Administrator;
+import backend.model.simulables.company.restaurant.administration.Contract;
 import backend.model.simulation.administration.Simulator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Job;
@@ -16,26 +18,22 @@ import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
-public class Administrator{
+public class AdministratorWithStaff extends Administrator {
 
-    private int tables;
     private List<Contract> contractList;
     private List<Provider> providersList;
-    private FinancialData financialData;
-    private ComplexCompany company;
     private WorkerStrategy currentStrategy;
 
-    public Administrator(FinancialData financialData, int tables, ComplexCompany company) {
-        this.tables = tables;
-        this.company = company;
+    public AdministratorWithStaff(FinancialData financialData, ComplexCompany company) {
+        super(financialData,company);
         this.providersList = new CopyOnWriteArrayList<>();
         this.contractList = new CopyOnWriteArrayList<>();
-        this.financialData = financialData;
         this.currentStrategy = new BestProportionScoreSalaryStrategy();
     }
 
@@ -89,6 +87,10 @@ public class Administrator{
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
     public int getContractsSize() {
         return contractList.size();
     }
@@ -107,11 +109,6 @@ public class Administrator{
 
     public List<Provider> getProvidersList() {
         return providersList;
-    }
-
-
-    public int getTables() {
-        return tables;
     }
 
     public WorkerStrategy getCurrentStrategy() {
@@ -139,4 +136,5 @@ public class Administrator{
         Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
         Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getPrice()/30));
     }
+
 }

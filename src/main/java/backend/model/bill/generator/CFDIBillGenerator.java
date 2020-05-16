@@ -51,7 +51,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void createBill() throws ParserConfigurationException, TransformerException {
         getXMLDocument();
         appendData();
-        saveXMLInFile();
+        //saveXMLInFile();
         saveInList();
         //saveInDatabase(bill,getFilePath(),getFileName());
     }

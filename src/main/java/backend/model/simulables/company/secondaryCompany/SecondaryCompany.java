@@ -1,6 +1,6 @@
 package backend.model.simulables.company.secondaryCompany;
 
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 

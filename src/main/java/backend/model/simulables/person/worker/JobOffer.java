@@ -1,6 +1,6 @@
 package backend.model.simulables.person.worker;
 
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 
 public class JobOffer {
     private ComplexCompany company;

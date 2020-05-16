@@ -33,4 +33,8 @@ public class Contract {
     private Date getCopy() {
         return new Date(expireDate.getYear(),expireDate.getMonth(),expireDate.getDate());
     }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
 }

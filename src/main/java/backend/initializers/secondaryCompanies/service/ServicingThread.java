@@ -1,7 +1,7 @@
 package backend.initializers.secondaryCompanies.service;
 
 import backend.implementations.secondaryCompanies.service.RandomServicingInitializer;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.Simulation;

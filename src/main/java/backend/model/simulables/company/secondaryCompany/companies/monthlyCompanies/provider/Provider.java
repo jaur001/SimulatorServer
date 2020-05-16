@@ -30,7 +30,7 @@ public class Provider extends MonthlyCompany<Product> {
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if(hasNotThisService(Service.Transport)) searchAndAddService(Service.Transport);
+        if(hasNotThisService(Service.Transport)) searcher.searchAndAddService(Service.Transport);
         if(TimeLine.isLastDay()) {
             checkFinances();
         }
@@ -38,13 +38,13 @@ public class Provider extends MonthlyCompany<Product> {
 
 
     @Override
-    protected void checkBetterProviders() {
+    protected void searchBetterProviders() {
 
     }
 
     @Override
-    protected void checkBetterServices() {
-        checkBetterServices(Service.Transport);
+    protected void searchBetterNeededServices() {
+        searcher.searchBetterService(Service.Transport);
     }
 
 }

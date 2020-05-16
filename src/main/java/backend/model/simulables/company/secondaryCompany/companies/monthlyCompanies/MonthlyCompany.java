@@ -1,6 +1,6 @@
 package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies;
 
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 

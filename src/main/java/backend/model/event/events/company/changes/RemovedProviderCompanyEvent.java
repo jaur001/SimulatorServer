@@ -1,7 +1,7 @@
 package backend.model.event.events.company.changes;
 
 import backend.model.event.GenericEvent;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 
 public class RemovedProviderCompanyEvent extends GenericEvent<ComplexCompany> {

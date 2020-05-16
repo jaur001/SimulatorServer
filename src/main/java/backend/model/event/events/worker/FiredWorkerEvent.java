@@ -1,7 +1,7 @@
 package backend.model.event.events.worker;
 
 import backend.model.event.GenericEvent;
-import backend.model.simulables.company.ComplexCompany;
+import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
 
 public class FiredWorkerEvent extends GenericEvent<Worker> {

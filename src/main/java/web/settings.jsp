@@ -25,10 +25,9 @@
                 <div>
                     <h3>Number of Simulables</h3>
                     <div>
-
                         <label>Number of Clients</label><br>
                         <label>
-                            <select id="clients" name="clients">
+                            <select id="clients">
                                 <option value="100">100</option>
                                 <option value="500">500</option>
                                 <option value="1000" selected>1000</option>
@@ -45,7 +44,7 @@
                     <div>
                         <label>Number of Restaurants</label><br>
                         <label>
-                            <select id="restaurants" name="restaurants">
+                            <select id="restaurants">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="25" selected>25</option>
@@ -62,7 +61,7 @@
                     <div>
                         <label>Number of Providers</label><br>
                         <label>
-                            <select id="providers" name="providers">
+                            <select id="providers">
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                                 <option value="500" selected>500</option>
@@ -79,7 +78,7 @@
                     <div>
                         <label>Number of Services Companies</label><br>
                         <label>
-                            <select id="services" name="services">
+                            <select id="services">
                                 <option value="10">10</option>
                                 <option value="50">50</option>
                                 <option value="100" selected>100</option>
@@ -96,7 +95,7 @@
                     <div>
                         <label>Number of Workers</label><br>
                         <label>
-                            <select id="workers" name="workers">
+                            <select id="workers">
                                 <option value="100">100</option>
                                 <option value="500">500</option>
                                 <option value="1000" selected>1000</option>

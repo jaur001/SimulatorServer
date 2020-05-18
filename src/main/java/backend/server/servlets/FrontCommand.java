@@ -24,6 +24,14 @@ public abstract class FrontCommand {
         }
     }
 
+    protected int getAbsoluteIntParameter(String name){
+        return Math.abs(Integer.parseInt(request.getParameter(name)));
+    }
+
+    protected double getAbsoluteDoubleParameter(String name){
+        return Math.abs(Double.parseDouble(request.getParameter(name)));
+    }
+
     protected int getIntParameter(String name){
         return Integer.parseInt(request.getParameter(name));
     }

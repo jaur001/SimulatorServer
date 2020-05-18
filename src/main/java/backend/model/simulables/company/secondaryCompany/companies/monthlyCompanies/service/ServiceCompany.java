@@ -29,6 +29,11 @@ public class ServiceCompany extends MonthlyCompany<Service> {
     }
 
     @Override
+    protected boolean manageFinances() {
+        return financialData.getTreasury() <= -5000;
+    }
+
+    @Override
     protected void searchBetterProviders() {
 
     }

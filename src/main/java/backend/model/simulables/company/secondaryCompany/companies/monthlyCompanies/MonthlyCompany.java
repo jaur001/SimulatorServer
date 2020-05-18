@@ -58,11 +58,6 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
     }
 
     @Override
-    protected boolean manageFinances() {
-        return financialData.getTreasury() <= -5000;
-    }
-
-    @Override
     protected void increasePrice() {
         price*= (1+ ProviderSettings.PRICE_CHANGE);
     }

@@ -17,8 +17,8 @@ public class UpdateClientDataCommand extends FrontCommand {
     }
 
     private ClientData getClientData() {
-        return new ClientData(getDoubleParameter("salaryMean"),getDoubleParameter("salarySd"),
-                getDoubleParameter("salaryMin"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant());
+        return new ClientData(getAbsoluteDoubleParameter("salaryMean"), getAbsoluteDoubleParameter("salarySd"),
+                getAbsoluteDoubleParameter("salaryMin"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant());
     }
 
     private Map<Integer, Integer> getRestaurantGroups() {
@@ -29,20 +29,24 @@ public class UpdateClientDataCommand extends FrontCommand {
                 .filter(group -> group.length<=2)
                 .map(group -> new int[]{Integer.parseInt(group[0]),Integer.parseInt(group[1])})
                 .sorted(Comparator.comparing(group -> group[0]))
-                .forEach(group -> table.put(group[0],group[1]));
-        return table;
+                .forEach(group -> addToGroup(table, group[0], group[1]));
+        if(table.size()==4)return table;
+        else return getOldTable();
     }
 
-    private void addGroup(Map<Integer, Integer> table, String group) {
-        String[] groupPair = group.split(",");
-        if(groupPair.length>=2)table.put(Integer.parseInt(groupPair[0]),Integer.parseInt(groupPair[1]));
+    private Map<Integer, Integer> getOldTable() {
+        return ((ClientData) request.getSession(true).getAttribute(ClientData.class.getSimpleName())).getRestaurantGroup();
+    }
+
+    private void addToGroup(Map<Integer, Integer> table, int salaryOption, int price) {
+        if(price > 0)table.put(salaryOption, price);
     }
 
     private MinMaxData getInvitedPeople() {
-        return new MinMaxData(getIntParameter("invitedPeopleMin"),getIntParameter("invitedPeopleMax"));
+        return new MinMaxData(getAbsoluteIntParameter("invitedPeopleMin"), getAbsoluteIntParameter("invitedPeopleMax"));
     }
 
     private MinMaxData getNumOfRestaurant() {
-        return new MinMaxData(getIntParameter("numOfRestaurantMin"),getIntParameter("numOfRestaurantMax"));
+        return new MinMaxData(getAbsoluteIntParameter("numOfRestaurantMin"), getAbsoluteIntParameter("numOfRestaurantMax"));
     }
 }

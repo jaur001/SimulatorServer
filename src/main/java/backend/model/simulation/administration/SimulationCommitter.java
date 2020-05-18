@@ -87,25 +87,25 @@ public class SimulationCommitter extends EventGenerator {
     }
 
     public void commitCloseComplexCompany(ComplexCompany company) {
-        removeProviders(company);
-        if(company instanceof ComplexWorkerWithStaff)removeWorkers((ComplexWorkerWithStaff)company);
-        removeServices(company);
+        removeProvidersToPay(company);
+        if(company instanceof ComplexWorkerWithStaff) removeWorkersToPay((ComplexWorkerWithStaff)company);
+        removeServicesToPay(company);
         if(company instanceof MonthlyCompany) removeCompanyClients(company);
     }
 
 
 
-    private void removeServices(ComplexCompany company) {
+    private void removeServicesToPay(ComplexCompany company) {
         company.getServices()
                 .forEach(serviceCompany -> serviceCompany.removeClient(company));
     }
 
-    private void removeProviders(ComplexCompany company) {
+    private void removeProvidersToPay(ComplexCompany company) {
         company.getProviders()
                 .forEach(provider -> provider.removeClient(company));
     }
 
-    private void removeWorkers(ComplexWorkerWithStaff company) {
+    private void removeWorkersToPay(ComplexWorkerWithStaff company) {
         company.getWorkers()
                 .forEach(worker -> commitRemoveWorker(company,worker));
     }

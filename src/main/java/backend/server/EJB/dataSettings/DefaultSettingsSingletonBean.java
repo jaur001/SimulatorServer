@@ -13,14 +13,17 @@ import java.util.stream.IntStream;
 @Singleton(name = "DefaultSettingsSingletonEJB")
 public class DefaultSettingsSingletonBean {
 
-    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
-
+    //General
+    private static final int WORKER_COUNT = 1000;
     private static final int CLIENT_COUNT = 1000;
     private static final int RESTAURANT_COUNT = 25;
     private static final int PROVIDER_COUNT = 500;
     private static final int SERVICE_COUNT = 100;
-    private static final int WORKER_COUNT = 1000;
 
+    //Bills
+    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
+
+    //Client
     private Integer[] clientSalaries;
     private Integer[] prices;
     private static final Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
@@ -30,11 +33,18 @@ public class DefaultSettingsSingletonBean {
     private static final MinMaxData INVITED_PEOPLE = new MinMaxData(0,3);
     private static final MinMaxData NUM_OF_RESTAURANT = new MinMaxData(1,5);
 
+    //Restaurant
+    private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
+    private static final double INITIAL_SOCIAL_CAPITAL_RESTAURANT = 10000;
+    public static final MinMaxData LENGTH_CONTRACT = new MinMaxData(90,360);
+    public static final double PRICE_CHANGE = 0.02;
+    private static final double CAPACITY = 1.0;
+    public static final int CLOSE_LIMIT = -5000;
+
+    //Provider
     private static final int INITIAL_SOCIAL_CAPITAL_PROVIDER = 10000;
     private Map<Product, Integer> productCostTable = new LinkedHashMap<>();
 
-    private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
-    private static final double INITIAL_SOCIAL_CAPITAL_RESTAURANT = 10000;
 
     @PostConstruct
     public void init(){
@@ -42,8 +52,6 @@ public class DefaultSettingsSingletonBean {
         initDefaultProviderSettings();
         initDefaultRestaurantSettings();
     }
-
-
 
     private void initDefaultClientSettings() {
         clientSalaries = new Integer[]{1000,2000,3000,4000};
@@ -75,19 +83,19 @@ public class DefaultSettingsSingletonBean {
         return new ClientData(SALARY_MEAN,SALARY_SD,MIN_SALARY,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
     }
 
-    /*public WorkerData getDefaultWorkerSettings(){
-
-    }*/
+    public RestaurantData getDefaultRestaurantSettings(){
+        return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable,LENGTH_CONTRACT,PRICE_CHANGE, CAPACITY,CLOSE_LIMIT);
+    }
 
     public ProviderData getDefaultProviderSettings(){
         return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER,productCostTable);
     }
 
-    /*public ServiceData getDefaultServiceSettings(){
+    /*public WorkerData getDefaultWorkerSettings(){
 
     }*/
 
-    public RestaurantData getDefaultRestaurantSettings(){
-        return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable);
-    }
+    /*public ServiceData getDefaultServiceSettings(){
+
+    }*/
 }

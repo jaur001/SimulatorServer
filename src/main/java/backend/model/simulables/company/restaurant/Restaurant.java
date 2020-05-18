@@ -35,7 +35,7 @@ public class Restaurant extends ComplexWorkerWithStaff {
         this.priceRange = priceRange;
         this.tables = tables;
         financialData.addDebt(getMortgage());
-        this.tablesAvailable = new AtomicInteger(tables* RestaurantSettings.EATINGS_PER_TABLE);
+        this.tablesAvailable = new AtomicInteger((int)(tables* RestaurantSettings.EATINGS_PER_TABLE*RestaurantSettings.getCapacity()));
         initAdministration();
     }
 
@@ -148,11 +148,11 @@ public class Restaurant extends ComplexWorkerWithStaff {
 
     @Override
     protected void increasePrice() {
-        priceRange.increasePrice(RestaurantSettings.PRICE_CHANGE);
+        priceRange.increasePrice(RestaurantSettings.getPriceChange());
     }
 
     @Override
     protected void decreasePrice() {
-        priceRange.decreasePrice(RestaurantSettings.PRICE_CHANGE);
+        priceRange.decreasePrice(RestaurantSettings.getPriceChange());
     }
 }

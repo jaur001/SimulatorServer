@@ -22,11 +22,7 @@ public class RestaurantSettings{
     private static final int MAX_TABLES = 50;
     private static final int WORKERS_MIN = 1;
     private static final Map<Job, Integer> lengthWorkerTable = new HashMap<>();
-
     public static final int EATINGS_PER_TABLE = 6;
-    public static final int MIN_LENGTH_CONTRACT = 90;
-    public static final int MAX_LENGTH_CONTRACT = 360;
-    public static final double PRICE_CHANGE = 0.02;
     public static final double FINANCIAL_DIFFERENCE_PERCENTAGE = 1.25;
 
 
@@ -80,11 +76,23 @@ public class RestaurantSettings{
         return date;
     }
 
-    public static int getContractLength() {
-        return MathUtils.random(MIN_LENGTH_CONTRACT, MAX_LENGTH_CONTRACT);
-    }
-
     public static boolean newRestaurant() {
         return MathUtils.calculateProbability((int)WorkerSettings.getUnemployedWorkersPercentage());
+    }
+
+    public static int getContractLength() {
+        return MathUtils.random(getRestaurantDataSettings().getLengthContract());
+    }
+
+    public static double getPriceChange() {
+        return getRestaurantDataSettings().getPriceChange();
+    }
+
+    public static double getCapacity() {
+        return getRestaurantDataSettings().getCapacity();
+    }
+
+    public static double getCloseLimit() {
+        return getRestaurantDataSettings().getCloseLimit();
     }
 }

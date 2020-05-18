@@ -7,7 +7,6 @@ function getRestaurantGroups() {
     for(let i = 1; i < size; i++){
         restaurantGroups.push(document.getElementById("restaurantGroups").rows[i].innerText.replace("\t",","));
     }
-    console.log(restaurantGroups);
     return restaurantGroups;
 }
 

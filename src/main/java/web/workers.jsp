@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="backend.model.simulables.person.worker.Worker" %>
+<%@ page import="backend.model.simulation.timeLine.TimeLine" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -40,6 +41,7 @@
         <th>Gender</th>
         <th>Job</th>
         <th>Salary</th>
+        <th>Contract's Expire Date</th>
         <th>Quality</th>
         <th>Restaurant</th>
         <th>Country</th>
@@ -61,11 +63,18 @@
             <td><%=worker.getGender()%></td>
             <td><%=worker.getJob()%></td>
             <%
-                if(worker.getSalary()==0){
+                if(worker.isWorking()){
             %>
                 <td>Unemployed</td>
             <% } else {%>
                 <td><%=worker.getSalary()%></td>
+            <% } %>
+            <%
+                if(worker.isWorking()){
+            %>
+                <td>Unemployed</td>
+            <% } else {%>
+                <td><%=worker.getContractExpireDate().toString() + " (current Date: " + TimeLine.getDate().toString() + ")"%></td>
             <% } %>
             <td><%=worker.getQuality()%></td>
             <%

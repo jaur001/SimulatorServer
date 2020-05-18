@@ -2,6 +2,7 @@ package backend.server.EJB.dataSettings.dataSettingsEJB;
 
 import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.GenericDataSettings;
+import backend.server.EJB.dataSettings.MinMaxData;
 import backend.server.EJB.dataSettings.data.RestaurantData;
 
 import javax.annotation.PostConstruct;
@@ -12,8 +13,7 @@ import java.util.Map;
 @Stateful(name = "RestaurantSettingsStatefulEJB")
 public class RestaurantSettingsStatefulBean extends GenericDataSettings {
 
-    private double initialSocialCapital;
-    private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
+    private RestaurantData restaurantData;
 
     @PostConstruct
     public void initSettings(){
@@ -24,14 +24,12 @@ public class RestaurantSettingsStatefulBean extends GenericDataSettings {
     @Override
     public void init(Object data) {
         if(data instanceof RestaurantData){
-            RestaurantData restaurantData = (RestaurantData) data;
-            initialSocialCapital = restaurantData.getInitialSocialCapital();
-            workerSalaryTable = restaurantData.getWorkerSalaryTable();
+            restaurantData = (RestaurantData) data;
         }
     }
 
     public RestaurantData getRestaurantData() {
-        return new RestaurantData(initialSocialCapital,workerSalaryTable);
+        return restaurantData;
     }
 
     @Override
@@ -39,11 +37,27 @@ public class RestaurantSettingsStatefulBean extends GenericDataSettings {
         init(defaultSettings.getDefaultRestaurantSettings());
     }
 
-    public double getInitialSocialCapital() {
-        return initialSocialCapital;
+    public Map<Job, Integer> getWorkerSalaryTable() {
+        return restaurantData.getWorkerSalaryTable();
     }
 
-    public Map<Job, Integer> getWorkerSalaryTable() {
-        return workerSalaryTable;
+    public double getInitialSocialCapital() {
+        return restaurantData.getInitialSocialCapital();
+    }
+
+    public double getPriceChange() {
+        return restaurantData.getPriceChange();
+    }
+
+    public double getCapacity() {
+        return restaurantData.getCapacity();
+    }
+
+    public int getCloseLimit() {
+        return restaurantData.getCloseLimit();
+    }
+
+    public MinMaxData getLengthContract() {
+        return restaurantData.getLengthContract();
     }
 }

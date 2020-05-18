@@ -7,13 +7,12 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import java.util.HashMap;
 import java.util.Map;
 
 @Stateful(name = "ClientSettingsStatefulEJB")
 public class ClientSettingsStatefulBean extends GenericDataSettings {
 
-    private ClientData data;
+    private ClientData clientData;
 
     @PostConstruct
     public void initSettings(){
@@ -24,7 +23,7 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     @Override
     public void init(Object data) {
         if(data instanceof ClientData){
-            this.data = (ClientData) data;
+            this.clientData = (ClientData) data;
 
         }
     }
@@ -35,42 +34,42 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
     }
 
     public NormalDistribution getSalaryDistribution() {
-        return new NormalDistribution(data.getSalaryMean(),data.getSalarySd());
+        return new NormalDistribution(clientData.getSalaryMean(), clientData.getSalarySd());
     }
 
     public double getMinSalary() {
-        return data.getMinSalary();
+        return clientData.getMinSalary();
     }
 
     public Map<Integer, Integer> getRestaurantGroup() {
-        return data.getRestaurantGroup();
+        return clientData.getRestaurantGroup();
     }
 
     public int getInvitedPeopleMin() {
-        return data.getInvitedPeopleMin();
+        return clientData.getInvitedPeopleMin();
     }
 
     public int getInvitedPeopleMax() {
-        return data.getInvitedPeopleMax();
+        return clientData.getInvitedPeopleMax();
     }
 
     public int getNumOfRestaurantMin() {
-        return data.getNumOfRestaurantMin();
+        return clientData.getNumOfRestaurantMin();
     }
 
     public int getNumOfRestaurantMax() {
-        return data.getNumOfRestaurantMax();
+        return clientData.getNumOfRestaurantMax();
     }
 
     public MinMaxData getInvitedPeople() {
-        return data.getInvitedPeople();
+        return clientData.getInvitedPeople();
     }
 
     public MinMaxData getNumOfRestaurant() {
-        return data.getNumOfRestaurant();
+        return clientData.getNumOfRestaurant();
     }
 
     public ClientData getClientData() {
-        return data;
+        return clientData;
     }
 }

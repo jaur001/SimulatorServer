@@ -27,6 +27,6 @@ public class ServiceSettings {
     }
 
     private static double getServiceCompanyPercentage() {
-        return ((double)(Simulation.getServiceCompanySize()*5)/(double)(1+Simulation.getRestaurantSize()+Simulation.getProviderSize()))*100.0;
+        return ((double)(Simulation.getServiceCompanySize()*5)/(double)(1+Simulation.getCompanyListCopy().size()))*100.0;
     }
 }

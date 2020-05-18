@@ -36,7 +36,6 @@
                                 <option value="10000">10000</option>
                                 <option value="50000">50000</option>
                             </select>
-                            <input type="hidden" id="receivedClient" value="<%=generalData.getClientCount()%>">
                             <label>Current: </label>
                             <label id="currentClient" ><%=generalData.getClientCount()%></label>
                         </label>
@@ -53,7 +52,6 @@
                                 <option value="250">250</option>
                                 <option value="500">500</option>
                             </select>
-                            <input type="hidden" id="receivedRestaurant" value="<%=generalData.getRestaurantCount()%>">
                             <label>Current: </label>
                             <label id="currentRestaurant"><%=generalData.getRestaurantCount()%></label>
                         </label>
@@ -70,7 +68,6 @@
                                 <option value="5000">5000</option>
                                 <option value="10000">10000</option>
                             </select>
-                            <input type="hidden" id="receivedProvider" value="<%=generalData.getProviderCount()%>">
                             <label>Current: </label>
                             <label id="currentProvider"><%=generalData.getProviderCount()%></label>
                         </label>
@@ -87,7 +84,6 @@
                                 <option value="2500">2500</option>
                                 <option value="5000">5000</option>
                             </select>
-                            <input type="hidden" id="receivedService" value="<%=generalData.getServiceCount()%>">
                             <label>Current: </label>
                             <label id="currentService"><%=generalData.getServiceCount()%></label>
                         </label>
@@ -104,7 +100,6 @@
                                 <option value="10000">10000</option>
                                 <option value="50000">50000</option>
                             </select>
-                            <input type="hidden" id="receivedWorker" value="<%=generalData.getWorkerCount()%>">
                             <label>Current: </label>
                             <label id="currentWorker"><%=generalData.getWorkerCount()%></label>
                         </label>

@@ -11,7 +11,7 @@ public class UpdateGeneralDataCommand extends FrontCommand {
     }
 
     private GeneralData getGeneralData() {
-        return new GeneralData(getIntParameter("clientCount"),getIntParameter("restaurantCount"),
-                getIntParameter("providerCount"),getIntParameter("serviceCount"),getIntParameter("workerCount"));
+        return new GeneralData(getAbsoluteIntParameter("clientCount"), getAbsoluteIntParameter("restaurantCount"),
+                getAbsoluteIntParameter("providerCount"), getAbsoluteIntParameter("serviceCount"), getAbsoluteIntParameter("workerCount"));
     }
 }

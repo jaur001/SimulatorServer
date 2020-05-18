@@ -18,6 +18,9 @@ public class MathUtils {
         return RANDOM.nextInt(max-min)+min;
     }
 
+    public static int random(MinMaxData minMaxData) {
+        return random(minMaxData.getMin(),minMaxData.getMax());
+    }
 
     public static double mean(double[] data){
         double sum = 0.0;
@@ -54,5 +57,4 @@ public class MathUtils {
     public static boolean calculateProbability(int number) {
         return random(0,100)<number;
     }
-
 }

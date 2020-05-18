@@ -18,7 +18,6 @@ import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -117,13 +116,17 @@ public class AdministratorWithStaff extends Administrator {
 
     public boolean manageFinances() {
         selectStrategy();
-        return financialData.getTreasury() <= -5000;
+        return financialData.getTreasury() <= RestaurantSettings.getCloseLimit();
     }
 
     private void selectStrategy() {
         if (isInHighLosses()) currentStrategy = new LowestSalaryStrategy();
-        else if(financialData.getLastMonthLosses()*1.25 <= financialData.getLastMonthIncome()) currentStrategy = new BestWorkerStrategy();
+        else if(isInHighBenefits()) currentStrategy = new BestWorkerStrategy();
         else currentStrategy = new BestProportionScoreSalaryStrategy();
+    }
+
+    private boolean isInHighBenefits() {
+        return financialData.getLastMonthLosses()* RestaurantSettings.FINANCIAL_DIFFERENCE_PERCENTAGE <= financialData.getLastMonthIncome();
     }
 
     private boolean isInHighLosses() {

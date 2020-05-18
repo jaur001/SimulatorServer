@@ -26,6 +26,10 @@ public class Provider extends MonthlyCompany<Product> {
         setPrice(ProviderSettings.getProductCost(product));
     }
 
+    @Override
+    protected boolean manageFinances() {
+        return financialData.getTreasury() <= -5000;
+    }
 
     @Override
     public void simulate() {

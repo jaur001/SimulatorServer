@@ -28,7 +28,7 @@ public class Provider extends MonthlyCompany<Product> {
 
     @Override
     protected boolean manageFinances() {
-        return financialData.getTreasury() <= -5000;
+        return financialData.getTreasury() <= -ProviderSettings.getCloseLimit();
     }
 
     @Override

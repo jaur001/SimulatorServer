@@ -83,11 +83,11 @@ public class ClientSettings{
     }
 
     public static boolean newClient() {
-        return MathUtils.calculateProbability(100-(int)getClientRestaurantPercentage());
+        return MathUtils.calculateProbability((int)((100-getClientRestaurantPercentage())*getClientProbability()));
     }
 
     private static double getClientRestaurantPercentage(){
-        return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0*getClientProbability();
+        return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0;
     }
 
     private static double getClientProbability() {

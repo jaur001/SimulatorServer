@@ -68,8 +68,8 @@
             <label>Jobs Initial Salary</label>
             <table id="jobSalary" style="width:100%">
                 <tr>
-                    <th>Salary Options</th>
-                    <th>Max Price for Plate</th>
+                    <th>Job</th>
+                    <th>Salary</th>
                 </tr>
                 <%
                     for (Map.Entry<Job, Integer> entry : restaurantData.getWorkerSalaryTable().entrySet()) {

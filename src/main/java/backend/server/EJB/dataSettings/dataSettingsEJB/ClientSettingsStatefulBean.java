@@ -22,10 +22,7 @@ public class ClientSettingsStatefulBean extends GenericDataSettings {
 
     @Override
     public void init(Object data) {
-        if(data instanceof ClientData){
-            this.clientData = (ClientData) data;
-
-        }
+        if(data instanceof ClientData)clientData = (ClientData) data;
     }
 
     @Override

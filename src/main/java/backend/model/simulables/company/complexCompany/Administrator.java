@@ -50,7 +50,10 @@ public class Administrator {
 
     public void checkProducts() {
         if(providersList.size()==0) return;
-        if(!ProviderSettings.isBadProduct()) return;
+        if(ProviderSettings.isBadProduct()) refundProduct();
+    }
+
+    public void refundProduct() {
         Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
         Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getPrice()/30));
     }

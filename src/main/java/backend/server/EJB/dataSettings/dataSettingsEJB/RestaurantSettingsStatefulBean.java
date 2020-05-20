@@ -23,9 +23,7 @@ public class RestaurantSettingsStatefulBean extends GenericDataSettings {
 
     @Override
     public void init(Object data) {
-        if(data instanceof RestaurantData){
-            restaurantData = (RestaurantData) data;
-        }
+        if(data instanceof RestaurantData)restaurantData = (RestaurantData) data;
     }
 
     public RestaurantData getRestaurantData() {

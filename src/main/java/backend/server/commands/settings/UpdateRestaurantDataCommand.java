@@ -3,12 +3,12 @@ package backend.server.commands.settings;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.server.EJB.dataSettings.MinMaxData;
+import backend.server.EJB.dataSettings.data.ClientData;
 import backend.server.EJB.dataSettings.data.RestaurantData;
 import backend.server.servlets.FrontCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class UpdateRestaurantDataCommand extends FrontCommand {
@@ -43,6 +43,7 @@ public class UpdateRestaurantDataCommand extends FrontCommand {
 
     private void addToGroup(Map<Job, Integer> table, Job job, int salary) {
         if(salary > 0)
-            if(salary< ClientSettings.getMinSalary())table.put(job, (int)ClientSettings.getMinSalary());
+            if(salary< ((ClientData)request.getSession(true).getAttribute(ClientData.class.getSimpleName())).getMinSalary()) table.put(job, (int)ClientSettings.getMinSalary());
+            else table.put(job,salary);
     }
 }

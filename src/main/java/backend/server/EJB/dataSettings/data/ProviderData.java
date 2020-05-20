@@ -7,26 +7,30 @@ import java.util.Map;
 public class ProviderData {
 
     private double initialSocialCapital;
-    private Map<Product, Integer> productCostTable;
+    private Map<Product, Integer> productSalePriceTable;
+    private double priceChange;
+    private int closeLimit;
 
-    public ProviderData(double initialSocialCapital, Map<Product, Integer> productCostTable) {
+    public ProviderData(double initialSocialCapital, Map<Product, Integer> productSalePriceTable, double priceChange, int closeLimit) {
         this.initialSocialCapital = initialSocialCapital;
-        this.productCostTable = productCostTable;
+        this.productSalePriceTable = productSalePriceTable;
+        this.priceChange = priceChange;
+        this.closeLimit = closeLimit;
     }
 
     public double getInitialSocialCapital() {
         return initialSocialCapital;
     }
 
-    public Map<Product, Integer> getProductCostTable() {
-        return productCostTable;
+    public Map<Product, Integer> getProductSalePriceTable() {
+        return productSalePriceTable;
     }
 
-    public void setInitialSocialCapital(double initialSocialCapital) {
-        this.initialSocialCapital = initialSocialCapital;
+    public double getPriceChange() {
+        return priceChange;
     }
 
-    public void setProductCostTable(Map<Product, Integer> productCostTable) {
-        this.productCostTable = productCostTable;
+    public int getCloseLimit() {
+        return closeLimit;
     }
 }

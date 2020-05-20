@@ -6,14 +6,12 @@ import backend.server.EJB.dataSettings.data.ProviderData;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Stateful(name = "ProviderSettingsStatefulEJB")
 public class ProviderSettingsStatefulBean extends GenericDataSettings {
 
-    private double initialSocialCapital;
-    private Map<Product, Integer> productCostTable = new LinkedHashMap<>();
+    private ProviderData providerData;
 
     @PostConstruct
     public void initSettings(){
@@ -23,10 +21,8 @@ public class ProviderSettingsStatefulBean extends GenericDataSettings {
 
     @Override
     public void init(Object data) {
-        if(data instanceof ProviderData){
-            ProviderData providerData = (ProviderData) data;
-            initialSocialCapital = providerData.getInitialSocialCapital();
-            productCostTable = providerData.getProductCostTable();
+        if(data instanceof ProviderData){ providerData = (ProviderData) data;
+
         }
     }
 
@@ -36,14 +32,22 @@ public class ProviderSettingsStatefulBean extends GenericDataSettings {
     }
 
     public double getInitialSocialCapital() {
-        return initialSocialCapital;
+        return providerData.getInitialSocialCapital();
     }
 
-    public Map<Product, Integer> getProductCostTable() {
-        return productCostTable;
+    public Map<Product, Integer> getProductSalePriceTable() {
+        return providerData.getProductSalePriceTable();
+    }
+
+    public double getPriceChange() {
+        return providerData.getPriceChange();
+    }
+
+    public int getCloseLimit() {
+        return providerData.getCloseLimit();
     }
 
     public ProviderData getProviderData() {
-        return new ProviderData(initialSocialCapital,productCostTable);
+        return providerData;
     }
 }

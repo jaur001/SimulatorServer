@@ -9,11 +9,7 @@ import javax.ejb.Stateful;
 @Stateful(name = "GeneralSettingsStatefulEJB")
 public class GeneralSettingsStatefulBean extends GenericDataSettings {
 
-    private int clientCount;
-    private int restaurantCount;
-    private int providerCount;
-    private int serviceCount;
-    private int workerCount;
+    private GeneralData generalData;
 
     @PostConstruct
     public void initSettings(){
@@ -23,14 +19,7 @@ public class GeneralSettingsStatefulBean extends GenericDataSettings {
 
     @Override
     public void init(Object data) {
-        if(data instanceof GeneralData){
-            GeneralData generalData = (GeneralData) data;
-            clientCount = generalData.getClientCount();
-            restaurantCount = generalData.getRestaurantCount();
-            providerCount = generalData.getProviderCount();
-            serviceCount = generalData.getServiceCount();
-            workerCount = generalData.getWorkerCount();
-        }
+        if(data instanceof GeneralData)generalData = (GeneralData) data;
     }
 
     @Override
@@ -39,26 +28,26 @@ public class GeneralSettingsStatefulBean extends GenericDataSettings {
     }
 
     public int getClientCount() {
-        return clientCount;
+        return generalData.getClientCount();
     }
 
     public int getRestaurantCount() {
-        return restaurantCount;
+        return generalData.getRestaurantCount();
     }
 
     public int getProviderCount() {
-        return providerCount;
+        return generalData.getProviderCount();
     }
 
     public int getServiceCount() {
-        return serviceCount;
+        return generalData.getServiceCount();
     }
 
     public int getWorkerCount() {
-        return workerCount;
+        return generalData.getWorkerCount();
     }
 
     public GeneralData getGeneralData() {
-        return new GeneralData(clientCount,restaurantCount,providerCount,serviceCount,workerCount);
+        return generalData;
     }
 }

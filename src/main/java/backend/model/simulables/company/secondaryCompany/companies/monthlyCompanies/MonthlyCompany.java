@@ -59,12 +59,12 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     @Override
     protected void increasePrice() {
-        price*= (1+ ProviderSettings.PRICE_CHANGE);
+        price*= (1+ ProviderSettings.getPriceChange());
     }
 
     @Override
     protected void decreasePrice() {
-        price*= (1-ProviderSettings.PRICE_CHANGE);
+        price*= (1-ProviderSettings.getPriceChange());
     }
 
     @Override

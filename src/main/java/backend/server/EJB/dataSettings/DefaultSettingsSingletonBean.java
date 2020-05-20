@@ -37,13 +37,15 @@ public class DefaultSettingsSingletonBean {
     private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
     private static final double INITIAL_SOCIAL_CAPITAL_RESTAURANT = 10000;
     public static final MinMaxData LENGTH_CONTRACT = new MinMaxData(90,360);
-    public static final double PRICE_CHANGE = 0.02;
+    public static final double RESTAURANT_PRICE_CHANGE = 0.02;
     private static final double CAPACITY = 1.0;
-    public static final int CLOSE_LIMIT = -5000;
+    public static final int RESTAURANT_CLOSE_LIMIT = -5000;
 
     //Provider
     private static final int INITIAL_SOCIAL_CAPITAL_PROVIDER = 10000;
-    private Map<Product, Integer> productCostTable = new LinkedHashMap<>();
+    private Map<Product, Integer> productSalePriceTable = new LinkedHashMap<>();
+    public static final double PROVIDER_PRICE_CHANGE = 0.01;
+    private static final int PROVIDER_CLOSE_LIMIT = -5000;
 
 
     @PostConstruct
@@ -62,7 +64,7 @@ public class DefaultSettingsSingletonBean {
     private void initDefaultProviderSettings() {
         Integer[] cost = {150,160,160,80,80,100,90};
         IntStream.range(0,Product.values().length).boxed()
-                .forEach(i -> productCostTable.put(Product.values()[i],cost[i]));
+                .forEach(i -> productSalePriceTable.put(Product.values()[i],cost[i]));
     }
 
     private void initDefaultRestaurantSettings(){
@@ -84,11 +86,11 @@ public class DefaultSettingsSingletonBean {
     }
 
     public RestaurantData getDefaultRestaurantSettings(){
-        return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable,LENGTH_CONTRACT,PRICE_CHANGE, CAPACITY,CLOSE_LIMIT);
+        return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable,LENGTH_CONTRACT, RESTAURANT_PRICE_CHANGE, CAPACITY, RESTAURANT_CLOSE_LIMIT);
     }
 
     public ProviderData getDefaultProviderSettings(){
-        return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER,productCostTable);
+        return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER, productSalePriceTable,PROVIDER_PRICE_CHANGE,PROVIDER_CLOSE_LIMIT);
     }
 
     /*public WorkerData getDefaultWorkerSettings(){

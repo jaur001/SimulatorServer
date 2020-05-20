@@ -15,7 +15,7 @@ function updateData() {
     let capacity = $('#capacity').val();
     $('#currentCapacity').text(capacity + "%");
     let priceChange = $('#priceChange').val();
-    $('#currentPriceChange').text(priceChange);
+    $('#currentPriceChange').text(priceChange*100.0 + "%");
     let closeLimit = $('#closeLimit').val();
     let lengthContractMin = $('#lengthContractMin').val();
     let lengthContractMax = $('#lengthContractMax').val();

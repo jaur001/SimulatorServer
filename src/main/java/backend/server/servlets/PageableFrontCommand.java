@@ -1,6 +1,6 @@
 package backend.server.servlets;
 
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulatorSwitcher;
 import backend.utils.DatabaseUtils;
 
 import java.util.List;
@@ -9,7 +9,7 @@ public abstract class PageableFrontCommand<T> extends FrontCommand{
 
     protected void checkPagination(){
         setPage();
-        Simulator.stopSimulation();
+        SimulatorSwitcher.stopSimulation();
         setMaxPage();
     }
 

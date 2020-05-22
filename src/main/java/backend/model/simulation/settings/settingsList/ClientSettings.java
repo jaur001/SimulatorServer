@@ -4,8 +4,8 @@ import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
-import backend.server.EJB.dataSettings.dataSettingsEJB.ClientSettingsStatefulBean;
+import backend.model.simulation.administration.SimulationDataController;
+import backend.server.EJB.dataSettings.data.ClientData;
 import backend.utils.MathUtils;
 
 import java.util.*;
@@ -16,8 +16,8 @@ public class ClientSettings{
     public static final int DEATH_AGE = 75;
 
 
-    private static ClientSettingsStatefulBean getClientDataSettings() {
-        return Simulator.getClientDataSettings();
+    private static ClientData getClientDataSettings() {
+        return SimulationDataController.getClientSessionData();
     }
 
 

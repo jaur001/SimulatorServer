@@ -8,7 +8,8 @@ import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
+import backend.model.simulation.administration.SimulatorSwitcher;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
@@ -109,7 +110,7 @@ public class Worker extends Client{
     }
 
     private void work() {
-        if(WorkerSettings.isInRetireAge(this)&&!isWorking()) Simulator.retire(this);
+        if(WorkerSettings.isInRetireAge(this)&&!isWorking()) SimulationAdministrator.retire(this);
         else if(!isWorking()) searchJob();
     }
 
@@ -127,7 +128,7 @@ public class Worker extends Client{
         try {
             if(jobOfferList.size()>0)jobOfferList.stream().filter(JobOffer::isCanceled).forEach(jobOfferList::remove);
         } catch (ConcurrentModificationException e){
-            Simulator.waitForOtherElements();
+            SimulatorSwitcher.waitForOtherElements();
             searchJob();
         }
         if (jobOfferList.stream().anyMatch(JobOffer::isAccepted)) return;

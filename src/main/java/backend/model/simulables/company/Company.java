@@ -2,7 +2,7 @@ package backend.model.simulables.company;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Payer;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
 
 
 public abstract class Company implements Payer, Simulable {
@@ -14,13 +14,15 @@ public abstract class Company implements Payer, Simulable {
     protected FinancialData financialData;
     protected static final double TAXES = 1000;
 
-    public Company(int NIF, String companyName, String street, String telephoneNumber, FinancialData financialData) {
+    public Company(int NIF, String companyName, String street, String telephoneNumber) {
         this.NIF = NIF;
         this.companyName = companyName;
         this.street = street.replaceAll("\"","");
         this.telephoneNumber = telephoneNumber;
-        this.financialData = financialData;
+        this.financialData = getInitialFinancialData();
     }
+
+    protected abstract FinancialData getInitialFinancialData();
 
     @Override
     public int getNIF() {
@@ -68,7 +70,7 @@ public abstract class Company implements Payer, Simulable {
     }
 
     protected void declareBankruptcy() {
-        Simulator.isGoingToClose(this);
+        SimulationAdministrator.isGoingToClose(this);
     }
 
     protected abstract boolean manageFinances();

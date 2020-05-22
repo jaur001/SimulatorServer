@@ -8,7 +8,7 @@ import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.transactions.EatingBillTransaction;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 
 
@@ -130,7 +130,7 @@ public class Client implements Simulable, Collector{
 
     protected void doClientsThings() {
         if(ClientSettings.isGoingToDie(this.getAge())) {
-            Simulator.isGoingToDie(this);
+            SimulationAdministrator.isGoingToDie(this);
             return;
         }
         routineList.checkRoutines().forEach(this::goToEat);

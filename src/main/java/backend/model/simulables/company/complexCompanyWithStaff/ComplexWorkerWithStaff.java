@@ -15,8 +15,8 @@ public abstract class ComplexWorkerWithStaff extends ComplexCompany {
     protected Employer employer;
     protected List<Worker> workers;
 
-    public ComplexWorkerWithStaff(int NIF, String companyName, String street, String telephoneNumber, FinancialData financialData) {
-        super(NIF, companyName, street, telephoneNumber, financialData);
+    public ComplexWorkerWithStaff(int NIF, String companyName, String street, String telephoneNumber) {
+        super(NIF, companyName, street, telephoneNumber);
         initAdministration();
         workers = new LinkedList<>();
     }

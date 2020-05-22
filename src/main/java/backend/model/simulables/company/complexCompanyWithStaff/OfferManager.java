@@ -1,11 +1,10 @@
 package backend.model.simulables.company.complexCompanyWithStaff;
 
 import backend.implementations.workerSearcher.GenericWorkerSearcher;
-import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -40,8 +39,8 @@ public class OfferManager {
         List<JobOffer> jobOffers = workerOffers.get(worker);
         JobOffer option = jobOffers.parallelStream()
                 .filter(JobOffer::isAccepted)
-                .filter(offer -> Simulator.isNotAlreadyHired(offer.getWorker()))
-                .filter(offer -> Simulator.isNotAlreadyRetired(offer.getWorker()))
+                .filter(offer -> SimulationAdministrator.isNotAlreadyHired(offer.getWorker()))
+                .filter(offer -> SimulationAdministrator.isNotAlreadyRetired(offer.getWorker()))
                 .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return worker;
         else return option.getWorker();

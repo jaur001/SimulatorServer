@@ -21,21 +21,21 @@ public class UpdateProviderDataCommand extends FrontCommand {
     }
 
 
-    private Map<Product, Integer> getWorkerSalaries() {
+    private Map<Product, Double> getWorkerSalaries() {
         String[] productSalePrices = request.getParameterValues("productSalePrices[]");
-        Map<Product,Integer> table = new HashMap<>();
+        Map<Product,Double> table = new HashMap<>();
         Arrays.stream(productSalePrices)
                 .map(group -> group.split(","))
-                .forEach(group -> addToGroup(table, Product.valueOf(group[0]),Integer.parseInt(group[1])));
+                .forEach(group -> addToGroup(table, Product.valueOf(group[0]),Double.parseDouble(group[1])));
         if(table.size()==Product.values().length)return table;
         else return getOldTable();
     }
 
-    private Map<Product, Integer> getOldTable() {
+    private Map<Product, Double> getOldTable() {
         return ((ProviderData) request.getSession(true).getAttribute(ProviderData.class.getSimpleName())).getProductSalePriceTable();
     }
 
-    private void addToGroup(Map<Product, Integer> table, Product product, int salePrice) {
-        if(salePrice > 0)table.put(product, (int)salePrice);
+    private void addToGroup(Map<Product, Double> table, Product product, double salePrice) {
+        if(salePrice > 0)table.put(product, salePrice);
     }
 }

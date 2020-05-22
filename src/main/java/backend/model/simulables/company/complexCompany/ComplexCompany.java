@@ -5,13 +5,10 @@ import backend.model.simulables.bank.transactions.PayrollTransaction;
 import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
 import backend.model.simulables.bank.transactions.ServiceBillTransaction;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,8 +19,8 @@ public abstract class ComplexCompany extends Company {
     protected List<Provider> providers;
     protected CompaniesSearcher searcher;
 
-    public ComplexCompany(int NIF, String companyName, String street, String telephoneNumber, FinancialData financialData) {
-        super(NIF, companyName, street, telephoneNumber, financialData);
+    public ComplexCompany(int NIF, String companyName, String street, String telephoneNumber) {
+        super(NIF, companyName, street, telephoneNumber);
         services = new LinkedList<>();
         providers = new LinkedList<>();
         this.searcher = new CompaniesSearcher(new Administrator(financialData,this));

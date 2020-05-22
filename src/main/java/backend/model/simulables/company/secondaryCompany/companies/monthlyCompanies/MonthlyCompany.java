@@ -2,7 +2,6 @@ package backend.model.simulables.company.secondaryCompany.companies.monthlyCompa
 
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
-import backend.model.simulation.settings.settingsList.ProviderSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,25 +45,15 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     public void setProduct(Product product) {
         this.product = product;
-        setPrice();
+        setInitialPrice();
     }
 
-    public abstract void setPrice();
+    public abstract void setInitialPrice();
 
     public void setPrice(double productPrice) {
         financialData.removeDebt(getMortgage());
         this.price = productPrice;
         financialData.addDebt(getMortgage());
-    }
-
-    @Override
-    protected void increasePrice() {
-        price*= (1+ ProviderSettings.getPriceChange());
-    }
-
-    @Override
-    protected void decreasePrice() {
-        price*= (1-ProviderSettings.getPriceChange());
     }
 
     @Override

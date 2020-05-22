@@ -116,8 +116,9 @@ public class SimulableAdministrator {
     }
 
     private void diePerson(Client client) {
-        Simulator.diePerson(client);
+        SimulationDataController.getSimulationAdministrator().diePerson(client);
     }
+
 
     public void isGoingToClose(Company company){
         closedCompanyList.add(company);
@@ -128,7 +129,7 @@ public class SimulableAdministrator {
         closedCompanyList = new LinkedList<>();
     }
 
-    private void closeCompany(Company company) {
-        Simulator.closeCompany(company);
+    public void closeCompany(Company company) {
+        SimulationDataController.getSimulationAdministrator().closeCompany(company);
     }
 }

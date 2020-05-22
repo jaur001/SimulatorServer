@@ -31,7 +31,7 @@ public class Restaurant extends ComplexWorkerWithStaff {
     }
 
     public Restaurant(int NIF, String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
-        super(NIF,companyName,street,telephoneNumber,new FinancialData( RestaurantSettings.getInitialSocialCapital()));
+        super(NIF,companyName,street,telephoneNumber);
         this.priceRange = priceRange;
         this.tables = tables;
         financialData.addDebt(getMortgage());
@@ -139,6 +139,11 @@ public class Restaurant extends ComplexWorkerWithStaff {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected FinancialData getInitialFinancialData() {
+        return new FinancialData(RestaurantSettings.getInitialSocialCapital());
     }
 
     @Override

@@ -2,24 +2,23 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.SimulationDataController;
+import backend.server.EJB.dataSettings.data.ServiceData;
 import backend.utils.MathUtils;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.IntStream;
 
 public class ServiceSettings {
 
-    private static Map<Service,Double> priceTable = new LinkedHashMap<>();
 
-    static {
-        Double[] prices = new Double[]{100.0,100.0};
-        IntStream.range(0,Service.values().length).boxed()
-                .forEach(i -> priceTable.put(Service.values()[i],prices[i]));
+    private static ServiceData getServiceDataSettings() {
+        return SimulationDataController.getServiceSessionData();
+    }
+
+    public static double getInitialSocialCapital() {
+        return getServiceDataSettings().getInitialSocialCapital();
     }
 
     public static double getPrice(Service service){
-        return priceTable.get(service);
+        return getServiceDataSettings().getServicePriceTable().get(service);
     }
 
     public static boolean newService() {
@@ -28,5 +27,13 @@ public class ServiceSettings {
 
     private static double getServiceCompanyPercentage() {
         return ((double)(Simulation.getServiceCompanySize()*5)/(double)(1+Simulation.getCompanyListCopy().size()))*100.0;
+    }
+
+    public static double getPriceChange() {
+        return getServiceDataSettings().getPriceChange();
+    }
+
+    public static double getCloseLimit(){
+        return getServiceDataSettings().getCloseLimit();
     }
 }

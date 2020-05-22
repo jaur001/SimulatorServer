@@ -2,22 +2,22 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
-import backend.server.EJB.dataSettings.dataSettingsEJB.ProviderSettingsStatefulBean;
+import backend.model.simulation.administration.SimulationDataController;
+import backend.server.EJB.dataSettings.data.ProviderData;
 import backend.utils.MathUtils;
 
 public class ProviderSettings{
 
 
-    private static ProviderSettingsStatefulBean getProviderDataSettings() {
-        return Simulator.getProviderDataSettings();
+    private static ProviderData getProviderDataSettings() {
+        return SimulationDataController.getProviderSessionData();
     }
 
     public static double getInitialSocialCapital() {
         return getProviderDataSettings().getInitialSocialCapital();
     }
 
-    public static int getProductCost(Product product){
+    public static double getProductCost(Product product){
         return getProviderDataSettings().getProductSalePriceTable().get(product);
     }
 

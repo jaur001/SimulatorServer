@@ -6,7 +6,7 @@ import backend.implementations.workerSearcher.strategy.strategies.complexStrateg
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
 import backend.model.simulables.company.complexCompany.Administrator;
 import backend.model.simulables.company.restaurant.administration.Contract;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
@@ -37,21 +37,21 @@ public class AdministratorWithStaff extends Administrator {
     }
 
     public void addProvider(Provider provider){
-        Simulator.addSimulableForCompany(company,provider);
+        SimulationAdministrator.addSimulableForCompany(company,provider);
     }
 
     public void removeProvider(Provider provider){
-        Simulator.removeSimulableForCompany(company,provider);
+        SimulationAdministrator.removeSimulableForCompany(company,provider);
     }
 
     public void addWorker(Worker worker){
         addContract(worker);
-        Simulator.addSimulableForCompany(company,worker);
+        SimulationAdministrator.addSimulableForCompany(company,worker);
     }
 
     public void removeWorker(Worker worker){
         removeContract(worker);
-        Simulator.removeSimulableForCompany(company,worker);
+        SimulationAdministrator.removeSimulableForCompany(company,worker);
     }
 
 

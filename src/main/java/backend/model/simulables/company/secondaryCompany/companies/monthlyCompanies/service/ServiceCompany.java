@@ -1,6 +1,8 @@
 package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service;
 
+import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
+import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.ServiceSettings;
 import backend.model.simulation.timeLine.TimeLine;
 
@@ -17,7 +19,7 @@ public class ServiceCompany extends MonthlyCompany<Service> {
     }
 
     @Override
-    public void setPrice() {
+    public void setInitialPrice() {
         this.price = ServiceSettings.getPrice(product);
     }
 
@@ -29,8 +31,23 @@ public class ServiceCompany extends MonthlyCompany<Service> {
     }
 
     @Override
+    protected FinancialData getInitialFinancialData() {
+        return new FinancialData(ServiceSettings.getInitialSocialCapital());
+    }
+
+    @Override
     protected boolean manageFinances() {
-        return financialData.getTreasury() <= -5000;
+        return financialData.getTreasury() <= ServiceSettings.getCloseLimit();
+    }
+
+    @Override
+    protected void increasePrice() {
+        price*= (1+ ServiceSettings.getPriceChange());
+    }
+
+    @Override
+    protected void decreasePrice() {
+        price*= (1-ServiceSettings.getPriceChange());
     }
 
     @Override

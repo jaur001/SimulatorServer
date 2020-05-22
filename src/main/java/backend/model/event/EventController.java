@@ -1,7 +1,7 @@
 package backend.model.event;
 
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulatorSwitcher;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ConcurrentModificationException;
@@ -26,7 +26,7 @@ public class EventController {
         try {
             eventList.add(event);
         } catch (ConcurrentModificationException | IndexOutOfBoundsException e){
-            Simulator.waitForOtherElements();
+            SimulatorSwitcher.waitForOtherElements();
             addToWeb(event);
         }
     }

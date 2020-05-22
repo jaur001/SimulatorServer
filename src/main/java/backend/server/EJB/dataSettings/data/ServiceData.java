@@ -1,19 +1,19 @@
 package backend.server.EJB.dataSettings.data;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 
 import java.util.Map;
 
-public class ProviderData {
+public class ServiceData {
 
     private double initialSocialCapital;
-    private Map<Product, Double> productSalePriceTable;
+    private Map<Service, Double> servicePriceTable;
     private double priceChange;
     private double closeLimit;
 
-    public ProviderData(double initialSocialCapital, Map<Product, Double> productSalePriceTable, double priceChange, double closeLimit) {
+    public ServiceData(double initialSocialCapital, Map<Service, Double> servicePriceTable, double priceChange, double closeLimit) {
         this.initialSocialCapital = initialSocialCapital;
-        this.productSalePriceTable = productSalePriceTable;
+        this.servicePriceTable = servicePriceTable;
         this.priceChange = priceChange;
         this.closeLimit = closeLimit;
     }
@@ -22,8 +22,8 @@ public class ProviderData {
         return initialSocialCapital;
     }
 
-    public Map<Product, Double> getProductSalePriceTable() {
-        return productSalePriceTable;
+    public Map<Service, Double> getServicePriceTable() {
+        return servicePriceTable;
     }
 
     public double getPriceChange() {

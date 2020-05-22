@@ -2,8 +2,8 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.administration.Simulator;
-import backend.server.EJB.dataSettings.dataSettingsEJB.BillSettingsStatefulBean;
+import backend.model.simulation.administration.SimulationDataController;
+import backend.server.EJB.dataSettings.data.BillData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
@@ -24,8 +24,8 @@ public class BillSettings{
         conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }
 
-    private static BillSettingsStatefulBean getBillDataSettings() {
-        return Simulator.getBillDataSettings();
+    private static BillData getBillDataSettings() {
+        return SimulationDataController.getBillSessionData();
     }
 
 

@@ -1,7 +1,7 @@
 package backend.server.EJB;
 
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
 
 import javax.annotation.PostConstruct;
@@ -25,11 +25,11 @@ public class TimerStatelessBean {
 
     @Timeout
     public void Timeout(Timer timer){
-        if (Simulator.getSessionData().getExecuting().get()) {
-            Simulator.getSessionData().getTimeLine().play();
-            Simulator.getSessionData().getSimulationAdministrator().manageSimulation();
+        if (SimulationDataController.getSessionData().getExecuting().get()) {
+            SimulationDataController.getSessionData().getTimeLine().play();
+            SimulationDataController.getSessionData().getSimulationIOController().manageSimulation();
         }
-        if (!Simulator.getSessionData().getRestart().get()) {
+        if (!SimulationDataController.getSessionData().getRestart().get()) {
             timerService.createSingleActionTimer(TimeLine.getSpeed(), new TimerConfig());
         } else Simulation.reset();
     }

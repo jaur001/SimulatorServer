@@ -1,6 +1,7 @@
 package backend.server.EJB.dataSettings;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.data.*;
 
@@ -39,65 +40,81 @@ public class DefaultSettingsSingletonBean {
     public static final MinMaxData LENGTH_CONTRACT = new MinMaxData(90,360);
     public static final double RESTAURANT_PRICE_CHANGE = 0.02;
     private static final double CAPACITY = 1.0;
-    public static final int RESTAURANT_CLOSE_LIMIT = -5000;
+    public static final double RESTAURANT_CLOSE_LIMIT = -5000.0;
 
     //Provider
     private static final int INITIAL_SOCIAL_CAPITAL_PROVIDER = 10000;
-    private Map<Product, Integer> productSalePriceTable = new LinkedHashMap<>();
+    private Map<Product, Double> productSalePriceTable = new LinkedHashMap<>();
     public static final double PROVIDER_PRICE_CHANGE = 0.01;
-    private static final int PROVIDER_CLOSE_LIMIT = -5000;
+    private static final double PROVIDER_CLOSE_LIMIT = -5000.0;
+    
+    //Service
+    private static final int INITIAL_SOCIAL_CAPITAL_SERVICE = 10000;
+    private Map<Service, Double> servicePriceTable = new LinkedHashMap<>();
+    public static final double SERVICE_PRICE_CHANGE = 0.01;
+    private static final double SERVICE_CLOSE_LIMIT = -5000.0;
 
+    public DefaultSettingsSingletonBean() {
+        init();
+    }
 
     @PostConstruct
     public void init(){
-        initDefaultClientSettings();
-        initDefaultProviderSettings();
-        initDefaultRestaurantSettings();
+        initDefaultClientData();
+        initDefaultRestaurantData();
+        initDefaultProviderData();
+        initDefaultServiceData();
     }
 
-    private void initDefaultClientSettings() {
+    private void initDefaultClientData() {
         clientSalaries = new Integer[]{1000,2000,3000,4000};
         prices = new Integer[]{15,25,40,60};
         IntStream.range(0, clientSalaries.length).boxed()
                 .forEach(i -> restaurantGroup.put(clientSalaries[i], prices[i]));
     }
-    private void initDefaultProviderSettings() {
-        Integer[] cost = {150,160,160,80,80,100,90};
-        IntStream.range(0,Product.values().length).boxed()
-                .forEach(i -> productSalePriceTable.put(Product.values()[i],cost[i]));
-    }
 
-    private void initDefaultRestaurantSettings(){
+    private void initDefaultRestaurantData(){
         Integer[] salaries = {800,1000,1500,3000,3000};
         IntStream.range(0,Job.values().length).boxed()
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
     }
+    private void initDefaultProviderData() {
+        Double[] cost = {150.0,160.0,160.0,80.0,80.0,100.0,90.0};
+        IntStream.range(0,Product.values().length).boxed()
+                .forEach(i -> productSalePriceTable.put(Product.values()[i],cost[i]));
+    }
 
-    public GeneralData getDefaultGeneralSettings(){
+    private void initDefaultServiceData() {
+        Double[] prices = new Double[]{100.0,100.0};
+        IntStream.range(0,Service.values().length).boxed()
+                .forEach(i -> servicePriceTable.put(Service.values()[i],prices[i]));
+    }
+
+    public GeneralData getDefaultGeneralData(){
         return new GeneralData(CLIENT_COUNT, RESTAURANT_COUNT, PROVIDER_COUNT, SERVICE_COUNT, WORKER_COUNT);
     }
 
-    public BillData getDefaultBillSettings(){
+    public BillData getDefaultBillData(){
         return new BillData(PLATE_NUMBER);
     }
 
-    public ClientData getDefaultClientSettings(){
+    public ClientData getDefaultClientData(){
         return new ClientData(SALARY_MEAN,SALARY_SD,MIN_SALARY,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
     }
 
-    public RestaurantData getDefaultRestaurantSettings(){
+    public RestaurantData getDefaultRestaurantData(){
         return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable,LENGTH_CONTRACT, RESTAURANT_PRICE_CHANGE, CAPACITY, RESTAURANT_CLOSE_LIMIT);
     }
 
-    public ProviderData getDefaultProviderSettings(){
-        return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER, productSalePriceTable,PROVIDER_PRICE_CHANGE,PROVIDER_CLOSE_LIMIT);
+    public ProviderData getDefaultProviderData(){
+        return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER, productSalePriceTable, PROVIDER_PRICE_CHANGE, PROVIDER_CLOSE_LIMIT);
+    }
+
+    public ServiceData getDefaultServiceData() {
+        return new ServiceData(INITIAL_SOCIAL_CAPITAL_SERVICE, servicePriceTable, SERVICE_PRICE_CHANGE, SERVICE_CLOSE_LIMIT);
     }
 
     /*public WorkerData getDefaultWorkerSettings(){
-
-    }*/
-
-    /*public ServiceData getDefaultServiceSettings(){
 
     }*/
 }

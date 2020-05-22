@@ -41,15 +41,15 @@ public class Simulation {
     public static final RoutineStrategy ROUTINE_STRATEGY = new BestRoutineStrategy();
 
     public static void followSimulable(Simulable simulable){
-        if(!Simulator.getSessionData().getFollowedSimulables().contains(simulable))Simulator.getSessionData().getFollowedSimulables().add(simulable);
+        if(!SimulationDataController.getSessionData().getFollowedSimulables().contains(simulable))SimulationDataController.getSessionData().getFollowedSimulables().add(simulable);
     }
 
     public static void unfollowSimulable(Simulable simulable){
-        Simulator.getSessionData().getFollowedSimulables().remove(simulable);
+        SimulationDataController.getSessionData().getFollowedSimulables().remove(simulable);
     }
 
     public static List<Simulable> getFollowedSimulables(){
-        return Simulator.getSessionData().getFollowedSimulables();
+        return SimulationDataController.getSessionData().getFollowedSimulables();
     }
 
     public static int getProviderSize() {
@@ -147,7 +147,7 @@ public class Simulation {
     }
 
     static List<Company> getCompanyList(){
-        return Simulator.getSessionData().getCompanyList();
+        return SimulationDataController.getSessionData().getCompanyList();
     }
 
     static List<Restaurant> getRestaurantList() {
@@ -172,11 +172,11 @@ public class Simulation {
     }
 
     static List<Client> getClientList() {
-        return Simulator.getSessionData().getClientList();
+        return SimulationDataController.getSessionData().getClientList();
     }
 
     static List<Worker> getWorkerList() {
-        return Simulator.getSessionData().getWorkerList();
+        return SimulationDataController.getSessionData().getWorkerList();
     }
 
     public static List<Provider> getProviderList(Product product) {
@@ -221,16 +221,16 @@ public class Simulation {
     private static void initSimulables(){
         try {
             int serviceCount = GeneralSettings.getServiceCount();
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(serviceCount));
+            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(serviceCount));
             int providerCount = GeneralSettings.getProviderCount();
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getProviders(providerCount));
+            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getProviders(providerCount));
             int restaurantCount = GeneralSettings.getRestaurantCount();
-            Simulator.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(restaurantCount));
+            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(restaurantCount));
             int clientCount = GeneralSettings.getClientCount();
-            Simulator.getSessionData().getClientList().addAll(Initializer.getClients(clientCount));
+            SimulationDataController.getSessionData().getClientList().addAll(Initializer.getClients(clientCount));
             int workerCount = GeneralSettings.getWorkerCount();
-            Simulator.getSessionData().getWorkerList().addAll(Initializer.getWorkers(workerCount));
-            Simulator.getSessionData().getClientList().addAll(Simulator.getSessionData().getWorkerList());
+            SimulationDataController.getSessionData().getWorkerList().addAll(Initializer.getWorkers(workerCount));
+            SimulationDataController.getSessionData().getClientList().addAll(SimulationDataController.getSessionData().getWorkerList());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -242,7 +242,7 @@ public class Simulation {
     }
 
     public static void reset(){
-        Simulator.getSessionData().reset();
+        SimulationDataController.getSessionData().reset();
         resetBills();
         resetEvents();
     }
@@ -263,8 +263,8 @@ public class Simulation {
 
     public static List<Worker> getUnemployedWorkers(Job job){
         return Simulation.getWorkerList(job).stream()
-                .filter(Simulator::isNotAlreadyHired)
-                .filter(Simulator::isNotAlreadyRetired)
+                .filter(SimulationAdministrator::isNotAlreadyHired)
+                .filter(SimulationAdministrator::isNotAlreadyRetired)
                 .filter(worker -> !worker.isWorking())
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -275,7 +275,7 @@ public class Simulation {
 
     public static List<Worker> getUnemployedWorkers() {
         return Simulation.getWorkerList().stream()
-                .filter(Simulator::isNotAlreadyHired)
+                .filter(SimulationAdministrator::isNotAlreadyHired)
                 .filter(worker -> !worker.isWorking())
                 .collect(Collectors.toCollection(LinkedList::new));
     }

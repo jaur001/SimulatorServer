@@ -1,6 +1,8 @@
 package backend.server.EJB.dataSettings.data;
 
 import backend.server.EJB.dataSettings.MinMaxData;
+import org.apache.commons.math3.analysis.FunctionUtils;
+import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.Map;
 
@@ -60,5 +62,9 @@ public class ClientData {
 
     public MinMaxData getNumOfRestaurant() {
         return numOfRestaurant;
+    }
+
+    public NormalDistribution getSalaryDistribution() {
+        return new NormalDistribution(salaryMean, salarySd);
     }
 }

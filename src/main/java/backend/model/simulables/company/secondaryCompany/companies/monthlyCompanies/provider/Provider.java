@@ -2,6 +2,7 @@ package backend.model.simulables.company.secondaryCompany.companies.monthlyCompa
 
 import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.simulables.SimulableTester;
+import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
@@ -22,13 +23,18 @@ public class Provider extends MonthlyCompany<Product> {
     }
 
     @Override
-    public void setPrice() {
+    public void setInitialPrice() {
         setPrice(ProviderSettings.getProductCost(product));
     }
 
     @Override
+    protected FinancialData getInitialFinancialData() {
+        return new FinancialData(ProviderSettings.getInitialSocialCapital());
+    }
+
+    @Override
     protected boolean manageFinances() {
-        return financialData.getTreasury() <= -ProviderSettings.getCloseLimit();
+        return financialData.getTreasury() <= ProviderSettings.getCloseLimit();
     }
 
     @Override
@@ -40,6 +46,15 @@ public class Provider extends MonthlyCompany<Product> {
         }
     }
 
+    @Override
+    protected void increasePrice() {
+        price*= (1+ ProviderSettings.getPriceChange());
+    }
+
+    @Override
+    protected void decreasePrice() {
+        price*= (1-ProviderSettings.getPriceChange());
+    }
 
     @Override
     protected void searchBetterProviders() {

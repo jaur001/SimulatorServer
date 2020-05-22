@@ -12,9 +12,9 @@ public class RestaurantData {
     private MinMaxData lengthContract;
     private double priceChange;
     private double capacity;
-    private int closeLimit;
+    private double closeLimit;
 
-    public RestaurantData(double initialSocialCapital, Map<Job, Integer> workerSalaryTable, MinMaxData lengthContract, double priceChange, double capacity, int closeLimit) {
+    public RestaurantData(double initialSocialCapital, Map<Job, Integer> workerSalaryTable, MinMaxData lengthContract, double priceChange, double capacity, double closeLimit) {
         this.initialSocialCapital = initialSocialCapital;
         this.workerSalaryTable = workerSalaryTable;
         this.lengthContract = lengthContract;
@@ -39,7 +39,7 @@ public class RestaurantData {
         return capacity;
     }
 
-    public int getCloseLimit() {
+    public double getCloseLimit() {
         return closeLimit;
     }
 

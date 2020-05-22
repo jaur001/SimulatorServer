@@ -5,7 +5,7 @@ import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.utils.MathUtils;
 
@@ -25,19 +25,19 @@ public class Administrator {
     }
 
     public void addProvider(Provider provider){
-        Simulator.addSimulableForCompany(company,provider);
+        SimulationAdministrator.addSimulableForCompany(company,provider);
     }
 
     public void removeProvider(Provider provider){
-        Simulator.removeSimulableForCompany(company,provider);
+        SimulationAdministrator.removeSimulableForCompany(company,provider);
     }
 
     public void addService(ServiceCompany serviceCompany){
-        Simulator.addSimulableForCompany(company,serviceCompany);
+        SimulationAdministrator.addSimulableForCompany(company,serviceCompany);
     }
 
     public void removeService(ServiceCompany serviceCompany){
-        Simulator.removeSimulableForCompany(company,serviceCompany);
+        SimulationAdministrator.removeSimulableForCompany(company,serviceCompany);
     }
 
     public List<Provider> getProvidersList() {

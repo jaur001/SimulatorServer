@@ -29,7 +29,7 @@ public class SimulatorTester {
             ex.printStackTrace();
         }
         if(TimeLine.isSameDate(date)){
-            TimeLine timeLine = Simulator.getTimeLine();
+            TimeLine timeLine = SimulationDataController.getTimeLine();
             Simulable simulable = SimulableTester.actualSimulable;
             int method = SimulableTester.method;
             Simulable actualSimulable = TimeLine.actualSimulable;

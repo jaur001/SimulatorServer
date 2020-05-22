@@ -8,7 +8,7 @@ import backend.server.servlets.FrontCommand;
 public class SaveSettingsCommand extends FrontCommand {
     @Override
     public void process() {
-        SettingsBuilder.build(getGeneralData(),getBillData(),getClientData(),getRestaurantData(),getProviderData());
+        SettingsBuilder.build(getGeneralData(),getBillData(),getClientData(),getRestaurantData(),getProviderData(),getServiceData());
         forward("/index.jsp");
     }
 
@@ -31,4 +31,10 @@ public class SaveSettingsCommand extends FrontCommand {
     private ProviderData getProviderData() {
         return (ProviderData) request.getSession(true).getAttribute(ProviderData.class.getSimpleName());
     }
+
+    private ServiceData getServiceData() {
+        return (ServiceData) request.getSession(true).getAttribute(ServiceData.class.getSimpleName());
+    }
+
+
 }

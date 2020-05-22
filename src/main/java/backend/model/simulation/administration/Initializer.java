@@ -85,7 +85,7 @@ public class Initializer {
         ServicingThread.initRestaurantsWithCleaning();
         WorkerSearcherThread.addWorkers();
         RoutineThread.setClientRoutines();
-        Simulator.makeChanges();
+        SimulationAdministrator.makeChanges();
     }
 
     private static List<Simulable> createSimulables() {

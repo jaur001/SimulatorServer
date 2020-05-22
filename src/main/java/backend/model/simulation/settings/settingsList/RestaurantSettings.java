@@ -2,9 +2,9 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.EJB.dataSettings.dataSettingsEJB.RestaurantSettingsStatefulBean;
+import backend.server.EJB.dataSettings.data.RestaurantData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.BetaDistribution;
 
@@ -37,8 +37,8 @@ public class RestaurantSettings{
 
     }
 
-    private static RestaurantSettingsStatefulBean getRestaurantDataSettings() {
-        return Simulator.getRestaurantDataSettings();
+    private static RestaurantData getRestaurantDataSettings() {
+        return SimulationDataController.getRestaurantSessionData();
     }
 
     public static double getSalaryPerQuality(Worker worker) {

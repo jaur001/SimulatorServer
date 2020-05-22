@@ -1,13 +1,13 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulation.administration.Simulator;
-import backend.server.EJB.dataSettings.dataSettingsEJB.GeneralSettingsStatefulBean;
+import backend.model.simulation.administration.SimulationDataController;
+import backend.server.EJB.dataSettings.data.GeneralData;
 
 public class GeneralSettings {
 
 
-    private static GeneralSettingsStatefulBean getGeneralDataSettings() {
-        return Simulator.getGeneralDataSettings();
+    private static GeneralData getGeneralDataSettings() {
+        return SimulationDataController.getGeneralSessionData();
     }
 
     public static int getClientCount() {

@@ -1,7 +1,7 @@
 package backend.server.EJB;
 
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.Simulator;
+import backend.model.simulation.administration.SimulationDataController;
 
 import javax.ejb.Stateless;
 
@@ -9,13 +9,13 @@ import javax.ejb.Stateless;
 public class FollowersControllerStatelessBean {
 
     public void followSimulable(int NIF){
-        Simulator.getTimeLine().getSimulableList().stream()
+        SimulationDataController.getTimeLine().getSimulableList().stream()
                 .filter(simulable -> simulable.getNIF() == NIF)
                 .findFirst().ifPresent(Simulation::followSimulable);
     }
 
     public void unfollowSimulable(int NIF){
-        Simulator.getTimeLine().getSimulableList().stream()
+        SimulationDataController.getTimeLine().getSimulableList().stream()
                 .filter(simulable -> simulable.getNIF() == NIF)
                 .findFirst().ifPresent(Simulation::unfollowSimulable);
     }

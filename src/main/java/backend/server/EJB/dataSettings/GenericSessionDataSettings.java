@@ -3,7 +3,7 @@ package backend.server.EJB.dataSettings;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public abstract class GenericDataSettings implements Adjustable {
+public abstract class GenericSessionDataSettings implements Adjustable {
     protected DefaultSettingsSingletonBean defaultSettings;
     protected void initDefaultSettings(){
         try {

@@ -1,12 +1,12 @@
-package backend.server.EJB;
+package backend.model.simulation.administration.data;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.SimulableAdministrator;
-import backend.model.simulation.administration.SimulationIOController;
+import backend.model.simulation.administration.SimulableController;
 import backend.model.simulation.administration.SimulationCommitter;
+import backend.model.simulation.administration.SimulationIOController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.sessionData.*;
 
@@ -20,14 +20,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Stateful(name = "SessionDataStatefulEJB")
-public class SessionDataStatefulBean {
+public class SimulationData {
 
     private List<Company> companyList;
     private List<Client> clientList;
     private List<Worker> workerList;
     private List<Simulable> followedSimulables;
-    private SimulableAdministrator simulableAdministrator;
-    private SimulationIOController simulationIOController;
+    private SimulableController simulableController;
 
     private GeneralSettingsStatefulBean generalDataSettings;
     private RestaurantSettingsStatefulBean restaurantDataSettings;
@@ -40,7 +39,7 @@ public class SessionDataStatefulBean {
     private AtomicBoolean restart;
     private TimeLine timeLine;
 
-    public SessionDataStatefulBean() {
+    public SimulationData() {
         reset();
     }
 
@@ -81,17 +80,13 @@ public class SessionDataStatefulBean {
         return timeLine;
     }
 
-    public SimulableAdministrator getSimulableAdministrator() {
-        return simulableAdministrator;
-    }
-
-    public SimulationIOController getSimulationIOController() {
-        return simulationIOController;
+    public SimulableController getSimulableController() {
+        return simulableController;
     }
 
     public void initTimeLine(List<Simulable> simulableList){
         timeLine = new TimeLine(simulableList);
-        simulationIOController = new SimulationIOController(timeLine.getSimulableList(),new SimulationCommitter());
+        simulableController.initIO(new SimulationIOController(timeLine.getSimulableList(),new SimulationCommitter()));
         restart.set(false);
     }
 
@@ -102,7 +97,7 @@ public class SessionDataStatefulBean {
     }
 
     public void initSimulator() {
-        simulableAdministrator = new SimulableAdministrator(new SimulationCommitter());
+        simulableController = new SimulableController(new SimulationCommitter());
         restart = new AtomicBoolean(true);
         executing = new AtomicBoolean(true);
     }

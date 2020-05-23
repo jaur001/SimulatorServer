@@ -1,6 +1,6 @@
 package backend.server.servlets;
 
-import backend.model.simulation.administration.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.timeLine.Speed;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.SettingsBuilder;

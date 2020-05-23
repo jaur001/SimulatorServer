@@ -2,6 +2,7 @@ package backend.server.commands.bills;
 
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.SimulationBillAdministrator;
 import backend.server.servlets.FrontCommand;
 
 import java.io.FileInputStream;
@@ -14,7 +15,7 @@ public class DownloadCommand extends FrontCommand {
     @Override
     public void process() {
         String fileID = request.getParameter("ID");
-        XMLBill bill = Simulation.getBillList(getBillPage()).stream()
+        XMLBill bill = SimulationBillAdministrator.getBillList(getBillPage()).stream()
                 .filter(xmlBill -> BillHaveTheUUID(fileID, xmlBill)).findFirst().orElse(new XMLBill());
         prepareDownload(bill);
         download(bill);

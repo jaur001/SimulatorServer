@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.model.simulation.administration.SimulatorSwitcher;
+import backend.model.simulation.administration.simulablesControl.SimulatorSwitcher;
 
 import backend.server.servlets.FrontCommand;
 

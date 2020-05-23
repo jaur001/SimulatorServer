@@ -2,7 +2,7 @@ package backend.main;
 
 import backend.implementations.SQLite.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
-import backend.model.simulation.administration.SimulatorSwitcher;
+import backend.model.simulation.administration.simulablesControl.SimulatorSwitcher;
 
 public class Main {
     public static void main(String[] args) {

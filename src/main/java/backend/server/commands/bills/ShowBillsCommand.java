@@ -3,6 +3,7 @@ package backend.server.commands.bills;
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.SimulationBillAdministrator;
 import backend.server.servlets.PageableFrontCommand;
 
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
     }
     protected List<XMLBill> getList(int page) {
         request.getSession(true).setAttribute("billPage",page);
-        return Simulation.getBillList(page);
+        return SimulationBillAdministrator.getBillList(page);
     }
 
     @Override

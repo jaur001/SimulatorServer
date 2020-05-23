@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ServiceData;
 import backend.utils.MathUtils;
 

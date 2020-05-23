@@ -1,5 +1,6 @@
 package backend.model.simulation.administration;
 
+import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SimulableAdministrator {
+public class SimulableController {
 
     private Map<ComplexCompany,List<Simulable>> companiesAddingChanges;
     private Map<ComplexCompany,List<Simulable>> companiesRemovingChanges;
@@ -24,14 +25,23 @@ public class SimulableAdministrator {
     private List<Client> deadClientList;
     private List<Company> closedCompanyList;
     private SimulationCommitter committer;
+    private SimulationIOController simulationIOController;
 
-    public SimulableAdministrator(SimulationCommitter committer) {
+    public SimulableController(SimulationCommitter committer) {
         this.committer = committer;
         companiesAddingChanges = new ConcurrentHashMap<>();
         companiesRemovingChanges = new ConcurrentHashMap<>();
         retiredWorkers = new LinkedList<>();
         deadClientList = new LinkedList<>();
         closedCompanyList = new LinkedList<>();
+    }
+
+    public void initIO(SimulationIOController simulationIOController){
+        this.simulationIOController = simulationIOController;
+    }
+
+    public void manageSimulation() {
+        simulationIOController.manageSimulation();
     }
 
     public void retire(Worker worker) {
@@ -63,17 +73,16 @@ public class SimulableAdministrator {
         closeCompanies();
         addChangesForCompany();
         removeChangesFromCompany();
+        commitChanges();
     }
 
     private void addChangesForCompany() {
         retireWorkers();
         companiesAddingChanges.forEach(this::addSimulables);
-        companiesAddingChanges = new HashMap<>();
     }
 
     private void retireWorkers() {
         retiredWorkers.forEach(Worker::retire);
-        retiredWorkers = new LinkedList<>();
     }
 
     private void addSimulables(ComplexCompany company, List<Simulable> simulables) {
@@ -88,7 +97,6 @@ public class SimulableAdministrator {
 
     private void removeChangesFromCompany() {
         companiesRemovingChanges.forEach(this::removeSimulables);
-        companiesRemovingChanges = new HashMap<>();
     }
 
     private void removeSimulables(ComplexCompany company, List<Simulable> simulables) {
@@ -111,14 +119,8 @@ public class SimulableAdministrator {
     }
 
     private void diePeople(){
-        deadClientList.forEach(this::diePerson);
-        deadClientList = new LinkedList<>();
+        deadClientList.forEach(client -> simulationIOController.diePerson(client));
     }
-
-    private void diePerson(Client client) {
-        SimulationDataController.getSimulationAdministrator().diePerson(client);
-    }
-
 
     public void isGoingToClose(Company company){
         closedCompanyList.add(company);
@@ -126,10 +128,17 @@ public class SimulableAdministrator {
 
     private void closeCompanies(){
         closedCompanyList.forEach(this::closeCompany);
-        closedCompanyList = new LinkedList<>();
     }
 
     public void closeCompany(Company company) {
-        SimulationDataController.getSimulationAdministrator().closeCompany(company);
+        simulationIOController.closeCompany(company);
+    }
+
+    private void commitChanges() {
+        companiesAddingChanges = new HashMap<>();
+        retiredWorkers = new LinkedList<>();
+        companiesRemovingChanges = new HashMap<>();
+        deadClientList = new LinkedList<>();
+        closedCompanyList = new LinkedList<>();
     }
 }

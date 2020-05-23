@@ -1,7 +1,6 @@
 package backend.server.sockets;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.person.client.Client;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -33,7 +32,7 @@ public class CompanyWebSocket {
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Name</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</td>");
         simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</td>").append("</tr>");
-        Simulation.getFollowedSimulables().stream()
+        SimulationFollowAdministrator.getFollowedSimulables().stream()
                 .filter(simulable -> simulable instanceof Company)
                 .map(simulable -> (Company) simulable)
                 .forEach(company -> appendRow(company,simulables));

@@ -1,20 +1,19 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.data;
 
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.EJB.SessionDataStatefulBean;
 import backend.server.EJB.dataSettings.data.*;
 import backend.server.EJB.dataSettings.sessionData.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimulationDataController {
 
-    private static SessionDataStatefulBean sessionData;
+    private static SimulationData sessionData;
 
     public static void initSessionData() {
-        sessionData = new SessionDataStatefulBean();
+        sessionData = new SimulationData();
     }
 
-    public static SessionDataStatefulBean getSessionData(){
+    public static SimulationData getSessionData(){
         return sessionData;
     }
 
@@ -76,10 +75,5 @@ public class SimulationDataController {
 
     public static AtomicBoolean getExecuting(){
         return getSessionData().getExecuting();
-    }
-
-
-    public static SimulationIOController getSimulationAdministrator(){
-        return getSessionData().getSimulationIOController();
     }
 }

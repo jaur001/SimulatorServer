@@ -1,7 +1,7 @@
 package backend.model.event;
 
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulatorSwitcher;
+import backend.model.simulation.administration.data.SimulationFollowAdministrator;
+import backend.model.simulation.administration.simulablesControl.SimulatorSwitcher;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ConcurrentModificationException;
@@ -18,7 +18,7 @@ public class EventController {
     public static void addEvent(Event event){
         if(isTheFirstDay()) return;
         System.out.println(event.getMessage());
-        if(event.isFollowed(Simulation.getFollowedSimulables()))addToWeb(event);
+        if(event.isFollowed(SimulationFollowAdministrator.getFollowedSimulables()))addToWeb(event);
     }
 
 

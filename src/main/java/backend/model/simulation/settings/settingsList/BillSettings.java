@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.administration.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.BillData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;

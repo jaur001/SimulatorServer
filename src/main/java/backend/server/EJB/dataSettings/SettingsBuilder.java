@@ -1,6 +1,6 @@
 package backend.server.EJB.dataSettings;
 
-import backend.model.simulation.administration.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.*;
 
 import javax.servlet.http.HttpServletRequest;

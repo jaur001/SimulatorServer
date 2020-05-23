@@ -3,6 +3,7 @@ package backend.model.bill.generator;
 import backend.implementations.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.event.EventGenerator;
+import backend.model.simulation.administration.SimulationBillAdministrator;
 import backend.model.simulation.administration.SimulatorThreadPool;
 import backend.model.simulation.administration.Simulation;
 import backend.utils.MathUtils;
@@ -139,7 +140,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     }
 
     private void saveInList() {
-        Simulation.addBill(new XMLBill(bill, getFilePath(),getFileName()));
+        SimulationBillAdministrator.addBill(new XMLBill(bill, getFilePath(),getFileName()));
     }
 
     public static void saveInDatabase(CFDIBill bill, String filePath, String fileName) {

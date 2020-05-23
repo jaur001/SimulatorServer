@@ -1,6 +1,8 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.simulablesControl;
 
 import backend.model.simulables.Simulable;
+import backend.model.simulation.administration.SimulatorThreadPool;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 
@@ -77,7 +79,7 @@ public class SimulatorSwitcher {
     }
 
     private static List<Simulable> initSimulables() {
-        return Simulation.init();
+        return SimulationInitializer.init();
     }
 
     private static void executeWithThread() {
@@ -96,11 +98,11 @@ public class SimulatorSwitcher {
         while (!SimulationDataController.getRestart().get()) {
             if (isRunning()) {
                 SimulationDataController.getTimeLine().play();
-                SimulationDataController.getSessionData().getSimulationIOController().manageSimulation();
+                SimulationDataController.getSessionData().getSimulableController().manageSimulation();
                 delay();
             }
         }
-        Simulation.reset();
+        SimulationInitializer.reset();
     }
 
     private static void delay() {

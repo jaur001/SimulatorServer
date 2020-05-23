@@ -4,7 +4,7 @@ import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ClientData;
 import backend.utils.MathUtils;
 

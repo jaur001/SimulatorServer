@@ -25,7 +25,7 @@ public class BillSettings{
     }
 
     private static BillData getBillDataSettings() {
-        return SimulationDataController.getBillSessionData();
+        return SimulationDataController.getBillData();
     }
 
 

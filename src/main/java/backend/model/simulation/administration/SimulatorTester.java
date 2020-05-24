@@ -6,6 +6,7 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
 

@@ -3,7 +3,7 @@ package backend.model.simulation.settings.settingsList;
 import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ClientData;
 import backend.utils.MathUtils;
@@ -17,7 +17,7 @@ public class ClientSettings{
 
 
     private static ClientData getClientDataSettings() {
-        return SimulationDataController.getClientSessionData();
+        return SimulationDataController.getClientData();
     }
 
 

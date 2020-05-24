@@ -1,15 +1,13 @@
 package backend.server.EJB.dataSettings.sessionData;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.server.EJB.dataSettings.GenericSessionDataSettings;
+import backend.server.EJB.dataSettings.GenericSessionData;
 import backend.server.EJB.dataSettings.data.ProviderData;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import java.util.Map;
 
 @Stateful(name = "ProviderSettingsStatefulEJB")
-public class ProviderSettingsStatefulBean extends GenericSessionDataSettings {
+public class ProviderSettingsStatefulBean extends GenericSessionData {
 
     private ProviderData providerData;
 

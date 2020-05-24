@@ -4,7 +4,7 @@ import backend.implementations.secondaryCompanies.service.RandomServicingInitial
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.List;
 

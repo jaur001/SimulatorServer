@@ -38,7 +38,7 @@ public class RestaurantSettings{
     }
 
     private static RestaurantData getRestaurantDataSettings() {
-        return SimulationDataController.getRestaurantSessionData();
+        return SimulationDataController.getRestaurantData();
     }
 
     public static double getSalaryPerQuality(Worker worker) {

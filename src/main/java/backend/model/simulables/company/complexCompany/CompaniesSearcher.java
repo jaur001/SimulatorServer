@@ -4,7 +4,7 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.Arrays;
 import java.util.LinkedList;

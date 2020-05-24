@@ -30,7 +30,7 @@ public class DefaultSettingsSingletonBean {
     private static final Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
     private static final int SALARY_MEAN = 1717;
     private static final double SALARY_SD = 979.28;
-    private static final int MIN_SALARY = 500;
+    private static final int MIN_SALARY_CLIENT = 500;
     private static final MinMaxData INVITED_PEOPLE = new MinMaxData(0,3);
     private static final MinMaxData NUM_OF_RESTAURANT = new MinMaxData(1,5);
 
@@ -53,6 +53,13 @@ public class DefaultSettingsSingletonBean {
     private Map<Service, Double> servicePriceTable = new LinkedHashMap<>();
     public static final double SERVICE_PRICE_CHANGE = 0.01;
     private static final double SERVICE_CLOSE_LIMIT = -5000.0;
+
+    //Worker
+    private static final double MIN_SALARY_WORKER = 500.0;
+    private static final double SALARY_CHANGE = 0.05;
+    private static final double SALARY_DESIRED_CHANGE = 0.001;
+    private static final int RETIRE_AGE = 65;
+    private static final double PERCENTAGE_RETIREMENT = 0.60;
 
     public DefaultSettingsSingletonBean() {
         init();
@@ -99,7 +106,7 @@ public class DefaultSettingsSingletonBean {
     }
 
     public ClientData getDefaultClientData(){
-        return new ClientData(SALARY_MEAN,SALARY_SD,MIN_SALARY,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
+        return new ClientData(SALARY_MEAN,SALARY_SD, MIN_SALARY_CLIENT,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
     }
 
     public RestaurantData getDefaultRestaurantData(){
@@ -114,7 +121,7 @@ public class DefaultSettingsSingletonBean {
         return new ServiceData(INITIAL_SOCIAL_CAPITAL_SERVICE, servicePriceTable, SERVICE_PRICE_CHANGE, SERVICE_CLOSE_LIMIT);
     }
 
-    /*public WorkerData getDefaultWorkerSettings(){
-
-    }*/
+    public WorkerData getDefaultWorkerData(){
+        return new WorkerData(MIN_SALARY_WORKER,SALARY_CHANGE,SALARY_DESIRED_CHANGE,RETIRE_AGE,PERCENTAGE_RETIREMENT);
+    }
 }

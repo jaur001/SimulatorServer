@@ -8,7 +8,7 @@ import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.transactions.BuildingInversionTransaction;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.List;

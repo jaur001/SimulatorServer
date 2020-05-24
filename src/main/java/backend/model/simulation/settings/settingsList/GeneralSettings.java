@@ -7,7 +7,7 @@ public class GeneralSettings {
 
 
     private static GeneralData getGeneralDataSettings() {
-        return SimulationDataController.getGeneralSessionData();
+        return SimulationDataController.getGeneralData();
     }
 
     public static int getClientCount() {

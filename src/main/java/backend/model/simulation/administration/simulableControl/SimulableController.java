@@ -1,6 +1,5 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.simulableControl;
 
-import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;

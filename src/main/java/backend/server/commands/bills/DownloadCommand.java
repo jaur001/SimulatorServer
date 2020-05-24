@@ -1,8 +1,7 @@
 package backend.server.commands.bills;
 
 import backend.model.bill.generator.XMLBill;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulationBillAdministrator;
+import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
 import backend.server.servlets.FrontCommand;
 
 import java.io.FileInputStream;

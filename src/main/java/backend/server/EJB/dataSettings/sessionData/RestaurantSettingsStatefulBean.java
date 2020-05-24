@@ -1,16 +1,13 @@
 package backend.server.EJB.dataSettings.sessionData;
 
-import backend.model.simulables.person.worker.Job;
-import backend.server.EJB.dataSettings.GenericSessionDataSettings;
-import backend.server.EJB.dataSettings.MinMaxData;
+import backend.server.EJB.dataSettings.GenericSessionData;
 import backend.server.EJB.dataSettings.data.RestaurantData;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import java.util.Map;
 
 @Stateful(name = "RestaurantSettingsStatefulEJB")
-public class RestaurantSettingsStatefulBean extends GenericSessionDataSettings {
+public class RestaurantSettingsStatefulBean extends GenericSessionData {
 
     private RestaurantData restaurantData;
 

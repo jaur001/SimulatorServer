@@ -20,7 +20,7 @@ public class UpdateRestaurantDataCommand extends FrontCommand {
 
     private RestaurantData getRestaurantData() {
         return new RestaurantData(getAbsoluteDoubleParameter("initialSocialCapital"),getWorkerSalaries(), getLengthContract(),
-                getAbsoluteDoubleParameter("priceChange"), getAbsoluteDoubleParameter("capacity"), -getAbsoluteIntParameter("closeLimit"));
+                getAbsoluteDoubleParameter("priceChange"), getAbsoluteDoubleParameter("capacity"), -getAbsoluteDoubleParameter("closeLimit"));
     }
 
     private MinMaxData getLengthContract() {

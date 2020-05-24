@@ -3,7 +3,7 @@ package backend.implementations.workerSearcher.strategy.strategies;
 import backend.implementations.workerSearcher.strategy.WorkerStrategy;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.ArrayList;
 import java.util.List;

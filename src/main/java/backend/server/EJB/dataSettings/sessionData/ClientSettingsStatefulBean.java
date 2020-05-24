@@ -1,16 +1,13 @@
 package backend.server.EJB.dataSettings.sessionData;
 
-import backend.server.EJB.dataSettings.MinMaxData;
 import backend.server.EJB.dataSettings.data.ClientData;
-import backend.server.EJB.dataSettings.GenericSessionDataSettings;
-import org.apache.commons.math3.distribution.NormalDistribution;
+import backend.server.EJB.dataSettings.GenericSessionData;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import java.util.Map;
 
 @Stateful(name = "ClientSettingsStatefulEJB")
-public class ClientSettingsStatefulBean extends GenericSessionDataSettings {
+public class ClientSettingsStatefulBean extends GenericSessionData {
 
     private ClientData clientData;
 

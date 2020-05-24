@@ -5,7 +5,7 @@ import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
-import backend.model.simulation.administration.SimulationAdministrator;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.utils.MathUtils;
 

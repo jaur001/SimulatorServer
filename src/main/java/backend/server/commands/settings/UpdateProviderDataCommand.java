@@ -17,7 +17,7 @@ public class UpdateProviderDataCommand extends FrontCommand {
 
     private ProviderData getProviderData() {
         return new ProviderData(getAbsoluteDoubleParameter("initialSocialCapital"),getWorkerSalaries(),
-                getAbsoluteDoubleParameter("priceChange"), -getAbsoluteIntParameter("closeLimit"));
+                getAbsoluteDoubleParameter("priceChange"), -getAbsoluteDoubleParameter("closeLimit"));
     }
 
 

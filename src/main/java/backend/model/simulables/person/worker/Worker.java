@@ -7,9 +7,9 @@ import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
-import backend.model.simulation.administration.Simulation;
-import backend.model.simulation.administration.SimulationAdministrator;
-import backend.model.simulation.administration.simulablesControl.SimulatorSwitcher;
+import backend.model.simulation.administration.centralControl.Simulation;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
+import backend.model.simulation.administration.initializer.SimulatorSwitcher;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
@@ -99,7 +99,7 @@ public class Worker extends Client{
     }
 
     public void setPension() {
-        setSalary(Math.max(getSalary()* WorkerSettings.PERCENTAGE_RETIREMENT, ClientSettings.getMinSalary()));
+        setSalary(Math.max(getSalary()* WorkerSettings.getPercentageRetirement(), ClientSettings.getMinSalary()));
     }
 
     @Override

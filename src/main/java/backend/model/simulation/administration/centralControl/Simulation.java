@@ -1,4 +1,4 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.centralControl;
 
 import backend.implementations.routine.strategy.BestRoutineStrategy;
 import backend.implementations.routine.strategy.RoutineStrategy;
@@ -109,37 +109,37 @@ public class Simulation {
         return new CopyOnWriteArrayList<>(getWorkerList());
     }
 
-    static List<Company> getCompanyList(){
-        return SimulationDataController.getSessionData().getCompanyList();
+    private static List<Company> getCompanyList(){
+        return SimulationDataController.getSimulationData().getCompanyList();
     }
 
-    static List<Restaurant> getRestaurantList() {
+    private static List<Restaurant> getRestaurantList() {
         return getCompanyList().stream()
                 .filter(company -> company instanceof Restaurant)
                 .map(company -> (Restaurant) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
-    static List<Provider> getProviderList() {
+    private static List<Provider> getProviderList() {
         return getCompanyList().stream()
                 .filter(company -> company instanceof Provider)
                 .map(company -> (Provider) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
-    static List<ServiceCompany> getServiceCompanyList() {
+    private static List<ServiceCompany> getServiceCompanyList() {
         return getCompanyList().stream()
                 .filter(company -> company instanceof ServiceCompany)
                 .map(company -> (ServiceCompany) company)
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }
 
-    static List<Client> getClientList() {
-        return SimulationDataController.getSessionData().getClientList();
+    private static List<Client> getClientList() {
+        return SimulationDataController.getSimulationData().getClientList();
     }
 
-    static List<Worker> getWorkerList() {
-        return SimulationDataController.getSessionData().getWorkerList();
+    private static List<Worker> getWorkerList() {
+        return SimulationDataController.getSimulationData().getWorkerList();
     }
 
     public static List<Provider> getProviderList(Product product) {

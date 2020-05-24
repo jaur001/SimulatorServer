@@ -3,7 +3,7 @@ package backend.initializers.secondaryCompanies.provider;
 import backend.implementations.secondaryCompanies.providing.RandomProvidingInitializer;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.Objects;
 import java.util.stream.IntStream;

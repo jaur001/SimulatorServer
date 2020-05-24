@@ -8,46 +8,53 @@ import javax.servlet.http.HttpServletRequest;
 public class SettingsBuilder {
 
     public static void build() {
-        SimulationDataController.getGeneralSettings().setDefault();
-        SimulationDataController.getBillSettings().setDefault();
-        SimulationDataController.getClientSettings().setDefault();
-        SimulationDataController.getRestaurantSettings().setDefault();
-        SimulationDataController.getProviderSettings().setDefault();
-        SimulationDataController.getServiceSettings().setDefault();
+        SimulationDataController.getGeneralSessionData().setDefault();
+        SimulationDataController.getBillSessionData().setDefault();
+        SimulationDataController.getClientSessionData().setDefault();
+        SimulationDataController.getRestaurantSessionData().setDefault();
+        SimulationDataController.getProviderSessionData().setDefault();
+        SimulationDataController.getServiceSessionData().setDefault();
+        SimulationDataController.getWorkerSessionData().setDefault();
     }
 
-    public static void build(GeneralData generalData, BillData billData, ClientData clientData, RestaurantData restaurantData, ProviderData providerData, ServiceData serviceData) {
-        SimulationDataController.getGeneralSettings().init(generalData);
-        SimulationDataController.getBillSettings().init(billData);
-        SimulationDataController.getClientSettings().init(clientData);
-        SimulationDataController.getRestaurantSettings().init(restaurantData);
-        SimulationDataController.getProviderSettings().init(providerData);
-        SimulationDataController.getServiceSettings().init(serviceData);
+    public static void build(GeneralData generalData, BillData billData, ClientData clientData, RestaurantData restaurantData,
+                             ProviderData providerData, ServiceData serviceData, WorkerData workerData) {
+        SimulationDataController.getGeneralSessionData().init(generalData);
+        SimulationDataController.getBillSessionData().init(billData);
+        SimulationDataController.getClientSessionData().init(clientData);
+        SimulationDataController.getRestaurantSessionData().init(restaurantData);
+        SimulationDataController.getProviderSessionData().init(providerData);
+        SimulationDataController.getServiceSessionData().init(serviceData);
+        SimulationDataController.getWorkerSessionData().init(workerData);
     }
 
 
     public static GeneralData getGeneralData() {
-        return SimulationDataController.getGeneralSessionData();
+        return SimulationDataController.getGeneralData();
     }
 
     public static BillData getBillData() {
-        return SimulationDataController.getBillSessionData();
+        return SimulationDataController.getBillData();
     }
 
     public static ClientData getClientData() {
-        return SimulationDataController.getClientSessionData();
+        return SimulationDataController.getClientData();
     }
 
     public static RestaurantData getRestaurantData() {
-        return SimulationDataController.getRestaurantSessionData();
+        return SimulationDataController.getRestaurantData();
     }
 
     public static ProviderData getProviderData() {
-        return SimulationDataController.getProviderSessionData();
+        return SimulationDataController.getProviderData();
     }
 
     public static ServiceData getServiceData() {
-        return SimulationDataController.getServiceSessionData();
+        return SimulationDataController.getServiceData();
+    }
+
+    public static WorkerData getWorkerData() {
+        return SimulationDataController.getWorkerData();
     }
 
     public static void setCurrentSettingsToSession(HttpServletRequest request) {
@@ -57,5 +64,6 @@ public class SettingsBuilder {
         request.getSession(true).setAttribute(RestaurantData.class.getSimpleName(), SettingsBuilder.getRestaurantData());
         request.getSession(true).setAttribute(ProviderData.class.getSimpleName(), SettingsBuilder.getProviderData());
         request.getSession(true).setAttribute(ServiceData.class.getSimpleName(), SettingsBuilder.getServiceData());
+        request.getSession(true).setAttribute(WorkerData.class.getSimpleName(), SettingsBuilder.getWorkerData());
     }
 }

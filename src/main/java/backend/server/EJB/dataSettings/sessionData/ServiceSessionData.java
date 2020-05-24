@@ -1,15 +1,14 @@
 package backend.server.EJB.dataSettings.sessionData;
 
-import backend.server.EJB.dataSettings.GenericSessionDataSettings;
+import backend.server.EJB.dataSettings.GenericSessionData;
 import backend.server.EJB.dataSettings.data.ServiceData;
 
-public class ServiceSessionData extends GenericSessionDataSettings {
+public class ServiceSessionData extends GenericSessionData {
 
     private ServiceData serviceData;
 
     public ServiceSessionData() {
-        initDefaultSettings();
-        setDefault();
+        super();
     }
 
     @Override

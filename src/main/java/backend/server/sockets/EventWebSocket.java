@@ -1,6 +1,5 @@
 package backend.server.sockets;
 import backend.model.event.EventController;
-import backend.model.simulation.administration.Simulation;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;

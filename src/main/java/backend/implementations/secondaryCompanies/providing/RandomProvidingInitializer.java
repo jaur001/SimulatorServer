@@ -2,12 +2,11 @@ package backend.implementations.secondaryCompanies.providing;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.secondaryCompanies.provider.ProvidingInitializer;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RandomProvidingInitializer implements ProvidingInitializer {
     @Override

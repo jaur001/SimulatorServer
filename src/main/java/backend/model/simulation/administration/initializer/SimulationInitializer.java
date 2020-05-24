@@ -1,4 +1,4 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.initializer;
 
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.jobSelector.MostEmployedJobSelector;
@@ -16,6 +16,9 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.centralControl.Simulation;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
+import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.initializers.RoutineThread;
 import backend.initializers.WorkerSearcherThread;
@@ -28,7 +31,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Initializer {
+public class SimulationInitializer {
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
         List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", getSecondaryCompanyInitialValue(), providerCount));
@@ -91,8 +94,8 @@ public class Initializer {
     private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new CopyOnWriteArrayList<>();
         simulableList.add(new Bank());
-        simulableList.addAll(Simulation.getCompanyList());
-        simulableList.addAll(Simulation.getClientList());
+        simulableList.addAll(SimulationDataController.getSimulationData().getCompanyList());
+        simulableList.addAll(SimulationDataController.getSimulationData().getClientList());
         return simulableList;
     }
 

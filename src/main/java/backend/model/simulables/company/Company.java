@@ -2,7 +2,7 @@ package backend.model.simulables.company;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Payer;
-import backend.model.simulation.administration.SimulationAdministrator;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 
 
 public abstract class Company implements Payer, Simulable {

@@ -18,7 +18,7 @@ public class UpdateClientDataCommand extends FrontCommand {
 
     private ClientData getClientData() {
         return new ClientData(getAbsoluteDoubleParameter("salaryMean"), getAbsoluteDoubleParameter("salarySd"),
-                getAbsoluteDoubleParameter("salaryMin"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant());
+                getAbsoluteDoubleParameter("minSalary"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant());
     }
 
     private Map<Integer, Integer> getRestaurantGroups() {

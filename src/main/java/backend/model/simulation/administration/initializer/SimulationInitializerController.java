@@ -1,9 +1,8 @@
-package backend.model.simulation.administration.simulablesControl;
+package backend.model.simulation.administration.initializer;
 
 import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
-import backend.model.simulation.administration.Initializer;
-import backend.model.simulation.administration.SimulationBillAdministrator;
+import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
@@ -11,27 +10,27 @@ import backend.model.simulation.settings.settingsList.GeneralSettings;
 import java.sql.SQLException;
 import java.util.List;
 
-public class SimulationInitializer {
+public class SimulationInitializerController {
     public static List<Simulable> init(){
         SimulationBillAdministrator.initBillData();
         initSimulables();
         SimulationFollowAdministrator.followRandomOptions();
-        return Initializer.init();
+        return SimulationInitializer.init();
     }
 
     private static void initSimulables(){
         try {
             int serviceCount = GeneralSettings.getServiceCount();
-            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getServiceCompanies(serviceCount));
+            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getServiceCompanies(serviceCount));
             int providerCount = GeneralSettings.getProviderCount();
-            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getProviders(providerCount));
+            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getProviders(providerCount));
             int restaurantCount = GeneralSettings.getRestaurantCount();
-            SimulationDataController.getSessionData().getCompanyList().addAll(Initializer.getRestaurants(restaurantCount));
+            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getRestaurants(restaurantCount));
             int clientCount = GeneralSettings.getClientCount();
-            SimulationDataController.getSessionData().getClientList().addAll(Initializer.getClients(clientCount));
+            SimulationDataController.getSimulationData().getClientList().addAll(SimulationInitializer.getClients(clientCount));
             int workerCount = GeneralSettings.getWorkerCount();
-            SimulationDataController.getSessionData().getWorkerList().addAll(Initializer.getWorkers(workerCount));
-            SimulationDataController.getSessionData().getClientList().addAll(SimulationDataController.getSessionData().getWorkerList());
+            SimulationDataController.getSimulationData().getWorkerList().addAll(SimulationInitializer.getWorkers(workerCount));
+            SimulationDataController.getSimulationData().getClientList().addAll(SimulationDataController.getSimulationData().getWorkerList());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,7 +38,7 @@ public class SimulationInitializer {
 
 
     public static void reset(){
-        SimulationDataController.getSessionData().reset();
+        SimulationDataController.getSimulationData().reset();
         SimulationBillAdministrator.resetBills();
         resetEvents();
     }

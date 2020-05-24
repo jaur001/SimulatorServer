@@ -4,9 +4,9 @@ import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.SimulableController;
-import backend.model.simulation.administration.SimulationCommitter;
-import backend.model.simulation.administration.SimulationIOController;
+import backend.model.simulation.administration.simulableControl.SimulableController;
+import backend.model.simulation.administration.simulableControl.SimulationCommitter;
+import backend.model.simulation.administration.simulableControl.SimulationIOController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.sessionData.*;
 
@@ -34,6 +34,7 @@ public class SimulationData {
     private ProviderSettingsStatefulBean providerDataSettings;
     private BillSettingsStatefulBean billDataSettings;
     private ServiceSessionData serviceSessionData;
+    private WorkerSessionData workerSessionData;
 
     private AtomicBoolean executing;
     private AtomicBoolean restart;
@@ -116,6 +117,7 @@ public class SimulationData {
         restaurantDataSettings = new RestaurantSettingsStatefulBean();
         providerDataSettings = new ProviderSettingsStatefulBean();
         serviceSessionData = new ServiceSessionData();
+        workerSessionData = new WorkerSessionData();
     }
 
     public GeneralSettingsStatefulBean getGeneralDataSettings() {
@@ -140,5 +142,9 @@ public class SimulationData {
 
     public ServiceSessionData getServiceSessionData() {
         return serviceSessionData;
+    }
+
+    public WorkerSessionData getWorkerSessionData() {
+        return workerSessionData;
     }
 }

@@ -58,7 +58,7 @@ public abstract class Employer {
 
 
     protected void renovateWorker(Worker worker) {
-        worker.setSalary(worker.getSalary()+ WorkerSettings.SALARY_CHANGE*worker.getSalary());
+        worker.setSalary(worker.getSalary()+ WorkerSettings.getSalaryChange()*worker.getSalary());
     }
 
     protected void changeWorker(Worker oldWorker, Worker workerSelected) {

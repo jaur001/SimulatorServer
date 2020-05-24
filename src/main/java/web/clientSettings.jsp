@@ -18,6 +18,8 @@
         <a href="clientSettings.jsp"><button id="client">Client Settings</button></a>
         <a href="restaurantSettings.jsp"><button id="restaurant">Restaurant Settings</button></a>
         <a href="providerSettings.jsp"><button id="provider">Provider Settings</button></a>
+        <a href="serviceSettings.jsp"><button id="service">Service Settings</button></a>
+        <a href="workerSettings.jsp"><button id="worker">Worker Settings</button></a>
     </nav>
     <br>
     <h2>Client Settings</h2>
@@ -37,8 +39,8 @@
             </div>
             <div>
                 <label>Salary Min</label><br>
-                <label for="salaryMin"></label>
-                <input type="text" id="salaryMin" value="<%=clientData.getMinSalary()%>">
+                <label for="minSalary"></label>
+                <input type="text" id="minSalary" value="<%=clientData.getMinSalary()%>">
             </div>
             <div>
                 <label>Invited People Min</label>

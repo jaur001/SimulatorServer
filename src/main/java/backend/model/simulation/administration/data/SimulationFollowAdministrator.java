@@ -1,7 +1,7 @@
 package backend.model.simulation.administration.data;
 
 import backend.model.simulables.Simulable;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.List;
 public class SimulationFollowAdministrator {
 
     public static void followSimulable(Simulable simulable){
-        if(!SimulationDataController.getSessionData().getFollowedSimulables().contains(simulable))SimulationDataController.getSessionData().getFollowedSimulables().add(simulable);
+        if(!SimulationDataController.getSimulationData().getFollowedSimulables().contains(simulable))SimulationDataController.getSimulationData().getFollowedSimulables().add(simulable);
     }
 
     public static void unfollowSimulable(Simulable simulable){
-        SimulationDataController.getSessionData().getFollowedSimulables().remove(simulable);
+        SimulationDataController.getSimulationData().getFollowedSimulables().remove(simulable);
     }
 
     public static List<Simulable> getFollowedSimulables(){
-        return SimulationDataController.getSessionData().getFollowedSimulables();
+        return SimulationDataController.getSimulationData().getFollowedSimulables();
     }
 
     public static void followRandomOptions() {

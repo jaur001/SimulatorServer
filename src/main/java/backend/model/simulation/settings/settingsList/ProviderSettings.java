@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ProviderData;
 import backend.utils.MathUtils;
@@ -10,7 +10,7 @@ public class ProviderSettings{
 
 
     private static ProviderData getProviderDataSettings() {
-        return SimulationDataController.getProviderSessionData();
+        return SimulationDataController.getProviderData();
     }
 
     public static double getInitialSocialCapital() {

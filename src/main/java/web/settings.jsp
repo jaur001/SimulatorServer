@@ -17,6 +17,8 @@
             <a href="clientSettings.jsp"><button id="client">Client Settings</button></a>
             <a href="restaurantSettings.jsp"><button id="restaurant">Restaurant Settings</button></a>
             <a href="providerSettings.jsp"><button id="provider">Provider Settings</button></a>
+            <a href="serviceSettings.jsp"><button id="service">Service Settings</button></a>
+            <a href="workerSettings.jsp"><button id="worker">Worker Settings</button></a>
         </nav>
         <br>
         <h2>General Settings</h2>

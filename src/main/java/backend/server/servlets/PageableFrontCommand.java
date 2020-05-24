@@ -1,6 +1,6 @@
 package backend.server.servlets;
 
-import backend.model.simulation.administration.simulablesControl.SimulatorSwitcher;
+import backend.model.simulation.administration.initializer.SimulatorSwitcher;
 import backend.utils.DatabaseUtils;
 
 import java.util.List;

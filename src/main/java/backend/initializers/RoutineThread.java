@@ -4,7 +4,7 @@ import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulables.person.client.routineList.RoutineList;
-import backend.model.simulation.administration.Simulation;
+import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.List;
 

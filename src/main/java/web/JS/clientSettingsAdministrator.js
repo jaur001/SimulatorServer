@@ -14,7 +14,7 @@ function updateData() {
     let salaryMean = $('#salaryMean').val();
     let salarySd = $('#salarySd').val();
     $('#currentSalarySd').text(salarySd + "%");
-    let salaryMin = $('#salaryMin').val();
+    let minSalary = $('#minSalary').val();
     let invitedPeopleMin = $('#invitedPeopleMin').val();
     let invitedPeopleMax = $('#invitedPeopleMax').val();
     let numOfRestaurantMin = $('#numOfRestaurantMin').val();
@@ -23,7 +23,7 @@ function updateData() {
     $.post('FrontControllerServlet', {
         salaryMean : salaryMean,
         salarySd : (salaryMean * salarySd)/100.0,
-        salaryMin : salaryMin,
+        minSalary : minSalary,
         invitedPeopleMin : invitedPeopleMin,
         invitedPeopleMax : invitedPeopleMax,
         numOfRestaurantMin : numOfRestaurantMin,
@@ -45,7 +45,7 @@ $(document).ready(function() {
     $('#salarySd').change(function() {
         updateData();
     });
-    $('#salaryMin').change(function() {
+    $('#minSalary').change(function() {
         updateData();
     });
     $('#invitedPeopleMin').change(function() {

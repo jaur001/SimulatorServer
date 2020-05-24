@@ -4,7 +4,7 @@ import backend.implementations.workerSearcher.GenericWorkerSearcher;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.JobOffer;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.SimulationAdministrator;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;

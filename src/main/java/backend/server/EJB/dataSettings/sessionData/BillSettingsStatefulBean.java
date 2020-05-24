@@ -1,14 +1,13 @@
 package backend.server.EJB.dataSettings.sessionData;
 
-import backend.server.EJB.dataSettings.DistributionData;
-import backend.server.EJB.dataSettings.GenericSessionDataSettings;
+import backend.server.EJB.dataSettings.GenericSessionData;
 import backend.server.EJB.dataSettings.data.BillData;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 
 @Stateful(name = "BillSettingsStatefulEJB")
-public class BillSettingsStatefulBean extends GenericSessionDataSettings {
+public class BillSettingsStatefulBean extends GenericSessionData {
 
     private BillData data;
 

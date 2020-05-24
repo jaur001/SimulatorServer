@@ -1,18 +1,18 @@
-<%@ page import="backend.server.EJB.dataSettings.data.ProviderData" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product" %>
+<%@ page import="backend.server.EJB.dataSettings.data.ServiceData" %>
+<%@ page import="backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Settings</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/providerSettingsAdministrator.js"></script>
+    <script src="JS/serviceSettingsAdministrator.js"></script>
 </head>
 <body>
 <script>
 </script>
-<%ProviderData providerData = (ProviderData) request.getSession(true).getAttribute(ProviderData.class.getSimpleName());%>
+<%ServiceData serviceData = (ServiceData) request.getSession(true).getAttribute(ServiceData.class.getSimpleName());%>
 <h1 class="header">Bill Data Generator</h1>
 <br>
 <nav>
@@ -32,12 +32,12 @@
         <div>
             <label>Initial Social Capital</label><br>
             <label for="initialSocialCapital"></label>
-            <input type="text" id="initialSocialCapital" value="<%=providerData.getInitialSocialCapital()%>">
+            <input type="text" id="initialSocialCapital" value="<%=serviceData.getInitialSocialCapital()%>">
         </div>
         <div>
             <label>Limit To Close The Restaurant</label><br>
             <label for="closeLimit"></label>
-            <input type="text" id="closeLimit" value="<%=providerData.getCloseLimit()%>">
+            <input type="text" id="closeLimit" value="<%=serviceData.getCloseLimit()%>">
         </div>
         <div>
             <label>Price Plate Change</label><br>
@@ -52,17 +52,17 @@
                     <option value="0.1">10%</option>
                 </select>
                 <label>Current: </label>
-                <label id="currentPriceChange" ><%=(providerData.getPriceChange()*100.0) + "%"%></label>
+                <label id="currentPriceChange" ><%=(serviceData.getPriceChange()*100.0) + "%"%></label>
             </label>
         </div>
         <label>Product Initial Sale Price</label>
-        <table id="productSalePrice" style="width:100%">
+        <table id="serviceSalePrice" style="width:100%">
             <tr>
                 <th>Product</th>
                 <th>Sale Price</th>
             </tr>
             <%
-                for (Map.Entry<Product, Double> entry : providerData.getProductSalePriceTable().entrySet()) {
+                for (Map.Entry<Service, Double> entry : serviceData.getServicePriceTable().entrySet()) {
             %>
             <tr>
                 <td><%=entry.getKey().toString()%></td>

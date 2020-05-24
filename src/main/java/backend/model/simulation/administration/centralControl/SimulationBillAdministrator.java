@@ -1,4 +1,4 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.centralControl;
 
 import backend.implementations.SQLite.controllers.SQLiteRowDeleter;
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;

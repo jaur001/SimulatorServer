@@ -1,4 +1,4 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.simulableControl;
 
 import backend.model.event.EventGenerator;
 import backend.model.event.events.client.DeadClientEvent;
@@ -19,6 +19,7 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.data.SimulationDataController;
 
 public class SimulationCommitter extends EventGenerator {
 
@@ -52,7 +53,7 @@ public class SimulationCommitter extends EventGenerator {
     }
 
     public void commitRetireWorker(ComplexWorkerWithStaff company, Worker worker) {
-        Simulation.getWorkerList().remove(worker);
+        SimulationDataController.getSimulationData().getWorkerList().remove(worker);
         company.retireWorker(worker);
         addEvent(new WorkerRetiredCompanyEvent(company,worker));
         addEvent(new RetiredWorkerEvent(worker,company));
@@ -75,14 +76,14 @@ public class SimulationCommitter extends EventGenerator {
     }
 
     public void commitDiePerson(Client client) {
-        if(client instanceof Worker) Simulation.getWorkerList().remove(client);
-        Simulation.getClientList().remove(client);
+        if(client instanceof Worker) SimulationDataController.getSimulationData().getWorkerList().remove(client);
+        SimulationDataController.getSimulationData().getClientList().remove(client);
         addEvent(new DeadClientEvent(client));
     }
 
     public void commitCloseCompany(Company company) {
         if(company instanceof ComplexCompany) commitCloseComplexCompany((ComplexCompany)company);
-        Simulation.getCompanyList().remove(company);
+        SimulationDataController.getSimulationData().getCompanyList().remove(company);
         addEvent(new ClosedCompanyEvent(company));
     }
 

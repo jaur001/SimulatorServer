@@ -1,4 +1,4 @@
-package backend.model.simulation.administration;
+package backend.model.simulation.administration.simulableControl;
 
 import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
@@ -12,6 +12,9 @@ import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
+import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.initializer.SimulationInitializer;
 import backend.model.simulation.settings.settingsList.*;
 
 import java.util.List;
@@ -90,43 +93,43 @@ public class SimulationIOController extends EventGenerator {
     }
 
     private Simulable addWorker() {
-        Worker worker = Initializer.getWorker();
+        Worker worker = SimulationInitializer.getWorker();
         if(worker == null) return null;
-        Simulation.getWorkerList().add(worker);
-        Simulation.getClientList().add(worker);
+        SimulationDataController.getSimulationData().getWorkerList().add(worker);
+        SimulationDataController.getSimulationData().getClientList().add(worker);
         return worker;
     }
 
     private Simulable addClient() {
-        Client client = Initializer.getClient();
+        Client client = SimulationInitializer.getClient();
         if(client == null) return null;
         SimulationAdministrator.makeChanges();
-        Simulation.getClientList().add(client);
+        SimulationDataController.getSimulationData().getClientList().add(client);
         return client;
     }
 
     private Simulable addRestaurant() {
-        Restaurant restaurant = Initializer.getRestaurant();
+        Restaurant restaurant = SimulationInitializer.getRestaurant();
         if(restaurant == null) return null;
         SimulationAdministrator.makeChanges();
         if(restaurant.getNumberOfWorkers()==0) return null;
-        Simulation.getCompanyList().add(restaurant);
+        SimulationDataController.getSimulationData().getCompanyList().add(restaurant);
         return restaurant;
     }
 
     private Simulable addProvider() {
-        Provider provider = Initializer.getProvider();
+        Provider provider = SimulationInitializer.getProvider();
         if(provider == null) return null;
         SimulationAdministrator.makeChanges();
-        Simulation.getCompanyList().add(provider);
+        SimulationDataController.getSimulationData().getCompanyList().add(provider);
         return provider;
     }
 
     private Simulable addService() {
-        ServiceCompany serviceCompany = Initializer.getService();
+        ServiceCompany serviceCompany = SimulationInitializer.getService();
         if(serviceCompany == null) return null;
         SimulationAdministrator.makeChanges();
-        Simulation.getCompanyList().add(serviceCompany);
+        SimulationDataController.getSimulationData().getCompanyList().add(serviceCompany);
         return serviceCompany;
     }
 

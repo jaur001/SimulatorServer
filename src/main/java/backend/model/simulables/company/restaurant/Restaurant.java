@@ -148,7 +148,7 @@ public class Restaurant extends ComplexWorkerWithStaff {
 
     @Override
     public double getMortgage() {
-        return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())* ComplexCompany.taxes)/10;
+        return (MathUtils.twoNumberMean(getMaxPricePlate(),getMinPricePlate())* 100);
     }
 
     @Override

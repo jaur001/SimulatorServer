@@ -4,9 +4,11 @@ package backend.model.simulables.bank;
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.event.Event;
 import backend.model.event.EventGenerator;
+import backend.model.event.events.company.TaxesPayedCompanyEvent;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.transactions.BuildingInversionTransaction;
+import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.timeLine.TimeLine;
@@ -25,8 +27,14 @@ public class Bank extends EventGenerator implements Simulable, Event {
         if(TimeLine.isLastDay()){
             Simulation.getClientListCopy().forEach(Collector::collectSalary);
             Simulation.getCompanyListCopy().forEach(this::payMortgage);
+            Simulation.getCompanyListCopy().forEach(this::payTaxes);
             addEvent(this);
         }
+    }
+
+    private void payTaxes(Company company) {
+        company.pay(Company.getTaxes()*company.getFinancialData().getBenefits());
+        addEvent(new TaxesPayedCompanyEvent(company));
     }
 
     @Override

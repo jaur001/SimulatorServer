@@ -19,10 +19,13 @@ public class EatingBillTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())
-            new CFDIBillGenerator().generateBill(new EatingBill((Restaurant)issuer,(Client)receiver,amount));
-        else System.out.println("Error generating the Bill, not found the elements of Eating bill.");
+    protected double generateBill() {
+        if(checkBill()) {
+            EatingBill bill = new EatingBill((Restaurant) issuer, (Client) receiver, amount);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Eating bill.");
+        return 0;
     }
 
     @Override

@@ -101,6 +101,6 @@ public class RestaurantSettings{
     }
 
     public static double getRestaurantProbability() {
-        return 1;
+        return restaurantProbability;
     }
 }

@@ -19,10 +19,13 @@ public class ProductRefundTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())
-            new CFDIBillGenerator().generateBill(new ProductRefund((Provider) issuer,(ComplexCompany) receiver));
-        else System.out.println("Error generating the Bill, not found the elements of Product Refund.");
+    protected double generateBill() {
+        if(checkBill()) {
+            ProductRefund bill = new ProductRefund((Provider) issuer, (ComplexCompany) receiver);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Product Refund.");
+        return 0;
     }
 
     @Override

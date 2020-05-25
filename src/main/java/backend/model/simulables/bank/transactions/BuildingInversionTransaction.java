@@ -19,9 +19,13 @@ public class BuildingInversionTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())new CFDIBillGenerator().generateBill(new BuildingInversion((Bank) issuer,(ComplexCompany) receiver,amount));
-        else System.out.println("Error generating the Bill, not found the elements of Eating bill.");
+    protected double generateBill() {
+        if(checkBill()) {
+            BuildingInversion bill = new BuildingInversion((Bank) issuer, (ComplexCompany) receiver, amount);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Eating bill.");
+        return 0;
     }
 
     @Override

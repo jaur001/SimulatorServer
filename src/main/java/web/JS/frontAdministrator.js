@@ -87,14 +87,54 @@ function updateTables() {
     }
 }
 
+function updateQuickSettings() {
+    let speed = $('#speed').val();
+    $('#currentSpeed').text(speed + "%");
+    let clientProb = $('#clientProb').val();
+    $('#currentClientProb').text(clientProb + "%");
+    let restaurantProb = $('#restaurantProb').val();
+    $('#currentRestaurantProb').text(restaurantProb + "%");
+    let providerProb = $('#providerProb').val();
+    $('#currentProviderProb').text(providerProb + "%");
+    let serviceProb = $('#serviceProb').val();
+    $('#currentServiceProb').text(serviceProb + "%");
+    let workerProb = $('#workerProb').val();
+    $('#currentWorkerProb').text(workerProb + "%");
+    let taxes = $('#taxes').val();
+    $('#currentTaxes').text(taxes + "%");
+    $.post('FrontControllerServlet', {
+        speed: speed,
+        clientProb : clientProb,
+        restaurantProb : restaurantProb,
+        providerProb : providerProb,
+        serviceProb : serviceProb,
+        workerProb : workerProb,
+        taxes : taxes,
+        command: "UpdateQuickSettingsCommand"
+    });
+}
+
 $(document).ready(function() {
     $('#speed').on('change',function() {
-        let speed = $('#speed').val();
-        $('#currentSpeed').text(speed + "%");
-        $.post('FrontControllerServlet', {
-            speed : speed,
-            command: "ChangeSpeedCommand"
-        });
+        updateQuickSettings();
+    });
+    $('#clientProb').on('change',function() {
+        updateQuickSettings();
+    });
+    $('#restaurantProb').on('change',function() {
+        updateQuickSettings();
+    });
+    $('#providerProb').on('change',function() {
+        updateQuickSettings();
+    });
+    $('#serviceProb').on('change',function() {
+        updateQuickSettings();
+    });
+    $('#workerProb').on('change',function() {
+        updateQuickSettings();
+    });
+    $('#taxes').on('change',function() {
+        updateQuickSettings();
     });
     $('#start').click(function() {
         let command = $('#startCommand').val();

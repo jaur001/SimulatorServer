@@ -19,10 +19,13 @@ public class ServiceBillTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())
-            new CFDIBillGenerator().generateBill(new ServiceBill((ServiceCompany)issuer,(ComplexCompany) receiver));
-        else System.out.println("Error generating the Bill, not found the elements of Service bill.");
+    protected double generateBill() {
+        if(checkBill()) {
+            ServiceBill bill = new ServiceBill((ServiceCompany) issuer, (ComplexCompany) receiver);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Service bill.");
+        return 0;
     }
 
     @Override

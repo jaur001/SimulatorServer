@@ -5,7 +5,7 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/frontendAdministrator.js"></script>
+    <script src="JS/frontAdministrator.js"></script>
   </head>
   <script>
     let isRunning = false;
@@ -62,6 +62,36 @@
       <label for="speed">Speed</label>
       <input type="range" id="speed" min="1" max="100" value="<%=request.getSession(true).getAttribute(Speed.class.getSimpleName())%>">
       <label id="currentSpeed"><%=request.getSession(true).getAttribute(Speed.class.getSimpleName()) + "%"%></label>
+    </form>
+    <form>
+      <label for="clientProb">Client Spawn Probability</label>
+      <input type="range" id="clientProb" min="0" max="100" value="<%=request.getSession(true).getAttribute("clientProb")%>">
+      <label id="currentClientProb"><%=request.getSession(true).getAttribute("clientProb") + "%"%></label>
+    </form>
+    <form>
+      <label for="restaurantProb">Restaurant Spawn Probability</label>
+      <input type="range" id="restaurantProb" min="0" max="100" value="<%=request.getSession(true).getAttribute("restaurantProb")%>">
+      <label id="currentRestaurantProb"><%=request.getSession(true).getAttribute("restaurantProb") + "%"%></label>
+    </form>
+    <form>
+      <label for="providerProb">Provider Spawn Probability</label>
+      <input type="range" id="providerProb" min="0" max="100" value="<%=request.getSession(true).getAttribute("providerProb")%>">
+      <label id="currentProviderProb"><%=request.getSession(true).getAttribute("providerProb") + "%"%></label>
+    </form>
+    <form>
+      <label for="serviceProb">Service Spawn Probability</label>
+      <input type="range" id="serviceProb" min="0" max="100" value="<%=request.getSession(true).getAttribute("serviceProb")%>">
+      <label id="currentServiceProb"><%=request.getSession(true).getAttribute("serviceProb") + "%"%></label>
+    </form>
+    <form>
+      <label for="workerProb">Worker Spawn Probability</label>
+      <input type="range" id="workerProb" min="0" max="100" value="<%=request.getSession(true).getAttribute("workerProb")%>">
+      <label id="currentWorkerProb"><%=request.getSession(true).getAttribute("workerProb") + "%"%></label>
+    </form>
+    <form>
+      <label for="taxes">Company Taxes</label>
+      <input type="range" id="taxes" min="0" max="100" value="<%=request.getSession(true).getAttribute("taxes")%>">
+      <label id="currentTaxes"><%=request.getSession(true).getAttribute("taxes") + "%"%></label>
     </form>
     <label for="text-area"></label>
     <textarea id="text-area" rows="10" cols="50">

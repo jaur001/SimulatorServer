@@ -19,10 +19,13 @@ public class ProductPurchaseTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())
-            new CFDIBillGenerator().generateBill(new ProductPurchase((Provider) issuer,(ComplexCompany) receiver));
-        else System.out.println("Error generating the Bill, not found the elements of Product Purchase.");
+    protected double generateBill() {
+        if(checkBill()) {
+            ProductPurchase bill = new ProductPurchase((Provider) issuer, (ComplexCompany) receiver);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Product Purchase.");
+        return 0;
     }
 
 

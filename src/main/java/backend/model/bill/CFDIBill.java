@@ -34,7 +34,7 @@ public abstract class CFDIBill implements Event {
         this.receiverName = receiverName;
         this.receiverRFC = receiverRFC;
         this.subtotal = subtotal;
-        this.taxRate = (double)MathUtils.random(0,50)/100;
+        this.taxRate = (double)MathUtils.random(1,25)/100;
         this.total = (1+ this.taxRate)*subtotal;
         this.currency = "euro";
         this.concept = concept;

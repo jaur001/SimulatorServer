@@ -12,7 +12,7 @@ public abstract class Company implements Payer, Simulable {
     protected String street;
     protected String telephoneNumber;
     protected FinancialData financialData;
-    protected static double taxes = 1000;
+    protected static double taxes = 0.1;
 
     public Company(int NIF, String companyName, String street, String telephoneNumber) {
         this.NIF = NIF;
@@ -51,6 +51,10 @@ public abstract class Company implements Payer, Simulable {
     }
 
     public abstract double getMortgage();
+
+    public static double getTaxes() {
+        return taxes;
+    }
 
     public static void setTaxes(double taxes) {
         Company.taxes = taxes;

@@ -19,10 +19,13 @@ public class PayrollTransaction extends Transaction {
     }
 
     @Override
-    protected void generateBill() {
-        if(checkBill())
-            new CFDIBillGenerator().generateBill(new Payroll((ComplexCompany)issuer,(Worker)receiver));
-        else System.out.println("Error generating the Bill, not found the elements of Payroll.");
+    protected double generateBill() {
+        if(checkBill()) {
+            Payroll bill = new Payroll((ComplexCompany) issuer, (Worker) receiver);
+            new CFDIBillGenerator().generateBill(bill);
+            return bill.getTaxRate();
+        } else System.out.println("Error generating the Bill, not found the elements of Payroll.");
+        return 0;
     }
 
     @Override

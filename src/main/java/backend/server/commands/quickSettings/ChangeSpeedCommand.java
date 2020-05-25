@@ -1,4 +1,4 @@
-package backend.server.commands;
+package backend.server.commands.quickSettings;
 
 import backend.model.simulation.timeLine.Speed;
 import backend.model.simulation.timeLine.TimeLine;

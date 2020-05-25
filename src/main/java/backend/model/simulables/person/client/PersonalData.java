@@ -35,7 +35,7 @@ public class PersonalData {
         this.birthDate = birthDate;
         this.job = job;
         this.salary = 0;
-        this.country = country;
+        this.country = country.replaceAll("\"","");
         this.telephoneNumber = telephoneNumber;
         this.cardNumber = cardNumber;
     }

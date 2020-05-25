@@ -3,7 +3,7 @@ package backend.model.simulation.settings.settingsList;
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.server.EJB.dataSettings.data.BillData;
+import backend.server.EJB.dataSettings.data.ClientData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
@@ -24,8 +24,8 @@ public class BillSettings{
         conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }
 
-    private static BillData getBillDataSettings() {
-        return SimulationDataController.getBillData();
+    private static ClientData getClientDataSettings() {
+        return SimulationDataController.getClientData();
     }
 
 
@@ -41,11 +41,15 @@ public class BillSettings{
     }
 
     public static double getPlateNumberMean(){
-        return new NormalDistribution(getBillDataSettings().getPlateNumber().getMean(),getBillDataSettings().getPlateNumber().getSd()).getMean();
+        return getNormalDistribution().getMean();
+    }
+
+    public static NormalDistribution getNormalDistribution() {
+        return getClientDataSettings().getPlateNumberDistribution();
     }
 
     private static int getPlateNumberSample() {
-        double sample = Math.round(Math.abs(new NormalDistribution(getBillDataSettings().getPlateNumber().getMean(),getBillDataSettings().getPlateNumber().getSd()).sample()));
+        double sample = Math.round(Math.abs(getNormalDistribution().sample()));
         return (int)(sample<1? 1: sample);
     }
 

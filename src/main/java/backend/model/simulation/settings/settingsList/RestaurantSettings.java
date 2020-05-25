@@ -24,7 +24,7 @@ public class RestaurantSettings{
     private static final Map<Job, Integer> lengthWorkerTable = new HashMap<>();
     public static final int EATINGS_PER_TABLE = 6;
     public static final double FINANCIAL_DIFFERENCE_PERCENTAGE = 1.25;
-
+    private static double restaurantProbability = 1.0;
 
     static {
         getNumberOfWorkers();
@@ -80,10 +80,6 @@ public class RestaurantSettings{
         return MathUtils.calculateProbability((int)(WorkerSettings.getUnemployedWorkersPercentage()*getRestaurantProbability()));
     }
 
-    private static double getRestaurantProbability() {
-        return 1;
-    }
-
     public static int getContractLength() {
         return MathUtils.random(getRestaurantDataSettings().getLengthContract());
     }
@@ -98,5 +94,13 @@ public class RestaurantSettings{
 
     public static double getCloseLimit() {
         return getRestaurantDataSettings().getCloseLimit();
+    }
+
+    public static void setRestaurantProbability(double restaurantProbability) {
+        RestaurantSettings.restaurantProbability = restaurantProbability;
+    }
+
+    public static double getRestaurantProbability() {
+        return 1;
     }
 }

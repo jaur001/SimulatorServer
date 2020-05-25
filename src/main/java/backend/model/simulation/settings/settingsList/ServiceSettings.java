@@ -8,6 +8,7 @@ import backend.utils.MathUtils;
 
 public class ServiceSettings {
 
+    private static double serviceProbability = 1.0;
 
     private static ServiceData getServiceDataSettings() {
         return SimulationDataController.getServiceData();
@@ -30,10 +31,18 @@ public class ServiceSettings {
     }
 
     public static boolean newService() {
-        return MathUtils.calculateProbability(100 - (int) getServiceCompanyPercentage());
+        return MathUtils.calculateProbability((int)((100 -  getServiceCompanyPercentage())*getServiceProbability()));
     }
 
     private static double getServiceCompanyPercentage() {
         return ((double)(Simulation.getServiceCompanySize()*5)/(double)(1+Simulation.getCompanyListCopy().size()))*100.0;
+    }
+
+    public static void setServiceProbability(double serviceProbability) {
+        ServiceSettings.serviceProbability = serviceProbability;
+    }
+
+    public static double getServiceProbability() {
+        return serviceProbability;
     }
 }

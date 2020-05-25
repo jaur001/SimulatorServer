@@ -1,5 +1,6 @@
 package backend.server.commands.settings;
 
+import backend.server.EJB.dataSettings.DistributionData;
 import backend.server.EJB.dataSettings.MinMaxData;
 import backend.server.EJB.dataSettings.data.ClientData;
 import backend.server.servlets.FrontCommand;
@@ -17,8 +18,11 @@ public class UpdateClientDataCommand extends FrontCommand {
     }
 
     private ClientData getClientData() {
-        return new ClientData(getAbsoluteDoubleParameter("salaryMean"), getAbsoluteDoubleParameter("salarySd"),
-                getAbsoluteDoubleParameter("minSalary"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant());
+        return new ClientData(getSalary(), getAbsoluteDoubleParameter("minSalary"),getRestaurantGroups(),getInvitedPeople(),getNumOfRestaurant(),getPlateNumber());
+    }
+
+    private DistributionData getSalary() {
+        return new DistributionData(getAbsoluteDoubleParameter("salaryMean"), getAbsoluteDoubleParameter("salarySd"));
     }
 
     private Map<Integer, Integer> getRestaurantGroups() {
@@ -48,5 +52,9 @@ public class UpdateClientDataCommand extends FrontCommand {
 
     private MinMaxData getNumOfRestaurant() {
         return new MinMaxData(getAbsoluteIntParameter("numOfRestaurantMin"), getAbsoluteIntParameter("numOfRestaurantMax"));
+    }
+
+    private DistributionData getPlateNumber() {
+        return new DistributionData(getAbsoluteDoubleParameter("plateMean"),getAbsoluteDoubleParameter("plateSd"));
     }
 }

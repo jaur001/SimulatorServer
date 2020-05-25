@@ -58,6 +58,6 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     @Override
     public double getMortgage() {
-        return (price* ComplexCompany.TAXES)/100;
+        return (price* ComplexCompany.taxes)/100;
     }
 }

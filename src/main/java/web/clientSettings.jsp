@@ -14,7 +14,6 @@
     <br>
     <nav>
         <a href="settings.jsp"><button id="general">General Settings</button></a>
-        <a href="billSettings.jsp"><button id="bill">Bill Settings</button></a>
         <a href="clientSettings.jsp"><button id="client">Client Settings</button></a>
         <a href="restaurantSettings.jsp"><button id="restaurant">Restaurant Settings</button></a>
         <a href="providerSettings.jsp"><button id="provider">Provider Settings</button></a>
@@ -27,12 +26,12 @@
         <form method="post" action="FrontControllerServlet">
             <h3>Salary</h3>
             <div>
-                <label>Salary Mean</label><br>
+                <label>Mean</label><br>
                 <label for="salaryMean"></label>
                 <input type="text" id="salaryMean" value="<%=clientData.getSalaryMean()%>">
             </div>
             <div>
-                <label>Salary Standard Deviation</label><br>
+                <label>Standard Deviation</label><br>
                 <label for="salarySd"></label>
                 <input type="range" id="salarySd" min="1" max="100" value="<%=(clientData.getSalarySd()/clientData.getSalaryMean())*100.0%>">
                 <label id="currentSalarySd"><%=(int)((clientData.getSalarySd()/clientData.getSalaryMean())*100.0) + "%"%></label>
@@ -57,6 +56,18 @@
                 <label>Number of Restaurant Max</label>
                 <label for="numOfRestaurantMax"></label>
                 <input type="text" id="numOfRestaurantMax" value="<%=clientData.getNumOfRestaurantMax()%>">
+            </div>
+            <h3>Number of Plates per Client</h3>
+            <div>
+                <label>Mean</label><br>
+                <label for="plateMean"></label>
+                <input type="text" id="plateMean" value="<%=clientData.getPlateNumberMean()%>">
+            </div>
+            <div>
+                <label>Standard Deviation</label><br>
+                <label for="plateSd"></label>
+                <input type="range" id="plateSd" min="1" max="100" value="<%=(clientData.getPlateNumberSd()/clientData.getPlateNumberMean())*100.0%>">
+                <label id="currentPlateSd"><%=(int)((clientData.getPlateNumberSd()/clientData.getPlateNumberMean())*100.0) + "%"%></label>
             </div>
             <label>Salary Groups</label>
             <table id="restaurantGroups" style="width:100%">

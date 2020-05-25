@@ -21,18 +21,15 @@ public class DefaultSettingsSingletonBean {
     private static final int PROVIDER_COUNT = 500;
     private static final int SERVICE_COUNT = 100;
 
-    //Bills
-    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
-
     //Client
     private Integer[] clientSalaries;
     private Integer[] prices;
     private static final Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
-    private static final int SALARY_MEAN = 1717;
-    private static final double SALARY_SD = 979.28;
+    private static final DistributionData SALARY_CLIENT = new DistributionData(1717,979.28);
     private static final int MIN_SALARY_CLIENT = 500;
     private static final MinMaxData INVITED_PEOPLE = new MinMaxData(0,3);
     private static final MinMaxData NUM_OF_RESTAURANT = new MinMaxData(1,5);
+    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
 
     //Restaurant
     private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
@@ -101,12 +98,8 @@ public class DefaultSettingsSingletonBean {
         return new GeneralData(CLIENT_COUNT, RESTAURANT_COUNT, PROVIDER_COUNT, SERVICE_COUNT, WORKER_COUNT);
     }
 
-    public BillData getDefaultBillData(){
-        return new BillData(PLATE_NUMBER);
-    }
-
     public ClientData getDefaultClientData(){
-        return new ClientData(SALARY_MEAN,SALARY_SD, MIN_SALARY_CLIENT,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT);
+        return new ClientData(SALARY_CLIENT,MIN_SALARY_CLIENT,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT,PLATE_NUMBER);
     }
 
     public RestaurantData getDefaultRestaurantData(){

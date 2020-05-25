@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SearchCommand extends FrontCommand {
 
-    SearchControllerStatelessBean searchController;
+    private SearchControllerStatelessBean searchController;
     {
         try {
             searchController = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SearchControllerStatelessEJB");

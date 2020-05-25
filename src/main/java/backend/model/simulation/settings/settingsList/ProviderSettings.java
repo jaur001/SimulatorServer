@@ -8,6 +8,7 @@ import backend.utils.MathUtils;
 
 public class ProviderSettings{
 
+    private static double providerProbability = 1.0;
 
     private static ProviderData getProviderDataSettings() {
         return SimulationDataController.getProviderData();
@@ -33,15 +34,19 @@ public class ProviderSettings{
         return ((double)Simulation.getProviderSize()/(double)(1+Simulation.getRestaurantSize()))*100.0;
     }
 
-    private static double getProviderProbability() {
-        return 1;
-    }
-
     public static double getCloseLimit() {
         return getProviderDataSettings().getCloseLimit();
     }
 
     public static double getPriceChange(){
         return getProviderDataSettings().getPriceChange();
+    }
+
+    public static void setProviderProbability(double providerProbability) {
+        ProviderSettings.providerProbability = providerProbability;
+    }
+
+    public static double getProviderProbability() {
+        return providerProbability;
     }
 }

@@ -25,10 +25,6 @@ public class SimulationDataController {
         return getGeneralSessionData().getGeneralData();
     }
 
-    public static BillData getBillData() {
-        return getBillSessionData().getBillData();
-    }
-
     public static ClientData getClientData() {
         return getClientSessionData().getClientData();
     }
@@ -51,10 +47,6 @@ public class SimulationDataController {
 
     public static GeneralSettingsStatefulBean getGeneralSessionData() {
         return getSimulationData().getGeneralDataSettings();
-    }
-
-    public static BillSettingsStatefulBean getBillSessionData() {
-        return getSimulationData().getBillDataSettings();
     }
 
     public static ClientSettingsStatefulBean getClientSessionData() {

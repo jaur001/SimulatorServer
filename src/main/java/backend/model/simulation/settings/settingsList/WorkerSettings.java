@@ -9,6 +9,8 @@ import backend.utils.MathUtils;
 
 public class WorkerSettings{
 
+    private static double workerProbability = 1.0;
+
     public static WorkerData getWorkerDataSettings(){
         return SimulationDataController.getWorkerData();
     }
@@ -33,15 +35,19 @@ public class WorkerSettings{
         return MathUtils.calculateProbability((int)((100- getUnemployedWorkersPercentage())*getWorkerProbability()));
     }
 
-    private static double getWorkerProbability() {
-        return 1;
-    }
-
     public static double getUnemployedWorkersPercentage(){
         return ((double)Simulation.getUnemployedWorkers().size()/(double)(1+Simulation.getWorkerSize()))*100.0;
     }
 
     public static double getUnemployedWorkersPerJob(Job job){
         return ((double)Simulation.getUnemployedWorkers(job).size()/(double)(1+Simulation.getWorkerList(job).size()))*100.0;
+    }
+
+    public static void setWorkerProbability(double workerProbability) {
+        WorkerSettings.workerProbability = workerProbability;
+    }
+
+    public static double getWorkerProbability() {
+        return workerProbability;
     }
 }

@@ -19,6 +19,9 @@ function updateData() {
     let invitedPeopleMax = $('#invitedPeopleMax').val();
     let numOfRestaurantMin = $('#numOfRestaurantMin').val();
     let numOfRestaurantMax = $('#numOfRestaurantMax').val();
+    let plateMean = $('#plateMean').val();
+    let plateSd = $('#plateSd').val();
+    $('#currentPlateSd').text(plateSd + "%");
     let restaurantGroups = getRestaurantGroups();
     $.post('FrontControllerServlet', {
         salaryMean : salaryMean,
@@ -29,6 +32,8 @@ function updateData() {
         numOfRestaurantMin : numOfRestaurantMin,
         numOfRestaurantMax : numOfRestaurantMax,
         restaurantGroups : restaurantGroups,
+        plateMean : plateMean,
+        plateSd : (plateMean * plateSd)/100.0,
         command: "UpdateClientDataCommand"
     });
 }
@@ -58,6 +63,12 @@ $(document).ready(function() {
         updateData();
     });
     $('#numOfRestaurantMax').change(function() {
+        updateData();
+    });
+    $('#plateMean').change(function() {
+        updateData();
+    });
+    $('#plateSd').change(function() {
         updateData();
     });
 });

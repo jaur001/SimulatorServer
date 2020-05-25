@@ -14,6 +14,7 @@ public class ClientSettings{
 
     public static final double PERCENTAGE_FOR_RESTAURANT = 0.148;
     public static final int DEATH_AGE = 75;
+    private static double clientProbability = 1.0;
 
 
     private static ClientData getClientDataSettings() {
@@ -90,7 +91,11 @@ public class ClientSettings{
         return ((double)Simulation.getClientSize()/(double)(1+(Simulation.getRestaurantSize()*RestaurantSettings.getClientLimitMean())))*100.0;
     }
 
-    private static double getClientProbability() {
-        return 1;
+    public static void setClientProbability(double clientProbability) {
+        ClientSettings.clientProbability = clientProbability;
+    }
+
+    public static double getClientProbability() {
+        return clientProbability;
     }
 }

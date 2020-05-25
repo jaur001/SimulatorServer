@@ -32,7 +32,6 @@ public class SimulationData {
     private RestaurantSettingsStatefulBean restaurantDataSettings;
     private ClientSettingsStatefulBean clientDataSettings;
     private ProviderSettingsStatefulBean providerDataSettings;
-    private BillSettingsStatefulBean billDataSettings;
     private ServiceSessionData serviceSessionData;
     private WorkerSessionData workerSessionData;
 
@@ -112,7 +111,6 @@ public class SimulationData {
 
     private void initSettings() {
         generalDataSettings = new GeneralSettingsStatefulBean();
-        billDataSettings = new BillSettingsStatefulBean();
         clientDataSettings = new ClientSettingsStatefulBean();
         restaurantDataSettings = new RestaurantSettingsStatefulBean();
         providerDataSettings = new ProviderSettingsStatefulBean();
@@ -122,10 +120,6 @@ public class SimulationData {
 
     public GeneralSettingsStatefulBean getGeneralDataSettings() {
         return generalDataSettings;
-    }
-
-    public BillSettingsStatefulBean getBillDataSettings() {
-        return billDataSettings;
     }
 
     public ClientSettingsStatefulBean getClientDataSettings() {

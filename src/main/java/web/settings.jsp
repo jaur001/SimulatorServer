@@ -13,7 +13,6 @@
         <br>
         <nav>
             <a href="settings.jsp"><button id="general">General Settings</button></a>
-            <a href="billSettings.jsp"><button id="bill">Bill Settings</button></a>
             <a href="clientSettings.jsp"><button id="client">Client Settings</button></a>
             <a href="restaurantSettings.jsp"><button id="restaurant">Restaurant Settings</button></a>
             <a href="providerSettings.jsp"><button id="provider">Provider Settings</button></a>

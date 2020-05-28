@@ -1,4 +1,4 @@
-package backend.utils;
+package backend.view.loaders.database;
 
 import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.NIFCreator.PersonNIFCreator;
@@ -11,11 +11,11 @@ import backend.view.loaders.database.elements.Header;
 
 import java.util.*;
 
-public class DatabaseUtils {
+public class DatabaseManager {
 
     public static final int LIST_LIMIT = 1000;
     private static List<Header> headers = new LinkedList<>();
-    private static int pageLength = 30;
+    private static final int PAGE_LENGTH = 30;
 
     static {
         createRestaurantTable();
@@ -84,11 +84,15 @@ public class DatabaseUtils {
         parameters.put("filePath",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("fileName",new Field(Restriction.NOT_NULL_UNIQUE, DataType.text));
         headers.add(new Header("Bill",parameters));
+        setBillInitialPrimaryKeyValue();
+    }
+
+    public static void setBillInitialPrimaryKeyValue(){
         headers.get(3).setInitialPrimaryKeyValue(BillNIFCreator.getInitialValue());
     }
 
     public static int getPageLength() {
-        return pageLength;
+        return PAGE_LENGTH;
     }
 
     public static List<Header> getHeaders(){
@@ -97,5 +101,13 @@ public class DatabaseUtils {
 
     public static int getListLimit() {
         return LIST_LIMIT;
+    }
+
+    public static int getFrom(int page) {
+        return PAGE_LENGTH*(page-1);
+    }
+
+    public static int getTo(int from, int size) {
+        return Math.min(from + PAGE_LENGTH, size);
     }
 }

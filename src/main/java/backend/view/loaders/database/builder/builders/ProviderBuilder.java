@@ -8,6 +8,10 @@ import java.util.List;
 
 public class ProviderBuilder extends Builder<Provider> {
 
+    @Override
+    public String getHeader() {
+        return "Provider";
+    }
 
     @Override
     protected List<Object> getRow(Provider provider) {

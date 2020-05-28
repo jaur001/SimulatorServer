@@ -1,13 +1,21 @@
 package backend.view.loaders.database.builder.builders;
 
+import backend.model.NIFCreator.PersonNIFCreator;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.view.loaders.database.builder.Builder;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 public class ClientBuilder extends Builder<Client> {
+
+    @Override
+    public String getHeader() {
+        return "Person";
+    }
 
     @Override
     protected List<Object> getRow(Client client){

@@ -1,7 +1,7 @@
 package backend.server.servlets;
 
 import backend.model.simulation.administration.initializer.SimulatorSwitcher;
-import backend.utils.DatabaseUtils;
+import backend.view.loaders.database.DatabaseManager;
 
 import java.util.List;
 
@@ -38,11 +38,11 @@ public abstract class PageableFrontCommand<T> extends FrontCommand{
 
 
     protected int getMaxPage(int count) {
-        int maxPage = count / DatabaseUtils.getPageLength();
+        int maxPage = count / DatabaseManager.getPageLength();
         return isMultiple(count) ?maxPage:maxPage+1;
     }
 
     private boolean isMultiple(int count) {
-        return count% DatabaseUtils.getPageLength()==0;
+        return count% DatabaseManager.getPageLength()==0;
     }
 }

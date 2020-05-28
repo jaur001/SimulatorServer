@@ -1,12 +1,8 @@
 package backend.model.bill.generator;
 
-import backend.implementations.SQLite.controllers.SQLiteTableInsert;
 import backend.model.bill.CFDIBill;
 import backend.model.event.EventGenerator;
 import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
-import backend.model.simulation.administration.SimulatorThreadPool;
-import backend.utils.MathUtils;
-import backend.view.loaders.database.builder.builders.BillBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -20,11 +16,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
 
 public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
-    private static String uri= "./out/artifacts/RestaurantSimulator_war_exploded/xmlFiles";
+    private static String uri= "./out/artifacts/RestaurantSimulator_war_exploded/xmlFiles/";
     private Document document;
     private CFDIBill bill;
 
@@ -52,8 +46,8 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
         getXMLDocument();
         appendData();
         //saveXMLInFile();
-        saveInList();
-        //saveInDatabase(bill,getFilePath(),getFileName());
+        addBill();
+
     }
 
     private void getXMLDocument() throws ParserConfigurationException {
@@ -126,7 +120,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     }
 
     private String getFilePath() {
-        return uri + bill.getClass().getSimpleName();
+        return uri + bill.getClass().getSimpleName()+"/";
     }
 
     private String getFileName() {
@@ -138,23 +132,8 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
         return transformerFactory.newTransformer();
     }
 
-    private void saveInList() {
+    private void addBill() {
         SimulationBillAdministrator.addBill(new XMLBill(bill, getFilePath(),getFileName()));
-    }
-
-    public static void saveInDatabase(CFDIBill bill, String filePath, String fileName) {
-        SimulatorThreadPool.getExecutor().submit(() -> {
-            try {
-                new SQLiteTableInsert().insert("Bill", new BillBuilder().buildRow(new XMLBill(bill, filePath,fileName)));
-            } catch (SQLException | ClassNotFoundException e) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(MathUtils.random(100,500));
-                    saveInDatabase(bill, filePath, fileName);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
     }
 
 }

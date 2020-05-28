@@ -17,13 +17,13 @@ public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
     }
     protected List<XMLBill> getList(int page) {
         request.getSession(true).setAttribute("billPage",page);
-        return SimulationBillAdministrator.getBillList(page);
+        return SimulationBillAdministrator.getBillPage(page);
     }
 
     @Override
     protected int getLimit(){
         try {
-            return new SQLiteTableSelector().readCount("Bill");
+            return SimulationBillAdministrator.getBillCount();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -14,7 +14,7 @@ public class DownloadCommand extends FrontCommand {
     @Override
     public void process() {
         String fileID = request.getParameter("ID");
-        XMLBill bill = SimulationBillAdministrator.getBillList(getBillPage()).stream()
+        XMLBill bill = SimulationBillAdministrator.getBillPage(getBillPage()).stream()
                 .filter(xmlBill -> BillHaveTheUUID(fileID, xmlBill)).findFirst().orElse(new XMLBill());
         prepareDownload(bill);
         download(bill);

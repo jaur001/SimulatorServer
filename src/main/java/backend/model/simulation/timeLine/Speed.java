@@ -19,7 +19,7 @@ public class Speed {
     }
 
     public void setSpeed(int speed) {
-        if(speed==100) timeout = MAX_TIMEOUT;
+        if(speed==0) timeout = MAX_TIMEOUT;
         else this.timeout = MIN_TIMEOUT + ((100-speed)*MAX_TIMEOUT)/100;
     }
 }

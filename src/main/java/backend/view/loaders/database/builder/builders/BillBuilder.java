@@ -1,15 +1,24 @@
 package backend.view.loaders.database.builder.builders;
 
 
+import backend.model.NIFCreator.BillNIFCreator;
+import backend.model.NIFCreator.PersonNIFCreator;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.bill.generator.XMLBill;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.view.loaders.database.builder.Builder;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 public class BillBuilder extends Builder<XMLBill> {
+
+    @Override
+    public String getHeader() {
+        return "Bill";
+    }
 
     @Override
     protected List<Object> getRow(XMLBill bill) {

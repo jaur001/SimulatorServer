@@ -8,6 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WorkerBuilder extends Builder<Worker> {
+
+    @Override
+    public String getHeader() {
+        return "Person";
+    }
+
     @Override
     protected List<Object> getRow(Worker worker) {
         return Arrays.asList(new Object[]{worker.getNIF()

@@ -1,24 +1,29 @@
 package backend.model.NIFCreator;
 
-import backend.implementations.SQLite.controllers.SQLiteTableSelector;
+import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
 
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BillNIFCreator implements NIFCreator {
 
-    private static final int INITIAL_VALUE = getInitialValue();
+    private static int initialValue = 0;
+    private static final int INITIAL_VALUE = 4000000;
+    private static AtomicInteger count;
 
     public static int getInitialValue() {
-        int initialValue = 4000000;
-        try {
-            return initialValue + new SQLiteTableSelector().readCount("Bill");
-        } catch (SQLException | ClassNotFoundException e) {
-            return initialValue;
-        }
+        if(initialValue == -1) initInitialValue();
+        return initialValue;
     }
 
-    private static final AtomicInteger count = new AtomicInteger(INITIAL_VALUE);
+    public static void initInitialValue() {
+        try {
+            initialValue = INITIAL_VALUE + SimulationBillAdministrator.getBillCount();
+        } catch (SQLException | ClassNotFoundException e) {
+            initialValue = INITIAL_VALUE;
+        }
+        count = new AtomicInteger(initialValue);
+    }
 
     @Override
     public int create() {

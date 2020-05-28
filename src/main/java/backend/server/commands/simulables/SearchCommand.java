@@ -6,7 +6,7 @@ import backend.server.EJB.SearchControllerStatelessBean;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
 import backend.server.servlets.FrontCommand;
-import backend.utils.DatabaseUtils;
+import backend.view.loaders.database.DatabaseManager;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -59,7 +59,7 @@ public class SearchCommand extends FrontCommand {
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Job</th>");
         out.println("</tr>");
         simulables.stream()
-                .limit(DatabaseUtils.getPageLength())
+                .limit(DatabaseManager.getPageLength())
                 .forEach(simulable -> appendPerson(simulable,out));
     }
 
@@ -71,7 +71,7 @@ public class SearchCommand extends FrontCommand {
         out.println("<th style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</th>");
         out.println("</tr>");
         simulables.stream()
-                .limit(DatabaseUtils.getPageLength())
+                .limit(DatabaseManager.getPageLength())
                 .forEach(simulable -> appendCompany(simulable,out));
     }
 

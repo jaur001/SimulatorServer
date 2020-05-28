@@ -1,6 +1,8 @@
 package backend.view.loaders.database.builder;
+import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.view.loaders.database.elements.Row;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,8 @@ public abstract class Builder<T> {
     }
 
     protected abstract List<Object> getRow(T object);
+
+    public abstract String getHeader();
 
     protected abstract T getItem(Object[] parameters);
 }

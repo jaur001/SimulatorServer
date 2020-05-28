@@ -1,9 +1,7 @@
 package backend.server.servlets;
 
+import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.model.simulation.settings.settingsList.*;
-import backend.model.simulation.timeLine.Speed;
-import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.SettingsBuilder;
 import backend.utils.FrontControllerUtils;
 
@@ -15,6 +13,7 @@ import java.io.IOException;
 
 public class InitSessionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
+        SimulationBillAdministrator.resetBills();
         SimulationDataController.initSessionData();
         SettingsBuilder.setCurrentSettingsToSession(request);
         FrontControllerUtils.setQuickSettings(request);

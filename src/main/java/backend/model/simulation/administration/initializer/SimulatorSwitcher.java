@@ -83,12 +83,6 @@ public class SimulatorSwitcher {
     }
 
     private static void executeWithThread() {
-        /*try {
-            if(timer==null)timer = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/TimerStatelessEJB");
-            timer.setTimer();
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }*/
         ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
         executor.submit(SimulatorSwitcher::executeLocal);
     }

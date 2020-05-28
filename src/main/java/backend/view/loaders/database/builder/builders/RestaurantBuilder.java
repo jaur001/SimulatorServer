@@ -9,6 +9,10 @@ import java.util.List;
 
 public class RestaurantBuilder extends Builder<Restaurant> {
 
+    @Override
+    public String getHeader() {
+        return "Restaurant";
+    }
 
     @Override
     protected List<Object> getRow(Restaurant restaurant){

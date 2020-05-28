@@ -1,6 +1,6 @@
 package backend.implementations.SQLite;
 
-import backend.utils.DatabaseUtils;
+import backend.view.loaders.database.DatabaseManager;
 import backend.view.loaders.database.elements.Header;
 
 import java.sql.Connection;
@@ -11,7 +11,7 @@ public abstract class DatabaseController {
 
     protected Connection connection;
     protected String actualHeaderName;
-    protected List<Header> headerList = DatabaseUtils.getHeaders();
+    protected List<Header> headerList = DatabaseManager.getHeaders();
 
     protected Header getActualHeader(String actualHeaderName) {
         return headerList.stream().filter(header -> header.getName().equals(actualHeaderName)).findFirst().orElse(null);

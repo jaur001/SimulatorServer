@@ -1,13 +1,11 @@
 package backend.model.simulation.administration.initializer;
 
+import backend.implementations.SQLite.SQLiteTableAdministrator;
 import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.jobSelector.MostEmployedJobSelector;
 import backend.initializers.WorkerThread;
 import backend.initializers.secondaryCompanies.service.ServiceThread;
 import backend.initializers.secondaryCompanies.service.ServicingThread;
-import backend.model.NIFCreator.PersonNIFCreator;
-import backend.model.NIFCreator.SecondaryNIFCreator;
-import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
@@ -24,8 +22,7 @@ import backend.initializers.RoutineThread;
 import backend.initializers.WorkerSearcherThread;
 import backend.initializers.secondaryCompanies.provider.ProductThread;
 import backend.initializers.secondaryCompanies.provider.ProvidingThread;
-import backend.view.loaders.database.builder.builders.*;
-import backend.view.loaders.database.elements.Row;
+import backend.view.loaders.database.TableAdministrator;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,48 +30,37 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SimulationInitializer {
 
+    private static final TableAdministrator administrator = new SQLiteTableAdministrator();
+
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        List<Provider> providerList = new ProviderBuilder().buildList(getRows("Provider", getSecondaryCompanyInitialValue(), providerCount));
+        List<Provider> providerList = administrator.read(Simulation.getProviderSize(),providerCount,Provider.class);
         ProductThread.initProducts(providerList);
         return providerList;
     }
 
     public static List<ServiceCompany> getServiceCompanies(int serviceCompanyCount) throws SQLException, ClassNotFoundException {
-        List<ServiceCompany> companies = new ServiceCompanyBuilder().buildList(getRows("Provider", getSecondaryCompanyInitialValue(), serviceCompanyCount));
+        List<ServiceCompany> companies = administrator.read(Simulation.getServiceCompanySize(),serviceCompanyCount,ServiceCompany.class);
         ServiceThread.initProducts(companies);
         return companies;
     }
 
-
     public static List<Restaurant> getRestaurants(int restaurantCount) throws SQLException, ClassNotFoundException {
         //return RestaurantThread.loadRestaurantsPage(restaurantCount/30);
-        return new RestaurantBuilder().buildList(getRows("Restaurant",
-                RestaurantNIFCreator.getInitialValue()+getModuleOfInitialValue(Simulation.getRestaurantSize(),"Restaurant"),restaurantCount));
+        return administrator.read(Simulation.getRestaurantSize(),restaurantCount,Restaurant.class);
     }
 
     public static List<Client> getClients(int clientCount) throws SQLException, ClassNotFoundException {
-        List<Client> clientList = new ClientBuilder().buildList(getRows("Person", getClientInitialValue(), clientCount));
+        List<Client> clientList = administrator.read(Simulation.getClientSize(),clientCount,Client.class);
         clientList.forEach(client -> client.setSalary(ClientSettings.getSalarySample()));
         return clientList;
     }
 
+
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        List<Worker> workerList = new WorkerBuilder().buildList(getRows("Person", getClientInitialValue(), workerCount));
+        List<Worker> workerList = administrator.read(Simulation.getWorkerSize(),workerCount,Worker.class);
         if(workerCount==1) WorkerThread.setJob(workerList.get(0),new MostEmployedJobSelector());
         else WorkerThread.setJobs(workerList);
         return workerList;
-    }
-
-    private static int getClientInitialValue() throws SQLException, ClassNotFoundException {
-        return PersonNIFCreator.getInitialValue() + getModuleOfInitialValue(Simulation.getClientSize(),"Person");
-    }
-
-    private static int getSecondaryCompanyInitialValue() throws SQLException, ClassNotFoundException {
-        return SecondaryNIFCreator.getInitialValue() + getModuleOfInitialValue(Simulation.getSecondaryCompanySize(), "Provider");
-    }
-
-    private static int getModuleOfInitialValue(int initialValue,String headerName) throws SQLException, ClassNotFoundException {
-        return initialValue % new SQLiteTableSelector().readCount(headerName);
     }
 
     public static List<Simulable> init() {
@@ -99,14 +85,11 @@ public class SimulationInitializer {
         return simulableList;
     }
 
-    private static List<Row> getRows(String tableName, int initialValue, int count) throws SQLException, ClassNotFoundException {
-        return new SQLiteTableSelector().read(tableName, initialValue, initialValue+count);
-    }
-
     public static Worker getWorker() {
         try {
             return getWorkers(1).get(0);
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -117,6 +100,7 @@ public class SimulationInitializer {
             client.setRoutineList(new RoutineList(client.getSalary(), ClientSettings.getRoutineList(client.getSalary())));
             return client;
         } catch (SQLException | ClassNotFoundException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
             return null;
         }
     }

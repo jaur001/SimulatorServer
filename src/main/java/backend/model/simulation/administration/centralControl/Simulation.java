@@ -15,7 +15,7 @@ import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.utils.DatabaseUtils;
+import backend.view.loaders.database.DatabaseManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -57,35 +57,27 @@ public class Simulation {
         return getWorkerList().size();
     }
 
-    public static int getFrom(int page) {
-        return DatabaseUtils.getPageLength()*(page-1);
-    }
-
-    public static int getTo(int from, int to) {
-        return Math.min(from + DatabaseUtils.getPageLength(), to);
-    }
-
     public static List<Restaurant> getRestaurantList(int page) {
-        int from = getFrom(page);
-        int to = getTo(from,getRestaurantSize());
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,getRestaurantSize());
         return getRestaurantList().subList(from, to);
     }
 
     public static List<Provider> getProviderList(int page) {
-        int from = getFrom(page);
-        int to = getTo(from,getProviderSize());
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,getProviderSize());
         return getProviderList().subList(from, to);
     }
 
     public static List<Client> getClientList(int page) {
-        int from = getFrom(page);
-        int to = getTo(from,getClientSize());
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,getClientSize());
         return getClientList().subList(from, to);
     }
 
     public static List<Worker> getWorkerList(int page) {
-        int from = getFrom(page);
-        int to = getTo(from,getWorkerSize());
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,getWorkerSize());
         return getWorkerList().subList(from, to);
     }
 

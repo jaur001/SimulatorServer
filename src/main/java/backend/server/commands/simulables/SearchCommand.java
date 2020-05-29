@@ -16,14 +16,7 @@ import java.util.List;
 
 public class SearchCommand extends FrontCommand {
 
-    private SearchControllerStatelessBean searchController;
-    {
-        try {
-            searchController = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/SearchControllerStatelessEJB");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
+    private SearchControllerStatelessBean searchController = new SearchControllerStatelessBean();
 
     @Override
     public void process() {
@@ -88,7 +81,7 @@ public class SearchCommand extends FrontCommand {
         out.println("<tr>");
         out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + company.getNIF() + "</td>");
         out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + company.getName() + "</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+company.getFinancialData().getBenefits()+"</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+company.getFinancialData().getLastMonthBenefits()+"</td>");
         out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+company.getFinancialData().getTreasury()+"</td>");
         out.println("</tr>");
     }

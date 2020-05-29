@@ -1,4 +1,4 @@
-package backend.implementations.SQLite.controllers;
+package backend.implementations.SQLite;
 
 import backend.view.loaders.database.elements.Row;
 import backend.view.loaders.reader.GenericDataReader;

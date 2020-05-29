@@ -2,12 +2,13 @@ package backend.server.searcher.searchers.company;
 
 import backend.model.simulables.company.Company;
 import backend.server.searcher.Search;
+import backend.server.searcher.comparators.StringSearchComparator;
 
 import java.util.function.Predicate;
 
-public class CompanyNameSearch implements Search<Company> {
+public class CompanyNameSearch extends StringSearchComparator implements Search<Company> {
     @Override
     public Predicate<Company> search(String searchText) {
-        return company -> (company.getName().toLowerCase()).contains(searchText.toLowerCase());
+        return company -> contains(company.getName(),searchText);
     }
 }

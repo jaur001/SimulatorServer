@@ -1,6 +1,21 @@
 let eventWorker;
 let personWorker;
 let companyWorker;
+let isRunning = false;
+function changeOptions(){
+    let val = $('#simulableOptions').val();
+    if (val === "person") {
+        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
+            "<option value='Name'>Name</option>" +
+            "<option value='Job'>Job</option>" +
+            "<option value='Salary'>Salary</option>");
+    } else {
+        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
+            "<option value='Name'>Name</option>" +
+            "<option value='Benefits'>Benefits</option>" +
+            "<option value='Treasury'>Treasury</option>");
+    }
+}
 
 function receiveData() {
     if(isRunning)startWorkers();

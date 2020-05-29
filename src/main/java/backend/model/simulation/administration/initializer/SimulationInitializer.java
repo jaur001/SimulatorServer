@@ -33,13 +33,13 @@ public class SimulationInitializer {
     private static final TableAdministrator administrator = new SQLiteTableAdministrator();
 
     public static List<Provider> getProviders(int providerCount) throws SQLException, ClassNotFoundException {
-        List<Provider> providerList = administrator.read(Simulation.getProviderSize(),providerCount,Provider.class);
+        List<Provider> providerList = administrator.read(Simulation.getSecondaryCompanySize(),providerCount,Provider.class);
         ProductThread.initProducts(providerList);
         return providerList;
     }
 
     public static List<ServiceCompany> getServiceCompanies(int serviceCompanyCount) throws SQLException, ClassNotFoundException {
-        List<ServiceCompany> companies = administrator.read(Simulation.getServiceCompanySize(),serviceCompanyCount,ServiceCompany.class);
+        List<ServiceCompany> companies = administrator.read(Simulation.getSecondaryCompanySize(),serviceCompanyCount,ServiceCompany.class);
         ServiceThread.initProducts(companies);
         return companies;
     }

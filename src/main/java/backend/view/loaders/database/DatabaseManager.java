@@ -22,6 +22,7 @@ public class DatabaseManager {
         createProviderTable();
         createPersonTable();
         createBillTable();
+        createGeneralDataTable();
     }
 
     private static void createRestaurantTable() {
@@ -85,6 +86,78 @@ public class DatabaseManager {
         parameters.put("fileName",new Field(Restriction.NOT_NULL_UNIQUE, DataType.text));
         headers.add(new Header("Bill",parameters));
         setBillInitialPrimaryKeyValue();
+    }
+
+    private static void createGeneralDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("GeneralData",parameters));
+        headers.get(4).setInitialPrimaryKeyValue(0);
+    }
+
+    private static void createClientDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("ClientData",parameters));
+        headers.get(5).setInitialPrimaryKeyValue(0);
+    }
+
+    private static void createRestaurantDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("RestaurantData",parameters));
+        headers.get(6).setInitialPrimaryKeyValue(0);
+    }
+
+    private static void createProviderDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("ProviderData",parameters));
+        headers.get(7).setInitialPrimaryKeyValue(0);
+    }
+
+    private static void createServiceDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("ServiceData",parameters));
+        headers.get(8).setInitialPrimaryKeyValue(0);
+    }
+
+    private static void createWorkerDataTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        headers.add(new Header("WorkerData",parameters));
+        headers.get(9).setInitialPrimaryKeyValue(0);
     }
 
     public static void setBillInitialPrimaryKeyValue(){

@@ -1,6 +1,6 @@
 package backend.main;
 
-import backend.implementations.SQLite.SQLiteDatabaseConnector;
+import backend.implementations.SQLite.connector.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
 import backend.model.simulation.administration.initializer.SimulatorSwitcher;

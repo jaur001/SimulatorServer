@@ -5,21 +5,9 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/general.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/frontAdministrator.js"></script>
+    <script src="JS/mainAdministrator.js"></script>
   </head>
   <script>
-    let isRunning = false;
-    function changeOptions(){
-      let val = $('#simulableOptions').val();
-      if (val === "person") {
-        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
-                "<option value='Name'>Name</option>" +
-                "<option value='Job'>Job</option>");
-      } else {
-        $("#searchOptions").html("<option value='NIF'>NIF</option>" +
-                "<option value='Name'>Name</option>");
-      }
-    }
   </script>
   <body>
     <h1 class="header">Bill Data Generator</h1>
@@ -101,7 +89,7 @@
       <br>
       <label for="simulableOptions">Search</label>
       <select onchange="changeOptions()" id="simulableOptions">
-        <option value="person">Person</option>
+        <option value="person" selected>Person</option>
         <option value="company">Company</option>
       </select>
       <br>
@@ -114,6 +102,7 @@
           <option value="NIF">NIF</option>
           <option value="Name">Name</option>
           <option value="Job">Job</option>
+          <option value="Salary">Salary</option>
         </select>
       </label>
       <br>

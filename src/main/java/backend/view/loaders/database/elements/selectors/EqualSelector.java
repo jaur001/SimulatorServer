@@ -1,21 +1,20 @@
 package backend.view.loaders.database.elements.selectors;
 
-import backend.view.loaders.database.elements.OrderBy;
 import backend.view.loaders.database.elements.Selector;
 
-public class OrderBySelector implements Selector {
+public class EqualSelector implements Selector {
 
     private String fieldName;
-    private OrderBy orderBy;
+    private String value;
 
-    public OrderBySelector(String fieldName, OrderBy orderBy) {
+    public EqualSelector(String fieldName, String value) {
         this.fieldName = fieldName;
-        this.orderBy = orderBy;
+        this.value = value;
     }
 
     @Override
     public String getInstruction() {
-        return " order by " + fieldName + " " + orderBy.toString();
+        return " " + fieldName + " = " + value;
     }
 
     @Override
@@ -25,6 +24,6 @@ public class OrderBySelector implements Selector {
 
     @Override
     public Object getValue() {
-        return orderBy.toString();
+        return value;
     }
 }

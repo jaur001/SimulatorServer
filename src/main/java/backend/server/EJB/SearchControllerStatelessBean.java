@@ -4,11 +4,14 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
+import backend.server.searcher.searchers.company.CompanyBenefitsSearch;
 import backend.server.searcher.searchers.company.CompanyNIFSearch;
 import backend.server.searcher.searchers.company.CompanyNameSearch;
-import backend.server.searcher.searchers.person.JobSearch;
+import backend.server.searcher.searchers.company.CompanyTreasurySearch;
+import backend.server.searcher.searchers.person.PersonJobSearch;
 import backend.server.searcher.searchers.person.PersonNIFSearch;
 import backend.server.searcher.searchers.person.PersonNameSearch;
+import backend.server.searcher.searchers.person.PersonSalarySearch;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -22,20 +25,21 @@ public class SearchControllerStatelessBean {
     private Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
     private Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
 
-    @PostConstruct
-    public void init() {
-        personFilterTable.put(SearchBy.values()[0],new PersonNIFSearch());
-        personFilterTable.put(SearchBy.values()[1],new PersonNameSearch());
-        personFilterTable.put(SearchBy.values()[2],new JobSearch());
-
-        companyFilterTable.put(SearchBy.values()[0],new CompanyNIFSearch());
-        companyFilterTable.put(SearchBy.values()[1],new CompanyNameSearch());
+    public SearchControllerStatelessBean() {
+        init();
     }
 
-    @PreDestroy
-    public void destroy(){
-        personFilterTable = null;
-        companyFilterTable = null;
+    @PostConstruct
+    public void init() {
+        personFilterTable.put(SearchBy.NIF,new PersonNIFSearch());
+        personFilterTable.put(SearchBy.Name,new PersonNameSearch());
+        personFilterTable.put(SearchBy.Job,new PersonJobSearch());
+        personFilterTable.put(SearchBy.Salary,new PersonSalarySearch());
+
+        companyFilterTable.put(SearchBy.NIF,new CompanyNIFSearch());
+        companyFilterTable.put(SearchBy.Name,new CompanyNameSearch());
+        companyFilterTable.put(SearchBy.Benefits,new CompanyBenefitsSearch());
+        companyFilterTable.put(SearchBy.Treasury,new CompanyTreasurySearch());
     }
 
     public Search<Client> getPersonFilter(SearchBy searchBy){

@@ -12,16 +12,11 @@ public class SQLiteRowDeleter extends DatabaseController implements RowDeleter {
 
     @Override
     public void deleteAll(String headerName) throws SQLException, ClassNotFoundException {
-        if (checkTable(headerName)) return;
+        if (notExist(headerName)) return;
         init(headerName);
-        PreparedStatement preparedStatement = prepareDelete();
+        PreparedStatement preparedStatement = getPreparedStatement(getSentence());
         preparedStatement.execute();
         preparedStatement.close();
-    }
-
-
-    private PreparedStatement prepareDelete() throws SQLException {
-        return connection.prepareStatement(getSentence());
     }
 
     private String getSentence() {

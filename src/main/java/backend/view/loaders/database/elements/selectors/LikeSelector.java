@@ -5,15 +5,25 @@ import backend.view.loaders.database.elements.Selector;
 public class LikeSelector implements Selector {
 
     private String fieldName;
-    private String likeText;
+    private String value;
 
-    public LikeSelector(String fieldName, String likeText) {
+    public LikeSelector(String fieldName, String value) {
         this.fieldName = fieldName;
-        this.likeText = likeText;
+        this.value = value;
     }
 
     @Override
     public String getInstruction() {
-        return " " + fieldName + " like '" + likeText + "'";
+        return " " + fieldName + " like '%" + value + "%'";
+    }
+
+    @Override
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    @Override
+    public Object getValue() {
+        return value;
     }
 }

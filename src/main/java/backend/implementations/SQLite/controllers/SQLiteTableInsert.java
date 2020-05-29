@@ -15,16 +15,12 @@ public class SQLiteTableInsert extends DatabaseController implements TableInsert
 
     @Override
     public void insert(String headerName, Row parameters) throws SQLException, ClassNotFoundException {
-        if (checkTable(headerName)) return;
+        if (notExist(headerName)) return;
         init(headerName);
-        PreparedStatement preparedStatement = prepareInsert();
+        PreparedStatement preparedStatement = getPreparedStatement(prepareHeader());
         insertValues(parameters.getParameters(),preparedStatement);
         preparedStatement.execute();
         preparedStatement.close();
-    }
-
-    private PreparedStatement prepareInsert() throws SQLException {
-        return connection.prepareStatement(prepareHeader());
     }
 
     private String prepareHeader(){
@@ -38,7 +34,7 @@ public class SQLiteTableInsert extends DatabaseController implements TableInsert
 
 
     private void concatParameters(String[] firstSection,String[] secondSection){
-        Header header = getActualHeader(actualHeaderName);
+        Header header = getActualHeader();
         header.getFields().keySet().forEach(parameter -> {
             firstSection[0] += concatParameter(parameter);
             secondSection[0] += concatParameter("?");
@@ -53,17 +49,13 @@ public class SQLiteTableInsert extends DatabaseController implements TableInsert
 
     private void insertValues(List<Object> parameters,PreparedStatement preparedStatement){
         AtomicInteger position = new AtomicInteger();
-        getActualHeader(actualHeaderName).getFields().forEach((fieldName, field) -> {
+        getActualHeader().getFields().forEach((fieldName, field) -> {
             try {
-                insertRow(parameters.get(position.get()), preparedStatement, position.get());
+                insertValue(parameters.get(position.get()), preparedStatement, position.get());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             position.getAndIncrement();
         });
-    }
-
-    private void insertRow(Object parameter, PreparedStatement preparedStatement, int position) throws SQLException {
-        preparedStatement.setObject(position+1,parameter);
     }
 }

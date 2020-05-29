@@ -120,6 +120,10 @@ public class FinancialData implements Cloneable {
         return treasury;
     }
 
+    public double getNetWorth() {
+        return netWorth;
+    }
+
     public double getTotalActive() {
         return totalActive;
     }

@@ -1,4 +1,4 @@
-package backend.implementations.SQLite;
+package backend.implementations.SQLite.connector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

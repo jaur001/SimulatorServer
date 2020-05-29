@@ -11,11 +11,6 @@ import java.util.Map;
 
 public class SQLiteTableCreator extends DatabaseController implements TableCreator {
 
-
-    private Statement getStatement() throws SQLException {
-        return connection.createStatement();
-    }
-
     public void createTable(Header header) throws SQLException, ClassNotFoundException {
         createTable(header.getName(),header.getFields());
     }

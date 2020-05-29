@@ -3,6 +3,7 @@ package backend.model.simulables.company;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Payer;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
+import backend.utils.MathUtils;
 
 
 public abstract class Company implements Payer, Simulable {
@@ -17,7 +18,7 @@ public abstract class Company implements Payer, Simulable {
     public Company(int NIF, String companyName, String street, String telephoneNumber) {
         this.NIF = NIF;
         this.companyName = companyName;
-        this.street = street.replaceAll("\"","");
+        this.street = MathUtils.random(35000,40000)+"";
         this.telephoneNumber = telephoneNumber;
         this.financialData = getInitialFinancialData();
     }
@@ -105,6 +106,6 @@ public abstract class Company implements Payer, Simulable {
     @Override
     public String[] getSimulable() {
         return new String[]{getNIF()+"",getName(),getStreet(),getTelephoneNumber()
-                ,getFinancialData().getTreasury()+"",getFinancialData().getBenefits()+""};
+                ,getFinancialData().getTreasury()+"",getFinancialData().getLastMonthBenefits()+""};
     }
 }

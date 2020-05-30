@@ -11,7 +11,7 @@ public class RestaurantBuilder extends Builder<Restaurant> {
 
     @Override
     public String getHeader() {
-        return "Restaurant";
+        return Restaurant.class.getSimpleName();
     }
 
     @Override

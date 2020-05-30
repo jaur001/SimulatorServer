@@ -1,12 +1,15 @@
 package backend.server.EJB.dataSettings;
 
+import backend.implementations.SQLite.SQLiteTableAdministrator;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
 import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.data.*;
+import backend.view.loaders.database.TableAdministrator;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -14,107 +17,113 @@ import java.util.stream.IntStream;
 @Singleton(name = "DefaultSettingsSingletonEJB")
 public class DefaultSettingsSingletonBean {
 
-    //General
-    private static final int WORKER_COUNT = 1000;
-    private static final int CLIENT_COUNT = 1000;
-    private static final int RESTAURANT_COUNT = 25;
-    private static final int PROVIDER_COUNT = 500;
-    private static final int SERVICE_COUNT = 100;
-
-    //Client
-    private Integer[] clientSalaries;
-    private Integer[] prices;
-    private static final Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
-    private static final DistributionData SALARY_CLIENT = new DistributionData(1717,979.28);
-    private static final int MIN_SALARY_CLIENT = 500;
-    private static final MinMaxData INVITED_PEOPLE = new MinMaxData(0,3);
-    private static final MinMaxData NUM_OF_RESTAURANT = new MinMaxData(1,5);
-    private static final DistributionData PLATE_NUMBER = new DistributionData(2,0.7);
-
-    //Restaurant
-    private Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
-    private static final double INITIAL_SOCIAL_CAPITAL_RESTAURANT = 10000;
-    public static final MinMaxData LENGTH_CONTRACT = new MinMaxData(90,360);
-    public static final double RESTAURANT_PRICE_CHANGE = 0.02;
-    private static final double CAPACITY = 1.0;
-    public static final double RESTAURANT_CLOSE_LIMIT = -5000.0;
-
-    //Provider
-    private static final int INITIAL_SOCIAL_CAPITAL_PROVIDER = 10000;
-    private Map<Product, Double> productSalePriceTable = new LinkedHashMap<>();
-    public static final double PROVIDER_PRICE_CHANGE = 0.01;
-    private static final double PROVIDER_CLOSE_LIMIT = -5000.0;
-    
-    //Service
-    private static final int INITIAL_SOCIAL_CAPITAL_SERVICE = 10000;
-    private Map<Service, Double> servicePriceTable = new LinkedHashMap<>();
-    public static final double SERVICE_PRICE_CHANGE = 0.01;
-    private static final double SERVICE_CLOSE_LIMIT = -5000.0;
-
-    //Worker
-    private static final double MIN_SALARY_WORKER = 500.0;
-    private static final double SALARY_CHANGE = 0.05;
-    private static final double SALARY_DESIRED_CHANGE = 0.001;
-    private static final int RETIRE_AGE = 65;
-    private static final double PERCENTAGE_RETIREMENT = 0.60;
+    private TableAdministrator administrator;
+    private GeneralData defaultGeneralData;
+    private ClientData defaultClientData;
+    private RestaurantData defaultRestaurantData;
+    private ProviderData defaultProviderData;
+    private ServiceData defaultServiceData;
+    private WorkerData defaultWorkerData;
 
     public DefaultSettingsSingletonBean() {
+        administrator = new SQLiteTableAdministrator();
         init();
     }
 
-    @PostConstruct
     public void init(){
-        initDefaultClientData();
-        initDefaultRestaurantData();
-        initDefaultProviderData();
-        initDefaultServiceData();
+        try {
+            initGeneralData();
+            initClientData();
+            initRestaurantData();
+            initProviderData();
+            initServiceData();
+            initWorkerData();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void initDefaultClientData() {
-        clientSalaries = new Integer[]{1000,2000,3000,4000};
-        prices = new Integer[]{15,25,40,60};
+    public void initGeneralData() throws SQLException, ClassNotFoundException {
+        defaultGeneralData = (GeneralData) administrator.read(0,1,GeneralData.class).get(0);
+    }
+
+    private void initClientData() throws SQLException, ClassNotFoundException {
+        defaultClientData = (ClientData) administrator.read(0,1,ClientData.class).get(0);
+        defaultClientData.setRestaurantGroup(initRestaurantGroups());
+    }
+
+    public void initRestaurantData() throws SQLException, ClassNotFoundException {
+        defaultRestaurantData = (RestaurantData) administrator.read(0,1,RestaurantData.class).get(0);
+        defaultRestaurantData.setWorkerSalaryTable(initWorkerSalaryTable());
+    }
+
+    public void initProviderData() throws SQLException, ClassNotFoundException {
+        defaultProviderData = (ProviderData) administrator.read(0,1,ProviderData.class).get(0);
+        defaultProviderData.setProductSalePriceTable(initProductSaleTable());
+    }
+
+    public void initServiceData() throws SQLException, ClassNotFoundException {
+        defaultServiceData = (ServiceData) administrator.read(0,1,ServiceData.class).get(0);
+        defaultServiceData.setServicePriceTable(initServicePriceTable());
+    }
+
+    public void initWorkerData() throws SQLException, ClassNotFoundException {
+        defaultWorkerData = (WorkerData) administrator.read(0,1,WorkerData.class).get(0);
+    }
+
+    private Map<Integer,Integer> initRestaurantGroups() {
+        Integer[] clientSalaries = new Integer[]{1000,2000,3000,4000};
+        Integer[] prices = new Integer[]{15,25,40,60};
+        Map<Integer,Integer> restaurantGroup = new LinkedHashMap<>();
         IntStream.range(0, clientSalaries.length).boxed()
                 .forEach(i -> restaurantGroup.put(clientSalaries[i], prices[i]));
+        return restaurantGroup;
     }
 
-    private void initDefaultRestaurantData(){
+    private Map<Job, Integer> initWorkerSalaryTable(){
         Integer[] salaries = {800,1000,1500,3000,3000};
+        Map<Job, Integer> workerSalaryTable = new LinkedHashMap<>();
         IntStream.range(0,Job.values().length).boxed()
                 .forEach(i -> workerSalaryTable.put(Job.values()[i],salaries[i]));
+        return workerSalaryTable;
     }
-    private void initDefaultProviderData() {
+    private Map<Product, Double> initProductSaleTable() {
         Double[] cost = {150.0,160.0,160.0,80.0,80.0,100.0,90.0};
+        Map<Product, Double> productSalePriceTable = new LinkedHashMap<>();
         IntStream.range(0,Product.values().length).boxed()
                 .forEach(i -> productSalePriceTable.put(Product.values()[i],cost[i]));
+        return productSalePriceTable;
     }
 
-    private void initDefaultServiceData() {
+    private Map<Service, Double> initServicePriceTable() {
         Double[] prices = new Double[]{100.0,100.0};
+        Map<Service, Double> servicePriceTable = new LinkedHashMap<>();
         IntStream.range(0,Service.values().length).boxed()
                 .forEach(i -> servicePriceTable.put(Service.values()[i],prices[i]));
+        return servicePriceTable;
     }
 
     public GeneralData getDefaultGeneralData(){
-        return new GeneralData(CLIENT_COUNT, RESTAURANT_COUNT, PROVIDER_COUNT, SERVICE_COUNT, WORKER_COUNT);
+        return defaultGeneralData;
     }
 
     public ClientData getDefaultClientData(){
-        return new ClientData(SALARY_CLIENT,MIN_SALARY_CLIENT,restaurantGroup,INVITED_PEOPLE,NUM_OF_RESTAURANT,PLATE_NUMBER);
+        return defaultClientData;
     }
 
     public RestaurantData getDefaultRestaurantData(){
-        return new RestaurantData(INITIAL_SOCIAL_CAPITAL_RESTAURANT,workerSalaryTable,LENGTH_CONTRACT, RESTAURANT_PRICE_CHANGE, CAPACITY, RESTAURANT_CLOSE_LIMIT);
+        return defaultRestaurantData;
     }
 
     public ProviderData getDefaultProviderData(){
-        return new ProviderData(INITIAL_SOCIAL_CAPITAL_PROVIDER, productSalePriceTable, PROVIDER_PRICE_CHANGE, PROVIDER_CLOSE_LIMIT);
+        return defaultProviderData;
     }
 
     public ServiceData getDefaultServiceData() {
-        return new ServiceData(INITIAL_SOCIAL_CAPITAL_SERVICE, servicePriceTable, SERVICE_PRICE_CHANGE, SERVICE_CLOSE_LIMIT);
+        return defaultServiceData;
     }
 
     public WorkerData getDefaultWorkerData(){
-        return new WorkerData(MIN_SALARY_WORKER,SALARY_CHANGE,SALARY_DESIRED_CHANGE,RETIRE_AGE,PERCENTAGE_RETIREMENT);
+        return defaultWorkerData;
     }
 }

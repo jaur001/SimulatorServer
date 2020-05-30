@@ -6,6 +6,7 @@ import backend.model.simulables.company.secondaryCompany.companies.monthlyCompan
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
+import backend.server.EJB.dataSettings.data.*;
 import backend.view.loaders.database.builder.builders.*;
 
 import java.util.HashMap;
@@ -22,6 +23,12 @@ public class BuilderController {
         builderTable.put(Provider.class, new ProviderBuilder());
         builderTable.put(ServiceCompany.class, new ServiceCompanyBuilder());
         builderTable.put(Worker.class, new WorkerBuilder());
+        builderTable.put(GeneralData.class, new GeneralDataBuilder());
+        builderTable.put(ClientData.class, new ClientDataBuilder());
+        builderTable.put(RestaurantData.class, new RestaurantDataBuilder());
+        builderTable.put(ProviderData.class, new ProviderDataBuilder());
+        builderTable.put(ServiceData.class, new ServiceDataBuilder());
+        builderTable.put(WorkerData.class, new WorkerDataBuilder());
     }
 
     public static Builder getBuilder(Class object){

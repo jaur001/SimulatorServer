@@ -12,14 +12,9 @@ public class ProviderSettingsStatefulBean extends GenericSessionData {
     private ProviderData providerData;
 
     public ProviderSettingsStatefulBean() {
-        initSettings();
+        super();
     }
 
-    @PostConstruct
-    public void initSettings(){
-        initDefaultSettings();
-        setDefault();
-    }
 
     @Override
     public void init(Object data) {

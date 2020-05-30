@@ -63,8 +63,7 @@ public class SimulationBillAdministrator {
         SimulatorThreadPool.getExecutor().submit(() -> {
             try {
                 administrator.save(bill);
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (SQLException | ClassNotFoundException ignored) {
             }
         });
     }

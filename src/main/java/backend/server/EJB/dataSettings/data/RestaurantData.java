@@ -23,8 +23,20 @@ public class RestaurantData {
         this.closeLimit = closeLimit;
     }
 
+    public RestaurantData(double initialSocialCapital, MinMaxData lengthContract, double priceChange, double capacity, double closeLimit) {
+        this.initialSocialCapital = initialSocialCapital;
+        this.lengthContract = lengthContract;
+        this.priceChange = priceChange;
+        this.capacity = capacity;
+        this.closeLimit = closeLimit;
+    }
+
     public Map<Job, Integer> getWorkerSalaryTable() {
         return workerSalaryTable;
+    }
+
+    public void setWorkerSalaryTable(Map<Job, Integer> workerSalaryTable) {
+        this.workerSalaryTable = workerSalaryTable;
     }
 
     public double getInitialSocialCapital() {

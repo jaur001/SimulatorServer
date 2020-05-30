@@ -7,19 +7,9 @@ import javax.naming.NamingException;
 
 public abstract class GenericSessionData implements Adjustable {
 
-    protected DefaultSettingsSingletonBean defaultSettings;
+    protected static final DefaultSettingsSingletonBean defaultSettings = new DefaultSettingsSingletonBean();
 
     public GenericSessionData() {
-        initDefaultSettings();
         setDefault();
-    }
-
-    protected void initDefaultSettings(){
-        try {
-            defaultSettings = InitialContext.doLookup("java:global/RestaurantSimulator_war_exploded/DefaultSettingsSingletonEJB");
-        } catch (NamingException e) {
-            defaultSettings = new DefaultSettingsSingletonBean();
-            defaultSettings.init();
-        }
     }
 }

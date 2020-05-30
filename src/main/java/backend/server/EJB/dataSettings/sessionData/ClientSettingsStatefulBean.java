@@ -12,13 +12,7 @@ public class ClientSettingsStatefulBean extends GenericSessionData {
     private ClientData clientData;
 
     public ClientSettingsStatefulBean() {
-        initSettings();
-    }
-
-    @PostConstruct
-    public void initSettings(){
-        initDefaultSettings();
-        setDefault();
+        super();
     }
 
     @Override

@@ -18,12 +18,22 @@ public class ProviderData {
         this.closeLimit = closeLimit;
     }
 
+    public ProviderData(double initialSocialCapital, double priceChange, double closeLimit) {
+        this.initialSocialCapital = initialSocialCapital;
+        this.priceChange = priceChange;
+        this.closeLimit = closeLimit;
+    }
+
     public double getInitialSocialCapital() {
         return initialSocialCapital;
     }
 
     public Map<Product, Double> getProductSalePriceTable() {
         return productSalePriceTable;
+    }
+
+    public void setProductSalePriceTable(Map<Product, Double> productSalePriceTable) {
+        this.productSalePriceTable = productSalePriceTable;
     }
 
     public double getPriceChange() {

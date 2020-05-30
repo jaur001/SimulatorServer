@@ -25,6 +25,14 @@ public class ClientData {
         this.plateNumber = plateNumber;
     }
 
+    public ClientData(DistributionData salary, double minSalary, MinMaxData invitedPeople, MinMaxData numOfRestaurant, DistributionData plateNumber) {
+        this.salary = salary;
+        this.minSalary = minSalary;
+        this.invitedPeople = invitedPeople;
+        this.numOfRestaurant = numOfRestaurant;
+        this.plateNumber = plateNumber;
+    }
+
     public double getSalaryMean() {
         return salary.getMean();
     }
@@ -43,6 +51,10 @@ public class ClientData {
 
     public Map<Integer, Integer> getRestaurantGroup() {
         return restaurantGroup;
+    }
+
+    public void setRestaurantGroup(Map<Integer, Integer> restaurantGroup) {
+        this.restaurantGroup = restaurantGroup;
     }
 
     public int getInvitedPeopleMin() {

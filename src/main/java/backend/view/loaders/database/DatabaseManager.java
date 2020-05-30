@@ -4,6 +4,10 @@ import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.NIFCreator.PersonNIFCreator;
 import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.NIFCreator.RestaurantNIFCreator;
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.person.worker.Job;
+import backend.server.EJB.dataSettings.DistributionData;
+import backend.server.EJB.dataSettings.MinMaxData;
 import backend.view.loaders.database.elements.DataType;
 import backend.view.loaders.database.elements.Restriction;
 import backend.view.loaders.database.elements.Field;
@@ -23,6 +27,11 @@ public class DatabaseManager {
         createPersonTable();
         createBillTable();
         createGeneralDataTable();
+        createClientDataTable();
+        createRestaurantDataTable();
+        createProviderDataTable();
+        createServiceDataTable();
+        createWorkerDataTable();
     }
 
     private static void createRestaurantTable() {
@@ -91,11 +100,11 @@ public class DatabaseManager {
     private static void createGeneralDataTable() {
         Map<String, Field> parameters = new LinkedHashMap<>();
         parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.integer));
         headers.add(new Header("GeneralData",parameters));
         headers.get(4).setInitialPrimaryKeyValue(0);
     }
@@ -103,11 +112,15 @@ public class DatabaseManager {
     private static void createClientDataTable() {
         Map<String, Field> parameters = new LinkedHashMap<>();
         parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("salaryMean",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("salarySD",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("minSalary",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("invitedPeopleMin",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("invitedPeopleMax",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("numOfRestaurantMin",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("numOfRestaurantMax",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("plateNumberMean",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("plateNumberSD",new Field(Restriction.NOT_NULL, DataType.real));
         headers.add(new Header("ClientData",parameters));
         headers.get(5).setInitialPrimaryKeyValue(0);
     }
@@ -115,47 +128,45 @@ public class DatabaseManager {
     private static void createRestaurantDataTable() {
         Map<String, Field> parameters = new LinkedHashMap<>();
         parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("initialSocialCapital",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("lengthContractMin",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("lengthContractMax",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("priceChange",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("capacity",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("closeLimit",new Field(Restriction.NOT_NULL, DataType.real));
         headers.add(new Header("RestaurantData",parameters));
         headers.get(6).setInitialPrimaryKeyValue(0);
     }
 
     private static void createProviderDataTable() {
-        Map<String, Field> parameters = new LinkedHashMap<>();
-        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        Map<String, Field> parameters = createMonthlyCompanyTable();
         headers.add(new Header("ProviderData",parameters));
         headers.get(7).setInitialPrimaryKeyValue(0);
     }
 
     private static void createServiceDataTable() {
-        Map<String, Field> parameters = new LinkedHashMap<>();
-        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        Map<String, Field> parameters = createMonthlyCompanyTable();
         headers.add(new Header("ServiceData",parameters));
         headers.get(8).setInitialPrimaryKeyValue(0);
+    }
+
+    private static Map<String, Field> createMonthlyCompanyTable() {
+        Map<String, Field> parameters = new LinkedHashMap<>();
+        parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
+        parameters.put("initialSocialCapital",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("priceChange",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("closeLimit",new Field(Restriction.NOT_NULL, DataType.real));
+        return parameters;
     }
 
     private static void createWorkerDataTable() {
         Map<String, Field> parameters = new LinkedHashMap<>();
         parameters.put("ID",new Field(Restriction.PRIMARY_KEY, DataType.integer));
-        parameters.put("clientCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("restaurantCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("providerCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("serviceCount",new Field(Restriction.NOT_NULL, DataType.text));
-        parameters.put("workerCount",new Field(Restriction.NOT_NULL, DataType.text));
+        parameters.put("minSalary",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("salaryChange",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("salaryDesiredChange",new Field(Restriction.NOT_NULL, DataType.real));
+        parameters.put("retireAge",new Field(Restriction.NOT_NULL, DataType.integer));
+        parameters.put("percentageRetirement",new Field(Restriction.NOT_NULL, DataType.real));
         headers.add(new Header("WorkerData",parameters));
         headers.get(9).setInitialPrimaryKeyValue(0);
     }

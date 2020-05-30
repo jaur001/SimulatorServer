@@ -1,5 +1,6 @@
 package backend.view.loaders.database.builder.builders;
 
+import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
 import backend.view.loaders.database.builder.Builder;
 
@@ -10,7 +11,7 @@ public class ServiceCompanyBuilder extends Builder<ServiceCompany> {
 
     @Override
     public String getHeader() {
-        return "Provider";
+        return Provider.class.getSimpleName();
     }
 
     @Override

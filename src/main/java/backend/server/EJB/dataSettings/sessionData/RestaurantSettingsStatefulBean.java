@@ -12,13 +12,7 @@ public class RestaurantSettingsStatefulBean extends GenericSessionData {
     private RestaurantData restaurantData;
 
     public RestaurantSettingsStatefulBean() {
-        initSettings();
-    }
-
-    @PostConstruct
-    public void initSettings(){
-        initDefaultSettings();
-        setDefault();
+        super();
     }
 
     @Override

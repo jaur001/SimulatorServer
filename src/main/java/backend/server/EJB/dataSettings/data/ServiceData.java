@@ -18,12 +18,22 @@ public class ServiceData {
         this.closeLimit = closeLimit;
     }
 
+    public ServiceData(double initialSocialCapital, double priceChange, double closeLimit) {
+        this.initialSocialCapital = initialSocialCapital;
+        this.priceChange = priceChange;
+        this.closeLimit = closeLimit;
+    }
+
     public double getInitialSocialCapital() {
         return initialSocialCapital;
     }
 
     public Map<Service, Double> getServicePriceTable() {
         return servicePriceTable;
+    }
+
+    public void setServicePriceTable(Map<Service, Double> servicePriceTable) {
+        this.servicePriceTable = servicePriceTable;
     }
 
     public double getPriceChange() {

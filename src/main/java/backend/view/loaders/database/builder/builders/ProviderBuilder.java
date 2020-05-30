@@ -10,7 +10,7 @@ public class ProviderBuilder extends Builder<Provider> {
 
     @Override
     public String getHeader() {
-        return "Provider";
+        return Provider.class.getSimpleName();
     }
 
     @Override

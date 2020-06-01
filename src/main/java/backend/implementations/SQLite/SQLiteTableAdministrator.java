@@ -36,7 +36,7 @@ public class SQLiteTableAdministrator extends DatabaseController implements Tabl
     }
 
     private List<Row> getRows(int page) throws SQLException, ClassNotFoundException {
-        return new SQLiteTableSelector().read(actualHeaderName, page/*,new OrderBySelector(getActualHeader().getPrimaryKeyName(),OrderBy.DESC),new LikeSelector("filePath",BuildingInversion.class.getSimpleName())*/);
+        return new SQLiteTableSelector().read(actualHeaderName, page);
 
     }
 

@@ -1,0 +1,58 @@
+body{
+    font-family: Calibri, serif;
+}
+table, th, td {
+     border: 1px solid black;
+     border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+.container{
+    max-width: 1366px;
+    margin: auto;
+}
+
+.main-header{
+    background-color: rgb(112,146,190);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+}
+
+.main-header__container{
+    width: 25%;
+    padding-left: 15px;
+}
+
+.main-header__container h1{
+    color: white;
+    font-weight: bold;
+}
+
+.nav{
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    right: 15px;
+    width: 75%;
+    flex-direction: row;
+}
+
+.myForm input, .main-a button{
+    background-color: rgb(112,146,190);
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+.main-a, .myForm{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 25px;
+    display: inline-block;
+    margin: 0;
+    align-items: center;
+}

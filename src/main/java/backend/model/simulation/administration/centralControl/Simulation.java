@@ -69,6 +69,12 @@ public class Simulation {
         return getProviderList().subList(from, to);
     }
 
+    public static List<ServiceCompany> getServiceCompanyList(int page) {
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,getServiceCompanySize());
+        return getServiceCompanyList().subList(from, to);
+    }
+
     public static List<Client> getClientList(int page) {
         int from = DatabaseManager.getFrom(page);
         int to = DatabaseManager.getTo(from,getClientSize());

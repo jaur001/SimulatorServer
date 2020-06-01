@@ -57,7 +57,7 @@ public class SimulationInitializer {
 
 
     public static List<Worker> getWorkers(int workerCount) throws SQLException, ClassNotFoundException {
-        List<Worker> workerList = administrator.read(Simulation.getWorkerSize(),workerCount,Worker.class);
+        List<Worker> workerList = administrator.read(Simulation.getClientSize(),workerCount,Worker.class);
         if(workerCount==1) WorkerThread.setJob(workerList.get(0),new MostEmployedJobSelector());
         else WorkerThread.setJobs(workerList);
         return workerList;

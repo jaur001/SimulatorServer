@@ -9,7 +9,8 @@ import javax.naming.NamingException;
 public class UnfollowSimulableCommand extends FrontCommand {
     @Override
     public void process() {
-        int NIF = Integer.parseInt(request.getParameter("NIF"));
+        String nif = request.getParameter("NIF");
+        int NIF = Integer.parseInt(nif);
         FollowersControllerStatelessBean followersController;
         {
             try {

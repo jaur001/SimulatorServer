@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>Settings</title>
-        <link rel="stylesheet" type="text/css" href="CSS/general.css">
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
         <script src="JQuery/jquery-3.4.1.min.js"></script>
         <script src="JS/settingsAdministrator.js"></script>
     </head>

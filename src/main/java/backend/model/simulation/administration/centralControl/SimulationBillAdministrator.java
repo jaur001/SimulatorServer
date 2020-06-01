@@ -18,20 +18,16 @@ import java.util.List;
 
 public class SimulationBillAdministrator {
 
-    private static BillDataSingletonBean billData;
-    private static TableAdministrator administrator = new SQLiteTableAdministrator();
-
-    public static void initBillData() {
-        billData = new BillDataSingletonBean();
-    }
+    private static final BillDataSingletonBean billData = new BillDataSingletonBean();
+    private static final TableAdministrator administrator = new SQLiteTableAdministrator();
 
     public static void addBill(XMLBill bill){
         if(billData.getSize()< DatabaseManager.getListLimit())billData.addBill(bill);
-        saveInDatabase(bill);
+        //saveInDatabase(bill);
     }
 
     public static void resetBills(){
-        if(billData != null)billData.reset();
+        billData.reset();
         try {
             if(getBillCount() !=0)
                 administrator.deleteAll(XMLBill.class);
@@ -43,11 +39,10 @@ public class SimulationBillAdministrator {
     }
 
     public static List<XMLBill> getBillPage(int page) {
-        /*int from = DatabaseManager.getFrom(page);
+        int from = DatabaseManager.getFrom(page);
         int to = DatabaseManager.getTo(from,billData.getSize());
-        if(billData.getSize()>(page-1)* DatabaseManager.getPageLength())return billData.getBillList(from, to);*/
-        //else
-        return getFromDatabase(page);
+        if(billData.getSize()>(page-1)* DatabaseManager.getPageLength())return billData.getBillList(from, to);
+        else return getFromDatabase(page);
     }
 
     private static List<XMLBill> getFromDatabase(int page) {

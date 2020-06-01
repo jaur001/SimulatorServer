@@ -11,10 +11,7 @@ import backend.server.commands.settings.*;
 import backend.server.commands.simulables.FollowSimulableCommand;
 import backend.server.commands.simulables.SearchCommand;
 import backend.server.commands.simulables.UnfollowSimulableCommand;
-import backend.server.commands.tables.ShowClientsCommand;
-import backend.server.commands.tables.ShowProvidersCommand;
-import backend.server.commands.tables.ShowRestaurantsCommand;
-import backend.server.commands.tables.ShowWorkersCommand;
+import backend.server.commands.tables.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -31,7 +28,7 @@ public class FrontControllerUtils {
                 UpdateRestaurantDataCommand.class.getSimpleName(),UpdateProviderDataCommand.class.getSimpleName(),UpdateServiceDataCommand.class.getSimpleName()
                 ,UpdateWorkerDataCommand.class.getSimpleName(),UpdateQuickSettingsCommand.class.getSimpleName());
         List<String> tablesFolder = Arrays.asList(ShowClientsCommand.class.getSimpleName(), ShowProvidersCommand.class.getSimpleName(),
-                ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName());
+                ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName(), ShowServicesCommand.class.getSimpleName());
         List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName(),
                 UnfollowSimulableCommand.class.getSimpleName());
         folderTable.put(folders[0],billsFolder);

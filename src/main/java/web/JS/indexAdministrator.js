@@ -2,6 +2,9 @@ let eventWorker;
 let personWorker;
 let companyWorker;
 let isRunning = false;
+startWorkers();
+setTimeout(stopWorkers, 500);
+
 function changeOptions(){
     let val = $('#simulableOptions').val();
     if (val === "person") {
@@ -82,25 +85,6 @@ function stopSimulableWorkers(){
     }
 }
 
-function updateTables() {
-    if (isRunning) {
-        stopSimulableWorkers();
-        let NIF = $(this).find("td")[0].innerHTML;
-        $.post('FrontControllerServlet', {
-            command: "UnfollowSimulableCommand",
-            NIF: NIF
-        });
-        startSimulableWorkers();
-    } else {
-        let NIF = $(this).find("td")[0].innerHTML;
-        $.post('FrontControllerServlet', {
-            command: "UnfollowSimulableCommand",
-            NIF: NIF
-        });
-        startSimulableWorkers();
-        setTimeout(stopSimulableWorkers, 500);
-    }
-}
 
 function updateQuickSettings() {
     let speed = $('#speed').val();
@@ -127,6 +111,11 @@ function updateQuickSettings() {
         taxes : taxes,
         command: "UpdateQuickSettingsCommand"
     });
+}
+
+function updateChanges() {
+    startSimulableWorkers();
+    setTimeout(stopSimulableWorkers, 500);
 }
 
 $(document).ready(function() {
@@ -192,13 +181,44 @@ $(document).ready(function() {
             command: "FollowSimulableCommand",
             NIF: NIF
         });
-        startSimulableWorkers();
-        setTimeout(stopSimulableWorkers,500);
+        updateChanges();
     });
     $('#divPersonTable').on('click', '#personTable tr' ,function() {
-        updateTables();
+        if (isRunning) {
+            stopSimulableWorkers();
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+        } else {
+            let NIF = $(this).find("td")[0].innerHTML;
+            console.log("xd");
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            updateChanges();
+        }
     });
     $('#divCompanyTable').on('click', '#companyTable tr' ,function() {
-        updateTables();
+        if (isRunning) {
+            stopSimulableWorkers();
+            let NIF = $(this).find("td")[0].innerHTML;
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            startSimulableWorkers();
+        } else {
+            let NIF = $(this).find("td")[0].innerHTML;
+            console.log("xd");
+            $.post('FrontControllerServlet', {
+                command: "UnfollowSimulableCommand",
+                NIF: NIF
+            });
+            updateChanges();
+        }
     });
 });

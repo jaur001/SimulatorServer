@@ -12,7 +12,6 @@ import java.util.List;
 
 public class SimulationInitializerController {
     public static List<Simulable> init(){
-        SimulationBillAdministrator.initBillData();
         initSimulables();
         SimulationFollowAdministrator.followRandomOptions();
         return SimulationInitializer.init();

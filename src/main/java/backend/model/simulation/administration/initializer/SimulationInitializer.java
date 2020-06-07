@@ -1,16 +1,15 @@
 package backend.model.simulation.administration.initializer;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
-import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.implementations.jobSelector.MostEmployedJobSelector;
 import backend.initializers.WorkerThread;
 import backend.initializers.secondaryCompanies.service.ServiceThread;
 import backend.initializers.secondaryCompanies.service.ServicingThread;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.bank.Bank;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.Worker;

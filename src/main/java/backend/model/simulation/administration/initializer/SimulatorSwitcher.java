@@ -12,20 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 public class SimulatorSwitcher {
 
-    private static String uriProvider;
-    private static String uriClient;
+    private static String uriProvider = "";
+    private static String uriClient = "";
 
-    public static String getUriProvider() {
-        return uriProvider;
-    }
 
     public static void setUriProvider(String uriProvider) {
         SimulatorSwitcher.uriProvider = uriProvider;
     }
 
-    public static String getUriClient() {
-        return uriClient;
-    }
 
     public static void setUriClient(String uriClient) {
         SimulatorSwitcher.uriClient = uriClient;

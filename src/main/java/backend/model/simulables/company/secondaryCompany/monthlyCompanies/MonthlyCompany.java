@@ -1,5 +1,6 @@
-package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies;
+package backend.model.simulables.company.secondaryCompany.monthlyCompanies;
 
+import backend.model.simulables.company.complexCompany.Administrator;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
+    protected Administrator administrator;
     protected List<ComplexCompany> companyList;
     protected Product product;
     protected double price;
@@ -15,6 +17,7 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
     public MonthlyCompany(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street, telephoneNumber);
         companyList = new ArrayList<>();
+        administrator = new Administrator(financialData,this);
         this.product = null;
         this.price = 0;
     }

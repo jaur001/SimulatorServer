@@ -1,6 +1,6 @@
 package backend.implementations.secondaryCompanies.service;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
 import backend.utils.MathUtils;
 
 public class RandomServiceInitializer {

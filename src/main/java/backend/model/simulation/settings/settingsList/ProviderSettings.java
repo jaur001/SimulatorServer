@@ -1,6 +1,6 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ProviderData;
@@ -23,7 +23,7 @@ public class ProviderSettings{
     }
 
     public static boolean isBadProduct(){
-        return MathUtils.random(0,1000)<1;
+        return MathUtils.random(0,1000)<2;
     }
 
     public static boolean newProvider() {

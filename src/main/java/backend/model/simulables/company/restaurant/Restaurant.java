@@ -4,14 +4,13 @@ import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompanyWithStaff.Employer;
 import backend.model.simulables.company.restaurant.administration.RestaurantEmployer;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.complexCompanyWithStaff.AdministratorWithStaff;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
@@ -69,14 +68,6 @@ public class Restaurant extends ComplexWorkerWithStaff {
         return administratorWithStaff.getContractsSize();
     }
 
-    public List<Worker> getWorkers(){
-        return administratorWithStaff.getWorkerList();
-    }
-
-    public List<Provider> getProviders(){
-        return administratorWithStaff.getProvidersList();
-    }
-
     public AdministratorWithStaff getAdministrator() {
         return administratorWithStaff;
     }
@@ -118,7 +109,8 @@ public class Restaurant extends ComplexWorkerWithStaff {
 
     @Override
     protected boolean manageFinances() {
-        return administratorWithStaff.manageFinances();
+        administratorWithStaff.selectStrategy();
+        return financialData.getTreasury() <= RestaurantSettings.getCloseLimit();
     }
 
     @Override

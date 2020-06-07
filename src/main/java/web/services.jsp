@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany" %>
+<%@ page import="backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>

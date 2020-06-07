@@ -1,10 +1,10 @@
-package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider;
+package backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider;
 
 import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.MonthlyCompany;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.Service;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.MonthlyCompany;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.timeLine.TimeLine;
 

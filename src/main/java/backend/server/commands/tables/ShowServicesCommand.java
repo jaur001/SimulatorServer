@@ -1,6 +1,6 @@
 package backend.server.commands.tables;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.server.servlets.PageableFrontCommand;
 

@@ -2,7 +2,7 @@ package backend.model.event.events.company.monthlyCompany;
 
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 
 public class ClientAddedProviderEvent extends GenericEvent<Provider> {
 

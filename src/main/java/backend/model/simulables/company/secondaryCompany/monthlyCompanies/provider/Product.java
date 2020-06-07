@@ -1,4 +1,4 @@
-package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider;
+package backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider;
 
 public enum  Product {
     Vegetable,

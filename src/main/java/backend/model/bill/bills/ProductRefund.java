@@ -4,7 +4,7 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
 public class ProductRefund extends CFDIBill {

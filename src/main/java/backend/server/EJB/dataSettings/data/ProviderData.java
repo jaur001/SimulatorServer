@@ -1,6 +1,6 @@
 package backend.server.EJB.dataSettings.data;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
 
 import java.util.Map;
 

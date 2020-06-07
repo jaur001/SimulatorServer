@@ -1,7 +1,7 @@
 package backend.implementations.secondaryCompanies.providing;
 
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.secondaryCompanies.provider.ProvidingInitializer;

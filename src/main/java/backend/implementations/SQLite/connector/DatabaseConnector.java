@@ -11,7 +11,7 @@ public abstract class DatabaseConnector {
         return url;
     }
 
-    public static void setUrl(String url) {
+    public static void setUri(String url) {
         DatabaseConnector.url = url;
     }
     public abstract Connection connect() throws ClassNotFoundException, SQLException;

@@ -1,8 +1,8 @@
 package backend.initializers.secondaryCompanies.provider;
 
 import backend.implementations.secondaryCompanies.providing.RandomProductInitializer;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 
 import java.util.List;
 import java.util.stream.IntStream;

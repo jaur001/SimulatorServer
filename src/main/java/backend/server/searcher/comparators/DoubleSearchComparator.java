@@ -1,6 +1,5 @@
 package backend.server.searcher.comparators;
 
-import backend.model.simulables.company.Company;
 
 public abstract class DoubleSearchComparator implements SearchComparator<Double> {
     @Override

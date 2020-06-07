@@ -2,7 +2,7 @@ package backend.model.simulation.administration;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulables.company.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;

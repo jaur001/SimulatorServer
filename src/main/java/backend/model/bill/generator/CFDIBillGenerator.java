@@ -22,11 +22,6 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private Document document;
     private CFDIBill bill;
 
-
-    public static String getUri() {
-        return uri;
-    }
-
     public static void setUri(String uri) {
         CFDIBillGenerator.uri = uri;
     }
@@ -45,7 +40,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void createBill() throws ParserConfigurationException, TransformerException {
         getXMLDocument();
         appendData();
-        //saveXMLInFile();
+        saveXMLInFile();
         addBill();
 
     }

@@ -1,0 +1,19 @@
+Español
+
+Este proyecto es un generador sintético de datos para una aplicación Fintech, que simula un entorno empresarial en el que se produce compras y
+ventas de productos desde un punto de vista realista y lógico. En este caso, debido a la extensa cantidad de sectores de empresas que hay actualmente,
+me he querido centrar en sector de la restauración.
+
+Dentro de este sector, he realizado un entorno centralizado en los restaurantes con los distintos individuos y empresas conocidos en el
+sector, como son los comensales, los trabajadores del restaurante, los proveedores de alimentos y los proveedores de servicios. Estos
+interactúan entre sí, generando comercio, consumo, y como consecuencia, facturas entre estos, el principal objetivo de esta simulación.
+
+English
+
+This project is a synthetic data generator for a Fintech application, that simulate a business environment in which occurs purchases and sales of
+products from a realistic and logic point of view. In this case, cause of the extensive amount of company sectors that exist nowadays, I have
+decided to focus in the restoration sector.
+
+Inside this sector, I have performed an environment centralized in the restaurants with the different know individuals and companies in the
+sector, like the commensals, the workers of the restaurant, the providers of aliments and the providers of services. These interact between each
+other, generating commerce, consumption and due to this, bills between them, the main objective in this simulation.

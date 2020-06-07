@@ -1,4 +1,4 @@
-package backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service;
+package backend.model.simulables.company.secondaryCompany.monthlyCompanies.service;
 
 public enum Service {
     Cleaning,

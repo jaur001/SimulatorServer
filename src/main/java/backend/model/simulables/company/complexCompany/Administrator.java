@@ -3,8 +3,8 @@ package backend.model.simulables.company.complexCompany;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.utils.MathUtils;
@@ -14,13 +14,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Administrator {
 
-    protected List<Provider> providersList;
     protected FinancialData financialData;
     protected ComplexCompany company;
 
     public Administrator(FinancialData financialData, ComplexCompany company) {
         this.company = company;
-        this.providersList = new CopyOnWriteArrayList<>();
         this.financialData = financialData;
     }
 
@@ -41,20 +39,16 @@ public class Administrator {
     }
 
     public List<Provider> getProvidersList() {
-        return providersList;
-    }
-
-    public boolean manageFinances() {
-        return financialData.getTreasury() <= -5000;
+        return company.getProviders();
     }
 
     public void checkProducts() {
-        if(providersList.size()==0) return;
+        if(getProvidersList().size()==0) return;
         if(ProviderSettings.isBadProduct()) refundProduct();
     }
 
     public void refundProduct() {
-        Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
+        Provider provider = getProvidersList().get(MathUtils.random(0,getProvidersList().size()));
         Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getPrice()/30));
     }
 

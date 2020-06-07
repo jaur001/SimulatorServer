@@ -11,7 +11,7 @@ import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.companies.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
@@ -26,22 +26,12 @@ import java.util.stream.Collectors;
 public class AdministratorWithStaff extends Administrator {
 
     private List<Contract> contractList;
-    private List<Provider> providersList;
     private WorkerStrategy currentStrategy;
 
     public AdministratorWithStaff(FinancialData financialData, ComplexCompany company) {
         super(financialData,company);
-        this.providersList = new CopyOnWriteArrayList<>();
         this.contractList = new CopyOnWriteArrayList<>();
         this.currentStrategy = new BestProportionScoreSalaryStrategy();
-    }
-
-    public void addProvider(Provider provider){
-        SimulationAdministrator.addSimulableForCompany(company,provider);
-    }
-
-    public void removeProvider(Provider provider){
-        SimulationAdministrator.removeSimulableForCompany(company,provider);
     }
 
     public void addWorker(Worker worker){
@@ -53,7 +43,6 @@ public class AdministratorWithStaff extends Administrator {
         removeContract(worker);
         SimulationAdministrator.removeSimulableForCompany(company,worker);
     }
-
 
     private void addContract(Worker worker) {
         contractList.add(createContract(worker));
@@ -106,20 +95,11 @@ public class AdministratorWithStaff extends Administrator {
                 .collect(Collectors.toList());
     }
 
-    public List<Provider> getProvidersList() {
-        return providersList;
-    }
-
     public WorkerStrategy getCurrentStrategy() {
         return currentStrategy;
     }
 
-    public boolean manageFinances() {
-        selectStrategy();
-        return financialData.getTreasury() <= RestaurantSettings.getCloseLimit();
-    }
-
-    private void selectStrategy() {
+    public void selectStrategy() {
         if (isInHighLosses()) currentStrategy = new LowestSalaryStrategy();
         else if(isInHighBenefits()) currentStrategy = new BestWorkerStrategy();
         else currentStrategy = new BestProportionScoreSalaryStrategy();
@@ -131,13 +111,6 @@ public class AdministratorWithStaff extends Administrator {
 
     private boolean isInHighLosses() {
         return financialData.getLastMonthLosses() >= financialData.getLastMonthIncome()* RestaurantSettings.FINANCIAL_DIFFERENCE_PERCENTAGE;
-    }
-
-    public void checkProducts() {
-        if(providersList.size()==0) return;
-        if(!ProviderSettings.isBadProduct()) return;
-        Provider provider = providersList.get(MathUtils.random(0,providersList.size()));
-        Bank.makeTransaction(new ProductRefundTransaction(provider,company,provider.getPrice()/30));
     }
 
 }

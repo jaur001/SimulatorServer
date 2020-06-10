@@ -55,7 +55,7 @@ public class SimulationBillAdministrator {
     }
 
     public static void saveInDatabase(XMLBill bill) {
-        SimulatorThreadPool.getExecutor().submit(() -> {
+        SimulatorThreadPool.executeTask(() -> {
             try {
                 administrator.save(bill);
             } catch (SQLException | ClassNotFoundException ignored) {

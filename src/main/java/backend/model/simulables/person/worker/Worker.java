@@ -95,7 +95,6 @@ public class Worker extends Client{
         this.isWorking.set(false);
         company = null;
         setPension();
-        setJob("Retired");
     }
 
     public void setPension() {

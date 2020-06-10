@@ -8,7 +8,8 @@ public class SimulatorThreadPool {
 
     private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
-    public static ThreadPoolExecutor getExecutor(){
-        return executor;
+
+    public static void executeTask(Runnable task){
+        executor.submit(task);
     }
 }

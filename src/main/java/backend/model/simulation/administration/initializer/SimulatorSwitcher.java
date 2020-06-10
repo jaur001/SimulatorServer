@@ -2,12 +2,12 @@ package backend.model.simulation.administration.initializer;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulation.administration.SimulatorThreadPool;
+import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class SimulatorSwitcher {
@@ -77,20 +77,23 @@ public class SimulatorSwitcher {
     }
 
     private static void executeWithThread() {
-        ThreadPoolExecutor executor = SimulatorThreadPool.getExecutor();
-        executor.submit(SimulatorSwitcher::executeLocal);
+        SimulatorThreadPool.executeTask(SimulatorSwitcher::executeLocal);
     }
 
 
     private static void executeLocal() {
-        while (!SimulationDataController.getRestart().get()) {
-            if (isRunning()) {
-                SimulationDataController.getTimeLine().play();
-                SimulationDataController.getSimulationData().getSimulableController().manageSimulation();
-                delay();
+        try {
+            while (!SimulationDataController.getRestart().get()) {
+                if (isRunning()) {
+                    SimulationDataController.getTimeLine().play();
+                    SimulationAdministrator.manageSimulation();
+                    delay();
+                }
             }
+            SimulationInitializerController.reset();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        SimulationInitializerController.reset();
     }
 
     private static void delay() {

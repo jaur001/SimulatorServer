@@ -4,8 +4,8 @@ import backend.model.simulables.company.complexCompany.Administrator;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
@@ -16,7 +16,7 @@ public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     public MonthlyCompany(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street, telephoneNumber);
-        companyList = new ArrayList<>();
+        companyList = new CopyOnWriteArrayList<>();
         administrator = new Administrator(financialData,this);
         this.product = null;
         this.price = 0;

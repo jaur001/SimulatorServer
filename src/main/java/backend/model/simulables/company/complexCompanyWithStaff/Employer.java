@@ -38,9 +38,8 @@ public abstract class Employer {
     }
 
     protected void changeRetiredWorker(Worker worker) {
-        addBestWorker(Job.valueOf(worker.getJob()));
         administratorWithStaff.removeWorker(worker);
-
+        checkStaff();
     }
 
     protected boolean addBestWorker(Job job) {
@@ -76,13 +75,13 @@ public abstract class Employer {
     }
 
     public boolean addEnoughWorkers() {
-        AtomicBoolean thereNotIsWorker = new AtomicBoolean(false);
+        AtomicBoolean thereIsEnoughWorker = new AtomicBoolean(false);
         Arrays.stream(Job.values())
                 .filter(this::thereIsNotEnoughWorkers)
                 .forEach(job -> {
-                    if(!addBestWorker(job)) thereNotIsWorker.set(true);
+                    if(!addBestWorker(job)) thereIsEnoughWorker.set(true);
                 });
-        return thereNotIsWorker.get();
+        return thereIsEnoughWorker.get();
     }
 
     protected abstract boolean thereIsNotEnoughWorkers(Job job);

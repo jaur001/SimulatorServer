@@ -31,7 +31,7 @@ public class ProviderSettings{
     }
 
     private static double getProviderRestaurantPercentage(){
-        return ((double)Simulation.getProviderSize()/(double)(1+Simulation.getRestaurantSize()))*100.0;
+        return ((double)Simulation.getProviderSize()/(double)(1+Simulation.getRestaurantSize()+Simulation.getProviderSize()))*100.0;
     }
 
     public static double getCloseLimit() {

@@ -1,6 +1,7 @@
 let eventWorker;
 let personWorker;
 let companyWorker;
+let simulableCountWorker;
 let isRunning = false;
 startWorkers();
 setTimeout(stopWorkers, 500);
@@ -25,11 +26,6 @@ function receiveData() {
     else stopWorkers();
 }
 
-function startSimulableWorkers() {
-    startPersonWorker();
-    startCompanyWorker();
-}
-
 function startWorkers() {
     startEventWorker();
     startSimulableWorkers();
@@ -43,6 +39,12 @@ function startEventWorker() {
         $('#text-area').val(response.data);
     };
     eventWorker.postMessage("Work");
+}
+
+function startSimulableWorkers() {
+    startPersonWorker();
+    startCompanyWorker();
+    startSimulableCountWorker()
 }
 
 function startPersonWorker() {
@@ -66,6 +68,21 @@ function startCompanyWorker() {
     companyWorker.postMessage("Work");
 }
 
+function startSimulableCountWorker() {
+    if (typeof (simulableCountWorker) == "undefined") {
+        simulableCountWorker = new Worker("JS/simulableCountWorker.js");
+    }
+    simulableCountWorker.onmessage = function (response) {
+        let counts = response.data.split(" ");
+        document.getElementById("simulableCountTable").rows[1].cells[0].innerHTML = counts[0];
+        document.getElementById("simulableCountTable").rows[1].cells[1].innerHTML = counts[1];
+        document.getElementById("simulableCountTable").rows[1].cells[2].innerHTML = counts[2];
+        document.getElementById("simulableCountTable").rows[1].cells[3].innerHTML = counts[3];
+        document.getElementById("simulableCountTable").rows[1].cells[4].innerHTML = counts[4];
+    };
+    simulableCountWorker.postMessage("Work");
+}
+
 function stopWorkers(){
     if(eventWorker !== undefined){
         eventWorker.terminate();
@@ -82,6 +99,10 @@ function stopSimulableWorkers(){
     if(companyWorker !== undefined){
         companyWorker.terminate();
         companyWorker = undefined;
+    }
+    if(simulableCountWorker !== undefined){
+        simulableCountWorker.terminate();
+        simulableCountWorker = undefined;
     }
 }
 

@@ -28,8 +28,7 @@ public class SimulationInitializerController {
             int clientCount = GeneralSettings.getClientCount();
             SimulationDataController.getSimulationData().getClientList().addAll(SimulationInitializer.getClients(clientCount));
             int workerCount = GeneralSettings.getWorkerCount();
-            SimulationDataController.getSimulationData().getWorkerList().addAll(SimulationInitializer.getWorkers(workerCount));
-            SimulationDataController.getSimulationData().getClientList().addAll(SimulationDataController.getSimulationData().getWorkerList());
+            SimulationDataController.getSimulationData().getClientList().addAll(SimulationInitializer.getWorkers(workerCount));
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

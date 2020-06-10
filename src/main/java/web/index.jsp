@@ -5,7 +5,7 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/indexAdministrator.js"></script>
+    <script src="JS/frontendAdministrator.js"></script>
   </head>
   <body>
     <div class="main-header container">
@@ -89,8 +89,24 @@
         <label id="currentTaxes"><%=request.getSession(true).getAttribute("taxes") + "%"%></label>
       </form>
       <label for="text-area"></label>
+      <table id="simulableCountTable">
+        <tr>
+          <th>Clients Count</th>
+          <th>Restaurants Count</th>
+          <th>Providers Count</th>
+          <th>Service Companies Count</th>
+          <th>Workers Count</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
       <textarea id="text-area" rows="10" cols="50">
-    </textarea>
+      </textarea>
       <h3>Search Simulable</h3>
       <form>
         <br>

@@ -10,6 +10,10 @@ import backend.model.simulation.administration.simulableControl.SimulableControl
 
 public class SimulationAdministrator {
 
+    public static void manageSimulation() {
+        makeChanges();
+        getSimulableController().manageSimulation();
+    }
 
     private static SimulableController getSimulableController(){
         return SimulationDataController.getSimulationData().getSimulableController();

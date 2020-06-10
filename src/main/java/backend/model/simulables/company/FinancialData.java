@@ -76,8 +76,10 @@ public class FinancialData implements Cloneable {
     }
 
     public void removeDebt(Worker worker) {
-        totalPassive-=payrolls.get(worker);
-        payrolls.remove(worker);
+        if(payrolls.containsKey(worker)){
+            totalPassive-=payrolls.get(worker);
+            payrolls.remove(worker);
+        }
     }
 
     public void addIncome(double amount) {

@@ -77,7 +77,7 @@ public class RestaurantSettings{
     }
 
     public static boolean newRestaurant() {
-        return MathUtils.calculateProbability((int)(WorkerSettings.getUnemployedWorkersPercentage()*getRestaurantProbability()));
+        return MathUtils.calculateProbability((int)(ClientSettings.getClientRestaurantPercentage()*getRestaurantProbability()));
     }
 
     public static int getContractLength() {

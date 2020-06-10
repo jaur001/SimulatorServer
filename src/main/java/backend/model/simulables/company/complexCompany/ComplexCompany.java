@@ -12,6 +12,7 @@ import backend.model.simulables.company.secondaryCompany.monthlyCompanies.servic
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class ComplexCompany extends Company {
 
@@ -21,8 +22,8 @@ public abstract class ComplexCompany extends Company {
 
     public ComplexCompany(int NIF, String companyName, String street, String telephoneNumber) {
         super(NIF, companyName, street, telephoneNumber);
-        services = new LinkedList<>();
-        providers = new LinkedList<>();
+        services = new CopyOnWriteArrayList<>();
+        providers = new CopyOnWriteArrayList<>();
         this.searcher = new CompaniesSearcher(new Administrator(financialData,this));
     }
 

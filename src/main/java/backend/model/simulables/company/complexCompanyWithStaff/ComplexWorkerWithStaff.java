@@ -1,13 +1,12 @@
 package backend.model.simulables.company.complexCompanyWithStaff;
 
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.restaurant.administration.Contract;
 import backend.model.simulables.person.worker.Worker;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class ComplexWorkerWithStaff extends ComplexCompany {
 
@@ -18,7 +17,7 @@ public abstract class ComplexWorkerWithStaff extends ComplexCompany {
     public ComplexWorkerWithStaff(int NIF, String companyName, String street, String telephoneNumber) {
         super(NIF, companyName, street, telephoneNumber);
         initAdministration();
-        workers = new LinkedList<>();
+        workers = new CopyOnWriteArrayList<>();
     }
 
     protected void initAdministration() {
@@ -41,7 +40,6 @@ public abstract class ComplexWorkerWithStaff extends ComplexCompany {
     public void removeWorker(Worker worker) {
         if(workers.contains(worker)){
             worker.fire();
-            workers.remove(worker);
             financialData.removeDebt(worker);
         }
     }
@@ -49,7 +47,6 @@ public abstract class ComplexWorkerWithStaff extends ComplexCompany {
     public void retireWorker(Worker worker) {
         if(workers.contains(worker)){
             worker.retire();
-            workers.remove(worker);
             financialData.removeDebt(worker);
         }
     }

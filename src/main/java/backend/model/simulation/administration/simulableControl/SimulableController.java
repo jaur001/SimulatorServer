@@ -10,11 +10,10 @@ import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.WorkerSettings;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SimulableController {
 
@@ -30,9 +29,9 @@ public class SimulableController {
         this.committer = committer;
         companiesAddingChanges = new ConcurrentHashMap<>();
         companiesRemovingChanges = new ConcurrentHashMap<>();
-        retiredWorkers = new LinkedList<>();
-        deadClientList = new LinkedList<>();
-        closedCompanyList = new LinkedList<>();
+        retiredWorkers = new CopyOnWriteArrayList<>();
+        deadClientList = new CopyOnWriteArrayList<>();
+        closedCompanyList = new CopyOnWriteArrayList<>();
     }
 
     public void initIO(SimulationIOController simulationIOController){
@@ -48,12 +47,12 @@ public class SimulableController {
     }
 
     public void addSimulableForCompany(ComplexCompany company, Simulable simulable) {
-        if(!companiesAddingChanges.containsKey(company)) companiesAddingChanges.put(company,new LinkedList<>());
+        if(!companiesAddingChanges.containsKey(company)) companiesAddingChanges.put(company,new CopyOnWriteArrayList<>());
         companiesAddingChanges.get(company).add(simulable);
     }
 
     public void removeSimulableForCompany(ComplexCompany company, Simulable simulable) {
-        if(!companiesRemovingChanges.containsKey(company)) companiesRemovingChanges.put(company,new LinkedList<>());
+        if(!companiesRemovingChanges.containsKey(company)) companiesRemovingChanges.put(company,new CopyOnWriteArrayList<>());
         companiesRemovingChanges.get(company).add(simulable);
     }
 
@@ -69,19 +68,19 @@ public class SimulableController {
 
     public void makeChanges() {
         diePeople();
+        retireWorkers();
         closeCompanies();
         addChangesForCompany();
         removeChangesFromCompany();
         commitChanges();
     }
 
-    private void addChangesForCompany() {
-        retireWorkers();
-        companiesAddingChanges.forEach(this::addSimulables);
+    private void retireWorkers() {
+        retiredWorkers.forEach(worker -> committer.commitRetireUnemployedWorker(worker));
     }
 
-    private void retireWorkers() {
-        retiredWorkers.forEach(Worker::retire);
+    private void addChangesForCompany() {
+        companiesAddingChanges.forEach(this::addSimulables);
     }
 
     private void addSimulables(ComplexCompany company, List<Simulable> simulables) {
@@ -134,10 +133,10 @@ public class SimulableController {
     }
 
     private void commitChanges() {
-        companiesAddingChanges = new HashMap<>();
-        retiredWorkers = new LinkedList<>();
-        companiesRemovingChanges = new HashMap<>();
-        deadClientList = new LinkedList<>();
-        closedCompanyList = new LinkedList<>();
+        companiesAddingChanges = new ConcurrentHashMap<>();
+        retiredWorkers = new CopyOnWriteArrayList<>();
+        companiesRemovingChanges = new ConcurrentHashMap<>();
+        deadClientList = new CopyOnWriteArrayList<>();
+        closedCompanyList = new CopyOnWriteArrayList<>();
     }
 }

@@ -24,7 +24,6 @@ public class SimulationData {
 
     private List<Company> companyList;
     private List<Client> clientList;
-    private List<Worker> workerList;
     private List<Simulable> followedSimulables;
     private SimulableController simulableController;
 
@@ -58,10 +57,6 @@ public class SimulationData {
 
     public List<Client> getClientList() {
         return clientList;
-    }
-
-    public List<Worker> getWorkerList() {
-        return workerList;
     }
 
     public List<Simulable> getFollowedSimulables() {
@@ -105,7 +100,6 @@ public class SimulationData {
     public void initSimulables() {
         companyList = new CopyOnWriteArrayList<>();
         clientList = new CopyOnWriteArrayList<>();
-        workerList = new CopyOnWriteArrayList<>();
         followedSimulables = new LinkedList<>();
     }
 

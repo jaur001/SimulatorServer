@@ -30,7 +30,6 @@ public class SimulationIOController extends EventGenerator {
     }
 
     public void manageSimulation() {
-        SimulationAdministrator.makeChanges();
         checkThereIsNewPerson();
         checkThereIsNewCompany();
         EventController.resizeList();
@@ -95,7 +94,6 @@ public class SimulationIOController extends EventGenerator {
     private Simulable addWorker() {
         Worker worker = SimulationInitializer.getWorker();
         if(worker == null) return null;
-        SimulationDataController.getSimulationData().getWorkerList().add(worker);
         SimulationDataController.getSimulationData().getClientList().add(worker);
         return worker;
     }

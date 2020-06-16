@@ -29,10 +29,9 @@ public class SimulationIOController extends EventGenerator {
         this.committer = committer;
     }
 
-    public void manageSimulation() {
+    public void manageSimulablesToAdd() {
         checkThereIsNewPerson();
         checkThereIsNewCompany();
-        EventController.resizeList();
     }
 
     private void checkThereIsNewPerson() {
@@ -43,14 +42,16 @@ public class SimulationIOController extends EventGenerator {
     private void checkThereIsNewWorker() {
         if(!WorkerSettings.newWorker()) return;
         Simulable simulable = addWorker();
-        if(simulable != null)addEvent(new NewClientEvent((Client)simulable));
+        if(simulable == null)return;
+        addEvent(new NewClientEvent((Client)simulable));
         addSimulable(simulable);
     }
 
     private void checkThereIsNewClient() {
         if(!ClientSettings.newClient()) return;
         Simulable simulable = addClient();
-        if(simulable != null)addEvent(new NewClientEvent((Client)simulable));
+        if(simulable == null)return;
+        addEvent(new NewClientEvent((Client)simulable));
         addSimulable(simulable);
     }
 
@@ -63,21 +64,24 @@ public class SimulationIOController extends EventGenerator {
     private void checkThereIsNewRestaurant() {
         if(!RestaurantSettings.newRestaurant()) return;
         Simulable simulable = addRestaurant();
-        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
+        if(simulable == null)return;
+        addEvent(new NewCompanyEvent((ComplexCompany)simulable));
         addSimulable(simulable);
     }
 
     private void checkThereIsNewProvider() {
         if(!ProviderSettings.newProvider()) return;
         Simulable simulable = addProvider();
-        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
+        if(simulable == null) return;
+        addEvent(new NewCompanyEvent((ComplexCompany)simulable));
         addSimulable(simulable);
     }
 
     private void checkThereIsNewService() {
         if(!ServiceSettings.newService()) return;
         Simulable simulable = addService();
-        if(simulable != null)addEvent(new NewCompanyEvent((ComplexCompany)simulable));
+        if(simulable == null) return;
+        addEvent(new NewCompanyEvent((ComplexCompany)simulable));
         addSimulable(simulable);
     }
 

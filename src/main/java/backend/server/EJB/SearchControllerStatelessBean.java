@@ -13,13 +13,8 @@ import backend.server.searcher.searchers.person.PersonNIFSearch;
 import backend.server.searcher.searchers.person.PersonNameSearch;
 import backend.server.searcher.searchers.person.PersonSalarySearch;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ejb.Stateless;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-@Stateless(name = "SearchControllerStatelessEJB")
 public class SearchControllerStatelessBean {
 
     private Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
@@ -29,7 +24,6 @@ public class SearchControllerStatelessBean {
         init();
     }
 
-    @PostConstruct
     public void init() {
         personFilterTable.put(SearchBy.NIF,new PersonNIFSearch());
         personFilterTable.put(SearchBy.Name,new PersonNameSearch());

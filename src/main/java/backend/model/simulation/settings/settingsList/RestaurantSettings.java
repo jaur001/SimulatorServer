@@ -71,7 +71,7 @@ public class RestaurantSettings{
     }
 
     public static Date getExpireDateContract(){
-        Date date = (Date) TimeLine.getDate().clone();
+        Date date = TimeLine.getCloneDate();
         date.setDate(date.getDate()+getContractLength());
         return date;
     }

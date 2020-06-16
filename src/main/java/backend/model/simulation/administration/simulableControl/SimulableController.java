@@ -39,7 +39,8 @@ public class SimulableController {
     }
 
     public void manageSimulation() {
-        simulationIOController.manageSimulation();
+        makeChanges();
+        simulationIOController.manageSimulablesToAdd();
     }
 
     public void retire(Worker worker) {

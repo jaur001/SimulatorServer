@@ -27,7 +27,7 @@ public class EventWebSocket {
     public String onMessage(String message){
         StringBuilder events = new StringBuilder();
         EventController.getEvents()
-                .forEach(event -> events.append(event.getMessage()).append("\n"));
+                .forEach(event -> events.append("<p>").append(event.getMessage()).append("</p>"));
         return events.toString();
     }
 

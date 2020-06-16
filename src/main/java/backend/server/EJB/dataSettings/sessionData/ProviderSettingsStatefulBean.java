@@ -3,10 +3,7 @@ package backend.server.EJB.dataSettings.sessionData;
 import backend.server.EJB.dataSettings.GenericSessionData;
 import backend.server.EJB.dataSettings.data.ProviderData;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateful;
 
-@Stateful(name = "ProviderSettingsStatefulEJB")
 public class ProviderSettingsStatefulBean extends GenericSessionData {
 
     private ProviderData providerData;

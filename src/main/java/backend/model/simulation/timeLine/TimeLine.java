@@ -67,6 +67,10 @@ public class TimeLine extends EventGenerator{
         return date;
     }
 
+    public static Date getCloneDate(){
+        return (Date) TimeLine.getDate().clone();
+    }
+
     public static int getYear() {
         return date.getYear()+1900;
     }

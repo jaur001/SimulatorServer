@@ -11,15 +11,11 @@ import backend.model.simulation.timeLine.TimeLine;
 import backend.server.EJB.dataSettings.sessionData.*;
 
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ejb.Stateful;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Stateful(name = "SessionDataStatefulEJB")
 public class SimulationData {
 
     private List<Company> companyList;
@@ -42,14 +38,6 @@ public class SimulationData {
         reset();
     }
 
-    @PostConstruct
-    public void init() {
-        reset();
-    }
-
-    @PreDestroy
-    public void destroy(){
-    }
 
     public List<Company> getCompanyList() {
         return companyList;

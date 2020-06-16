@@ -38,10 +38,5 @@ public class SimulationInitializerController {
     public static void reset(){
         SimulationDataController.getSimulationData().reset();
         SimulationBillAdministrator.resetBills();
-        resetEvents();
-    }
-
-    private static void resetEvents() {
-        EventController.resetEvents();
     }
 }

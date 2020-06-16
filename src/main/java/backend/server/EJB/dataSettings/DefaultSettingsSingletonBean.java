@@ -7,13 +7,11 @@ import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.data.*;
 import backend.view.loaders.database.TableAdministrator;
 
-import javax.ejb.Singleton;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-@Singleton(name = "DefaultSettingsSingletonEJB")
 public class DefaultSettingsSingletonBean {
 
     private TableAdministrator administrator;

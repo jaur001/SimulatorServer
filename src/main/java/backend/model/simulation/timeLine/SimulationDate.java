@@ -16,4 +16,20 @@ public class SimulationDate extends Date implements Event {
     public boolean isFollowed(List<Simulable> simulableList) {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return getConvertedYear() +"-"+ getConverted(getMonth())+"-"
+                + getConverted(getDate()) + "T" + getConverted(getHours())
+                + ":" + getConverted(getMinutes())
+                + ":" + getConverted(getSeconds());
+    }
+
+    private String getConverted(int number) {
+        return number>=10? number+"" : "0" + number;
+    }
+
+    private int getConvertedYear() {
+        return getYear()+ + 1900;
+    }
 }

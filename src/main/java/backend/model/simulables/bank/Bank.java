@@ -37,10 +37,6 @@ public class Bank extends EventGenerator implements Simulable, Event {
         addEvent(new TaxesPayedCompanyEvent(company));
     }
 
-    @Override
-    public String[] getSimulable() {
-        return new String[]{"Bank"};
-    }
 
     @Override
     public int getNIF() {

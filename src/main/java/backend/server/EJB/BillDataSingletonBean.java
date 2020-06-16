@@ -2,12 +2,9 @@ package backend.server.EJB;
 
 import backend.model.bill.generator.XMLBill;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
 import java.util.LinkedList;
 import java.util.List;
 
-@Singleton(name = "BillDataSingletonEJB")
 public class BillDataSingletonBean {
     private List<XMLBill> billList;
 
@@ -15,10 +12,6 @@ public class BillDataSingletonBean {
         reset();
     }
 
-    @PostConstruct
-    public void init(){
-        reset();
-    }
 
     public void addBill(XMLBill bill){
         billList.add(bill);

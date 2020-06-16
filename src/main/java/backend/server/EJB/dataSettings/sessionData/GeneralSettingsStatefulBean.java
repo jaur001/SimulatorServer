@@ -3,10 +3,7 @@ package backend.server.EJB.dataSettings.sessionData;
 import backend.server.EJB.dataSettings.data.GeneralData;
 import backend.server.EJB.dataSettings.GenericSessionData;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateful;
 
-@Stateful(name = "GeneralSettingsStatefulEJB")
 public class GeneralSettingsStatefulBean extends GenericSessionData {
 
     private GeneralData generalData;

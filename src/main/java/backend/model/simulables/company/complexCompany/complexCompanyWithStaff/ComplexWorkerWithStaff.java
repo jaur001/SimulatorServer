@@ -1,7 +1,7 @@
-package backend.model.simulables.company.complexCompanyWithStaff;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff;
 
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.restaurant.administration.Contract;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.Contract;
 import backend.model.simulables.person.worker.Worker;
 
 import java.util.Date;
@@ -16,11 +16,7 @@ public abstract class ComplexWorkerWithStaff extends ComplexCompany {
 
     public ComplexWorkerWithStaff(int NIF, String companyName, String street, String telephoneNumber) {
         super(NIF, companyName, street, telephoneNumber);
-        initAdministration();
         workers = new CopyOnWriteArrayList<>();
-    }
-
-    protected void initAdministration() {
         this.administratorWithStaff = new AdministratorWithStaff(financialData,this);
         employer = initEmployer();
     }

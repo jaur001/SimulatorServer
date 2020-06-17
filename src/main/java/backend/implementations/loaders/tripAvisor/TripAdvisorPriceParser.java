@@ -1,6 +1,6 @@
 package backend.implementations.loaders.tripAvisor;
 
-import backend.model.simulables.company.restaurant.PriceRange;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.PriceRange;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 

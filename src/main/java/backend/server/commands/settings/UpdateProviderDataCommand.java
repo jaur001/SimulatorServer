@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.server.EJB.dataSettings.data.ProviderData;
 import backend.server.servlets.FrontCommand;
 

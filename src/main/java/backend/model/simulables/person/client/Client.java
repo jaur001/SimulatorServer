@@ -6,7 +6,7 @@ import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.transactions.EatingBillTransaction;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ClientSettings;

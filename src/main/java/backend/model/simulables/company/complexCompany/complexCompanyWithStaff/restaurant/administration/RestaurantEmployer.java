@@ -1,8 +1,7 @@
-package backend.model.simulables.company.restaurant.administration;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration;
 
-import backend.model.simulables.company.complexCompanyWithStaff.AdministratorWithStaff;
-import backend.model.simulables.company.complexCompanyWithStaff.Employer;
-import backend.model.simulables.company.complexCompanyWithStaff.OfferManager;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.AdministratorWithStaff;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.Employer;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 

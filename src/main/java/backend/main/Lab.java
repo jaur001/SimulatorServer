@@ -1,7 +1,7 @@
 package backend.main;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.view.loaders.database.TableAdministrator;
 import backend.view.loaders.database.elements.selectors.EqualSelector;

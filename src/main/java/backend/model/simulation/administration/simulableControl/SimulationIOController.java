@@ -1,15 +1,14 @@
 package backend.model.simulation.administration.simulableControl;
 
-import backend.model.event.EventController;
 import backend.model.event.EventGenerator;
 import backend.model.event.events.client.NewClientEvent;
 import backend.model.event.events.company.NewCompanyEvent;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;

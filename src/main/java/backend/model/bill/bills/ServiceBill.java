@@ -4,7 +4,7 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
 public class ServiceBill extends CFDIBill {

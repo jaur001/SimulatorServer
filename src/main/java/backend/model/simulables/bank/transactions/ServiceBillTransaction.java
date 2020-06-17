@@ -5,7 +5,7 @@ import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 
 public class ServiceBillTransaction extends Transaction {
 

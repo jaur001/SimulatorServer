@@ -1,4 +1,4 @@
-package backend.model.simulables.company.restaurant;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant;
 
 
 public class PriceRange {

@@ -1,11 +1,11 @@
 package backend.implementations.workerSearcher;
 
 import backend.implementations.workerSearcher.strategy.WorkerStrategy;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.model.simulables.company.restaurant.administration.WorkerSearcher;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.WorkerSearcher;
 
 import java.util.Arrays;
 import java.util.LinkedList;

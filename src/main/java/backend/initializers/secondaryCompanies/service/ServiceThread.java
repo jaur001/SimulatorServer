@@ -1,8 +1,8 @@
 package backend.initializers.secondaryCompanies.service;
 
 import backend.implementations.secondaryCompanies.service.RandomServiceInitializer;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 
 import java.util.List;
 import java.util.stream.IntStream;

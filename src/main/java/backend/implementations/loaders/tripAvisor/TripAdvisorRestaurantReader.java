@@ -1,6 +1,6 @@
 package backend.implementations.loaders.tripAvisor;
 
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.view.loaders.reader.GenericReader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

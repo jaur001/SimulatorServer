@@ -4,7 +4,7 @@ import backend.model.bill.bills.EatingBill;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulables.bank.EconomicAgent;
 import backend.model.simulables.bank.Transaction;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulables.person.client.Client;
 
 public class EatingBillTransaction extends Transaction {

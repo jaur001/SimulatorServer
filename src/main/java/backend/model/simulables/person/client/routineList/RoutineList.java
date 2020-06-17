@@ -3,7 +3,7 @@ package backend.model.simulables.person.client.routineList;
 import backend.implementations.routine.GenericRoutineChecker;
 import backend.implementations.routine.GenericRoutineFactory;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 

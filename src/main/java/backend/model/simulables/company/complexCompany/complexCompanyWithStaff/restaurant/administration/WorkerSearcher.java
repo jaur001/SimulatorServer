@@ -1,6 +1,6 @@
-package backend.model.simulables.company.restaurant.administration;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration;
 
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 

@@ -1,20 +1,15 @@
-package backend.model.simulables.company.secondaryCompany.monthlyCompanies.service;
+package backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service;
 
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.MonthlyCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.MonthlyCompany;
 import backend.model.simulation.settings.settingsList.ServiceSettings;
 import backend.model.simulation.timeLine.TimeLine;
-
-import java.util.LinkedList;
 
 public class ServiceCompany extends MonthlyCompany<Service> {
 
 
     public ServiceCompany(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street, telephoneNumber);
-        this.product = null;
-        this.price = 0;
-        companyList = new LinkedList<>();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package backend.initializers;
 
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.implementations.loaders.tripAvisor.TripAdvisorRestaurantReader;
 
 import java.io.IOException;

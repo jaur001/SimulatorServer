@@ -1,4 +1,4 @@
-package backend.model.simulables.company.complexCompanyWithStaff;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff;
 
 import backend.implementations.workerSearcher.GenericWorkerSearcher;
 import backend.model.simulables.person.worker.Job;

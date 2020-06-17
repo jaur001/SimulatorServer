@@ -1,6 +1,6 @@
 package backend.implementations.routine.strategy;
 
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 

@@ -3,14 +3,13 @@ package backend.model.simulables.company.complexCompany;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.utils.MathUtils;
 
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Administrator {
 

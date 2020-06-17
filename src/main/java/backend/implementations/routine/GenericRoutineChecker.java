@@ -2,7 +2,7 @@ package backend.implementations.routine;
 
 import backend.implementations.routine.strategy.RoutineStrategy;
 import backend.model.simulables.person.client.routineList.routine.Routine;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulables.person.client.routineList.routineFactory.RoutineFactory;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.settings.settingsList.BillSettings;

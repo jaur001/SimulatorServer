@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.server.EJB.dataSettings.data.ClientData;
 import backend.utils.MathUtils;

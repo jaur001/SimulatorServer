@@ -1,22 +1,19 @@
-package backend.model.simulables.company.restaurant;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant;
 
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.complexCompanyWithStaff.Employer;
-import backend.model.simulables.company.restaurant.administration.RestaurantEmployer;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.complexCompanyWithStaff.AdministratorWithStaff;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.Employer;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.RestaurantEmployer;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.AdministratorWithStaff;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.utils.MathUtils;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -33,9 +30,7 @@ public class Restaurant extends ComplexWorkerWithStaff {
         super(NIF,companyName,street,telephoneNumber);
         this.priceRange = priceRange;
         this.tables = tables;
-        financialData.addDebt(getMortgage());
         this.tablesAvailable = new AtomicInteger((int)(tables* RestaurantSettings.EATINGS_PER_TABLE*RestaurantSettings.getCapacity()));
-        initAdministration();
     }
 
     public double getScore(){

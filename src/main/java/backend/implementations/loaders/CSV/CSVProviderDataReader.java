@@ -1,6 +1,6 @@
 package backend.implementations.loaders.CSV;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.view.loaders.reader.GenericDataReader;
 
 public class CSVProviderDataReader implements GenericDataReader<Provider> {

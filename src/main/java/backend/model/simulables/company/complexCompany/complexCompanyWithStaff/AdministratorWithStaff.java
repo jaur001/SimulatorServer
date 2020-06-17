@@ -1,22 +1,17 @@
-package backend.model.simulables.company.complexCompanyWithStaff;
+package backend.model.simulables.company.complexCompany.complexCompanyWithStaff;
 
 import backend.implementations.workerSearcher.strategy.WorkerStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestProportionScoreSalaryStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
 import backend.model.simulables.company.complexCompany.Administrator;
-import backend.model.simulables.company.restaurant.administration.Contract;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.Contract;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
-import backend.model.simulables.bank.Bank;
-import backend.model.simulables.bank.transactions.ProductRefundTransaction;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.utils.MathUtils;
 
 import java.util.LinkedList;
 import java.util.List;

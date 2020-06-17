@@ -4,7 +4,7 @@ import backend.model.bill.CFDIBill;
 import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
 
 public class EatingBill extends CFDIBill{

@@ -1,7 +1,7 @@
 package backend.implementations.secondaryCompanies.service;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 import backend.view.loaders.secondaryCompanies.service.ServicingInitializer;

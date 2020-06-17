@@ -1,6 +1,6 @@
 package backend.implementations.secondaryCompanies.providing;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.utils.MathUtils;
 import backend.view.loaders.secondaryCompanies.provider.ProductInitializer;
 

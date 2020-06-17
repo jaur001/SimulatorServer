@@ -1,4 +1,4 @@
-<%@ page import="backend.model.simulables.company.restaurant.Restaurant" %>
+<%@ page import="backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>

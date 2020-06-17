@@ -1,7 +1,7 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

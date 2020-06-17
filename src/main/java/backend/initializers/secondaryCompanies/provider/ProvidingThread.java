@@ -1,8 +1,8 @@
 package backend.initializers.secondaryCompanies.provider;
 
 import backend.implementations.secondaryCompanies.providing.RandomProvidingInitializer;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.Objects;

@@ -1,21 +1,17 @@
-package backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider;
+package backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider;
 
 import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.MonthlyCompany;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.MonthlyCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulation.settings.settingsList.ProviderSettings;
 import backend.model.simulation.timeLine.TimeLine;
-
-import java.util.ArrayList;
 
 public class Provider extends MonthlyCompany<Product> {
 
     public Provider(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street,telephoneNumber);
-        companyList = new ArrayList<>();
-        financialData.addDebt(getMortgage());
     }
 
     public Provider(String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {

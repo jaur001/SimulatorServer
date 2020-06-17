@@ -1,6 +1,6 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="backend.server.EJB.dataSettings.data.ServiceData" %>
-<%@ page import="backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service" %>
+<%@ page import="backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>

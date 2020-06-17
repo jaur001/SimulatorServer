@@ -2,7 +2,7 @@ package backend.model.event.events.company.monthlyCompany;
 
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 
 public class ClientRemovedServiceEvent extends GenericEvent<ServiceCompany> {
 

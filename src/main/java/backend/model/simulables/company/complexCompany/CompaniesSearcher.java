@@ -1,9 +1,9 @@
 package backend.model.simulables.company.complexCompany;
 
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.administration.centralControl.Simulation;
 
 import java.util.Arrays;

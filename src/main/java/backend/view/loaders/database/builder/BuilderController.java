@@ -1,9 +1,9 @@
 package backend.view.loaders.database.builder;
 
 import backend.model.bill.generator.XMLBill;
-import backend.model.simulables.company.restaurant.Restaurant;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.server.EJB.dataSettings.data.*;

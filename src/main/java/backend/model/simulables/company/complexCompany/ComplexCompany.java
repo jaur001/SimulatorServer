@@ -5,12 +5,11 @@ import backend.model.simulables.bank.transactions.PayrollTransaction;
 import backend.model.simulables.bank.transactions.ProductPurchaseTransaction;
 import backend.model.simulables.bank.transactions.ServiceBillTransaction;
 import backend.model.simulables.company.Company;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 

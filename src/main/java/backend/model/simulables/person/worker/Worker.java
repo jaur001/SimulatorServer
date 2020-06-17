@@ -2,7 +2,7 @@ package backend.model.simulables.person.worker;
 
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.complexCompanyWithStaff.ComplexWorkerWithStaff;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexWorkerWithStaff;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
 import backend.model.simulables.person.client.routineList.RoutineList;

@@ -1,7 +1,7 @@
 package backend.implementations.loaders.tripAvisor;
 
-import backend.model.simulables.company.restaurant.PriceRange;
-import backend.model.simulables.company.restaurant.Restaurant;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.PriceRange;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.view.loaders.reader.GenericDataReader;
 import org.jsoup.nodes.Document;

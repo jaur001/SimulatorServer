@@ -1,8 +1,8 @@
 package backend.server.EJB.dataSettings;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.provider.Product;
-import backend.model.simulables.company.secondaryCompany.monthlyCompanies.service.Service;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
+import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulables.person.worker.Job;
 import backend.server.EJB.dataSettings.data.*;
 import backend.view.loaders.database.TableAdministrator;

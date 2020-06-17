@@ -100,9 +100,6 @@ public class FinancialData implements Cloneable {
         netWorth+= amount;
     }
 
-    public FinancialData getLastMonthData(){
-        return lastMonthData;
-    }
 
     public void addMonthData(){
         try {
@@ -129,7 +126,6 @@ public class FinancialData implements Cloneable {
     public double getTotalActive() {
         return totalActive;
     }
-
 
     public double getTotalPassive() {
         return totalPassive;
@@ -162,9 +158,11 @@ public class FinancialData implements Cloneable {
     public double getLastMonthBenefits(){
         return lastMonthData.getBenefits();
     }
+
     public double getLastMonthIncome(){
         return lastMonthData.getIncome();
     }
+
     public double getLastMonthLosses(){
         return lastMonthData.getLosses();
     }

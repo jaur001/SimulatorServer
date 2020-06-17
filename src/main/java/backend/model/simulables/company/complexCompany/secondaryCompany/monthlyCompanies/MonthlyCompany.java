@@ -1,8 +1,8 @@
-package backend.model.simulables.company.secondaryCompany.monthlyCompanies;
+package backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies;
 
 import backend.model.simulables.company.complexCompany.Administrator;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.secondaryCompany.SecondaryCompany;
+import backend.model.simulables.company.complexCompany.secondaryCompany.SecondaryCompany;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

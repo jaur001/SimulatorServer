@@ -1,8 +1,6 @@
-package backend.model.simulables.company.secondaryCompany;
+package backend.model.simulables.company.complexCompany.secondaryCompany;
 
 import backend.model.simulables.company.complexCompany.ComplexCompany;
-import backend.model.simulables.company.FinancialData;
-import backend.model.simulation.settings.settingsList.ProviderSettings;
 
 public abstract class SecondaryCompany extends ComplexCompany {
 

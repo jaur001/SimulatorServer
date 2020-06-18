@@ -6,105 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="Refactoring of company tree.">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/CSV/CSVProviderReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorPriceParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorPriceParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/loaders/tripAvisor/TripAdvisorRestaurantReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionAmountGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/DistributionAmountGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/GenericRoutineFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/BestRoutineStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/BestRoutineStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RandomRoutineStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RandomRoutineStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RoutineStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/routine/strategy/RoutineStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/providing/RandomProductInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/providing/RandomProductInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/providing/RandomProvidingInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/providing/RandomProvidingInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/service/RandomServiceInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/service/RandomServiceInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/service/RandomServicingInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/secondaryCompanies/service/RandomServicingInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/workerSearcher/GenericWorkerSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/workerSearcher/GenericWorkerSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/RestaurantThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/RestaurantThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/WorkerSearcherThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/WorkerSearcherThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/provider/ProductThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/provider/ProductThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/provider/ProvidingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/provider/ProvidingThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/service/ServiceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/service/ServiceThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/service/ServicingThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/initializers/secondaryCompanies/service/ServicingThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingBill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductRefund.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductRefund.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ServiceBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ServiceBill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewProviderCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewProviderCompanyEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewServiceCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewServiceCompanyEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedProviderCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedProviderCompanyEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedServiceCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedServiceCompanyEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientAddedProviderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientAddedProviderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientAddedServiceEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientAddedServiceEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientRemovedProviderEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientRemovedProviderEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientRemovedServiceEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/monthlyCompany/ClientRemovedServiceEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/EatingBillTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/EatingBillTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ProductPurchaseTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ProductPurchaseTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ProductRefundTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ProductRefundTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ServiceBillTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/bank/transactions/ServiceBillTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/CompaniesSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/CompaniesSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/ComplexCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/ComplexCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompanyWithStaff/AdministratorWithStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/AdministratorWithStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompanyWithStaff/ComplexWorkerWithStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/ComplexWorkerWithStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompanyWithStaff/Employer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/Employer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompanyWithStaff/OfferManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/OfferManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/PriceRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/PriceRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/administration/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/RestaurantEmployer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/administration/RestaurantEmployer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/restaurant/administration/WorkerSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/administration/WorkerSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/SecondaryCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/SecondaryCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/monthlyCompanies/MonthlyCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/monthlyCompanies/MonthlyCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/monthlyCompanies/provider/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/monthlyCompanies/provider/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/monthlyCompanies/provider/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/monthlyCompanies/provider/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/monthlyCompanies/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/monthlyCompanies/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/secondaryCompany/monthlyCompanies/service/ServiceCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/secondaryCompany/monthlyCompanies/service/ServiceCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/RoutineList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/RoutineList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routine/Routine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routine/Routine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/AmountGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/AmountGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/RoutineChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/RoutineChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/RoutineFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/routineList/routineFactory/RoutineFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/SimulatorTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/SimulatorTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/centralControl/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/centralControl/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/initializer/SimulationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/initializer/SimulationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulationCommitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulationCommitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulationIOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/simulableControl/SimulationIOController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ServiceSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ServiceSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/DefaultSettingsSingletonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/DefaultSettingsSingletonBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ProviderData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ProviderData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ServiceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ServiceData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateProviderDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateProviderDataCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateServiceDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateServiceDataCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowProvidersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowProvidersCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowRestaurantsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowRestaurantsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowServicesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/tables/ShowServicesCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/BuilderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/BuilderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ServiceCompanyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ServiceCompanyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/provider/ProductInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/provider/ProductInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/provider/ProvidingInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/provider/ProvidingInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/service/ServiceInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/service/ServiceInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/service/ServicingInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/secondaryCompanies/service/ServicingInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/providers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/providers.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/restaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/restaurants.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/services.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/services.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -547,14 +450,7 @@
       <workItem from="1592260934853" duration="2485000" />
       <workItem from="1592333608932" duration="1449000" />
       <workItem from="1592348754936" duration="1953000" />
-      <workItem from="1592431934470" duration="1128000" />
-    </task>
-    <task id="LOCAL-00015" summary="Added the interface events with the implementations to send to the front-end. Also created a websocket to send this event to the front via a worker in the front that receive asynchronously the data to show in the web. Finally added a Bank that will take care of the transaction from the elements of the simulation and give and quit money from the elements.">
-      <created>1585935416881</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1585935416881</updated>
+      <workItem from="1592431934470" duration="1893000" />
     </task>
     <task id="LOCAL-00016" summary="Solved some bugs while testing the web.">
       <created>1586043082223</created>
@@ -892,7 +788,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592334993746</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Refactoring of company tree.">
+      <created>1592433187467</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1592433187467</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1028,30 +931,30 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="715" y="243" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586477840001" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592432409397">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592433185791">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1592432409397" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1592433185791" />
     <state x="519" y="141" key="FileChooserDialogImpl" timestamp="1588192458187">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1588192458187" />
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom" timestamp="1592433066825">
+    <state width="1877" height="413" key="GridCell.Tab.0.bottom" timestamp="1592434020346">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592433066825" />
-    <state width="1877" height="413" key="GridCell.Tab.0.center" timestamp="1592433066825">
+    <state width="1877" height="413" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592434020346" />
+    <state width="1877" height="413" key="GridCell.Tab.0.center" timestamp="1592434020346">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592433066825" />
-    <state width="1877" height="413" key="GridCell.Tab.0.left" timestamp="1592433066825">
+    <state width="1877" height="413" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592434020346" />
+    <state width="1877" height="413" key="GridCell.Tab.0.left" timestamp="1592434020346">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592433066825" />
-    <state width="1877" height="413" key="GridCell.Tab.0.right" timestamp="1592433066825">
+    <state width="1877" height="413" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592434020346" />
+    <state width="1877" height="413" key="GridCell.Tab.0.right" timestamp="1592434020346">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592433066825" />
+    <state width="1877" height="413" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592434020346" />
     <state width="1293" height="292" key="GridCell.Tab.1.bottom" timestamp="1591989088902">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1112,10 +1015,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="744" y="96" width="965" height="851" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1592261182214" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1592334999489">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1592433200443">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1592334999489" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1592433200443" />
     <state width="968" height="548" key="XDebugger.FullValuePopup" timestamp="1586285073433">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1128,10 +1031,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="676" y="153" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584660711898" />
-    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1592431944330">
+    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1592513076977">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592431944330" />
+    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592513076977" />
     <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587573318739">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

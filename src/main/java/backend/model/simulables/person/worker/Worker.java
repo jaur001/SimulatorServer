@@ -105,7 +105,7 @@ public class Worker extends Client{
     public void simulate() {
         SimulableTester.changeSimulable(this);
         if (isNotRetired())work();
-        if(isWorking() || isNotRetired()) enjoyTime();
+        if(isWorking() || !isNotRetired()) enjoyTime();
     }
 
     private void work() {

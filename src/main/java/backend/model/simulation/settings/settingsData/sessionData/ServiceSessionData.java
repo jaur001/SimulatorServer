@@ -1,9 +1,9 @@
-package backend.server.EJB.dataSettings.sessionData;
+package backend.model.simulation.settings.settingsData.sessionData;
 
-import backend.server.EJB.dataSettings.GenericSessionData;
-import backend.server.EJB.dataSettings.data.ServiceData;
+import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
+import backend.model.simulation.settings.settingsData.data.ServiceData;
 
-public class ServiceSessionData extends GenericSessionData {
+public class ServiceSessionData extends AdjustableSettingsData {
 
     private ServiceData serviceData;
 

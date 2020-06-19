@@ -1,8 +1,8 @@
 package backend.model.simulation.administration.data;
 
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.EJB.dataSettings.data.*;
-import backend.server.EJB.dataSettings.sessionData.*;
+import backend.model.simulation.settings.settingsData.data.*;
+import backend.model.simulation.settings.settingsData.sessionData.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimulationDataController {
@@ -45,19 +45,19 @@ public class SimulationDataController {
         return getWorkerSessionData().getWorkerData();
     }
 
-    public static GeneralSettingsStatefulBean getGeneralSessionData() {
+    public static GeneralDataSettings getGeneralSessionData() {
         return getSimulationData().getGeneralDataSettings();
     }
 
-    public static ClientSettingsStatefulBean getClientSessionData() {
+    public static ClientDataSettings getClientSessionData() {
         return getSimulationData().getClientDataSettings();
     }
 
-    public static RestaurantSettingsStatefulBean getRestaurantSessionData() {
+    public static RestaurantDataSettings getRestaurantSessionData() {
         return getSimulationData().getRestaurantDataSettings();
     }
 
-    public static ProviderSettingsStatefulBean getProviderSessionData() {
+    public static ProviderDataSettings getProviderSessionData() {
         return getSimulationData().getProviderDataSettings();
     }
 

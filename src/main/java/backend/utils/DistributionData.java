@@ -1,4 +1,4 @@
-package backend.server.EJB.dataSettings;
+package backend.utils;
 
 public class DistributionData {
     private double mean;

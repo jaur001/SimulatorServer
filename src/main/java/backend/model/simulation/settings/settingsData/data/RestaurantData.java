@@ -1,7 +1,7 @@
-package backend.server.EJB.dataSettings.data;
+package backend.model.simulation.settings.settingsData.data;
 
 import backend.model.simulables.person.worker.Job;
-import backend.server.EJB.dataSettings.MinMaxData;
+import backend.utils.MinMaxData;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-<%@ page import="backend.server.EJB.dataSettings.data.GeneralData" %>
+<%@ page import="backend.model.simulation.settings.settingsData.data.GeneralData" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>

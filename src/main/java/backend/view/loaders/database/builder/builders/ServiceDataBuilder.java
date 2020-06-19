@@ -1,8 +1,6 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.server.EJB.dataSettings.data.GeneralData;
-import backend.server.EJB.dataSettings.data.ProviderData;
-import backend.server.EJB.dataSettings.data.ServiceData;
+import backend.model.simulation.settings.settingsData.data.ServiceData;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

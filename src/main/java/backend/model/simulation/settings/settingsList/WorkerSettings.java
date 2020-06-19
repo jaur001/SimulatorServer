@@ -4,7 +4,7 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.server.EJB.dataSettings.data.WorkerData;
+import backend.model.simulation.settings.settingsData.data.WorkerData;
 import backend.utils.MathUtils;
 
 public class WorkerSettings{

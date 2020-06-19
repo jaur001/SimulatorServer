@@ -1,14 +1,7 @@
 package backend.utils;
 
-import backend.server.EJB.dataSettings.MinMaxData;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class MathUtils {
 

@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
-import backend.server.EJB.dataSettings.data.ServiceData;
+import backend.model.simulation.settings.settingsData.data.ServiceData;
 import backend.server.servlets.FrontCommand;
 
 import java.util.Arrays;

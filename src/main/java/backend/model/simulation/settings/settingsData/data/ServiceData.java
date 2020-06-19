@@ -1,4 +1,4 @@
-package backend.server.EJB.dataSettings.data;
+package backend.model.simulation.settings.settingsData.data;
 
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 

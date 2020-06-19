@@ -1,4 +1,4 @@
-package backend.server.EJB.dataSettings.data;
+package backend.model.simulation.settings.settingsData.data;
 
 public class GeneralData {
     private int clientCount;

@@ -1,4 +1,4 @@
-<%@ page import="backend.server.EJB.dataSettings.data.ClientData" %>
+<%@ page import="backend.model.simulation.settings.settingsData.data.ClientData" %>
 <%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>

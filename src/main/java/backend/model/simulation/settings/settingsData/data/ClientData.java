@@ -1,8 +1,7 @@
-package backend.server.EJB.dataSettings.data;
+package backend.model.simulation.settings.settingsData.data;
 
-import backend.server.EJB.dataSettings.DistributionData;
-import backend.server.EJB.dataSettings.MinMaxData;
-import org.apache.commons.math3.analysis.FunctionUtils;
+import backend.utils.DistributionData;
+import backend.utils.MinMaxData;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.Map;

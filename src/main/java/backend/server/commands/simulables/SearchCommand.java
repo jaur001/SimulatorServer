@@ -2,21 +2,17 @@ package backend.server.commands.simulables;
 
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
-import backend.server.EJB.SearchControllerStatelessBean;
+import backend.utils.SearchUtils;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
 import backend.server.servlets.FrontCommand;
 import backend.view.loaders.database.DatabaseManager;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
 public class SearchCommand extends FrontCommand {
-
-    private SearchControllerStatelessBean searchController = new SearchControllerStatelessBean();
 
     @Override
     public void process() {
@@ -35,12 +31,12 @@ public class SearchCommand extends FrontCommand {
     }
 
     private List<Client> getPeople(SearchBy searchBy, String text) {
-        Search<Client> search = searchController.getPersonFilter(searchBy);
+        Search<Client> search = SearchUtils.getPersonFilter(searchBy);
         return Search.searchPeople(search.search(text));
     }
 
     private List<Company> getCompanies(SearchBy searchBy, String text) {
-        Search<Company> search = searchController.getCompanyFilter(searchBy);
+        Search<Company> search = SearchUtils.getCompanyFilter(searchBy);
         return Search.searchCompanies(search.search(text));
     }
 

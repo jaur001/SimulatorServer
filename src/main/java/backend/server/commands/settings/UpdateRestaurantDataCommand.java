@@ -2,9 +2,9 @@ package backend.server.commands.settings;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulation.settings.settingsList.ClientSettings;
-import backend.server.EJB.dataSettings.MinMaxData;
-import backend.server.EJB.dataSettings.data.ClientData;
-import backend.server.EJB.dataSettings.data.RestaurantData;
+import backend.utils.MinMaxData;
+import backend.model.simulation.settings.settingsData.data.ClientData;
+import backend.model.simulation.settings.settingsData.data.RestaurantData;
 import backend.server.servlets.FrontCommand;
 
 import java.util.Arrays;

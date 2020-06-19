@@ -1,7 +1,7 @@
 package backend.server.commands.settings;
 
-import backend.server.EJB.dataSettings.SettingsBuilder;
-import backend.server.EJB.dataSettings.data.*;
+import backend.model.simulation.settings.settingsData.SettingsBuilder;
+import backend.model.simulation.settings.settingsData.data.*;
 import backend.server.servlets.FrontCommand;
 
 

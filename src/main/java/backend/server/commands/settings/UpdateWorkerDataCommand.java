@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.server.EJB.dataSettings.data.WorkerData;
+import backend.model.simulation.settings.settingsData.data.WorkerData;
 import backend.server.servlets.FrontCommand;
 
 public class UpdateWorkerDataCommand extends FrontCommand {

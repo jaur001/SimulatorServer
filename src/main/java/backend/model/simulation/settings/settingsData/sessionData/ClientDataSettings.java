@@ -1,13 +1,13 @@
-package backend.server.EJB.dataSettings.sessionData;
+package backend.model.simulation.settings.settingsData.sessionData;
 
-import backend.server.EJB.dataSettings.data.ClientData;
-import backend.server.EJB.dataSettings.GenericSessionData;
+import backend.model.simulation.settings.settingsData.data.ClientData;
+import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
 
-public class ClientSettingsStatefulBean extends GenericSessionData {
+public class ClientDataSettings extends AdjustableSettingsData {
 
     private ClientData clientData;
 
-    public ClientSettingsStatefulBean() {
+    public ClientDataSettings() {
         super();
     }
 

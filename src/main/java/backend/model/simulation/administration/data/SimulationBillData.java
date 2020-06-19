@@ -1,14 +1,14 @@
-package backend.server.EJB;
+package backend.model.simulation.administration.data;
 
 import backend.model.bill.generator.XMLBill;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class BillDataSingletonBean {
+public class SimulationBillData {
     private List<XMLBill> billList;
 
-    public BillDataSingletonBean() {
+    public SimulationBillData() {
         reset();
     }
 

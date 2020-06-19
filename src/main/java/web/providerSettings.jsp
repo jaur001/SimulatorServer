@@ -1,4 +1,4 @@
-<%@ page import="backend.server.EJB.dataSettings.data.ProviderData" %>
+<%@ page import="backend.model.simulation.settings.settingsData.data.ProviderData" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product" %>
 <%@ page contentType="text/html;charset=UTF-8"%>

@@ -8,21 +8,61 @@
   <component name="ChangeListManager">
     <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/BillNIFCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/NIFCreator/BillNIFCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/worker/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/centralControl/SimulationBillAdministrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationBillAdministrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/initializer/SimulationInitializerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/initializer/SimulationInitializerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/initializer/SimulatorSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/centralControl/SimulatorSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/RestartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/RestartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/DownloadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/DownloadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/ShowBillsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/bills/ShowBillsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/ShowSettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/ShowSettingsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationBillAdministrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationBillAdministrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/GenericSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/GenericSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ClientSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/GeneralSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/GeneralSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ProviderSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/RestaurantSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/RestaurantSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ServiceSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/ServiceSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/WorkerSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/WorkerSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/BillDataSingletonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/administration/data/SimulationBillData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/SearchControllerStatelessBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/SearchUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/Adjustable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/DefaultSettingsSingletonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/DefaultSettingsSingletonBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/DistributionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/DistributionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/GenericSessionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/AdjustableSettingsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/MinMaxData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/MinMaxData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/SettingsBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/SettingsBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ClientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/ClientData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/GeneralData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/GeneralData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ProviderData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/ProviderData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/RestaurantData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/RestaurantData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/ServiceData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/ServiceData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/data/WorkerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/data/WorkerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/ClientSettingsStatefulBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/ClientDataSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/GeneralSettingsStatefulBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/GeneralDataSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/ProviderSettingsStatefulBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/ProviderDataSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/RestaurantSettingsStatefulBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/RestaurantDataSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/ServiceSessionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/ServiceSessionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/sessionData/WorkerSessionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/sessionData/WorkerSessionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/CancelCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/CancelCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/SaveSettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/SaveSettingsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateClientDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateClientDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateGeneralDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateGeneralDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateProviderDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateProviderDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateRestaurantDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateRestaurantDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateServiceDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateServiceDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateWorkerDataCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/UpdateWorkerDataCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/SearchCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/InitSessionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/InitSessionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/PageableFrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/PageableFrontCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/utils/MathUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/utils/MathUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/BuilderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/BuilderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ClientDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ClientDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/GeneralDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/GeneralDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ProviderDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/RestaurantDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ServiceDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/ServiceDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/WorkerDataBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/view/loaders/database/builder/builders/WorkerDataBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/clientSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/clientSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/restaurantSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/restaurantSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/workerSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/workerSettings.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +192,7 @@
       <recent name="backend.implementations.secondaryCompanies.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="TomEE Server.Simulator">
     <configuration name="Lab" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="backend.main.Lab" />
       <module name="RestaurantSimulator" />
@@ -467,14 +507,8 @@
       <workItem from="1592348754936" duration="1953000" />
       <workItem from="1592431934470" duration="1893000" />
       <workItem from="1592513077785" duration="238000" />
-      <workItem from="1592574508918" duration="2058000" />
-    </task>
-    <task id="LOCAL-00017" summary="Clients now select the best restaurant in his price options. Also added view with tables of workers in web.">
-      <created>1586126138713</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1586126138713</updated>
+      <workItem from="1592574508918" duration="2467000" />
+      <workItem from="1592591285900" duration="969000" />
     </task>
     <task id="LOCAL-00018" summary="Added contracts for worker that when expire, restaurant can change worker or renovate the same worker. Workers that are not working can accept or decline the offer. Provider now are simulables also that increase or decrease the price depending on the demand.">
       <created>1586220753985</created>
@@ -812,7 +846,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592513174441</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Changed place of some classes.">
+      <created>1592581115490</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1592581115490</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -820,8 +861,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Trying different ways to make the sniffer." />
-    <MESSAGE value="added 3 new EJB, and in the web it showed only the followed simulables's events." />
     <MESSAGE value="Now you can properly add simulables to follow. Also, when you go up to the limit of any simulable in the database, it automatically start from the beginning again." />
     <MESSAGE value="Added new SessionBean for the settings." />
     <MESSAGE value="Added new EJB and timers. Also refactoring of settings part with EJB." />
@@ -845,7 +884,9 @@
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Refactoring of company tree." />
     <MESSAGE value="Solved a bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solved a bug" />
+    <MESSAGE value="Changed place of some clases." />
+    <MESSAGE value="Changed place of some classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed place of some classes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="198" key="#Auto_Import" timestamp="1589659976696">
@@ -928,10 +969,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="671" y="249" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589647670673" />
-    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590786137735">
+    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592592137815">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590786137735" />
+    <state x="508" y="108" width="680" height="972" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592592137815" />
     <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590446175742">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -948,10 +989,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="715" y="243" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586477840001" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592513173547">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1592581114373">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1592513173547" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1592581114373" />
     <state x="519" y="141" key="FileChooserDialogImpl" timestamp="1588192458187">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1048,10 +1089,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="676" y="153" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584660711898" />
-    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1592574509054">
+    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1592591294729">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592574509054" />
+    <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1592591294729" />
     <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587573318739">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1097,7 +1138,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/backend/server/EJB/dataSettings/SettingsBuilder.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsData/SettingsBuilder.java</url>
           <line>20</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>

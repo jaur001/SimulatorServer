@@ -1,4 +1,4 @@
-package backend.server.EJB;
+package backend.utils;
 
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
@@ -15,16 +15,13 @@ import backend.server.searcher.searchers.person.PersonSalarySearch;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-public class SearchControllerStatelessBean {
+public class SearchUtils {
 
-    private Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
-    private Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
+    private static Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
+    private static Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
 
-    public SearchControllerStatelessBean() {
-        init();
-    }
 
-    public void init() {
+    static {
         personFilterTable.put(SearchBy.NIF,new PersonNIFSearch());
         personFilterTable.put(SearchBy.Name,new PersonNameSearch());
         personFilterTable.put(SearchBy.Job,new PersonJobSearch());
@@ -36,11 +33,11 @@ public class SearchControllerStatelessBean {
         companyFilterTable.put(SearchBy.Treasury,new CompanyTreasurySearch());
     }
 
-    public Search<Client> getPersonFilter(SearchBy searchBy){
+    public static Search<Client> getPersonFilter(SearchBy searchBy){
         return personFilterTable.get(searchBy);
     }
 
-    public Search<Company> getCompanyFilter(SearchBy searchBy){
+    public static Search<Company> getCompanyFilter(SearchBy searchBy){
         return companyFilterTable.get(searchBy);
     }
 }

@@ -1,7 +1,7 @@
 package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.server.EJB.dataSettings.data.GeneralData;
+import backend.model.simulation.settings.settingsData.data.GeneralData;
 
 public class GeneralSettings {
 

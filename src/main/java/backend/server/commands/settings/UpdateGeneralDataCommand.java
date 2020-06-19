@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.server.EJB.dataSettings.data.GeneralData;
+import backend.model.simulation.settings.settingsData.data.GeneralData;
 import backend.server.servlets.FrontCommand;
 
 public class UpdateGeneralDataCommand extends FrontCommand {

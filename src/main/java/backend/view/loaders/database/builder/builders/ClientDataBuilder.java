@@ -1,9 +1,8 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.server.EJB.dataSettings.DistributionData;
-import backend.server.EJB.dataSettings.MinMaxData;
-import backend.server.EJB.dataSettings.data.ClientData;
-import backend.server.EJB.dataSettings.data.GeneralData;
+import backend.utils.DistributionData;
+import backend.utils.MinMaxData;
+import backend.model.simulation.settings.settingsData.data.ClientData;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

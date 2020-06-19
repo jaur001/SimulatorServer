@@ -1,16 +1,11 @@
 package backend.model.simulation.administration.data;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
-import backend.implementations.SQLite.controllers.SQLiteRowDeleter;
-import backend.implementations.SQLite.controllers.SQLiteTableInsert;
-import backend.implementations.SQLite.controllers.SQLiteTableSelector;
 import backend.model.NIFCreator.BillNIFCreator;
 import backend.model.bill.generator.XMLBill;
 import backend.model.simulation.administration.SimulatorThreadPool;
-import backend.server.EJB.BillDataSingletonBean;
 import backend.view.loaders.database.DatabaseManager;
 import backend.view.loaders.database.TableAdministrator;
-import backend.view.loaders.database.builder.builders.BillBuilder;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -18,16 +13,16 @@ import java.util.List;
 
 public class SimulationBillAdministrator {
 
-    private static final BillDataSingletonBean billData = new BillDataSingletonBean();
+    private static SimulationBillData simulationBillData = new SimulationBillData();
     private static final TableAdministrator administrator = new SQLiteTableAdministrator();
 
     public static void addBill(XMLBill bill){
-        billData.addBill(bill);
+        simulationBillData.addBill(bill);
         //saveInDatabase(bill);
     }
 
     public static void resetBills(){
-        billData.reset();
+        simulationBillData.reset();
         try {
             if(getBillCount() !=0)
                 administrator.deleteAll(XMLBill.class);
@@ -40,8 +35,8 @@ public class SimulationBillAdministrator {
 
     public static List<XMLBill> getBillPage(int page) {
         int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,billData.getSize());
-        return billData.getBillList(from, to);
+        int to = DatabaseManager.getTo(from, simulationBillData.getSize());
+        return simulationBillData.getBillList(from, to);
         //return getFromDatabase(page);
     }
 

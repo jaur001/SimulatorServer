@@ -1,14 +1,14 @@
-package backend.server.EJB.dataSettings.sessionData;
+package backend.model.simulation.settings.settingsData.sessionData;
 
-import backend.server.EJB.dataSettings.data.GeneralData;
-import backend.server.EJB.dataSettings.GenericSessionData;
+import backend.model.simulation.settings.settingsData.data.GeneralData;
+import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
 
 
-public class GeneralSettingsStatefulBean extends GenericSessionData {
+public class GeneralDataSettings extends AdjustableSettingsData {
 
     private GeneralData generalData;
 
-    public GeneralSettingsStatefulBean() {
+    public GeneralDataSettings() {
         super();
     }
 

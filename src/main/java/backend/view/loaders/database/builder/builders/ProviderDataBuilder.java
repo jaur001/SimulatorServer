@@ -1,9 +1,6 @@
 package backend.view.loaders.database.builder.builders;
 
-import backend.server.EJB.dataSettings.MinMaxData;
-import backend.server.EJB.dataSettings.data.GeneralData;
-import backend.server.EJB.dataSettings.data.ProviderData;
-import backend.server.EJB.dataSettings.data.RestaurantData;
+import backend.model.simulation.settings.settingsData.data.ProviderData;
 import backend.view.loaders.database.builder.Builder;
 
 import java.util.Arrays;

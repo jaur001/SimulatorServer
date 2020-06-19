@@ -1,10 +1,10 @@
-package backend.server.EJB.dataSettings;
+package backend.model.simulation.settings.settingsData;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulables.person.worker.Job;
-import backend.server.EJB.dataSettings.data.*;
+import backend.model.simulation.settings.settingsData.data.*;
 import backend.view.loaders.database.TableAdministrator;
 
 import java.sql.SQLException;

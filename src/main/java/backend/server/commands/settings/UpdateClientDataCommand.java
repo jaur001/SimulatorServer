@@ -1,8 +1,8 @@
 package backend.server.commands.settings;
 
-import backend.server.EJB.dataSettings.DistributionData;
-import backend.server.EJB.dataSettings.MinMaxData;
-import backend.server.EJB.dataSettings.data.ClientData;
+import backend.utils.DistributionData;
+import backend.utils.MinMaxData;
+import backend.model.simulation.settings.settingsData.data.ClientData;
 import backend.server.servlets.FrontCommand;
 
 import java.util.Arrays;

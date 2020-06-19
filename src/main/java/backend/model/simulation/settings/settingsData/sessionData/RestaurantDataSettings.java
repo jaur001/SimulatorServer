@@ -1,14 +1,14 @@
-package backend.server.EJB.dataSettings.sessionData;
+package backend.model.simulation.settings.settingsData.sessionData;
 
-import backend.server.EJB.dataSettings.GenericSessionData;
-import backend.server.EJB.dataSettings.data.RestaurantData;
+import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
+import backend.model.simulation.settings.settingsData.data.RestaurantData;
 
 
-public class RestaurantSettingsStatefulBean extends GenericSessionData {
+public class RestaurantDataSettings extends AdjustableSettingsData {
 
     private RestaurantData restaurantData;
 
-    public RestaurantSettingsStatefulBean() {
+    public RestaurantDataSettings() {
         super();
     }
 

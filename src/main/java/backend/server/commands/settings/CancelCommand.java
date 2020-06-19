@@ -1,6 +1,6 @@
 package backend.server.commands.settings;
 
-import backend.server.EJB.dataSettings.SettingsBuilder;
+import backend.model.simulation.settings.settingsData.SettingsBuilder;
 import backend.server.servlets.FrontCommand;
 
 public class CancelCommand extends FrontCommand {

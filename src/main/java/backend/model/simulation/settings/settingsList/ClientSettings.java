@@ -5,7 +5,7 @@ import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.r
 import backend.model.simulables.person.client.routineList.routine.Routine;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationDataController;
-import backend.server.EJB.dataSettings.data.ClientData;
+import backend.model.simulation.settings.settingsData.data.ClientData;
 import backend.utils.MathUtils;
 
 import java.util.*;

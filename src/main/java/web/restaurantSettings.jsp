@@ -1,4 +1,4 @@
-<%@ page import="backend.server.EJB.dataSettings.data.RestaurantData" %>
+<%@ page import="backend.model.simulation.settings.settingsData.data.RestaurantData" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="backend.model.simulables.person.worker.Job" %>
 <%@ page contentType="text/html;charset=UTF-8"%>

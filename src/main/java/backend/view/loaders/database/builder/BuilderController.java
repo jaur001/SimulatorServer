@@ -6,7 +6,7 @@ import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyC
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.server.EJB.dataSettings.data.*;
+import backend.model.simulation.settings.settingsData.data.*;
 import backend.view.loaders.database.builder.builders.*;
 
 import java.util.HashMap;

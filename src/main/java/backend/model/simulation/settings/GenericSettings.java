@@ -1,7 +1,7 @@
 package backend.model.simulation.settings;
 
-import backend.server.EJB.dataSettings.GenericSessionData;
+import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
 
 public abstract class GenericSettings {
-    public abstract void init(GenericSessionData dataSettings);
+    public abstract void init(AdjustableSettingsData dataSettings);
 }

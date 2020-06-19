@@ -4,7 +4,7 @@ import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.EJB.dataSettings.data.RestaurantData;
+import backend.model.simulation.settings.settingsData.data.RestaurantData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.BetaDistribution;
 

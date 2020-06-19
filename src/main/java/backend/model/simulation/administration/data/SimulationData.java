@@ -3,12 +3,11 @@ package backend.model.simulation.administration.data;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
-import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.simulableControl.SimulableController;
 import backend.model.simulation.administration.simulableControl.SimulationCommitter;
 import backend.model.simulation.administration.simulableControl.SimulationIOController;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.server.EJB.dataSettings.sessionData.*;
+import backend.model.simulation.settings.settingsData.sessionData.*;
 
 
 import java.util.LinkedList;
@@ -23,10 +22,10 @@ public class SimulationData {
     private List<Simulable> followedSimulables;
     private SimulableController simulableController;
 
-    private GeneralSettingsStatefulBean generalDataSettings;
-    private RestaurantSettingsStatefulBean restaurantDataSettings;
-    private ClientSettingsStatefulBean clientDataSettings;
-    private ProviderSettingsStatefulBean providerDataSettings;
+    private GeneralDataSettings generalDataSettings;
+    private RestaurantDataSettings restaurantDataSettings;
+    private ClientDataSettings clientDataSettings;
+    private ProviderDataSettings providerDataSettings;
     private ServiceSessionData serviceSessionData;
     private WorkerSessionData workerSessionData;
 
@@ -92,27 +91,27 @@ public class SimulationData {
     }
 
     private void initSettings() {
-        generalDataSettings = new GeneralSettingsStatefulBean();
-        clientDataSettings = new ClientSettingsStatefulBean();
-        restaurantDataSettings = new RestaurantSettingsStatefulBean();
-        providerDataSettings = new ProviderSettingsStatefulBean();
+        generalDataSettings = new GeneralDataSettings();
+        clientDataSettings = new ClientDataSettings();
+        restaurantDataSettings = new RestaurantDataSettings();
+        providerDataSettings = new ProviderDataSettings();
         serviceSessionData = new ServiceSessionData();
         workerSessionData = new WorkerSessionData();
     }
 
-    public GeneralSettingsStatefulBean getGeneralDataSettings() {
+    public GeneralDataSettings getGeneralDataSettings() {
         return generalDataSettings;
     }
 
-    public ClientSettingsStatefulBean getClientDataSettings() {
+    public ClientDataSettings getClientDataSettings() {
         return clientDataSettings;
     }
 
-    public RestaurantSettingsStatefulBean getRestaurantDataSettings() {
+    public RestaurantDataSettings getRestaurantDataSettings() {
         return restaurantDataSettings;
     }
 
-    public ProviderSettingsStatefulBean getProviderDataSettings() {
+    public ProviderDataSettings getProviderDataSettings() {
         return providerDataSettings;
     }
 

@@ -1,19 +1,42 @@
 package backend.main;
 
-import backend.implementations.SQLite.SQLiteTableAdministrator;
-import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
-import backend.model.simulation.administration.data.SimulationDataController;
-import backend.view.loaders.database.TableAdministrator;
-import backend.view.loaders.database.elements.selectors.EqualSelector;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.startup.Tomcat;
+import org.apache.catalina.webresources.DirResourceSet;
+import org.apache.catalina.webresources.StandardRoot;
 
-import java.sql.SQLException;
+import java.io.File;
 
 public class Lab {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        SimulationDataController.initSessionData();
-        TableAdministrator administrator = new SQLiteTableAdministrator();
-        administrator.updateRow(Provider.class,new EqualSelector[]{new EqualSelector("Street","Hello")},new EqualSelector("NIF","2000000"));
+    public static void main(String[] args) throws LifecycleException {
+        String webappDirLocation = "C:/Users/PROPIETARIO/Desktop/HPDS/SimulatorServer/src/main/java/web/";
+        Tomcat tomcat = new Tomcat();
+
+        //The port that we should run on can be set into an environment variable
+        //Look for that variable and default to 8080 if it isn't there.
+        String webPort = System.getenv("PORT");
+        if(webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
+
+        tomcat.setPort(Integer.valueOf(webPort));
+
+        StandardContext ctx = (StandardContext) tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        System.out.println("configuring app with basedir: " + new File("" + webappDirLocation).getAbsolutePath());
+
+        // Declare an alternative location for your "WEB-INF/classes" dir
+        // Servlet 3.0 annotation will work
+        File additionWebInfClasses = new File("target/classes");
+        WebResourceRoot resources = new StandardRoot(ctx);
+        resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
+                additionWebInfClasses.getAbsolutePath(), "/"));
+        ctx.setResources(resources);
+
+        tomcat.start();
+        tomcat.getServer().await();
     }
 
 }

@@ -104,8 +104,8 @@
           <td>0</td>
         </tr>
       </table>
-      <label for="text-area"></label>
-      <div id="text-area">
+      <label for="eventBox"></label>
+      <div id="eventBox">
       </div>
       <h3>Search Simulable</h3>
       <form>

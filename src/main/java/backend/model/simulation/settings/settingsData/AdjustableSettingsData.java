@@ -7,7 +7,6 @@ public abstract class AdjustableSettingsData {
     public AdjustableSettingsData() {
         setDefault();
     }
-
-    abstract void init(Object data);
-    abstract void setDefault();
+    public abstract void init(Object data);
+    public abstract void setDefault();
 }

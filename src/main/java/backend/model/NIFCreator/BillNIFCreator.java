@@ -1,6 +1,6 @@
 package backend.model.NIFCreator;
 
-import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
+import backend.model.simulation.administration.data.SimulationBillAdministrator;
 
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicInteger;

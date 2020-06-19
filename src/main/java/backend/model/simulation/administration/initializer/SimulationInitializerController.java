@@ -1,8 +1,7 @@
 package backend.model.simulation.administration.initializer;
 
-import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
-import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
+import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.model.simulation.settings.settingsList.GeneralSettings;

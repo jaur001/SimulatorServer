@@ -9,7 +9,7 @@ import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
-import backend.model.simulation.administration.initializer.SimulatorSwitcher;
+import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
 import backend.model.simulation.settings.settingsList.WorkerSettings;

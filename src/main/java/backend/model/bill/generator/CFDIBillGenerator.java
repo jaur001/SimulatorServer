@@ -2,7 +2,7 @@ package backend.model.bill.generator;
 
 import backend.model.bill.CFDIBill;
 import backend.model.event.EventGenerator;
-import backend.model.simulation.administration.centralControl.SimulationBillAdministrator;
+import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

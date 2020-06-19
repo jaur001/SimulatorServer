@@ -1,9 +1,9 @@
-package backend.model.simulation.administration.initializer;
+package backend.model.simulation.administration.centralControl;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulation.administration.SimulatorThreadPool;
-import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.initializer.SimulationInitializerController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
 

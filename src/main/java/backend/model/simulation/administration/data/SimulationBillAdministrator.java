@@ -1,4 +1,4 @@
-package backend.model.simulation.administration.centralControl;
+package backend.model.simulation.administration.data;
 
 import backend.implementations.SQLite.SQLiteTableAdministrator;
 import backend.implementations.SQLite.controllers.SQLiteRowDeleter;
@@ -22,7 +22,7 @@ public class SimulationBillAdministrator {
     private static final TableAdministrator administrator = new SQLiteTableAdministrator();
 
     public static void addBill(XMLBill bill){
-        if(billData.getSize()< DatabaseManager.getListLimit())billData.addBill(bill);
+        billData.addBill(bill);
         //saveInDatabase(bill);
     }
 
@@ -41,8 +41,8 @@ public class SimulationBillAdministrator {
     public static List<XMLBill> getBillPage(int page) {
         int from = DatabaseManager.getFrom(page);
         int to = DatabaseManager.getTo(from,billData.getSize());
-        if(billData.getSize()>(page-1)* DatabaseManager.getPageLength())return billData.getBillList(from, to);
-        else return getFromDatabase(page);
+        return billData.getBillList(from, to);
+        //return getFromDatabase(page);
     }
 
     private static List<XMLBill> getFromDatabase(int page) {

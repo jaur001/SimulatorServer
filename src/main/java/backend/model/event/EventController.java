@@ -2,7 +2,7 @@ package backend.model.event;
 
 import backend.model.simulation.administration.SimulatorThreadPool;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
-import backend.model.simulation.administration.initializer.SimulatorSwitcher;
+import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.ConcurrentModificationException;

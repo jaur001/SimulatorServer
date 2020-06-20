@@ -12,7 +12,7 @@ import java.io.File;
 public class Lab {
 
     public static void main(String[] args) throws LifecycleException {
-        String webappDirLocation = "C:/Users/PROPIETARIO/Desktop/HPDS/SimulatorServer/src/main/java/web/";
+        String webappDirLocation = "C:/Users/PROPIETARIO/Desktop/HPDS/SimulatorServer/src/main/java/web";
         Tomcat tomcat = new Tomcat();
 
         //The port that we should run on can be set into an environment variable

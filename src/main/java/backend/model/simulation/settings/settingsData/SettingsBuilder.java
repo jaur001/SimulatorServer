@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class SettingsBuilder {
 
-    public static void build() {
+    public static void setDefault() {
         SimulationDataController.getGeneralSessionData().setDefault();
         SimulationDataController.getClientSessionData().setDefault();
         SimulationDataController.getRestaurantSessionData().setDefault();

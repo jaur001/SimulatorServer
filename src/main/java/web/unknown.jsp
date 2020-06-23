@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>COMMAND EXCEPTION</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <body>
         <div class="main-header container">

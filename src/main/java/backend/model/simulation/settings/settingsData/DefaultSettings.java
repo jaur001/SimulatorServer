@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-public class DefaultSettingsSingletonBean {
+public class DefaultSettings {
 
     private TableAdministrator administrator;
     private GeneralData defaultGeneralData;
@@ -22,7 +22,7 @@ public class DefaultSettingsSingletonBean {
     private ServiceData defaultServiceData;
     private WorkerData defaultWorkerData;
 
-    public DefaultSettingsSingletonBean() {
+    public DefaultSettings() {
         administrator = new SQLiteTableAdministrator();
         init();
     }

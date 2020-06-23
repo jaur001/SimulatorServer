@@ -1,13 +1,13 @@
-package backend.model.simulation.settings.settingsData.sessionData;
+package backend.model.simulation.settings.settingsData.settingsData;
 
 import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
 import backend.model.simulation.settings.settingsData.data.WorkerData;
 
-public class WorkerSessionData extends AdjustableSettingsData {
+public class WorkerSettingsData extends AdjustableSettingsData {
 
     private WorkerData workerData;
 
-    public WorkerSessionData() {
+    public WorkerSettingsData() {
         super();
     }
 

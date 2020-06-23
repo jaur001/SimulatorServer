@@ -28,12 +28,12 @@ public class PersonWebSocket {
     public String onMessage(String message){
         StringBuilder simulables = new StringBuilder();
         simulables.append("<table id='personTable'>").append("<tr>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Full Name</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Age</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Salary</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Salary Spent</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Job</td>").append("</tr>");
+        simulables.append("<th>NIF</th>");
+        simulables.append("<th>Full Name</th>");
+        simulables.append("<th>Age</th>");
+        simulables.append("<th>Salary</th>");
+        simulables.append("<th>Salary Spent</th>");
+        simulables.append("<th>Job</th>").append("</tr>");
         SimulationFollowAdministrator.getFollowedSimulables().stream()
                 .filter(simulable -> simulable instanceof Client)
                 .map(simulable -> (Client) simulable)
@@ -44,12 +44,12 @@ public class PersonWebSocket {
 
     private void appendRow(Client client, StringBuilder simulables) {
         simulables.append("<tr>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getNIF()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getName()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getAge()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getSalaryToShow()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getSalarySpent()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(client.getJob()).append("</td>");
+        simulables.append("<td>").append(client.getNIF()).append("</td>");
+        simulables.append("<td>").append(client.getName()).append("</td>");
+        simulables.append("<td>").append(client.getAge()).append("</td>");
+        simulables.append("<td>").append(client.getSalaryToShow()).append("</td>");
+        simulables.append("<td>").append(client.getSalarySpent()).append("</td>");
+        simulables.append("<td>").append(client.getJob()).append("</td>");
         simulables.append("</tr>");
     }
 

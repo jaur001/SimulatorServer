@@ -2,7 +2,7 @@ package backend.model.simulation.administration.data;
 
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsData.data.*;
-import backend.model.simulation.settings.settingsData.sessionData.*;
+import backend.model.simulation.settings.settingsData.settingsData.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SimulationDataController {
@@ -61,12 +61,12 @@ public class SimulationDataController {
         return getSimulationData().getProviderDataSettings();
     }
 
-    public static ServiceSessionData getServiceSessionData() {
-        return getSimulationData().getServiceSessionData();
+    public static ServiceSettingsData getServiceSessionData() {
+        return getSimulationData().getServiceSettingsData();
     }
 
-    public static WorkerSessionData getWorkerSessionData() {
-        return getSimulationData().getWorkerSessionData();
+    public static WorkerSettingsData getWorkerSessionData() {
+        return getSimulationData().getWorkerSettingsData();
     }
 
     public static AtomicBoolean getRestart() {

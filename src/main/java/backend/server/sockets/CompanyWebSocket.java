@@ -28,10 +28,10 @@ public class CompanyWebSocket {
     public String onMessage(String message){
         StringBuilder simulables = new StringBuilder();
         simulables.append("<table id='companyTable'>").append("<tr>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>NIF</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Name</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Benefits</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>Treasury</td>").append("</tr>");
+        simulables.append("<th>NIF</th>");
+        simulables.append("<th>Name</th>");
+        simulables.append("<th>Benefits</th>");
+        simulables.append("<th>Treasury</th>").append("</tr>");
         SimulationFollowAdministrator.getFollowedSimulables().stream()
                 .filter(simulable -> simulable instanceof Company)
                 .map(simulable -> (Company) simulable)
@@ -42,10 +42,10 @@ public class CompanyWebSocket {
 
     private void appendRow(Company company, StringBuilder simulables) {
         simulables.append("<tr>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getNIF()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getName()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getFinancialData().getLastMonthBenefits()).append("</td>");
-        simulables.append("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>").append(company.getFinancialData().getTreasury()).append("</td>");
+        simulables.append("<td>").append(company.getNIF()).append("</td>");
+        simulables.append("<td>").append(company.getName()).append("</td>");
+        simulables.append("<td>").append(company.getFinancialData().getLastMonthBenefits()).append("</td>");
+        simulables.append("<td>").append(company.getFinancialData().getTreasury()).append("</td>");
         simulables.append("</tr>");
     }
 

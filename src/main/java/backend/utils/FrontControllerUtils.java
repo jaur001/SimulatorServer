@@ -26,7 +26,7 @@ public class FrontControllerUtils {
         List<String> settingsFolder = Arrays.asList(CancelCommand.class.getSimpleName(), SaveSettingsCommand.class.getSimpleName(),
                 ShowSettingsCommand.class.getSimpleName(),UpdateGeneralDataCommand.class.getSimpleName(),UpdateClientDataCommand.class.getSimpleName(),
                 UpdateRestaurantDataCommand.class.getSimpleName(),UpdateProviderDataCommand.class.getSimpleName(),UpdateServiceDataCommand.class.getSimpleName()
-                ,UpdateWorkerDataCommand.class.getSimpleName(),UpdateQuickSettingsCommand.class.getSimpleName());
+                ,UpdateWorkerDataCommand.class.getSimpleName(),UpdateQuickSettingsCommand.class.getSimpleName(),SetDefaultSettingsCommand.class.getSimpleName());
         List<String> tablesFolder = Arrays.asList(ShowClientsCommand.class.getSimpleName(), ShowProvidersCommand.class.getSimpleName(),
                 ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName(), ShowServicesCommand.class.getSimpleName());
         List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName(),

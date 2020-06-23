@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsData;
 
 public abstract class AdjustableSettingsData {
 
-    protected static final DefaultSettingsSingletonBean defaultSettings = new DefaultSettingsSingletonBean();
+    protected static final DefaultSettings defaultSettings = new DefaultSettings();
 
     public AdjustableSettingsData() {
         setDefault();

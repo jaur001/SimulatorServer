@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>Settings</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
         <script src="JQuery/jquery-3.4.1.min.js"></script>
         <script src="JS/serviceSettingsAdministrator.js"></script>
     </head>
@@ -75,6 +75,10 @@
             <form method="post" action="FrontControllerServlet">
                 <input type="hidden" name="command" value="CancelCommand">
                 <input type="submit"  value="Cancel">
+            </form>
+            <form method="post" action="FrontControllerServlet">
+                <input type="hidden" name="command" value="SetDefaultSettingsCommand">
+                <input type="submit"  value="Set Default">
             </form>
         </div>
     </body>

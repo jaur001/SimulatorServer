@@ -17,11 +17,7 @@ public class BillNIFCreator implements NIFCreator {
     }
 
     public static void initInitialValue() {
-        try {
-            initialValue = INITIAL_VALUE + SimulationBillAdministrator.getBillCount();
-        } catch (SQLException | ClassNotFoundException e) {
-            initialValue = INITIAL_VALUE;
-        }
+        initialValue = INITIAL_VALUE + SimulationBillAdministrator.getBillCount();
         count = new AtomicInteger(initialValue);
     }
 

@@ -1,0 +1,250 @@
+body{
+    font-family: Calibri, serif;
+}
+table{
+    font-family: "Arial", serif;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th{
+    font-weight: 400;
+    background-color: #e8edff;
+    border-top: 7px solid rgb(112,146,190);
+    border-bottom: 7px solid rgb(112,146,190);
+    border-right: 2px solid rgb(112,146,190);
+    border-left: 2px solid rgb(112,146,190);
+    color: #669;
+    font-size: 20px;
+    padding: 15px;
+}
+
+td{
+    background: #e8edff;
+    border: 1px solid #aabcfe;
+    color: #669;
+    padding: 15px;
+    font-family: "Arial", serif;
+}
+
+th, td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+.range-block{
+    display: block;
+}
+
+.inline-button{
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.inline-button input[type=button]{
+    margin-left: 10px;
+    padding: 12px;
+    color: white;
+    background-color: rgb(112,146,190);
+    border: none;
+}
+
+input[type=range]{
+    width: 315px;
+}
+
+.inline-button input:hover{
+    background-color: rgb(99, 140, 194);
+}
+
+.inline-button select{
+    margin-left: 10px;
+    padding: 12px;
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.inline-button select:hover{
+    background-color: #aabcfe;
+}
+
+.inline-button input[type=text]{
+    width: 315px;
+    margin-left: 10px;
+    padding: 12px;
+}
+
+.inline-button label{
+    margin-left: 10px;
+    padding: 12px;
+}
+
+.container{
+    max-width: 1800px;
+    margin: auto;
+    background-color: rgb(233, 233, 233);
+}
+
+.my-body{
+    height: 100vh;
+}
+
+.main-header{
+    background-color: rgb(112,146,190);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+}
+
+.main-header__container{
+    width: 25%;
+    padding-left: 15px;
+}
+
+.main-header__container h1{
+    color: white;
+    font-weight: bold;
+}
+
+.nav{
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    right: 15px;
+    width: 75%;
+    flex-direction: row;
+}
+
+.myForm input, .main-a button{
+    background-color: rgb(112,146,190);
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+.main-a, .myForm{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 25px;
+    display: inline-block;
+    margin: 0;
+    align-items: center;
+}
+
+.event-box {
+    border: 2px solid rgb(112,146,190);
+    height: 300px;
+    width: auto;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.event-box p{
+    font-size: 15px;
+    border-bottom: 1px solid black;
+    font-family: "Arial", serif;
+    font-weight: bold;
+}
+
+.container__content{
+    margin: 10px;
+    display: table-cell;
+}
+
+.left-content{
+    width: 24%;
+    padding: 5px 0 0 20px;
+    margin-left: 10px;
+    vertical-align: top;
+    border-right: 4px solid rgb(112,146,190);
+    border-bottom: 4px solid rgb(112,146,190);
+}
+
+.left-content h2{
+    color: rgb(112,146,190);
+    font-size: 20px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+.left-content label{
+    font-size: 18px;
+}
+
+.right-content{
+    width: 35%;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.right-content h2{
+    color: rgb(112,146,190);
+    font-size: 20px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+.main-content{
+    width: 35%;
+    padding: 5px 5px 5px 20px;
+    vertical-align: top;
+}
+
+.main-content h2{
+    color: rgb(112,146,190);
+    font-size: 20px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+.bottom-content{
+    margin: 10px;
+}
+
+.bottom h2{
+    color: rgb(112,146,190);
+    font-size: 20px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+.bottom{
+    padding: 5px;
+    margin: 5px;
+}
+
+.search-side{
+    width: 100%;
+    padding: 5px 0 0 20px;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.search-table{
+    overflow-y:scroll;
+    height:250px;
+    width: 600px;
+    display: none;
+}
+
+.search-table table{
+    width: 580px;
+}
+
+.count-table{
+    float: right;
+    vertical-align: top;
+    display: block;
+}
+
+.count-table h2{
+    text-align: center;
+}

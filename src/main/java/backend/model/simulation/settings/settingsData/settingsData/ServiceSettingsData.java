@@ -1,13 +1,13 @@
-package backend.model.simulation.settings.settingsData.sessionData;
+package backend.model.simulation.settings.settingsData.settingsData;
 
 import backend.model.simulation.settings.settingsData.AdjustableSettingsData;
 import backend.model.simulation.settings.settingsData.data.ServiceData;
 
-public class ServiceSessionData extends AdjustableSettingsData {
+public class ServiceSettingsData extends AdjustableSettingsData {
 
     private ServiceData serviceData;
 
-    public ServiceSessionData() {
+    public ServiceSettingsData() {
         super();
     }
 

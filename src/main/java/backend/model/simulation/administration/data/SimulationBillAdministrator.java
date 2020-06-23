@@ -58,7 +58,7 @@ public class SimulationBillAdministrator {
         });
     }
 
-    public static int getBillCount() throws SQLException, ClassNotFoundException {
-        return administrator.readCount(XMLBill.class);
+    public static int getBillCount(){
+        return simulationBillData.getSize();
     }
 }

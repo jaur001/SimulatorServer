@@ -35,19 +35,6 @@ public class InitSessionServlet extends HttpServlet {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
-        String serverContainerClass = ServerContainer.class.getName();
-        ServerContainer serverContainer = (ServerContainer) getServletContext().getAttribute(serverContainerClass);
-        try
-        {
-            serverContainer.addEndpoint(CompanyWebSocket.class);
-            serverContainer.addEndpoint(EventWebSocket.class);
-            serverContainer.addEndpoint(PersonWebSocket.class);
-            serverContainer.addEndpoint(SimulableCounterWebSocket.class);
-        }
-        catch (DeploymentException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response){

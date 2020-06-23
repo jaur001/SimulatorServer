@@ -1,4 +1,4 @@
-package backend.model.simulation.settings.settingsData.sessionData;
+package backend.model.simulation.settings.settingsData.settingsData;
 
 import backend.model.simulation.settings.settingsData.data.GeneralData;
 import backend.model.simulation.settings.settingsData.AdjustableSettingsData;

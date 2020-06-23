@@ -2,10 +2,15 @@
 <%@ page import="backend.model.simulables.person.client.Client" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-    <title>Clients</title>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-</head>
+    <head>
+        <title>Clients</title>
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
+    </head>
+    <script>
+        function updatePage (){
+            document.getElementById('pageForm').submit();
+        }
+    </script>
     <body>
         <div class="main-header container">
             <div class="main-header__container">
@@ -48,15 +53,13 @@
             <%List<Client> clientList = (List<Client>) request.getAttribute("list"); %>
             <% int actualPage = (Integer) request.getAttribute("page"); %>
             <% int length = (Integer) request.getAttribute("length"); %>
-            <form method="post" action="FrontControllerServlet">
+            <form id="pageForm" method="post" action="FrontControllerServlet">
                 <input type="hidden" name="command" value="ShowClientsCommand">
                 <label>
-                    <select name="page">
-                        <%
-                            for (int i = 1; i <= length; i++) {
+                    <select onchange="updatePage()" id="page" name="page">
+                        <%for (int i = 1; i <= length; i++) {
                         %>
-                        <%
-                            if(actualPage ==i){
+                        <%if(actualPage==i){
                         %>
                         <option value="<%=i%>" selected><%=i%></option>
                         <%} else {%>
@@ -65,14 +68,13 @@
                         <%}%>
                     </select>
                 </label>
-                <input type="submit"  value="Change">
             </form>
             <table style="width:100%">
                 <tr>
                     <th>NIF</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>birthDate</th>
+                    <th>Birth Date</th>
                     <th>Gender</th>
                     <th>Job</th>
                     <th>Salary</th>

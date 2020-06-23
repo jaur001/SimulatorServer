@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>Service Companies</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <script>
         function updatePage (){

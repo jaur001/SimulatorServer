@@ -21,12 +21,7 @@ public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
 
     @Override
     protected int getLimit(){
-        try {
-            return SimulationBillAdministrator.getBillCount();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        return SimulationBillAdministrator.getBillCount();
     }
 
 }

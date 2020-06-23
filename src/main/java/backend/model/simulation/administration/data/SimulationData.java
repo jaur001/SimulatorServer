@@ -7,7 +7,7 @@ import backend.model.simulation.administration.simulableControl.SimulableControl
 import backend.model.simulation.administration.simulableControl.SimulationCommitter;
 import backend.model.simulation.administration.simulableControl.SimulationIOController;
 import backend.model.simulation.timeLine.TimeLine;
-import backend.model.simulation.settings.settingsData.sessionData.*;
+import backend.model.simulation.settings.settingsData.settingsData.*;
 
 
 import java.util.LinkedList;
@@ -26,8 +26,8 @@ public class SimulationData {
     private RestaurantDataSettings restaurantDataSettings;
     private ClientDataSettings clientDataSettings;
     private ProviderDataSettings providerDataSettings;
-    private ServiceSessionData serviceSessionData;
-    private WorkerSessionData workerSessionData;
+    private ServiceSettingsData serviceSettingsData;
+    private WorkerSettingsData workerSettingsData;
 
     private AtomicBoolean executing;
     private AtomicBoolean restart;
@@ -95,8 +95,8 @@ public class SimulationData {
         clientDataSettings = new ClientDataSettings();
         restaurantDataSettings = new RestaurantDataSettings();
         providerDataSettings = new ProviderDataSettings();
-        serviceSessionData = new ServiceSessionData();
-        workerSessionData = new WorkerSessionData();
+        serviceSettingsData = new ServiceSettingsData();
+        workerSettingsData = new WorkerSettingsData();
     }
 
     public GeneralDataSettings getGeneralDataSettings() {
@@ -115,11 +115,11 @@ public class SimulationData {
         return providerDataSettings;
     }
 
-    public ServiceSessionData getServiceSessionData() {
-        return serviceSessionData;
+    public ServiceSettingsData getServiceSettingsData() {
+        return serviceSettingsData;
     }
 
-    public WorkerSessionData getWorkerSessionData() {
-        return workerSessionData;
+    public WorkerSettingsData getWorkerSettingsData() {
+        return workerSettingsData;
     }
 }

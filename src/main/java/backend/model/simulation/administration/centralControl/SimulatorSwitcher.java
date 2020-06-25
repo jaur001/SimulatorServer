@@ -59,7 +59,7 @@ public class SimulatorSwitcher {
     }
 
     private static void initExecution(boolean thread) {
-        SimulationDataController.initSessionData();
+        SimulationDataController.initSimulationData();
         initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();

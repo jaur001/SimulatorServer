@@ -15,13 +15,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>InitSessionServlet</servlet-name>
-        <servlet-class>backend.server.servlets.InitSessionServlet</servlet-class>
+        <servlet-name>InitSimulationServlet</servlet-name>
+        <servlet-class>backend.server.servlets.InitSimulationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>InitSessionServlet</servlet-name>
-        <url-pattern>/initSession</url-pattern>
+        <servlet-name>InitSimulationServlet</servlet-name>
+        <url-pattern>/init</url-pattern>
     </servlet-mapping>
 
 

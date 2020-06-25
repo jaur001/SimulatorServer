@@ -9,7 +9,7 @@ public class SimulationDataController {
 
     private static SimulationData simulationData;
 
-    public static void initSessionData() {
+    public static void initSimulationData() {
         simulationData = new SimulationData();
     }
 

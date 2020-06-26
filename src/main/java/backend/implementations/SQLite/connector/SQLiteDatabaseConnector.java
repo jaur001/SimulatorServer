@@ -9,7 +9,7 @@ public class SQLiteDatabaseConnector extends DatabaseConnector {
     public static final String SQLITE_CLASS = "org.sqlite.JDBC";
 
     static {
-        url = "jdbc:sqlite:C:/Users/PROPIETARIO/Desktop/HPDS/SimulatorServer/out/artifacts/RestaurantSimulator_war_exploded/Simulator.db";
+        url = "";
     }
 
     @Override

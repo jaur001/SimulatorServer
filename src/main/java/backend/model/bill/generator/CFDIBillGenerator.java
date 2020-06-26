@@ -1,6 +1,8 @@
 package backend.model.bill.generator;
 
+import backend.implementations.loaders.CSV.FileLoader;
 import backend.model.bill.CFDIBill;
+import backend.model.bill.Publisher;
 import backend.model.event.EventGenerator;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import org.w3c.dom.Document;
@@ -15,10 +17,13 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.BufferedReader;
 import java.io.File;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
-    private static String uri= "./out/artifacts/RestaurantSimulator_war_exploded/xmlFiles/";
+    private static String uri= "";
     private Document document;
     private CFDIBill bill;
 
@@ -40,7 +45,8 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private void createBill() throws ParserConfigurationException, TransformerException {
         getXMLDocument();
         appendData();
-        saveXMLInFile();
+        //saveXMLInFile();
+        //Publisher.publish(getInvoice());
         addBill();
 
     }
@@ -125,6 +131,12 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private Transformer getTransformer() throws TransformerConfigurationException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         return transformerFactory.newTransformer();
+    }
+
+    private String getInvoice() {
+        BufferedReader br = FileLoader.loadFile(getFilePath() + "/" + getFileName());
+        return br != null ? br.lines()
+                .reduce("",String::concat) : "";
     }
 
     private void addBill() {

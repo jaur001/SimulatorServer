@@ -8,9 +8,6 @@ public class SQLiteDatabaseConnector extends DatabaseConnector {
 
     public static final String SQLITE_CLASS = "org.sqlite.JDBC";
 
-    static {
-        url = "";
-    }
 
     @Override
     public Connection connect() throws ClassNotFoundException, SQLException {

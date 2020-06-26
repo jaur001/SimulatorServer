@@ -1,6 +1,6 @@
 package backend.server.servlets;
 
-import backend.implementations.SQLite.connector.DatabaseConnector;
+import backend.implementations.SQLite.connector.SQLiteDatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import backend.model.simulation.administration.data.SimulationDataController;
@@ -28,7 +28,7 @@ public class InitSimulationServlet extends HttpServlet {
         SimulatorSwitcher.setUriClient(getServletContext().getRealPath("/CSVFiles/Clients.csv"));
         SimulatorSwitcher.setUriProvider(getServletContext().getRealPath("/CSVFiles/Providers.csv"));
         CFDIBillGenerator.setUri(getServletContext().getRealPath("/xmlFiles")+"/");
-        DatabaseConnector.setUri("jdbc:sqlite:" + getServletContext().getRealPath("/Simulator.db"));
+        SQLiteDatabaseConnector.setUri("jdbc:sqlite:" + getServletContext().getRealPath("/Simulator.db"));
     }
 
     private void forwardToMainPage(HttpServletRequest request, HttpServletResponse response) {

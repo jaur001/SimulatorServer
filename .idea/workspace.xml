@@ -6,61 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_security_xml_security_impl_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_finbook_datahub_ontology_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_finbook_datahub_sensor_terminal_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_finbook_sign_verify_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_core_framework_2_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_event_2_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_exceptions_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_ingestion_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_jms_1_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_logger4j_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_logger_2_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_message_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_primitives_1_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_session_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_terminal_jms_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_tris_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_zet_1_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_intino_alexandria_zim_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_client_5_15_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_geronimo_specs_geronimo_j2ee_management_1_1_spec_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_geronimo_specs_geronimo_jms_1_1_spec_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcmail_jdk15on_1_64.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcmail_jdk16_1_46.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_64.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_64.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk16_1_46.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bctsp_jdk16_1_46.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_fusesource_hawtbuf_hawtbuf_1_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/RestaurantSimulator_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/RestaurantSimulator_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_jasper_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_logging_juli_8_5_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_9_0_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jdt_ecj_3_18_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="added Publisher module for publishing bills.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RestaurantSimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RestaurantSimulator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/CSV/FileLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/WEB-INF/classes/backend/implementations/loaders/CSV/FileLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/SQLite/connector/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/SQLite/connector/DatabaseConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/implementations/SQLite/connector/SQLiteDatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/implementations/SQLite/connector/SQLiteDatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/generator/CFDIBillGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/InitSimulationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/InitSimulationServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/RestaurantSimulator-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/RestaurantSimulator-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/RestaurantSimulator.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/CSV/FileLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/implementations/loaders/CSV/FileLoader.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +102,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.validation" />
@@ -185,7 +137,7 @@
       <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\xmlFiles" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="TomEE Server.Simulator">
     <configuration name="Lab" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="backend.main.Lab" />
       <module name="RestaurantSimulator" />
@@ -499,14 +451,7 @@
       <workItem from="1593188093898" duration="2979000" />
       <workItem from="1593191099209" duration="1102000" />
       <workItem from="1593192545214" duration="161000" />
-      <workItem from="1593192722087" duration="1165000" />
-    </task>
-    <task id="LOCAL-00023" summary="Solved bugs of client routines when used BestRoutineStrategy.">
-      <created>1586482303715</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1586482303715</updated>
+      <workItem from="1593192722087" duration="2251000" />
     </task>
     <task id="LOCAL-00024" summary="Solved bugs of client routines when used BestRoutineStrategy.">
       <created>1586482762086</created>
@@ -844,7 +789,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593124866096</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="added Publisher module for publishing bills.">
+      <created>1593193919491</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1593193919492</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -852,7 +804,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed the speed control." />
     <MESSAGE value="added Client Settings to front, also refactored the administrator part of companies." />
     <MESSAGE value="Improved the client group table part for the user." />
     <MESSAGE value="added Settings for restaurant in front end." />
@@ -877,7 +828,8 @@
     <MESSAGE value="Solved problems with sockets in deployment." />
     <MESSAGE value="Refactoring of code, and added set default for the settings." />
     <MESSAGE value="Refactoring of names of classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of names of classes." />
+    <MESSAGE value="added Publisher module for publishing bills." />
+    <option name="LAST_COMMIT_MESSAGE" value="added Publisher module for publishing bills." />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="198" key="#Auto_Import" timestamp="1589659976696">
@@ -992,46 +944,50 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="715" y="243" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586477840001" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1593124865211">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1593194623298">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1593124865211" />
-    <state x="519" y="141" key="FileChooserDialogImpl" timestamp="1593190879664">
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1593194623298" />
+    <state x="0" y="0" key="DiffContextDialog" timestamp="1593194620759">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1593190879664" />
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom" timestamp="1593192201848">
+    <state x="0" y="0" key="DiffContextDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1593194620759" />
+    <state x="519" y="141" key="FileChooserDialogImpl" timestamp="1593194309930">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593192201848" />
-    <state width="1877" height="413" key="GridCell.Tab.0.center" timestamp="1593192201848">
+    <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1593194309930" />
+    <state width="1293" height="292" key="GridCell.Tab.0.bottom" timestamp="1593194958729">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593192201848" />
-    <state width="1877" height="413" key="GridCell.Tab.0.left" timestamp="1593192201848">
+    <state width="1293" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958729" />
+    <state width="1293" height="292" key="GridCell.Tab.0.center" timestamp="1593194958729">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593192201848" />
-    <state width="1877" height="413" key="GridCell.Tab.0.right" timestamp="1593192201848">
+    <state width="1293" height="292" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958729" />
+    <state width="1293" height="292" key="GridCell.Tab.0.left" timestamp="1593194958729">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593192201848" />
-    <state width="1293" height="292" key="GridCell.Tab.1.bottom" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958729" />
+    <state width="1293" height="292" key="GridCell.Tab.0.right" timestamp="1593194958729">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
-    <state width="1293" height="292" key="GridCell.Tab.1.center" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958729" />
+    <state width="1293" height="292" key="GridCell.Tab.1.bottom" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
-    <state width="1293" height="292" key="GridCell.Tab.1.left" timestamp="1593191074980">
+    <state width="1293" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.1.center" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074980" />
-    <state width="1293" height="292" key="GridCell.Tab.1.right" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.1.left" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
+    <state width="1293" height="292" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.1.right" timestamp="1593194958584">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1293" height="292" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
     <state width="1293" height="292" key="GridCell.Tab.10.bottom" timestamp="1592598618391">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1048,22 +1004,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1293" height="292" key="GridCell.Tab.10.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592598618390" />
-    <state width="1293" height="292" key="GridCell.Tab.2.bottom" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.2.bottom" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
-    <state width="1293" height="292" key="GridCell.Tab.2.center" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.2.center" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
-    <state width="1293" height="292" key="GridCell.Tab.2.left" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.2.left" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
-    <state width="1293" height="292" key="GridCell.Tab.2.right" timestamp="1593191074981">
+    <state width="1293" height="292" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
+    <state width="1293" height="292" key="GridCell.Tab.2.right" timestamp="1593194958584">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593191074981" />
+    <state width="1293" height="292" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593194958584" />
     <state width="1293" height="292" key="GridCell.Tab.3.bottom" timestamp="1592939709661">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1104,10 +1060,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="775" y="474" key="ReplaceDuplicatesPrompt/0.0.1920.1080@0.0.1920.1080" timestamp="1591745811630" />
-    <state x="744" y="96" width="965" height="851" key="SettingsEditor" timestamp="1593193190598">
+    <state x="744" y="96" width="965" height="851" key="SettingsEditor" timestamp="1593194756005">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="744" y="96" width="965" height="851" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1593193190598" />
+    <state x="744" y="96" width="965" height="851" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1593194756005" />
     <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1593125466896">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1128,10 +1084,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1593191139337" />
-    <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587573318739">
+    <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1593194323065">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080@0.0.1920.1080" timestamp="1587573318739" />
+    <state x="931" y="415" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080@0.0.1920.1080" timestamp="1593194323065" />
     <state x="530" y="185" key="com.intellij.javaee.view.ServerArtifactsDialog" timestamp="1588270708567">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

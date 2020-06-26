@@ -13,6 +13,23 @@
           <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.28.0" />
           <element id="library" level="project" name="Maven: javax.enterprise:cdi-api:1.2" />
           <element id="archive" name="jquery.jar" />
+          <element id="library" level="project" name="Maven: io.finbook.datahub:ontology:2.0.0" />
+          <element id="library" level="project" name="Maven: io.finbook.datahub:sensor-terminal:2.0.0" />
+          <element id="library" level="project" name="Maven: io.finbook:sign-verify:1.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:core-framework:2.0.4" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:event:2.0.1" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:exceptions:1.0.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:ingestion:3.0.1" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:jms:1.2.2" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:logger4j:1.0.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:logger:2.1.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:message:3.0.1" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:primitives:1.0.4" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:session:1.0.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:terminal-jms:3.0.1" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:tris:1.0.0" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:zet:1.0.5" />
+          <element id="library" level="project" name="Maven: io.intino.alexandria:zim:3.0.1" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="RestaurantSimulator/web/Web" />

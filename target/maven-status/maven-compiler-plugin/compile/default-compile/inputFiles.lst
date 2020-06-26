@@ -30,7 +30,6 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\ev
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\worker\Quality.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\jobSelector\RandomJobSelector.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\client\routineList\routineFactory\RoutineFactory.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\RestaurantDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\changes\NewServiceCompanyEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\servlets\PageableFrontCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\builder\builders\BillBuilder.java
@@ -40,10 +39,10 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implemen
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\elements\Header.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\UpdateQuickSettingsCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\EventGenerator.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\RestaurantDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\controller\TableInsert.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\bills\ProductPurchase.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\company\complexCompany\complexCompanyWithStaff\restaurant\PriceRange.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\GeneralDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\elements\Field.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\Simulable.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\builder\builders\ProviderBuilder.java
@@ -52,6 +51,7 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loa
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\elements\Restriction.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\main\Lab.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\administration\simulableControl\SimulationIOController.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\WorkerSettingsData.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\changes\WorkerHiredCompanyEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\UnknownCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\SQLiteDataReader.java
@@ -97,9 +97,9 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\ev
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\transactions\BuildingInversionTransaction.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\SimulableTester.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsList\RestaurantSettings.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\Publisher.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\administration\data\SimulationDataController.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\workerSearcher\strategy\strategies\GenericWorkerStrategy.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\WorkerSessionData.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\monthlyCompany\ClientAddedServiceEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\monthlyCompany\ClientAddedProviderEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\AdjustableSettingsData.java
@@ -130,16 +130,19 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\s
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\company\complexCompany\complexCompanyWithStaff\AdministratorWithStaff.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\worker\Worker.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\DatabaseController.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\ServiceSettingsData.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\transactions\ProductRefundTransaction.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\timeLine\TimeLine.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\UpdateRestaurantDataCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\NewCompanyEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\StartCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\secondaryCompanies\service\RandomServiceInitializer.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\SetDefaultSettingsCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\loaders\CSV\CSVProviderDataReader.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\administration\centralControl\SimulatorSwitcher.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsList\BillSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsList\ClientSettings.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\DefaultSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\NIFCreator\BillNIFCreator.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\generator\BillGenerator.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\bills\EatingBill.java
@@ -152,7 +155,6 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\si
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\ShowSettingsCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\company\complexCompany\ComplexCompany.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\worker\jobSearcher\SelectOfferStrategy.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\servlets\InitSessionServlet.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\secondaryCompanies\providing\RandomProductInitializer.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\sockets\CompanyWebSocket.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\CFDIBill.java
@@ -172,8 +174,8 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implemen
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\secondaryCompanies\provider\ProductInitializer.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\changes\RemovedServiceCompanyEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\transactions\ServiceBillTransaction.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\servlets\InitSimulationServlet.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\company\Company.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\ProviderDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\administration\data\SimulationBillAdministrator.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\searcher\comparators\DoubleSearchComparator.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\controllers\SQLiteRowUpdater.java
@@ -181,8 +183,8 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\si
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\workerSearcher\GenericWorkerSearcher.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\Collector.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\Payer.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\ProviderDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\SQLiteTableAdministrator.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\ClientDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\controller\RowDeleter.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\client\routineList\routine\Counter.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsList\GeneralSettings.java
@@ -201,6 +203,7 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loa
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\NIFCreator\PersonNIFCreator.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\person\worker\JobOffer.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\builder\builders\ProviderDataBuilder.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\ClientDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\company\complexCompany\secondaryCompany\monthlyCompanies\service\ServiceCompany.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\routine\strategy\BestRoutineStrategy.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\RestartCommand.java
@@ -210,13 +213,13 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\ev
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\searcher\searchers\company\CompanyNameSearch.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\bill\bills\ServiceBill.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\controllers\SQLiteTableCreator.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\DefaultSettingsSingletonBean.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsList\WorkerSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\UpdateClientDataCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\worker\HiredWorkerEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\builder\builders\RestaurantBuilder.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\data\ProviderData.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\searcher\searchers\company\CompanyBenefitsSearch.java
+C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\settingsData\GeneralDataSettings.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\server\commands\settings\UpdateGeneralDataCommand.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\reader\GenericDataReader.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\SQLite\controllers\SQLiteRowDeleter.java
@@ -262,5 +265,4 @@ C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loa
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulables\bank\transactions\PayrollTransaction.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\event\events\company\monthlyCompany\ClientRemovedProviderEvent.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\view\loaders\database\builder\builders\WorkerBuilder.java
-C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\model\simulation\settings\settingsData\sessionData\ServiceSessionData.java
 C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\src\main\java\backend\implementations\workerSearcher\strategy\strategies\complexStrategy\strategies\LowestSalaryStrategy.java

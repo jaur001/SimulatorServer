@@ -6,6 +6,7 @@ import backend.model.bill.Use;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulation.settings.settingsList.BillSettings;
+import backend.utils.EuroFormatter;
 import backend.utils.MathUtils;
 
 public class BuildingInversion extends CFDIBill {
@@ -27,6 +28,7 @@ public class BuildingInversion extends CFDIBill {
 
     @Override
     public String getMessage() {
-        return "The bank has collect the mortgage from " + company.getName() + ".";
+        return "The bank has collect the mortgage from " + company.getName()
+                + ", amount: " + EuroFormatter.formatEuro(this.getTotal()) + ".";
     }
 }

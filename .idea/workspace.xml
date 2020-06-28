@@ -6,7 +6,54 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="" />
+    <list default="true" id="9b29f17b-1a9f-4ecf-af36-9a85a67292d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/backend/utils/EuroFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/web/JS/pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/RestaurantSimulator_war_exploded/unknown.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/main/Lab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/BuildingInversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/BuildingInversion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/EatingBill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/Payroll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductPurchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductRefund.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ProductRefund.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ServiceBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/bill/bills/ServiceBill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/TaxesPayedCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/TaxesPayedCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewProviderCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewProviderCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewServiceCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/NewServiceCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedProviderCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedProviderCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedServiceCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/RemovedServiceCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerFiredCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerFiredCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerHiredCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerHiredCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerRetiredCompanyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/event/events/company/changes/WorkerRetiredCompanyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/FinancialData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/company/complexCompany/complexCompanyWithStaff/restaurant/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulables/person/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/model/simulation/settings/settingsList/BillSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/SetDefaultSettingsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/settings/SetDefaultSettingsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/commands/simulables/SearchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/servlets/FrontCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/sockets/CompanyWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/sockets/CompanyWebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/server/sockets/PersonWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/server/sockets/PersonWebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/CSS/frontStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/CSS/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/JS/frontAdministrator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/JS/mainPageAdministrator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/bills.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/bills.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/clientSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/clientSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/clients.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/clients.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/providerSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/providers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/providers.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/restaurantSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/restaurantSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/restaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/restaurants.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/serviceSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/services.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/services.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/unknown.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/wait.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/wait.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/workerSettings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/workerSettings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/workers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/workers.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,9 +73,6 @@
     <expand />
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="SimulatorServer" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -41,9 +85,9 @@
         <option value="Enum" />
         <option value="Servlet" />
         <option value="Jsp File" />
-        <option value="JavaScript File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -130,7 +174,7 @@
       <recent name="C:\Users\PROPIETARIO\Desktop\HPDS\SimulatorServer\xmlFiles" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="TomEE Server.Simulator">
     <configuration name="Lab" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="backend.main.Lab" />
       <module name="RestaurantSimulator" />
@@ -237,8 +281,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Lab" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -444,14 +488,11 @@
       <workItem from="1593188093898" duration="2979000" />
       <workItem from="1593191099209" duration="1102000" />
       <workItem from="1593192545214" duration="161000" />
-      <workItem from="1593192722087" duration="2613000" />
-    </task>
-    <task id="LOCAL-00025" summary="Solved bugs of client routines when used BestRoutineStrategy.">
-      <created>1586482886885</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1586482886885</updated>
+      <workItem from="1593192722087" duration="2798000" />
+      <workItem from="1593206326222" duration="86000" />
+      <workItem from="1593278852853" duration="6831000" />
+      <workItem from="1593302940412" duration="6395000" />
+      <workItem from="1593372873868" duration="11375000" />
     </task>
     <task id="LOCAL-00026" summary="Now companies can close when its going bad and there can be new companies. Also restaurants choose a different strategy depending on the finances. Finally, some refactoring of all code.">
       <created>1586561495591</created>
@@ -789,7 +830,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593195296227</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Refactoring of code and added libraries for publishing bills in the server execution.">
+      <created>1593195500962</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1593195500962</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,7 +845,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Improved the client group table part for the user." />
     <MESSAGE value="added Settings for restaurant in front end." />
     <MESSAGE value="added Settings for provider in front end." />
     <MESSAGE value="Refactoring." />
@@ -822,7 +869,8 @@
     <MESSAGE value="Refactoring of names of classes." />
     <MESSAGE value="added Publisher module for publishing bills." />
     <MESSAGE value="Refactoring of code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of code." />
+    <MESSAGE value="Refactoring of code and added libraries for publishing bills in the server execution." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring of code and added libraries for publishing bills in the server execution." />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="198" key="#Auto_Import" timestamp="1589659976696">
@@ -833,10 +881,6 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="205" key="#BuildArtifactsBeforeRunChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1592598656066" />
-    <state x="552" y="198" key="#Inspections" timestamp="1584658979601">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="198" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1584658979601" />
     <state x="552" y="181" key="#Plugins" timestamp="1593192949361">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -845,14 +889,6 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="331" y="58" width="910" height="683" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1592611219049" />
-    <state x="552" y="198" key="#SQL_Dialects" timestamp="1584642489022">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="198" key="#SQL_Dialects/0.0.1920.1080@0.0.1920.1080" timestamp="1584642489022" />
-    <state x="552" y="198" key="#SQL_Resolution_Scopes" timestamp="1584660745516">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="198" key="#SQL_Resolution_Scopes/0.0.1920.1080@0.0.1920.1080" timestamp="1584660745516" />
     <state x="657" y="145" key="#Simulator" timestamp="1592604523976">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -925,10 +961,6 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1593191633045" />
-    <state x="690" y="287" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1584644533170">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="690" y="287" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584644533170" />
     <state x="442" y="506" key="#xdebugger.XInspectDialog" timestamp="1586477823821">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -937,10 +969,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="715" y="243" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586477840001" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1593195295589">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1593195500302">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1593195295589" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1593195500302" />
     <state x="0" y="0" key="DiffContextDialog" timestamp="1593194620759">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -949,38 +981,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="519" y="141" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1593194309930" />
-    <state width="1293" height="292" key="GridCell.Tab.0.bottom" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.0.bottom" timestamp="1593387494697">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.0.center" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494697" />
+    <state width="1293" height="292" key="GridCell.Tab.0.center" timestamp="1593387494697">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.0.left" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494697" />
+    <state width="1293" height="292" key="GridCell.Tab.0.left" timestamp="1593387494697">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.0.right" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494697" />
+    <state width="1293" height="292" key="GridCell.Tab.0.right" timestamp="1593387494697">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.1.bottom" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494697" />
+    <state width="1293" height="292" key="GridCell.Tab.1.bottom" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.1.center" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
+    <state width="1293" height="292" key="GridCell.Tab.1.center" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.1.left" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
+    <state width="1293" height="292" key="GridCell.Tab.1.left" timestamp="1593387494697">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.1.right" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494697" />
+    <state width="1293" height="292" key="GridCell.Tab.1.right" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
+    <state width="1293" height="292" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
     <state width="1293" height="292" key="GridCell.Tab.10.bottom" timestamp="1592598618391">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -997,22 +1029,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1293" height="292" key="GridCell.Tab.10.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592598618390" />
-    <state width="1293" height="292" key="GridCell.Tab.2.bottom" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.2.bottom" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.2.center" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
+    <state width="1293" height="292" key="GridCell.Tab.2.center" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.2.left" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
+    <state width="1293" height="292" key="GridCell.Tab.2.left" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
-    <state width="1293" height="292" key="GridCell.Tab.2.right" timestamp="1593195269652">
+    <state width="1293" height="292" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
+    <state width="1293" height="292" key="GridCell.Tab.2.right" timestamp="1593387494698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1293" height="292" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593195269652" />
+    <state width="1293" height="292" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1593387494698" />
     <state width="1293" height="292" key="GridCell.Tab.3.bottom" timestamp="1592939709661">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1057,10 +1089,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="744" y="96" width="965" height="851" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1593195336422" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1593195300798">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1593195506621">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1593195300798" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1593195506621" />
     <state width="968" height="548" key="XDebugger.FullValuePopup" timestamp="1586285073433">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -1069,10 +1101,6 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="465" y="288" key="caller.chooser.dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1585863196596" />
-    <state x="676" y="153" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1584660711898">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="676" y="153" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584660711898" />
     <state x="533" y="293" width="607" height="350" key="com.intellij.ide.util.TipDialog" timestamp="1593191139337">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

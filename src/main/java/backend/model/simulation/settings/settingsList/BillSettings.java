@@ -19,7 +19,7 @@ public class BillSettings{
         conceptsTable.put(EatingBill.class.getSimpleName(),"Bill of a eating.");
         conceptsTable.put(ProductPurchase.class.getSimpleName(),"Purchase of a product for the restaurant.");
         conceptsTable.put(ProductRefund.class.getSimpleName(),"Refund of a product in bad conditions.");
-        conceptsTable.put(Payroll.class.getSimpleName(),"Payroll o a worker.");
+        conceptsTable.put(Payroll.class.getSimpleName(),"Payroll of a worker.");
         conceptsTable.put(ServiceBill.class.getSimpleName(),"Service for company.");
         conceptsTable.put(BuildingInversion.class.getSimpleName(),"Mortgage for company.");
     }

@@ -51,6 +51,14 @@ tr:hover {background-color: #f5f5f5;}
     border: none;
 }
 
+.inline-button input[type=submit]{
+    margin-left: 10px;
+    padding: 12px;
+    color: white;
+    background-color: rgb(112,146,190);
+    border: none;
+}
+
 input[type=range]{
     width: 315px;
 }
@@ -84,15 +92,34 @@ input[type=range]{
 
 .container{
     max-width: 1800px;
+    height: 1500px;
     margin: auto;
     background-color: rgb(233, 233, 233);
 }
 
-.my-body{
-    height: 100vh;
+h2{
+    color: rgb(112,146,190);
+    font-size: 25px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+h3{
+    color: darkblue;
+    font-size: 20px;
+    font-family: "Arial", serif;
+    padding: 5px;
+    margin: 5px;
+}
+
+label{
+    font-size: 17px;
 }
 
 .main-header{
+    max-width: 1800px;
+    margin: auto;
     background-color: rgb(112,146,190);
     padding-top: 15px;
     padding-bottom: 15px;
@@ -100,7 +127,7 @@ input[type=range]{
 }
 
 .main-header__container{
-    width: 25%;
+    width: 20%;
     padding-left: 15px;
 }
 
@@ -114,8 +141,12 @@ input[type=range]{
     align-items: center;
     top: 50%;
     right: 15px;
-    width: 75%;
+    width: 80%;
     flex-direction: row;
+}
+
+.nav-settings a{
+    font-size: 0.8em;
 }
 
 .myForm input, .main-a button{
@@ -137,7 +168,7 @@ input[type=range]{
 
 .event-box {
     border: 2px solid rgb(112,146,190);
-    height: 300px;
+    height: 650px;
     width: auto;
     overflow-y: scroll;
     background-color: white;
@@ -153,67 +184,35 @@ input[type=range]{
 .container__content{
     margin: 10px;
     display: table-cell;
+
 }
 
-.left-content{
-    width: 24%;
-    padding: 5px 0 0 20px;
-    margin-left: 10px;
-    vertical-align: top;
+.main-controller{
     border-right: 4px solid rgb(112,146,190);
     border-bottom: 4px solid rgb(112,146,190);
 }
 
-.left-content h2{
-    color: rgb(112,146,190);
-    font-size: 20px;
-    font-family: "Arial", serif;
-    padding: 5px;
-    margin: 5px;
+.left-content{
+    padding: 5px 0 0 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: top;
+    width: 400px;
 }
+
 
 .left-content label{
     font-size: 18px;
+    width: 350px;
 }
 
 .right-content{
-    width: 35%;
-    padding: 5px;
-    vertical-align: top;
-}
-
-.right-content h2{
-    color: rgb(112,146,190);
-    font-size: 20px;
-    font-family: "Arial", serif;
-    padding: 5px;
-    margin: 5px;
-}
-
-.main-content{
-    width: 35%;
-    padding: 5px 5px 5px 20px;
-    vertical-align: top;
-}
-
-.main-content h2{
-    color: rgb(112,146,190);
-    font-size: 20px;
-    font-family: "Arial", serif;
-    padding: 5px;
-    margin: 5px;
+    width: 1400px;
 }
 
 .bottom-content{
     margin: 10px;
-}
-
-.bottom h2{
-    color: rgb(112,146,190);
-    font-size: 20px;
-    font-family: "Arial", serif;
-    padding: 5px;
-    margin: 5px;
+    width: 400px;
 }
 
 .bottom{
@@ -228,15 +227,32 @@ input[type=range]{
     font-size: 18px;
 }
 
+.searcher{
+    height:auto;
+    width: 600px;
+    display: inline-block;
+    padding: 10px;
+}
+
+
 .search-table{
-    overflow-y:scroll;
-    height:250px;
+    vertical-align: top;
+    overflow-y:auto;
+    height:500px;
     width: 600px;
     display: none;
+    padding: 10px;
 }
 
 .search-table table{
     width: 580px;
+}
+
+.simulable-table{
+    vertical-align: top;
+    overflow-y:scroll;
+    height:350px;
+    width: auto;
 }
 
 .count-table{
@@ -246,5 +262,53 @@ input[type=range]{
 }
 
 .count-table h2{
+    text-align: center;
+}
+
+.left{
+   float: left;
+   width: 45%;
+   height: 700px;
+   padding: 5px 5px 5px 20px;
+   vertical-align: top;
+}
+
+.right{
+    float: left;
+    height: auto;
+    width: 50%;
+    padding: 5px;
+    vertical-align: top;
+    display: none;
+}
+
+.down{
+    clear: both;
+    height: auto;
+    width: auto;
+}
+
+.button-group{
+    margin: 10px;
+    padding: 10px;
+}
+
+.settings-container div{
+    padding: 10px;
+    margin: 10px;
+}
+
+.settings-container label{
+    width: auto;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.align-center{
+    text-align: center;
+}
+
+input[type=text]{
     text-align: center;
 }

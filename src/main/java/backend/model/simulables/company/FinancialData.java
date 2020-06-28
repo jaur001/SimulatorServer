@@ -7,9 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FinancialData implements Cloneable {
-    /*
-    beneficios, total del activo, total del pasivo, patrimonio neto, capital social, tesoreria, compras, ventas
-     */
     private double totalActive;   // total del activo
     private double totalPassive;  // total del pasivo
 

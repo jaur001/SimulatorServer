@@ -3,6 +3,7 @@ package backend.model.event.events.company.changes;
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
+import backend.utils.EuroFormatter;
 
 public class NewServiceCompanyEvent extends GenericEvent<ComplexCompany> {
 
@@ -16,6 +17,6 @@ public class NewServiceCompanyEvent extends GenericEvent<ComplexCompany> {
     @Override
     public String getMessage() {
         return simulable.getName() + " has new Service: " + serviceCompany.getName()
-                + " with a cost of " + serviceCompany.getPrice() + ".";
+                + " with a cost of " + EuroFormatter.formatEuro(serviceCompany.getPrice()) + ".";
     }
 }

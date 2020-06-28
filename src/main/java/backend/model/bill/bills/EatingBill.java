@@ -6,6 +6,7 @@ import backend.model.bill.Use;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
 import backend.model.simulation.settings.settingsList.BillSettings;
+import backend.utils.EuroFormatter;
 
 public class EatingBill extends CFDIBill{
     private static final Type type = Type.income;
@@ -32,6 +33,7 @@ public class EatingBill extends CFDIBill{
 
     @Override
     public String getMessage() {
-        return this.getReceiverName() + " has gone to eat to " + this.getIssuerName() + ", amount: " + this.getTotal();
+        return this.getReceiverName() + " has gone to eat to " + this.getIssuerName()
+                + ", amount: " + EuroFormatter.formatEuro(this.getTotal()) + ".";
     }
 }

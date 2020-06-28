@@ -6,6 +6,7 @@ import backend.model.bill.Use;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
 import backend.model.simulation.settings.settingsList.BillSettings;
+import backend.utils.EuroFormatter;
 
 public class ProductRefund extends CFDIBill {
 
@@ -36,6 +37,6 @@ public class ProductRefund extends CFDIBill {
         return this.getReceiverName() + " has refund "
                 + this.getProvider().getProduct() + " from "
                 + this.getIssuerName() + ", amount: "
-                + this.getTotal();
+                + EuroFormatter.formatEuro(this.getTotal()) + ".";
     }
 }

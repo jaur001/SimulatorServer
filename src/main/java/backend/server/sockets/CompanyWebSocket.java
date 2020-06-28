@@ -1,6 +1,7 @@
 package backend.server.sockets;
 import backend.model.simulables.company.Company;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
+import backend.utils.EuroFormatter;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -31,6 +32,8 @@ public class CompanyWebSocket {
         simulables.append("<th>NIF</th>");
         simulables.append("<th>Name</th>");
         simulables.append("<th>Benefits</th>");
+        simulables.append("<th>Total Active</th>");
+        simulables.append("<th>Total Passive</th>");
         simulables.append("<th>Treasury</th>").append("</tr>");
         SimulationFollowAdministrator.getFollowedSimulables().stream()
                 .filter(simulable -> simulable instanceof Company)
@@ -44,8 +47,10 @@ public class CompanyWebSocket {
         simulables.append("<tr>");
         simulables.append("<td>").append(company.getNIF()).append("</td>");
         simulables.append("<td>").append(company.getName()).append("</td>");
-        simulables.append("<td>").append(company.getFinancialData().getLastMonthBenefits()).append("</td>");
-        simulables.append("<td>").append(company.getFinancialData().getTreasury()).append("</td>");
+        simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getLastMonthBenefits())).append("</td>");
+        simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTotalActive())).append("</td>");
+        simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTotalPassive())).append("</td>");
+        simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTreasury())).append("</td>");
         simulables.append("</tr>");
     }
 

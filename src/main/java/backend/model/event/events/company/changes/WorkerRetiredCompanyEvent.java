@@ -3,6 +3,7 @@ package backend.model.event.events.company.changes;
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
+import backend.utils.EuroFormatter;
 
 public class WorkerRetiredCompanyEvent extends GenericEvent<ComplexCompany> {
 
@@ -16,6 +17,6 @@ public class WorkerRetiredCompanyEvent extends GenericEvent<ComplexCompany> {
     @Override
     public String getMessage() {
         return simulable.getName() + " has retired the " + worker.getJob() +": " + worker.getName()
-                + " with a pension of " + worker.getSalary() + ".";
+                + " with a pension of " + EuroFormatter.formatEuro(worker.getSalary()) + ".";
     }
 }

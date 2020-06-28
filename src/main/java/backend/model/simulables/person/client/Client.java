@@ -10,7 +10,7 @@ import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.r
 import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
-
+import backend.utils.EuroFormatter;
 
 
 public class Client implements Simulable, Collector{
@@ -158,6 +158,10 @@ public class Client implements Simulable, Collector{
     }
 
     public String getSalaryToShow() {
-        return this.getSalary()==0.0?"Unemployed":this.getSalary()+"";
+        return this.getSalary()==0.0?"Unemployed": EuroFormatter.format(this.getSalary());
+    }
+
+    public String getCurrencySalary() {
+        return this.getSalary()==0.0?"Unemployed": EuroFormatter.formatEuro(this.getSalary());
     }
 }

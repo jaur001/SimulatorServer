@@ -6,6 +6,7 @@ import backend.model.bill.Use;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.BillSettings;
+import backend.utils.EuroFormatter;
 
 public class Payroll extends CFDIBill{
     private static final Type type = Type.payroll;
@@ -30,8 +31,8 @@ public class Payroll extends CFDIBill{
 
     @Override
     public String getMessage() {
-        return "The " + this.getWorker().getJob() + ":"
-                + this.getReceiverName() + " has received the payroll from "
-                + this.getIssuerName() +", amount: " +this.getTotal();
+        return "The " + this.getWorker().getJob() + ":" + this.getReceiverName()
+                + " has received the payroll from " + this.getIssuerName()
+                +", amount: " + EuroFormatter.formatEuro(this.getTotal()) + ".";
     }
 }

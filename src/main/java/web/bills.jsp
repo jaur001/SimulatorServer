@@ -1,18 +1,16 @@
 <%@ page import="backend.model.bill.generator.XMLBill" %>
 <%@ page import="java.util.List" %>
+<%@ page import="backend.utils.EuroFormatter" %>
+<%@ page import="backend.model.simulation.timeLine.TimeLine" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
     <head>
         <title>Bills</title>
-        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
     </head>
-    <script>
-        function updatePage (){
-            document.getElementById('pageForm').submit();
-        }
-    </script>
+    <script src="JS/pagination.js"></script>
     <body>
-        <div class="main-header container">
+        <div class="main-header">
             <div class="main-header__container">
                 <h1 class="header">Bill Data Generator</h1>
             </div>
@@ -20,41 +18,43 @@
                 <a class="main-a" href="index.jsp"><button>Home</button></a>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowClientsCommand">
-                    <input type="submit"  value="Clients">
+                    <input type="submit" value="Clients">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowRestaurantsCommand">
-                    <input type="submit"  value="Restaurants">
+                    <input type="submit" value="Restaurants">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowProvidersCommand">
-                    <input type="submit"  value="Providers">
+                    <input type="submit" value="Providers">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowServicesCommand">
-                    <input type="submit"  value="Service Companies">
+                    <input type="submit" value="Service Companies">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowWorkersCommand">
-                    <input type="submit"  value="Workers">
+                    <input type="submit" value="Workers">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowBillsCommand">
-                    <input type="submit"  value="Bills">
+                    <input type="submit" value="Bills">
                 </form>
                 <form class="myForm" method="post" action="FrontControllerServlet">
                     <input type="hidden" name="command" value="ShowSettingsCommand">
-                    <input type="submit"  value="Settings">
+                    <input type="submit" value="Settings">
                 </form>
             </nav>
         </div>
         <div class="container">
-            <h1>Bills</h1>
+            <h2>Bills</h2>
             <% List<XMLBill> billList = (List<XMLBill>) request.getAttribute("list"); %>
             <% int actualPage = (Integer) request.getAttribute("page"); %>
             <% int length = (Integer) request.getAttribute("length"); %>
-            <form id="pageForm" method="post" action="FrontControllerServlet">
+            <h3><%="Current Date: " + TimeLine.getDate().toString()%></h3>
+            <form class="inline-button" id="pageForm" method="post" action="FrontControllerServlet">
                 <input type="hidden" name="command" value="ShowBillsCommand">
+                <label>Page</label>
                 <label>
                     <select onchange="updatePage()" id="page" name="page">
                         <%for (int i = 1; i <= length; i++) {
@@ -101,13 +101,13 @@
                             <td><%=bill.getDate()%></td>
                             <td><%=bill.getType()%></td>
                             <td><%=bill.getCurrency()%></td>
-                            <td><%=bill.getSubtotal()%></td>
-                            <td><%=bill.getTaxRate()%></td>
-                            <td><%=bill.getTotal()%></td>
+                            <td><%=EuroFormatter.formatEuro(bill.getSubtotal())%></td>
+                            <td><%=bill.getTaxRate() +" %"%></td>
+                            <td><%=EuroFormatter.formatEuro(bill.getTotal())%></td>
                             <td><%=bill.getStreet()%></td>
                             <td><%=bill.getConcept()%></td>
                             <td>
-                                <form method="post" action="FrontControllerServlet">
+                                <form class="inline-button" method="post" action="FrontControllerServlet">
                                     <input type="hidden" name="command" value="DownloadCommand">
                                     <input type="hidden" name="ID" value="<%=bill.getUUID()%>">
                                     <input type="submit"  value="Download">
@@ -119,9 +119,4 @@
             </table>
         </div>
     </body>
-    <footer>
-        <div class="footer">
-            <div class="container">Author: Juan Alberto Ureña Rodriguez</div>
-        </div>
-    </footer>
 </html>

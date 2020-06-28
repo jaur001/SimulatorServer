@@ -3,20 +3,12 @@
 <html>
   <head>
     <title>Restaurant Simulator</title>
-    <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/frontAdministrator.js"></script>
+    <script src="JS/mainPageAdministrator.js"></script>
   </head>
-  <script>
-    function showResult() {
-      document.getElementById("divSearchTable").style.display="inline-block";
-    }
-    function hideResult() {
-      document.getElementById("divSearchTable").style.display="none";
-    }
-  </script>
   <body>
-    <div class="main-header container">
+    <div class="main-header">
       <div class="main-header__container">
         <h1 class="header">Bill Data Generator</h1>
       </div>
@@ -52,9 +44,9 @@
         </form>
       </nav>
     </div>
-    <div class="container my-body">
-      <div class="main__container">
-        <div class="container__content left-content">
+    <div class="container">
+      <div class="container__content left-content">
+        <div class="main-controller">
           <h2>Main Controller</h2>
           <form class="range-button">
             <label class="range-block" for="speed">Speed</label>
@@ -106,72 +98,57 @@
             <input type="button" id="restart" value="Restart">
           </form>
         </div>
-        <div class="container__content main-content">
+        <div class="bottom-content">
+          <div class="bottom search-side">
+            <form class="inline-button">
+              <div class="searcher">
+                <h2>Search Simulable</h2>
+                <label class="range-block" for="simulableOptions">Search</label>
+                <select onchange="changeOptions()" id="simulableOptions">
+                  <option value="person" selected>Person</option>
+                  <option value="company">Company</option>
+                </select>
+                <label class="range-block" for="searchText">Text to search</label>
+                <input type="text" id="searchText" value="">
+                <label>
+                  <label class="range-block" for="searchOptions">Search by</label>
+                  <select id="searchOptions">
+                    <option value="NIF">NIF</option>
+                    <option value="Name">Name</option>
+                    <option value="Job">Job</option>
+                    <option value="Salary">Salary</option>
+                  </select>
+                </label>
+                <br><br>
+                <input type="hidden" id="searchCommand" value="SearchCommand">
+                <input type="button" id="search" value="Search">
+                <input type="button" id="deleteSearch" value="End Search">
+              </div>
+              <div class="search-table" id="divSearchTable">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="container__content right-content">
+        <div class="left">
           <h2>Event Reporter</h2>
           <label for="eventBox"></label>
           <div class="event-box" id="eventBox">
           </div>
         </div>
-        <div class="container__content right-content">
+        <div id="followedSimulables" class="right">
           <h2>Followed Agents</h2>
-          <div id="divPersonTable">
+          <div class="simulable-table" id="divPersonTable">
             <table id="personTable">
-              <tr>
-                <th>NIF</th>
-                <th>Full Name</th>
-                <th>Age</th>
-                <th>Job</th>
-                <th>Salary</th>
-                <th>Budget</th>
-              </tr>
             </table>
           </div>
-          <br>
-          <div id="divCompanyTable">
+          <div class="simulable-table" id="divCompanyTable">
             <table id="companyTable">
-              <tr>
-                <th>NIF</th>
-                <th>Company Name</th>
-                <th>Company Type</th>
-                <th>Treasury</th>
-                <th>Benefits</th>
-              </tr>
             </table>
           </div>
         </div>
-      </div>
-      <div class="bottom-content">
-        <div class="bottom search-side">
-          <h2>Search Simulable</h2>
-          <form class="inline-button">
-            <label class="range-block" for="simulableOptions">Search</label>
-            <br>
-            <select onchange="changeOptions()" id="simulableOptions">
-              <option value="person" selected>Person</option>
-              <option value="company">Company</option>
-            </select>
-            <label class="range-block" for="searchText">Text to search</label>
-            <br>
-            <input type="text" id="searchText" value="">
-            <label>
-              <label class="range-block" for="searchOptions">Search by</label>
-              <br>
-              <select id="searchOptions">
-                <option value="NIF">NIF</option>
-                <option value="Name">Name</option>
-                <option value="Job">Job</option>
-                <option value="Salary">Salary</option>
-              </select>
-            </label>
-            <br><br>
-            <input type="hidden" id="searchCommand" value="SearchCommand">
-            <input onclick="showResult()" type="button" id="search" value="Search">
-            <input onclick="hideResult()" type="button" id="deleteSearch" value="End Search">
-            <div class="search-table" id="divSearchTable">
-            </div>
-          </form>
-        </div>
-        <div class="bottom count-table">
+        <div class="down bottom count-table">
           <h2>Agents Counter</h2>
           <table id="simulableCountTable">
             <tr>

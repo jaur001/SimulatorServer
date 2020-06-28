@@ -2,6 +2,7 @@ package backend.server.commands.simulables;
 
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
+import backend.utils.EuroFormatter;
 import backend.utils.SearchUtils;
 import backend.server.searcher.Search;
 import backend.server.searcher.SearchBy;
@@ -77,8 +78,8 @@ public class SearchCommand extends FrontCommand {
         out.println("<tr>");
         out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + company.getNIF() + "</td>");
         out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>" + company.getName() + "</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+company.getFinancialData().getLastMonthBenefits()+"</td>");
-        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+company.getFinancialData().getTreasury()+"</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+ EuroFormatter.format(company.getFinancialData().getLastMonthBenefits())+"</td>");
+        out.println("<td style= rowspan='7' align='center' bgcolor='#f8f8f8'>"+ EuroFormatter.format(company.getFinancialData().getTreasury())+"</td>");
         out.println("</tr>");
     }
 }

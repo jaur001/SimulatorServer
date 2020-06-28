@@ -6,6 +6,7 @@ import backend.model.bill.Use;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.ServiceCompany;
 import backend.model.simulation.settings.settingsList.BillSettings;
+import backend.utils.EuroFormatter;
 
 public class ServiceBill extends CFDIBill {
 
@@ -24,6 +25,9 @@ public class ServiceBill extends CFDIBill {
 
     @Override
     public String getMessage() {
-        return company.getName() + " has payed the " + serviceCompany.getProduct().toString() + " service to " + serviceCompany.getName() + ".";
+        return company.getName() + " has payed the "
+                + serviceCompany.getProduct().toString()
+                + " service to " + serviceCompany.getName()
+                + ", amount: " + EuroFormatter.formatEuro(this.getTotal()) + ".";
     }
 }

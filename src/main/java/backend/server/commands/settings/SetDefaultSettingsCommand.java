@@ -7,6 +7,7 @@ public class SetDefaultSettingsCommand extends FrontCommand {
     @Override
     public void process() {
         SettingsBuilder.setDefault();
+        SettingsBuilder.setCurrentSettingsToSession(request);
         forward("/index.jsp");
     }
 }

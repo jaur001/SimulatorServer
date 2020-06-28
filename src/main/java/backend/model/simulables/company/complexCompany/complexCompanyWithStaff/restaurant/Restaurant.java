@@ -12,15 +12,16 @@ import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyC
 import backend.model.simulables.person.client.Client;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
+import backend.utils.EuroFormatter;
 import backend.utils.MathUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Restaurant extends ComplexWorkerWithStaff {
-    private PriceRange priceRange;
-    private int tables;
-    private AtomicInteger tablesAvailable;
+    private final PriceRange priceRange;
+    private final int tables;
+    private final AtomicInteger tablesAvailable;
 
     public Restaurant(String companyName, String telephoneNumber, String street, PriceRange priceRange, int tables) {
         this(new RestaurantNIFCreator().create(), companyName, telephoneNumber, street, priceRange, tables);

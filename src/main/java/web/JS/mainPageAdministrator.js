@@ -3,8 +3,24 @@ let personWorker;
 let companyWorker;
 let simulableCountWorker;
 let isRunning = false;
-startWorkers();
-setTimeout(stopWorkers, 500);
+let eventContent = null;
+
+function showResult() {
+    document.getElementById("divSearchTable").style.display="block";
+}
+
+function hideResult() {
+    document.getElementById("divSearchTable").style.display="none";
+}
+
+function showTables() {
+    document.getElementById("followedSimulables").style.display="block";
+
+}
+
+function hideTables() {
+    document.getElementById("followedSimulables").style.display="none";
+}
 
 function changeOptions(){
     let val = $('#simulableOptions').val();
@@ -36,6 +52,7 @@ function startEventWorker() {
         eventWorker = new Worker("JS/eventWorker.js");
     }
     eventWorker.onmessage = function (response) {
+        eventContent +=response.data;
         $('#eventBox').append(response.data);
         if($('#eventBox').find("p").length>=100)
             $('#eventBox').find("p").first().remove();
@@ -142,6 +159,9 @@ function updateChanges() {
 }
 
 $(document).ready(function() {
+    startWorkers();
+    setTimeout(stopWorkers, 500);
+    if(eventContent!=null)$('#eventBox').html(eventContent);
     $('#speed').on('change',function() {
         updateQuickSettings();
     });
@@ -170,6 +190,7 @@ $(document).ready(function() {
         }, function() {
             isRunning = !isRunning;
             receiveData();
+            showTables();
         });
     });
     $('#restart').click(function() {
@@ -178,7 +199,10 @@ $(document).ready(function() {
             command: command
         }, function() {
             isRunning = false;
-            $('#eventBox').val("");
+            $('#eventBox').html("");
+            hideResult();
+            hideTables();
+
         });
     });
     $('#search').click(function() {
@@ -193,10 +217,12 @@ $(document).ready(function() {
             type: type
         }, function(response) {
             $('#divSearchTable').html(response);
+            showResult();
         });
     });
     $('#deleteSearch').click(function() {
         $('#divSearchTable').html("");
+        hideResult();
     });
     $('#divSearchTable').on('click', '#searchTable tr' ,function() {
         let NIF = $(this).find("td")[0].innerHTML;

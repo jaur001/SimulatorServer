@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
 import backend.model.simulation.administration.centralControl.Simulation;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.ServiceData;
 import backend.utils.MathUtils;
 
@@ -11,7 +11,7 @@ public class ServiceSettings {
     private static double serviceProbability = 1.0;
 
     private static ServiceData getServiceDataSettings() {
-        return SimulationDataController.getServiceData();
+        return SimulationDataAdministrator.getServiceData();
     }
 
     public static double getInitialSocialCapital() {

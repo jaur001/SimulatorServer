@@ -15,7 +15,7 @@ import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsList.ClientSettings;
 import backend.initializers.RoutineThread;
 import backend.initializers.WorkerSearcherThread;
@@ -79,8 +79,8 @@ public class SimulationInitializer {
     private static List<Simulable> createSimulables() {
         List<Simulable> simulableList = new CopyOnWriteArrayList<>();
         simulableList.add(new Bank());
-        simulableList.addAll(SimulationDataController.getSimulationData().getCompanyList());
-        simulableList.addAll(SimulationDataController.getSimulationData().getClientList());
+        simulableList.addAll(SimulationDataAdministrator.getSimulationData().getCompanyList());
+        simulableList.addAll(SimulationDataAdministrator.getSimulationData().getClientList());
         return simulableList;
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SimulationBillAdministrator {
 
-    private static SimulationBillData simulationBillData = new SimulationBillData();
+    private static final SimulationBillData simulationBillData = new SimulationBillData();
     private static final TableAdministrator administrator = new SQLiteTableAdministrator();
 
     public static void addBill(XMLBill bill){
@@ -24,18 +24,16 @@ public class SimulationBillAdministrator {
     public static void resetBills(){
         simulationBillData.reset();
         try {
-            if(getBillCount() !=0)
-                administrator.deleteAll(XMLBill.class);
+            administrator.deleteAll(XMLBill.class);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Database is locked, could not delete Bills of last Simulation");
         }
-        BillNIFCreator.initInitialValue();
-        DatabaseManager.setBillInitialPrimaryKeyValue();
+        BillNIFCreator.reset();
     }
 
     public static List<XMLBill> getBillPage(int page) {
         int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from, simulationBillData.getSize());
+        int to = DatabaseManager.getTo(from, getBillCount());
         return simulationBillData.getBillList(from, to);
         //return getFromDatabase(page);
     }

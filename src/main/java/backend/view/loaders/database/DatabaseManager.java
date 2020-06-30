@@ -13,7 +13,6 @@ import java.util.*;
 
 public class DatabaseManager {
 
-    public static final int LIST_LIMIT = 1000;
     private static List<Header> headers = new LinkedList<>();
     private static final int PAGE_LENGTH = 30;
 
@@ -90,7 +89,7 @@ public class DatabaseManager {
         parameters.put("filePath",new Field(Restriction.NOT_NULL, DataType.text));
         parameters.put("fileName",new Field(Restriction.NOT_NULL_UNIQUE, DataType.text));
         headers.add(new Header("Bill",parameters));
-        setBillInitialPrimaryKeyValue();
+        headers.get(3).setInitialPrimaryKeyValue(BillNIFCreator.getInitialValue());
     }
 
     private static void createGeneralDataTable() {
@@ -167,10 +166,6 @@ public class DatabaseManager {
         headers.get(9).setInitialPrimaryKeyValue(0);
     }
 
-    public static void setBillInitialPrimaryKeyValue(){
-        headers.get(3).setInitialPrimaryKeyValue(BillNIFCreator.getInitialValue());
-    }
-
     public static int getPageLength() {
         return PAGE_LENGTH;
     }
@@ -179,9 +174,6 @@ public class DatabaseManager {
         return headers;
     }
 
-    public static int getListLimit() {
-        return LIST_LIMIT;
-    }
 
     public static int getFrom(int page) {
         return PAGE_LENGTH*(page-1);

@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.bill.bills.*;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.ClientData;
 import backend.utils.MathUtils;
 import org.apache.commons.math3.distribution.NormalDistribution;
@@ -25,7 +25,7 @@ public class BillSettings{
     }
 
     private static ClientData getClientDataSettings() {
-        return SimulationDataController.getClientData();
+        return SimulationDataAdministrator.getClientData();
     }
 
 

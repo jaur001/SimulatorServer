@@ -90,17 +90,11 @@ public abstract class ComplexCompany extends Company {
     protected void payCompanyDebts() {
         payProvider();
         payServices();
-        payWorkers();
     }
 
     protected abstract void searchBetterProviders();
 
     protected abstract void searchBetterNeededServices();
-
-    private void payWorkers() {
-        financialData.getPayrolls()
-                .forEach((worker, salary) -> Bank.makeTransaction(new PayrollTransaction(this,worker,salary)));
-    }
 
     protected void payServices() {
         financialData.getDebtsTable().keySet().stream()

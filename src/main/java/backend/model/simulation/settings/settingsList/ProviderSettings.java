@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Product;
 import backend.model.simulation.administration.centralControl.Simulation;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.ProviderData;
 import backend.utils.MathUtils;
 
@@ -11,7 +11,7 @@ public class ProviderSettings{
     private static double providerProbability = 1.0;
 
     private static ProviderData getProviderDataSettings() {
-        return SimulationDataController.getProviderData();
+        return SimulationDataAdministrator.getProviderData();
     }
 
     public static double getInitialSocialCapital() {

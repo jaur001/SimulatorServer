@@ -19,7 +19,7 @@ public class RestaurantNIFCreator implements NIFCreator {
     }
 
 
-    public void reset(){
+    public static void reset(){
         count.set(INITIAL_VALUE);
     }
 

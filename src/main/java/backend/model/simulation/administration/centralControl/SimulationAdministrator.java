@@ -5,7 +5,7 @@ import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.simulableControl.SimulableController;
 
 public class SimulationAdministrator {
@@ -15,7 +15,7 @@ public class SimulationAdministrator {
     }
 
     private static SimulableController getSimulableController(){
-        return SimulationDataController.getSimulationData().getSimulableController();
+        return SimulationDataAdministrator.getSimulationData().getSimulableController();
     }
 
     public static boolean isNotAlreadyHired(Worker worker) {

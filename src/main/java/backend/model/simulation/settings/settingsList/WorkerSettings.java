@@ -3,7 +3,7 @@ package backend.model.simulation.settings.settingsList;
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.Simulation;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.WorkerData;
 import backend.utils.MathUtils;
 
@@ -12,7 +12,7 @@ public class WorkerSettings{
     private static double workerProbability = 1.0;
 
     public static WorkerData getWorkerDataSettings(){
-        return SimulationDataController.getWorkerData();
+        return SimulationDataAdministrator.getWorkerData();
     }
 
     public static double reduceSalaryDesired(double salaryDesired) {

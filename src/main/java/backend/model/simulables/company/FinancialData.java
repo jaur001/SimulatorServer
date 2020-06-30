@@ -67,9 +67,9 @@ public class FinancialData implements Cloneable {
         }
     }
 
-    public void addDebt(Worker worker, double amount) {
-        totalPassive+=amount;
-        payrolls.put(worker,amount);
+    public void addDebt(Worker worker) {
+        totalPassive+=worker.getSalary();
+        payrolls.put(worker,worker.getSalary());
     }
 
     public void removeDebt(Worker worker) {

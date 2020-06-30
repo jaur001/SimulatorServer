@@ -1,7 +1,5 @@
 package backend.model.simulables.bank;
 
-import backend.utils.MathUtils;
-
 public abstract class Transaction {
     protected EconomicAgent issuer;
     protected EconomicAgent receiver;
@@ -12,15 +10,6 @@ public abstract class Transaction {
         this.issuer = issuer;
         this.receiver = receiver;
         this.amount = amount;
-    }
-
-
-    public EconomicAgent getIssuer() {
-        return issuer;
-    }
-
-    public EconomicAgent getReceiver() {
-        return receiver;
     }
 
     public double getAmount() {
@@ -39,12 +28,12 @@ public abstract class Transaction {
     protected abstract double generateBill();
 
     protected void makeNormalTransaction(){
-        issuer.pay(amount*taxRate);
-        receiver.collect(amount*taxRate);
+        issuer.pay(amount*(1+taxRate));
+        receiver.collect(amount);
     }
 
     protected void makeInverseTransaction(){
-        receiver.pay(amount*taxRate);
-        issuer.collect(amount*taxRate);
+        receiver.pay(amount*(1+taxRate));
+        issuer.collect(amount);
     }
 }

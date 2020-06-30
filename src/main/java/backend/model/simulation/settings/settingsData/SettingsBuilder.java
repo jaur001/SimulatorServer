@@ -1,6 +1,6 @@
 package backend.model.simulation.settings.settingsData;
 
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,48 +8,48 @@ import javax.servlet.http.HttpServletRequest;
 public class SettingsBuilder {
 
     public static void setDefault() {
-        SimulationDataController.getGeneralSessionData().setDefault();
-        SimulationDataController.getClientSessionData().setDefault();
-        SimulationDataController.getRestaurantSessionData().setDefault();
-        SimulationDataController.getProviderSessionData().setDefault();
-        SimulationDataController.getServiceSessionData().setDefault();
-        SimulationDataController.getWorkerSessionData().setDefault();
+        SimulationDataAdministrator.getGeneralSessionData().setDefault();
+        SimulationDataAdministrator.getClientSessionData().setDefault();
+        SimulationDataAdministrator.getRestaurantSessionData().setDefault();
+        SimulationDataAdministrator.getProviderSessionData().setDefault();
+        SimulationDataAdministrator.getServiceSessionData().setDefault();
+        SimulationDataAdministrator.getWorkerSessionData().setDefault();
     }
 
     public static void build(GeneralData generalData, ClientData clientData, RestaurantData restaurantData,
                              ProviderData providerData, ServiceData serviceData, WorkerData workerData) {
-        SimulationDataController.getGeneralSessionData().init(generalData);
-        SimulationDataController.getClientSessionData().init(clientData);
-        SimulationDataController.getRestaurantSessionData().init(restaurantData);
-        SimulationDataController.getProviderSessionData().init(providerData);
-        SimulationDataController.getServiceSessionData().init(serviceData);
-        SimulationDataController.getWorkerSessionData().init(workerData);
+        SimulationDataAdministrator.getGeneralSessionData().init(generalData);
+        SimulationDataAdministrator.getClientSessionData().init(clientData);
+        SimulationDataAdministrator.getRestaurantSessionData().init(restaurantData);
+        SimulationDataAdministrator.getProviderSessionData().init(providerData);
+        SimulationDataAdministrator.getServiceSessionData().init(serviceData);
+        SimulationDataAdministrator.getWorkerSessionData().init(workerData);
     }
 
 
     public static GeneralData getGeneralData() {
-        return SimulationDataController.getGeneralData();
+        return SimulationDataAdministrator.getGeneralData();
     }
 
 
     public static ClientData getClientData() {
-        return SimulationDataController.getClientData();
+        return SimulationDataAdministrator.getClientData();
     }
 
     public static RestaurantData getRestaurantData() {
-        return SimulationDataController.getRestaurantData();
+        return SimulationDataAdministrator.getRestaurantData();
     }
 
     public static ProviderData getProviderData() {
-        return SimulationDataController.getProviderData();
+        return SimulationDataAdministrator.getProviderData();
     }
 
     public static ServiceData getServiceData() {
-        return SimulationDataController.getServiceData();
+        return SimulationDataAdministrator.getServiceData();
     }
 
     public static WorkerData getWorkerData() {
-        return SimulationDataController.getWorkerData();
+        return SimulationDataAdministrator.getWorkerData();
     }
 
     public static void setCurrentSettingsToSession(HttpServletRequest request) {

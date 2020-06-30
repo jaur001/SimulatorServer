@@ -1,5 +1,8 @@
 package backend.model.simulation.administration.data;
 
+import backend.model.NIFCreator.PersonNIFCreator;
+import backend.model.NIFCreator.RestaurantNIFCreator;
+import backend.model.NIFCreator.SecondaryNIFCreator;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
@@ -73,9 +76,16 @@ public class SimulationData {
     }
 
     public void reset() {
+        initNIFS();
         initSimulables();
         initSimulator();
         initSettings();
+    }
+
+    private void initNIFS() {
+        PersonNIFCreator.reset();
+        RestaurantNIFCreator.reset();
+        SecondaryNIFCreator.reset();
     }
 
     public void initSimulator() {
@@ -87,7 +97,7 @@ public class SimulationData {
     public void initSimulables() {
         companyList = new CopyOnWriteArrayList<>();
         clientList = new CopyOnWriteArrayList<>();
-        followedSimulables = new LinkedList<>();
+        followedSimulables = new CopyOnWriteArrayList<>();
     }
 
     private void initSettings() {

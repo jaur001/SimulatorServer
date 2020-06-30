@@ -3,7 +3,7 @@ package backend.main;
 import backend.implementations.SQLite.connector.DatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
 
 public class Main {
@@ -13,7 +13,7 @@ public class Main {
         CFDIBillGenerator.setUri("./out/artifacts/RestaurantSimulator_war_exploded/xmlFiles/");
         DatabaseConnector.setUri("jdbc:sqlite:out/artifacts/RestaurantSimulator_war_exploded/Simulator.db");
         SimulationBillAdministrator.resetBills();
-        SimulationDataController.initSimulationData();
+        SimulationDataAdministrator.initSimulationData();
         SimulatorSwitcher.startStop(false);
 
     }

@@ -1,13 +1,13 @@
 package backend.model.simulation.settings.settingsList;
 
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.settings.settingsData.data.GeneralData;
 
 public class GeneralSettings {
 
 
     private static GeneralData getGeneralDataSettings() {
-        return SimulationDataController.getGeneralData();
+        return SimulationDataAdministrator.getGeneralData();
     }
 
     public static int getClientCount() {

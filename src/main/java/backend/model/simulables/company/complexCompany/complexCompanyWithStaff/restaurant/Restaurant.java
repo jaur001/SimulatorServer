@@ -2,7 +2,7 @@ package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.
 
 import backend.model.NIFCreator.RestaurantNIFCreator;
 import backend.model.simulables.SimulableTester;
-import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexWorkerWithStaff;
+import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexCompanyWithStaff;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.Employer;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.RestaurantEmployer;
@@ -12,13 +12,12 @@ import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyC
 import backend.model.simulables.person.client.Client;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsList.RestaurantSettings;
-import backend.utils.EuroFormatter;
 import backend.utils.MathUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class Restaurant extends ComplexWorkerWithStaff {
+public class Restaurant extends ComplexCompanyWithStaff {
     private final PriceRange priceRange;
     private final int tables;
     private final AtomicInteger tablesAvailable;
@@ -70,6 +69,27 @@ public class Restaurant extends ComplexWorkerWithStaff {
 
     @Override
     public void simulate() {
+        workers.forEach(worker -> {
+            if(worker.getCompany()==null){
+                System.out.println("xd");
+            }
+            if(!worker.getCompany().getName().equals(companyName)){
+                System.out.println("xd");
+            }
+            if(worker.getSalary() == 0){
+                System.out.println("xd");
+            }
+        });
+        providers.forEach(provider -> {
+            if(!provider.getCompanyClientList().contains(this)){
+                System.out.println("xd");
+            }
+        });
+        services.forEach(serviceCompany -> {
+            if(!serviceCompany.getCompanyClientList().contains(this)){
+                System.out.println("xd");
+            }
+        });
         SimulableTester.changeSimulable(this);
         if(hasNotThisService(Service.Cleaning)) searcher.searchBetterService(Service.Cleaning);
         checkProducts();

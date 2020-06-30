@@ -11,6 +11,10 @@ public class SecondaryNIFCreator implements NIFCreator{
         return INITIAL_VALUE;
     }
 
+    public static void reset(){
+        count.set(INITIAL_VALUE);
+    }
+
     @Override
     public int create() {
         return count.getAndIncrement();

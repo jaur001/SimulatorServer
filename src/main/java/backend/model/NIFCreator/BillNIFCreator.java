@@ -7,18 +7,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BillNIFCreator implements NIFCreator {
 
-    private static int initialValue = 0;
     private static final int INITIAL_VALUE = 4000000;
-    private static AtomicInteger count;
+    private static final AtomicInteger count = new AtomicInteger(INITIAL_VALUE);
 
     public static int getInitialValue() {
-        if(initialValue == -1) initInitialValue();
-        return initialValue;
+        return INITIAL_VALUE;
     }
 
-    public static void initInitialValue() {
-        initialValue = INITIAL_VALUE + SimulationBillAdministrator.getBillCount();
-        count = new AtomicInteger(initialValue);
+    public static void reset(){
+        count.set(INITIAL_VALUE);
     }
 
     @Override

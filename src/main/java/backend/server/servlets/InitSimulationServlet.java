@@ -3,7 +3,7 @@ package backend.server.servlets;
 import backend.implementations.SQLite.connector.DatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
 import backend.model.simulation.settings.settingsData.SettingsBuilder;
 import backend.utils.FrontControllerUtils;
@@ -18,7 +18,7 @@ public class InitSimulationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
         initUris();
         SimulationBillAdministrator.resetBills();
-        SimulationDataController.initSimulationData();
+        SimulationDataAdministrator.initSimulationData();
         SettingsBuilder.setCurrentSettingsToSession(request);
         FrontControllerUtils.setQuickSettings(request);
         forwardToMainPage(request, response);

@@ -5,7 +5,6 @@ import backend.implementations.workerSearcher.strategy.strategies.complexStrateg
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.BestWorkerStrategy;
 import backend.implementations.workerSearcher.strategy.strategies.complexStrategy.strategies.LowestSalaryStrategy;
 import backend.model.simulables.company.complexCompany.Administrator;
-import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.administration.Contract;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.FinancialData;

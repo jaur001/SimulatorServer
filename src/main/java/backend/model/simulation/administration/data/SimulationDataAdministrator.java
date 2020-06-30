@@ -5,7 +5,7 @@ import backend.model.simulation.settings.settingsData.data.*;
 import backend.model.simulation.settings.settingsData.settingsData.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SimulationDataController {
+public class SimulationDataAdministrator {
 
     private static SimulationData simulationData;
 

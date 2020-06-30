@@ -140,10 +140,12 @@
         <div id="followedSimulables" class="right">
           <h2>Followed Agents</h2>
           <div class="simulable-table" id="divPersonTable">
+            <h3>People</h3>
             <table id="personTable">
             </table>
           </div>
           <div class="simulable-table" id="divCompanyTable">
+            <h3>Company</h3>
             <table id="companyTable">
             </table>
           </div>

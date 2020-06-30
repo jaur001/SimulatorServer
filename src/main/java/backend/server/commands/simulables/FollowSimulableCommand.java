@@ -1,6 +1,6 @@
 package backend.server.commands.simulables;
 
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.server.servlets.FrontCommand;
 
@@ -13,7 +13,7 @@ public class FollowSimulableCommand extends FrontCommand {
     }
 
     public void followSimulable(int NIF){
-        SimulationDataController.getTimeLine().getSimulableList().stream()
+        SimulationDataAdministrator.getTimeLine().getSimulableList().stream()
                 .filter(simulable -> simulable.getNIF() == NIF)
                 .findFirst().ifPresent(SimulationFollowAdministrator::followSimulable);
     }

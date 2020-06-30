@@ -12,7 +12,7 @@ import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyC
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.initializer.SimulationInitializer;
 import backend.model.simulation.settings.settingsList.*;
 
@@ -97,7 +97,7 @@ public class SimulationIOController extends EventGenerator {
     private Simulable addWorker() {
         Worker worker = SimulationInitializer.getWorker();
         if(worker == null) return null;
-        SimulationDataController.getSimulationData().getClientList().add(worker);
+        SimulationDataAdministrator.getSimulationData().getClientList().add(worker);
         return worker;
     }
 
@@ -105,7 +105,7 @@ public class SimulationIOController extends EventGenerator {
         Client client = SimulationInitializer.getClient();
         if(client == null) return null;
         SimulationAdministrator.makeChanges();
-        SimulationDataController.getSimulationData().getClientList().add(client);
+        SimulationDataAdministrator.getSimulationData().getClientList().add(client);
         return client;
     }
 
@@ -114,7 +114,7 @@ public class SimulationIOController extends EventGenerator {
         if(restaurant == null) return null;
         SimulationAdministrator.makeChanges();
         if(restaurant.getNumberOfWorkers()==0) return null;
-        SimulationDataController.getSimulationData().getCompanyList().add(restaurant);
+        SimulationDataAdministrator.getSimulationData().getCompanyList().add(restaurant);
         return restaurant;
     }
 
@@ -122,7 +122,7 @@ public class SimulationIOController extends EventGenerator {
         Provider provider = SimulationInitializer.getProvider();
         if(provider == null) return null;
         SimulationAdministrator.makeChanges();
-        SimulationDataController.getSimulationData().getCompanyList().add(provider);
+        SimulationDataAdministrator.getSimulationData().getCompanyList().add(provider);
         return provider;
     }
 
@@ -130,7 +130,7 @@ public class SimulationIOController extends EventGenerator {
         ServiceCompany serviceCompany = SimulationInitializer.getService();
         if(serviceCompany == null) return null;
         SimulationAdministrator.makeChanges();
-        SimulationDataController.getSimulationData().getCompanyList().add(serviceCompany);
+        SimulationDataAdministrator.getSimulationData().getCompanyList().add(serviceCompany);
         return serviceCompany;
     }
 

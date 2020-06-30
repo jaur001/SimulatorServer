@@ -54,7 +54,7 @@ function startEventWorker() {
     eventWorker.onmessage = function (response) {
         eventContent +=response.data;
         $('#eventBox').append(response.data);
-        if($('#eventBox').find("p").length>=100)
+        if($('#eventBox').find("p").length>=300)
             $('#eventBox').find("p").first().remove();
     };
     eventWorker.postMessage("Work");

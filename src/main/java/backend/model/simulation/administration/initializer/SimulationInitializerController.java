@@ -2,7 +2,7 @@ package backend.model.simulation.administration.initializer;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
 
@@ -19,15 +19,15 @@ public class SimulationInitializerController {
     private static void initSimulables(){
         try {
             int serviceCount = GeneralSettings.getServiceCount();
-            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getServiceCompanies(serviceCount));
+            SimulationDataAdministrator.getSimulationData().getCompanyList().addAll(SimulationInitializer.getServiceCompanies(serviceCount));
             int providerCount = GeneralSettings.getProviderCount();
-            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getProviders(providerCount));
+            SimulationDataAdministrator.getSimulationData().getCompanyList().addAll(SimulationInitializer.getProviders(providerCount));
             int restaurantCount = GeneralSettings.getRestaurantCount();
-            SimulationDataController.getSimulationData().getCompanyList().addAll(SimulationInitializer.getRestaurants(restaurantCount));
+            SimulationDataAdministrator.getSimulationData().getCompanyList().addAll(SimulationInitializer.getRestaurants(restaurantCount));
             int clientCount = GeneralSettings.getClientCount();
-            SimulationDataController.getSimulationData().getClientList().addAll(SimulationInitializer.getClients(clientCount));
+            SimulationDataAdministrator.getSimulationData().getClientList().addAll(SimulationInitializer.getClients(clientCount));
             int workerCount = GeneralSettings.getWorkerCount();
-            SimulationDataController.getSimulationData().getClientList().addAll(SimulationInitializer.getWorkers(workerCount));
+            SimulationDataAdministrator.getSimulationData().getClientList().addAll(SimulationInitializer.getWorkers(workerCount));
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class SimulationInitializerController {
 
 
     public static void reset(){
-        SimulationDataController.getSimulationData().reset();
+        SimulationDataAdministrator.getSimulationData().reset();
         SimulationBillAdministrator.resetBills();
     }
 }

@@ -2,7 +2,7 @@ package backend.model.simulation.settings.settingsList;
 
 import backend.model.simulables.person.worker.Job;
 import backend.model.simulables.person.worker.Worker;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.model.simulation.settings.settingsData.data.RestaurantData;
 import backend.utils.MathUtils;
@@ -38,7 +38,7 @@ public class RestaurantSettings{
     }
 
     private static RestaurantData getRestaurantDataSettings() {
-        return SimulationDataController.getRestaurantData();
+        return SimulationDataAdministrator.getRestaurantData();
     }
 
     public static double getSalaryPerQuality(Worker worker) {

@@ -7,7 +7,7 @@ import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.r
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.administration.centralControl.Simulation;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.timeLine.TimeLine;
 
 import java.util.Date;
@@ -31,7 +31,7 @@ public class SimulatorTester {
             ex.printStackTrace();
         }
         if(TimeLine.isSameDate(date)){
-            TimeLine timeLine = SimulationDataController.getTimeLine();
+            TimeLine timeLine = SimulationDataAdministrator.getTimeLine();
             Simulable simulable = SimulableTester.actualSimulable;
             int method = SimulableTester.method;
             Simulable actualSimulable = TimeLine.actualSimulable;

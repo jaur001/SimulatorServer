@@ -17,6 +17,6 @@ public class WorkerFiredCompanyEvent extends GenericEvent<ComplexCompany> {
     @Override
     public String getMessage() {
         return simulable.getName() + " has fired the " + worker.getJob() +": " + worker.getName()
-                + " with Quality " + worker.getQuality() + " and Salary: " + EuroFormatter.formatEuro(worker.getSalary()) + ".";
+                + " with Quality " + worker.getQuality() + ".";
     }
 }

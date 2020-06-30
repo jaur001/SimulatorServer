@@ -2,7 +2,7 @@ package backend.model.simulation.administration.centralControl;
 
 import backend.model.simulables.Simulable;
 import backend.model.simulation.administration.SimulatorThreadPool;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.initializer.SimulationInitializerController;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.utils.MathUtils;
@@ -26,11 +26,11 @@ public class SimulatorSwitcher {
     }
 
     public static void restart(){
-        SimulationDataController.getRestart().set(true);
+        SimulationDataAdministrator.getRestart().set(true);
     }
 
     public static boolean isRunning() {
-        return SimulationDataController.getExecuting().get();
+        return SimulationDataAdministrator.getExecuting().get();
     }
 
 
@@ -40,26 +40,26 @@ public class SimulatorSwitcher {
     }
 
     public static void stopSimulation() {
-        SimulationDataController.getExecuting().set(false);
+        SimulationDataAdministrator.getExecuting().set(false);
     }
 
     public static void startSimulation(){
-        SimulationDataController.getExecuting().set(true);
+        SimulationDataAdministrator.getExecuting().set(true);
     }
 
     public static boolean isNotInitialized(){
-        return SimulationDataController.getRestart().get();
+        return SimulationDataAdministrator.getRestart().get();
     }
 
 
     public static void startStop(boolean thread){
-        if(SimulationDataController.getSimulationData() == null) initExecution(thread);
+        if(SimulationDataAdministrator.getSimulationData() == null) initExecution(thread);
         if(SimulatorSwitcher.isNotInitialized()) SimulatorSwitcher.initExecution(thread);
         else SimulatorSwitcher.changeExecuting();
     }
 
     private static void initExecution(boolean thread) {
-        SimulationDataController.initSimulationData();
+        SimulationDataAdministrator.initSimulationData();
         initSimulatorElements();
         //SimulatorTester.test();
         if(thread) executeWithThread();
@@ -69,7 +69,7 @@ public class SimulatorSwitcher {
 
     private static void initSimulatorElements() {
         List<Simulable> simulables = initSimulables();
-        SimulationDataController.getSimulationData().initTimeLine(simulables);
+        SimulationDataAdministrator.getSimulationData().initTimeLine(simulables);
     }
 
     private static List<Simulable> initSimulables() {
@@ -83,9 +83,9 @@ public class SimulatorSwitcher {
 
     private static void executeLocal() {
         try {
-            while (!SimulationDataController.getRestart().get()) {
+            while (!SimulationDataAdministrator.getRestart().get()) {
                 if (isRunning()) {
-                    SimulationDataController.getTimeLine().play();
+                    SimulationDataAdministrator.getTimeLine().play();
                     SimulationAdministrator.manageSimulation();
                     delay();
                 }

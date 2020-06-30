@@ -12,7 +12,7 @@ public class ProvidingThread{
 
 
     public static void initRestaurantsProviders(){
-        Simulation.getRestaurantListCopy().parallelStream().forEach(ProvidingThread::initProvidersForRestaurant);
+        Simulation.getRestaurantListCopy().forEach(ProvidingThread::initProvidersForRestaurant);
     }
 
 

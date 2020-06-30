@@ -9,15 +9,16 @@ import java.util.List;
 public class SimulationFollowAdministrator {
 
     public static void followSimulable(Simulable simulable){
-        if(!SimulationDataController.getSimulationData().getFollowedSimulables().contains(simulable))SimulationDataController.getSimulationData().getFollowedSimulables().add(simulable);
+        if(!SimulationDataAdministrator.getSimulationData().getFollowedSimulables().contains(simulable))
+            SimulationDataAdministrator.getSimulationData().getFollowedSimulables().add(simulable);
     }
 
     public static void unfollowSimulable(Simulable simulable){
-        SimulationDataController.getSimulationData().getFollowedSimulables().remove(simulable);
+        SimulationDataAdministrator.getSimulationData().getFollowedSimulables().remove(simulable);
     }
 
     public static List<Simulable> getFollowedSimulables(){
-        return SimulationDataController.getSimulationData().getFollowedSimulables();
+        return SimulationDataAdministrator.getSimulationData().getFollowedSimulables();
     }
 
     public static void followRandomOptions() {

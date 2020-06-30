@@ -10,32 +10,32 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class MonthlyCompany<Product> extends SecondaryCompany {
 
     protected Administrator administrator;
-    protected List<ComplexCompany> companyList;
+    protected List<ComplexCompany> companyClientList;
     protected Product product;
     protected double price;
 
     public MonthlyCompany(int NIF, String companyName, String creationDate, String ownerName, String street, String telephoneNumber) {
         super(NIF, companyName, creationDate, ownerName, street, telephoneNumber);
-        companyList = new CopyOnWriteArrayList<>();
+        companyClientList = new CopyOnWriteArrayList<>();
         administrator = new Administrator(financialData,this);
         this.product = null;
         this.price = 0;
     }
 
     public void addClient(ComplexCompany company){
-        companyList.add(company);
+        companyClientList.add(company);
         financialData.addIncome(price);
     }
 
     public void removeClient(ComplexCompany company){
-        if(companyList.contains(company)){
-            companyList.remove(company);
+        if(companyClientList.contains(company)){
+            companyClientList.remove(company);
             financialData.removeIncome(price);
         }
     }
 
-    public List<ComplexCompany> getCompanyList() {
-        return companyList;
+    public List<ComplexCompany> getCompanyClientList() {
+        return companyClientList;
     }
 
     public Product getProduct() {

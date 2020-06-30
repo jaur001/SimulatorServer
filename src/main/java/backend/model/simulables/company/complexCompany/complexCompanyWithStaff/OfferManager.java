@@ -41,6 +41,7 @@ public class OfferManager {
                 .filter(JobOffer::isAccepted)
                 .filter(offer -> SimulationAdministrator.isNotAlreadyHired(offer.getWorker()))
                 .filter(offer -> SimulationAdministrator.isNotAlreadyRetired(offer.getWorker()))
+                .filter(offer -> !offer.getWorker().isWorking())
                 .reduce(jobOffers.get(0),this::getBetterOffer);
         if (option == null) return worker;
         else return option.getWorker();

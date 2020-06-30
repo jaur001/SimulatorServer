@@ -15,7 +15,7 @@ public class DownloadCommand extends FrontCommand {
     public void process() {
         String fileID = request.getParameter("ID");
         XMLBill bill = SimulationBillAdministrator.getBillPage(getBillPage()).stream()
-                .filter(xmlBill -> BillHaveTheUUID(fileID, xmlBill)).findFirst().orElse(new XMLBill());
+                .filter(xmlBill -> hasTheUUID(fileID, xmlBill)).findFirst().orElse(new XMLBill());
         prepareDownload(bill);
         download(bill);
     }
@@ -24,7 +24,7 @@ public class DownloadCommand extends FrontCommand {
         return (int)request.getSession(true).getAttribute("billPage");
     }
 
-    private boolean BillHaveTheUUID(String fileID, XMLBill xmlBill) {
+    private boolean hasTheUUID(String fileID, XMLBill xmlBill) {
         return xmlBill.getUUID()==Integer.parseInt(fileID);
     }
 

@@ -3,6 +3,7 @@ package backend.model.event.events.worker;
 import backend.model.event.GenericEvent;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.person.worker.Worker;
+import backend.utils.EuroFormatter;
 
 public class HiredWorkerEvent extends GenericEvent<Worker> {
 
@@ -15,7 +16,7 @@ public class HiredWorkerEvent extends GenericEvent<Worker> {
 
     @Override
     public String getMessage() {
-        return simulable.getName() + " has been hired in " + company.getName() + " for a salary of "+ simulable.getSalary() + "€.";
+        return simulable.getName() + " has been hired in " + company.getName() + " with a salary of "+ EuroFormatter.formatEuro(simulable.getSalary()) + ".";
 
     }
 }

@@ -14,7 +14,7 @@ import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.r
 import backend.model.simulables.person.worker.Worker;
 import backend.model.simulables.person.worker.jobSearcher.AlwaysAcceptStrategy;
 import backend.model.simulables.person.worker.jobSearcher.SelectOfferStrategy;
-import backend.model.simulation.administration.data.SimulationDataController;
+import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.view.loaders.database.DatabaseManager;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -107,7 +107,7 @@ public class Simulation {
     }
 
     private static List<Company> getCompanyList(){
-        return SimulationDataController.getSimulationData().getCompanyList();
+        return SimulationDataAdministrator.getSimulationData().getCompanyList();
     }
 
     private static List<Restaurant> getRestaurantList() {
@@ -132,7 +132,7 @@ public class Simulation {
     }
 
     private static List<Client> getClientList() {
-        return SimulationDataController.getSimulationData().getClientList();
+        return SimulationDataAdministrator.getSimulationData().getClientList();
     }
 
     private static List<Worker> getWorkerList() {
@@ -161,11 +161,7 @@ public class Simulation {
     }
 
     public static List<Worker> getUnemployedWorkers(Job job){
-        return Simulation.getWorkerList(job).stream()
-                .filter(SimulationAdministrator::isNotAlreadyHired)
-                .filter(SimulationAdministrator::isNotAlreadyRetired)
-                .filter(worker -> !worker.isWorking())
-                .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
+        return getUnemployedWorkers(Simulation.getWorkerList(job));
     }
 
     public static List<Worker> getEmployedWorkers() {
@@ -173,8 +169,13 @@ public class Simulation {
     }
 
     public static List<Worker> getUnemployedWorkers() {
-        return Simulation.getWorkerList().stream()
+        return getUnemployedWorkers(Simulation.getWorkerList());
+    }
+
+    private static List<Worker> getUnemployedWorkers(List<Worker> workerList){
+        return workerList.stream()
                 .filter(SimulationAdministrator::isNotAlreadyHired)
+                .filter(SimulationAdministrator::isNotAlreadyRetired)
                 .filter(worker -> !worker.isWorking())
                 .collect(Collectors.toCollection(CopyOnWriteArrayList::new));
     }

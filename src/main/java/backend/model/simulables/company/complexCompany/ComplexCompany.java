@@ -82,9 +82,9 @@ public abstract class ComplexCompany extends Company {
         payCompanyDebts();
         financialData.reset();
         changePrice();
+        analyzeFinances();
         searchBetterProviders();
         searchBetterNeededServices();
-        analyzeFinances();
     }
 
     protected void payCompanyDebts() {

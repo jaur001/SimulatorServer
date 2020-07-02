@@ -1,5 +1,6 @@
 package backend.server.sockets;
 import backend.model.simulables.person.client.Client;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.utils.EuroFormatter;
 
@@ -47,7 +48,8 @@ public class PersonWebSocket {
         simulables.append("<tr>");
         simulables.append("<td>").append(client.getNIF()).append("</td>");
         simulables.append("<td>").append(client.getName()).append("</td>");
-        simulables.append("<td>").append(client.getAge()).append("</td>");
+        if(Simulation.getClientListCopy().contains(client)) simulables.append("<td>").append(client.getAge()).append("</td>");
+        else simulables.append("<td>").append("Dead").append("</td>");
         simulables.append("<td>").append(client.getCurrencySalary()).append("</td>");
         simulables.append("<td>").append(EuroFormatter.formatEuro(client.getSalarySpent())).append("</td>");
         simulables.append("<td>").append(client.getJob()).append("</td>");

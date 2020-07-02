@@ -1,5 +1,6 @@
 package backend.server.sockets;
 import backend.model.simulables.company.Company;
+import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.utils.EuroFormatter;
 
@@ -47,7 +48,9 @@ public class CompanyWebSocket {
         simulables.append("<tr>");
         simulables.append("<td>").append(company.getNIF()).append("</td>");
         simulables.append("<td>").append(company.getName()).append("</td>");
-        simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getLastMonthBenefits())).append("</td>");
+        if(Simulation.getCompanyListCopy().contains(company))
+            simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getLastMonthBenefits())).append("</td>");
+        else simulables.append("<td>").append("Closed").append("</td>");
         simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTotalActive())).append("</td>");
         simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTotalPassive())).append("</td>");
         simulables.append("<td>").append(EuroFormatter.formatEuro(company.getFinancialData().getTreasury())).append("</td>");

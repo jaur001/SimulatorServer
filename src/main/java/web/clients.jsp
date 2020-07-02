@@ -2,6 +2,7 @@
 <%@ page import="backend.model.simulables.person.client.Client" %>
 <%@ page import="backend.model.simulation.timeLine.TimeLine" %>
 <%@ page import="backend.utils.EuroFormatter" %>
+<%@ page import="backend.model.simulation.administration.centralControl.Simulation" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
     <head>
@@ -12,7 +13,7 @@
     <body>
         <div class="main-header">
             <div class="main-header__container">
-                <h1 class="header">Bill Data Generator</h1>
+                <h1 class="header">Invoice Generator</h1>
             </div>
             <nav class="nav">
                 <a class="main-a" href="index.jsp"><button>Home</button></a>

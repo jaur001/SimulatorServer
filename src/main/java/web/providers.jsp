@@ -12,7 +12,7 @@
     <body>
         <div class="main-header">
             <div class="main-header__container">
-                <h1 class="header">Bill Data Generator</h1>
+                <h1 class="header">Invoice Generator</h1>
             </div>
             <nav class="nav">
                 <a class="main-a" href="index.jsp"><button>Home</button></a>
@@ -81,7 +81,6 @@
                     <th>Telephone Number</th>
                     <th>Profits</th>
                     <th>Losses</th>
-                    <th>Sales</th>
                     <th>Social Capital</th>
                     <th>Total Active</th>
                     <th>Total Passive</th>
@@ -104,7 +103,6 @@
                         <td><%=provider.getTelephoneNumber()%></td>
                         <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getIncome())%></td>
                         <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getLosses())%></td>
-                        <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getSales())%></td>
                         <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getSocialCapital())%></td>
                         <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getTotalActive())%></td>
                         <td><%=EuroFormatter.formatEuro(provider.getFinancialData().getTotalPassive())%></td>

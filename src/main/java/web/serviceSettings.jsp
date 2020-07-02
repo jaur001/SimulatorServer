@@ -13,7 +13,7 @@
         <%ServiceData serviceData = (ServiceData) request.getSession(true).getAttribute(ServiceData.class.getSimpleName());%>
         <div class="main-header">
             <div class="main-header__container">
-                <h1 class="header">Bill Data Generator</h1>
+                <h1 class="header">Invoice Generator</h1>
             </div>
             <nav class="nav nav-settings">
                 <a class="main-a" href="settings.jsp"><button id="general">General Settings</button></a>

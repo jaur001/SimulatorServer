@@ -3,7 +3,6 @@ let personWorker;
 let companyWorker;
 let simulableCountWorker;
 let isRunning = false;
-let eventContent = null;
 
 function showResult() {
     document.getElementById("divSearchTable").style.display="block";
@@ -52,7 +51,6 @@ function startEventWorker() {
         eventWorker = new Worker("JS/eventWorker.js");
     }
     eventWorker.onmessage = function (response) {
-        eventContent +=response.data;
         $('#eventBox').append(response.data);
         if($('#eventBox').find("p").length>=300)
             $('#eventBox').find("p").first().remove();
@@ -159,9 +157,12 @@ function updateChanges() {
 }
 
 $(document).ready(function() {
+    window.setInterval(function() {
+        let elem = document.getElementById('eventBox');
+        elem.scrollTop = elem.scrollHeight;
+    }, 100);
     startWorkers();
     setTimeout(stopWorkers, 500);
-    if(eventContent!=null)$('#eventBox').html(eventContent);
     $('#speed').on('change',function() {
         updateQuickSettings();
     });

@@ -5,12 +5,12 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/mainPageAdministrator.js"></script>
+    <script src="JS/administrator.js"></script>
   </head>
   <body>
     <div class="main-header">
       <div class="main-header__container">
-        <h1 class="header">Bill Data Generator</h1>
+        <h1 class="header">Invoice Generator</h1>
       </div>
       <nav class="nav">
         <a class="main-a" href="index.jsp"><button>Home</button></a>
@@ -139,13 +139,13 @@
         </div>
         <div id="followedSimulables" class="right">
           <h2>Followed Agents</h2>
+          <h3>People</h3>
           <div class="simulable-table" id="divPersonTable">
-            <h3>People</h3>
             <table id="personTable">
             </table>
           </div>
+          <h3>Company</h3>
           <div class="simulable-table" id="divCompanyTable">
-            <h3>Company</h3>
             <table id="companyTable">
             </table>
           </div>

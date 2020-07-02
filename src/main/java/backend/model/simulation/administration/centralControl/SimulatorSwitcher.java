@@ -14,6 +14,7 @@ public class SimulatorSwitcher {
 
     private static String uriProvider = "";
     private static String uriClient = "";
+    private static String uriEvents = "";
 
 
     public static void setUriProvider(String uriProvider) {
@@ -23,6 +24,22 @@ public class SimulatorSwitcher {
 
     public static void setUriClient(String uriClient) {
         SimulatorSwitcher.uriClient = uriClient;
+    }
+
+    public static void setUriEvents(String uriEvents) {
+        SimulatorSwitcher.uriEvents = uriEvents;
+    }
+
+    public static String getUriProvider() {
+        return uriProvider;
+    }
+
+    public static String getUriClient() {
+        return uriClient;
+    }
+
+    public static String getUriEvents() {
+        return uriEvents;
     }
 
     public static void restart(){
@@ -73,7 +90,7 @@ public class SimulatorSwitcher {
     }
 
     private static List<Simulable> initSimulables() {
-        return SimulationInitializerController.init();
+        return SimulationInitializerController.initExecution();
     }
 
     private static void executeWithThread() {

@@ -35,8 +35,8 @@ public class RoutineList {
         this.salary = salary;
     }
 
-    public double getBudget() {
-        return budget;
+    public double getSalarySpent(){
+        return budgetLimit-budget;
     }
 
     public void restartBudget(){
@@ -49,11 +49,6 @@ public class RoutineList {
 
     public void decreaseBudget(double amount) {
         budget -= amount;
-    }
-
-    public void printCount() {
-        restaurantRoutines.forEach((routine -> System.out.print(routine.getRestaurant().getName() + ": " + routine.getCount()+", ")));
-        System.out.print("\n");
     }
 
     public boolean isEmpty() {

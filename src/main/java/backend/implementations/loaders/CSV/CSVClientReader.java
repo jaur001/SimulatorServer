@@ -1,6 +1,7 @@
 package backend.implementations.loaders.CSV;
 
 import backend.model.simulables.person.client.Client;
+import backend.utils.SimulationFileReader;
 import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ public class CSVClientReader implements GenericReader<Client> {
     }
 
     public List<Client> read(int count) {
-        BufferedReader br = FileLoader.loadFile(url);
+        BufferedReader br = SimulationFileReader.read(url);
         return br != null ? br.lines()
                 .map(this::readClient)
                 .limit(count)

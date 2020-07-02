@@ -18,12 +18,12 @@ public class CompanyWebSocket {
 
     @OnOpen
     public void onOpen(){
-        System.out.println("Event socket opened....");
+        System.out.println("Company socket opened....");
     }
 
     @OnClose
     public void onClose(){
-        System.out.println("Event socket close....");
+        System.out.println("Company socket close....");
     }
 
     @OnMessage

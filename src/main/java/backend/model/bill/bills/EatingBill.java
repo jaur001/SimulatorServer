@@ -5,6 +5,7 @@ import backend.model.bill.Type;
 import backend.model.bill.Use;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant.Restaurant;
+import backend.model.simulables.person.worker.Worker;
 import backend.model.simulation.settings.settingsList.BillSettings;
 import backend.utils.EuroFormatter;
 

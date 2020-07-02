@@ -18,8 +18,10 @@ public class TimeLine extends EventGenerator{
     public static Simulable actualSimulable;
 
     public TimeLine(List<Simulable> simulableList) {
+        System.out.println(date.toString());
         this.simulableList = simulableList;
         date = new SimulationDate();
+        addEvent((SimulationDate)date.clone());
     }
 
     public List<Simulable> getSimulableList() {
@@ -76,7 +78,7 @@ public class TimeLine extends EventGenerator{
     }
 
     public static int getMonth() {
-        return date.getMonth();
+        return date.getMonth()+1;
     }
 
     public static int getDay() {

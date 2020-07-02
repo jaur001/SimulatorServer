@@ -15,7 +15,7 @@ public class RoutineThread{
         Simulation.getEmployedWorkers().parallelStream().forEach(RoutineThread::setClientRoutine);
     }
 
-    private static void setClientRoutine(Client client) {
+    public static void setClientRoutine(Client client) {
         List<Routine> restaurantRoutines = new GenericRoutineFactory(Simulation.ROUTINE_STRATEGY,client.getSalary()).createRoutineList();
         client.setRoutineList(new RoutineList(client.getSalary(), restaurantRoutines));
     }

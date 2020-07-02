@@ -5,6 +5,7 @@ import backend.model.simulation.administration.centralControl.Simulation;
 import backend.utils.MathUtils;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class SimulationFollowAdministrator {
 
@@ -22,6 +23,10 @@ public class SimulationFollowAdministrator {
     }
 
     public static void followRandomOptions() {
+        IntStream.range(0,4).boxed().forEach(pos -> followRandomSimulable());
+    }
+
+    private static void followRandomSimulable(){
         followSimulable(Simulation.getCompanyListCopy().get(MathUtils.random(0,Simulation.getCompanySize())));
         followSimulable(Simulation.getClientListCopy().get(MathUtils.random(0,Simulation.getClientSize())));
     }

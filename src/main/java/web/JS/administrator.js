@@ -51,9 +51,9 @@ function startEventWorker() {
         eventWorker = new Worker("JS/eventWorker.js");
     }
     eventWorker.onmessage = function (response) {
-        $('#eventBox').append(response.data);
+        $('#eventBox').prepend(response.data);
         if($('#eventBox').find("p").length>=300)
-            $('#eventBox').find("p").first().remove();
+            $('#eventBox').find("p").last().remove();
     };
     eventWorker.postMessage("Work");
 }
@@ -157,10 +157,6 @@ function updateChanges() {
 }
 
 $(document).ready(function() {
-    window.setInterval(function() {
-        let elem = document.getElementById('eventBox');
-        elem.scrollTop = elem.scrollHeight;
-    }, 100);
     startWorkers();
     setTimeout(stopWorkers, 500);
     $('#speed').on('change',function() {

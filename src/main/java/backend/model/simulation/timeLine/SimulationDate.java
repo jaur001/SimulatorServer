@@ -3,6 +3,7 @@ package backend.model.simulation.timeLine;
 import backend.model.event.Event;
 import backend.model.simulables.Simulable;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class SimulationDate extends Date implements Event {
 
     @Override
     public String toString() {
-        return getConvertedYear() +"-"+ getConverted(getMonth())+"-"
+        return getConvertedYear() +"-"+ getConverted(getMonth()+1)+"-"
                 + getConverted(getDate()) + "T" + getConverted(getHours())
                 + ":" + getConverted(getMinutes())
                 + ":" + getConverted(getSeconds());

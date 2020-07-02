@@ -96,11 +96,6 @@ public class Client implements Simulable, Collector{
         peopleInvited = ClientSettings.getPeopleInvitedSample();
     }
 
-    public void printRoutines(){
-        System.out.print("Client: "+ this.getLastName() + " ->    ");
-        this.routineList.printCount();
-    }
-
     public double getSalary(){
         return personalData.getSalary();
     }
@@ -111,7 +106,7 @@ public class Client implements Simulable, Collector{
     }
 
     public double getSalarySpent(){
-        return routineList.getBudget();
+        return routineList.getSalarySpent();
     }
 
 
@@ -127,7 +122,6 @@ public class Client implements Simulable, Collector{
             return;
         }
         routineList.checkRoutines().forEach(this::goToEat);
-        //this.printRoutines();
     }
 
     protected void goToEat(Restaurant restaurant) {

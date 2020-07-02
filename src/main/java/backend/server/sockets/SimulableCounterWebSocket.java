@@ -16,12 +16,12 @@ public class SimulableCounterWebSocket {
 
     @OnOpen
     public void onOpen(){
-        System.out.println("Event socket opened....");
+        System.out.println("SimulableCounter socket opened....");
     }
 
     @OnClose
     public void onClose(){
-        System.out.println("Event socket close....");
+        System.out.println("SimulableCounter socket close....");
     }
 
     @OnMessage

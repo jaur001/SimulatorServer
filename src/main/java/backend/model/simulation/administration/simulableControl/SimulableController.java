@@ -1,5 +1,6 @@
 package backend.model.simulation.administration.simulableControl;
 
+import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
 import backend.model.simulables.company.Company;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
@@ -39,8 +40,10 @@ public class SimulableController {
     }
 
     public void manageSimulation() {
+        EventController.checkEvents();
         makeChanges();
         simulationIOController.manageSimulablesToAdd();
+        EventController.checkEvents();
     }
 
     public void retire(Worker worker) {

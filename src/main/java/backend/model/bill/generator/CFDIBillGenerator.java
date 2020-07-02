@@ -1,8 +1,7 @@
 package backend.model.bill.generator;
 
-import backend.implementations.loaders.CSV.FileLoader;
+import backend.utils.SimulationFileReader;
 import backend.model.bill.CFDIBill;
-import backend.model.bill.Publisher;
 import backend.model.event.EventGenerator;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import org.w3c.dom.Document;
@@ -19,8 +18,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.BufferedReader;
 import java.io.File;
-import java.util.LinkedList;
-import java.util.stream.Collectors;
 
 public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     private static String uri= "";
@@ -134,7 +131,7 @@ public class CFDIBillGenerator extends EventGenerator implements BillGenerator {
     }
 
     private String getInvoice() {
-        BufferedReader br = FileLoader.loadFile(getFilePath() + "/" + getFileName());
+        BufferedReader br = SimulationFileReader.read(getFilePath() + "/" + getFileName());
         return br != null ? br.lines()
                 .reduce("",String::concat) : "";
     }

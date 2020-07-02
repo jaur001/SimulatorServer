@@ -25,10 +25,7 @@ public class EventWebSocket {
 
     @OnMessage
     public String onMessage(String message){
-        StringBuilder events = new StringBuilder();
-        EventController.getEvents()
-                .forEach(event -> events.append("<p>").append(event.getMessage()).append("</p>"));
-        return events.toString();
+        return EventController.getPendingEvents();
     }
 
     @OnError

@@ -1,11 +1,11 @@
 package backend.model.simulables.person.worker;
 
+import backend.initializers.RoutineThread;
 import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexCompanyWithStaff;
 import backend.model.simulables.person.client.Client;
 import backend.model.simulables.person.client.PersonalData;
-import backend.model.simulables.person.client.routineList.RoutineList;
 import backend.model.simulables.person.worker.jobSearcher.OfferSelector;
 import backend.model.simulation.administration.centralControl.Simulation;
 import backend.model.simulation.administration.centralControl.SimulationAdministrator;
@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Worker extends Client{
     private double salaryDesired;
     private Quality quality;
-    private AtomicBoolean isWorking = new AtomicBoolean(false);
+    private final AtomicBoolean isWorking = new AtomicBoolean(false);
     private ComplexCompanyWithStaff company = null;
     private List<JobOffer> jobOfferList;
 
@@ -104,7 +104,7 @@ public class Worker extends Client{
     @Override
     public void simulate() {
         SimulableTester.changeSimulable(this);
-        if (isNotRetired())work();
+        if(isNotRetired())work();
         if(isWorking() || !isNotRetired()) enjoyTime();
     }
 
@@ -114,7 +114,7 @@ public class Worker extends Client{
     }
 
     private void enjoyTime() {
-        if(routineList==null) routineList = new RoutineList(getSalary(),ClientSettings.getRoutineList(getSalary()));
+        if(routineList==null) RoutineThread.setClientRoutine(this);
         super.simulate();
     }
 

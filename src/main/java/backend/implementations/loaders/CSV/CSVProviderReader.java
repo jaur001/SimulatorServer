@@ -1,6 +1,7 @@
 package backend.implementations.loaders.CSV;
 
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider.Provider;
+import backend.utils.SimulationFileReader;
 import backend.view.loaders.reader.GenericReader;
 
 import java.io.BufferedReader;
@@ -19,7 +20,7 @@ public class CSVProviderReader implements GenericReader<Provider> {
 
     @Override
     public List<Provider> read(int count) {
-        BufferedReader br = FileLoader.loadFile(url);
+        BufferedReader br = SimulationFileReader.read(url);
         return br != null ? br.lines()
                 .map(this::readProvider)
                 .limit(count)

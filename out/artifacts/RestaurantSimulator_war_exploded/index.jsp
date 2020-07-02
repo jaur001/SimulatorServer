@@ -1,4 +1,5 @@
 <%@ page import="backend.model.simulation.timeLine.Speed" %>
+<%@ page import="backend.model.event.EventController" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
@@ -135,6 +136,7 @@
           <h2>Event Reporter</h2>
           <label for="eventBox"></label>
           <div class="event-box" id="eventBox">
+            <%=EventController.getAllEvents()%>
           </div>
         </div>
         <div id="followedSimulables" class="right">

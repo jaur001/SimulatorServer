@@ -1,16 +1,19 @@
 package backend.model.simulation.administration.initializer;
 
+import backend.model.event.EventController;
 import backend.model.simulables.Simulable;
+import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
 import backend.model.simulation.administration.data.SimulationBillAdministrator;
 import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.model.simulation.settings.settingsList.GeneralSettings;
+import backend.utils.SimulationFileWriter;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class SimulationInitializerController {
-    public static List<Simulable> init(){
+    public static List<Simulable> initExecution(){
         initSimulables();
         SimulationFollowAdministrator.followRandomOptions();
         return SimulationInitializer.init();
@@ -35,7 +38,14 @@ public class SimulationInitializerController {
 
 
     public static void reset(){
+        SimulationFileWriter.insert("", SimulatorSwitcher.getUriEvents());
+        EventController.resetEvents();
         SimulationDataAdministrator.getSimulationData().reset();
         SimulationBillAdministrator.resetBills();
+    }
+
+    public static void init(){
+        SimulationDataAdministrator.initSimulationData();
+        reset();
     }
 }

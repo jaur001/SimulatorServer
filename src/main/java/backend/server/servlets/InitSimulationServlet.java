@@ -2,9 +2,8 @@ package backend.server.servlets;
 
 import backend.implementations.SQLite.connector.DatabaseConnector;
 import backend.model.bill.generator.CFDIBillGenerator;
-import backend.model.simulation.administration.data.SimulationBillAdministrator;
-import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.centralControl.SimulatorSwitcher;
+import backend.model.simulation.administration.initializer.SimulationInitializerController;
 import backend.model.simulation.settings.settingsData.SettingsBuilder;
 import backend.utils.FrontControllerUtils;
 
@@ -17,8 +16,7 @@ import java.io.IOException;
 public class InitSimulationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
         initUris();
-        SimulationBillAdministrator.resetBills();
-        SimulationDataAdministrator.initSimulationData();
+        SimulationInitializerController.init();
         SettingsBuilder.setCurrentSettingsToSession(request);
         FrontControllerUtils.setQuickSettings(request);
         forwardToMainPage(request, response);
@@ -27,6 +25,7 @@ public class InitSimulationServlet extends HttpServlet {
     private void initUris() {
         SimulatorSwitcher.setUriClient(getServletContext().getRealPath("/CSVFiles/Clients.csv"));
         SimulatorSwitcher.setUriProvider(getServletContext().getRealPath("/CSVFiles/Providers.csv"));
+        SimulatorSwitcher.setUriEvents(getServletContext().getRealPath("/Events/event-log.txt"));
         CFDIBillGenerator.setUri(getServletContext().getRealPath("/xmlFiles")+"/");
         DatabaseConnector.setUri("jdbc:sqlite:" + getServletContext().getRealPath("/Simulator.db"));
     }

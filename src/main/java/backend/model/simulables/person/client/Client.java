@@ -2,7 +2,6 @@ package backend.model.simulables.person.client;
 
 import backend.implementations.routine.DistributionAmountGenerator;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.bank.Bank;
 import backend.model.simulables.bank.Collector;
 import backend.model.simulables.bank.transactions.EatingBillTransaction;
@@ -112,7 +111,6 @@ public class Client implements Simulable, Collector{
 
     @Override
     public void simulate() {
-        SimulableTester.changeSimulable(this);
         doClientsThings();
     }
 

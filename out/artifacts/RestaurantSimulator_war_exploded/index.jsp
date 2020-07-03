@@ -140,7 +140,7 @@
           </div>
         </div>
         <div id="followedSimulables" class="right">
-          <h2>Followed Agents</h2>
+          <h2>Tracked Agents</h2>
           <h3>People</h3>
           <div class="simulable-table" id="divPersonTable">
             <table id="personTable">

@@ -1,7 +1,6 @@
 package backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.provider;
 
 import backend.model.NIFCreator.SecondaryNIFCreator;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.MonthlyCompany;
 import backend.model.simulables.company.complexCompany.secondaryCompany.monthlyCompanies.service.Service;
@@ -35,7 +34,6 @@ public class Provider extends MonthlyCompany<Product> {
 
     @Override
     public void simulate() {
-        SimulableTester.changeSimulable(this);
         if(hasNotThisService(Service.Transport)) searcher.searchAndAddService(Service.Transport);
         if(TimeLine.isLastDay()) {
             checkFinances();

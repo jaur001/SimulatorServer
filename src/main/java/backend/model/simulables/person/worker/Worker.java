@@ -1,7 +1,6 @@
 package backend.model.simulables.person.worker;
 
 import backend.initializers.RoutineThread;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexCompanyWithStaff;
 import backend.model.simulables.person.client.Client;
@@ -103,7 +102,6 @@ public class Worker extends Client{
 
     @Override
     public void simulate() {
-        SimulableTester.changeSimulable(this);
         if(isNotRetired())work();
         if(isWorking() || !isNotRetired()) enjoyTime();
     }

@@ -1,7 +1,6 @@
 package backend.model.simulables.company.complexCompany.complexCompanyWithStaff.restaurant;
 
 import backend.model.NIFCreator.RestaurantNIFCreator;
-import backend.model.simulables.SimulableTester;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.ComplexCompanyWithStaff;
 import backend.model.simulables.company.FinancialData;
 import backend.model.simulables.company.complexCompany.complexCompanyWithStaff.Employer;
@@ -90,7 +89,6 @@ public class Restaurant extends ComplexCompanyWithStaff {
                 System.out.println("xd");
             }
         });
-        SimulableTester.changeSimulable(this);
         if(hasNotThisService(Service.Cleaning)) searcher.searchBetterService(Service.Cleaning);
         checkProducts();
         checkContracts();

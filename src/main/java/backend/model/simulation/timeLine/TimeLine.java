@@ -3,7 +3,6 @@ package backend.model.simulation.timeLine;
 
 import backend.model.event.EventGenerator;
 import backend.model.simulables.Simulable;
-import backend.model.simulables.SimulableTester;
 
 import java.time.Month;
 import java.util.Date;
@@ -31,7 +30,6 @@ public class TimeLine extends EventGenerator{
 
     public void play(){
         simulableList.parallelStream().forEach(Simulable::simulate);
-        SimulableTester.changeSimulable(null);
         passDay();
     }
 

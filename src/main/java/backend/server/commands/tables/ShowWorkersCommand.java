@@ -14,12 +14,13 @@ public class ShowWorkersCommand extends PageableFrontCommand<Worker> {
     }
 
     @Override
-    protected List<Worker> getList(int page) {
-        return Simulation.getWorkerList(page);
+    protected String getName() {
+        return "workerList";
     }
 
     @Override
-    protected int getLimit() {
-        return Simulation.getWorkerSize();
+    protected List<Worker> loadList() {
+        return Simulation.getWorkerListCopy();
     }
+
 }

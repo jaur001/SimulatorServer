@@ -105,7 +105,7 @@ public class Client implements Simulable, Collector{
     }
 
     public double getSalarySpent(){
-        return routineList.getSalarySpent();
+        return routineList != null? routineList.getSalarySpent() : 0;
     }
 
 

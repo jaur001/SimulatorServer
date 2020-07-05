@@ -15,10 +15,12 @@ import backend.server.searcher.searchers.person.PersonSalarySearch;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Predicate;
+
 public class SearchUtils {
 
-    private static Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
-    private static Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
+    private static final Map<SearchBy, Search<Client>> personFilterTable = new LinkedHashMap<>();
+    private static final Map<SearchBy, Search<Company>> companyFilterTable = new LinkedHashMap<>();
 
 
     static {

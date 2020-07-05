@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>No Data Available</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <body>
         <div class="main-header">
@@ -42,10 +42,9 @@
             </nav>
         </div>
         <div class="container">
-            <h3>
-                There is no Data Available yet,
-                Try Later
-            </h3>
+            <h2>
+                No Data Available
+            </h2>
         </div>
     </body>
 </html>

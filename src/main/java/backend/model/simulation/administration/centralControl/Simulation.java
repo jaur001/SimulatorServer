@@ -56,36 +56,6 @@ public class Simulation {
         return getWorkerList().size();
     }
 
-    public static List<Restaurant> getRestaurantList(int page) {
-        int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,getRestaurantSize());
-        return getRestaurantList().subList(from, to);
-    }
-
-    public static List<Provider> getProviderList(int page) {
-        int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,getProviderSize());
-        return getProviderList().subList(from, to);
-    }
-
-    public static List<ServiceCompany> getServiceCompanyList(int page) {
-        int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,getServiceCompanySize());
-        return getServiceCompanyList().subList(from, to);
-    }
-
-    public static List<Client> getClientList(int page) {
-        int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,getClientSize());
-        return getClientList().subList(from, to);
-    }
-
-    public static List<Worker> getWorkerList(int page) {
-        int from = DatabaseManager.getFrom(page);
-        int to = DatabaseManager.getTo(from,getWorkerSize());
-        return getWorkerList().subList(from, to);
-    }
-
     public static List<Company> getCompanyListCopy() {
         return new CopyOnWriteArrayList<>(getCompanyList());
     }
@@ -96,6 +66,10 @@ public class Simulation {
 
     public static List<Provider> getProviderListCopy() {
         return new CopyOnWriteArrayList<>(getProviderList());
+    }
+
+    public static List<ServiceCompany> getServiceCompanyListCopy() {
+        return new CopyOnWriteArrayList<>(getServiceCompanyList());
     }
 
     public static List<Client> getClientListCopy() {

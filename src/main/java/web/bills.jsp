@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Bills</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <script src="JS/pagination.js"></script>
     <body>

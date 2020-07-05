@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Service Companies</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <script src="JS/pagination.js"></script>
     <body>
@@ -52,6 +52,31 @@
             <% int actualPage = (Integer) request.getAttribute("page"); %>
             <% int length = (Integer) request.getAttribute("length"); %>
             <h3><%="Current Date: " + TimeLine.getDate().toString()%></h3>
+            <div class="bottom">
+                <form class="inline-button half-space" method="post" action="FrontControllerServlet">
+                    <div class="searcher full-space">
+                        <div class="block-left">
+                            <label for="searchText">Search Service Company</label>
+                            <input type="text" id="searchText" name="searchText" value="">
+                        </div>
+                        <div class="block-right">
+                            <label class="no-padding" for="searchOptions">Search by</label>
+                            <select id="searchOptions" name="searchBy">
+                                <option value="NIF">NIF</option>
+                                <option value="Name">Name</option>
+                                <option value="Benefits">Benefits</option>
+                                <option value="Treasury">Treasury</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="command" value="SearchServicesCommand">
+                        <input class="margin-top" type="submit" id="search" value="Search">
+                    </div>
+                </form>
+                <form class="inline-button end-search" method="post" action="FrontControllerServlet">
+                    <input type="hidden" name="command" value="ShowServicesCommand">
+                    <input type="submit" value="End Search">
+                </form>
+            </div>
             <form class="inline-button" id="pageForm" method="post" action="FrontControllerServlet">
                 <input type="hidden" name="command" value="ShowServicesCommand">
                 <label>Page</label>
@@ -79,9 +104,9 @@
                     <th>Creation Date</th>
                     <th>Zipcode</th>
                     <th>Telephone Number</th>
+                    <th>Number of Clients</th>
                     <th>Profits</th>
                     <th>Losses</th>
-                    <th>Social Capital</th>
                     <th>Total Active</th>
                     <th>Total Passive</th>
                     <th>Treasury</th>
@@ -101,9 +126,9 @@
                         <td><%=serviceCompany.getCreationDate()%></td>
                         <td><%=serviceCompany.getStreet()%></td>
                         <td><%=serviceCompany.getTelephoneNumber()%></td>
+                        <td><%=serviceCompany.getCompanyClientList().size()%></td>
                         <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getIncome())%></td>
                         <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getLosses())%></td>
-                        <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getSocialCapital())%></td>
                         <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getTotalActive())%></td>
                         <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getTotalPassive())%></td>
                         <td><%=EuroFormatter.formatEuro(serviceCompany.getFinancialData().getTreasury())%></td>

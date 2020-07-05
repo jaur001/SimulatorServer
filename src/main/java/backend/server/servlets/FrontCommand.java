@@ -4,6 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public abstract class FrontCommand {
@@ -24,6 +25,10 @@ public abstract class FrontCommand {
         }
     }
 
+    protected int getIntParameter(String name){
+        return Integer.parseInt(request.getParameter(name));
+    }
+
     protected int getAbsoluteIntParameter(String name){
         return Math.abs(Integer.parseInt(request.getParameter(name)));
     }
@@ -34,5 +39,13 @@ public abstract class FrontCommand {
 
     protected void setToRequest(String name, Object value) {
         request.setAttribute(name, value);
+    }
+
+    protected void setToSession(String name, Object value) {
+        request.getSession(true).setAttribute(name, value);
+    }
+
+    protected HttpSession getSession(){
+        return request.getSession(true);
     }
 }

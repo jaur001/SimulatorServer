@@ -6,10 +6,10 @@ import backend.model.simulation.timeLine.Speed;
 import backend.model.simulation.timeLine.TimeLine;
 import backend.server.commands.bills.DownloadCommand;
 import backend.server.commands.bills.ShowBillsCommand;
+import backend.server.commands.search.*;
 import backend.server.commands.settings.UpdateQuickSettingsCommand;
 import backend.server.commands.settings.*;
 import backend.server.commands.simulables.FollowSimulableCommand;
-import backend.server.commands.simulables.SearchCommand;
 import backend.server.commands.simulables.UnfollowSimulableCommand;
 import backend.server.commands.tables.*;
 
@@ -21,20 +21,24 @@ public class FrontControllerUtils {
     private static Map<String, List<String>> folderTable = new LinkedHashMap<>();
 
     static {
-        String[] folders = {"bills.","settings.","tables.","simulables.","quickSettings."};
+        String[] folders = {"bills.","settings.","tables.","simulables.","search."};
         List<String> billsFolder = Arrays.asList(DownloadCommand.class.getSimpleName(), ShowBillsCommand.class.getSimpleName());
         List<String> settingsFolder = Arrays.asList(CancelCommand.class.getSimpleName(), SaveSettingsCommand.class.getSimpleName(),
                 ShowSettingsCommand.class.getSimpleName(),UpdateGeneralDataCommand.class.getSimpleName(),UpdateClientDataCommand.class.getSimpleName(),
-                UpdateRestaurantDataCommand.class.getSimpleName(),UpdateProviderDataCommand.class.getSimpleName(),UpdateServiceDataCommand.class.getSimpleName()
-                ,UpdateWorkerDataCommand.class.getSimpleName(),UpdateQuickSettingsCommand.class.getSimpleName(),SetDefaultSettingsCommand.class.getSimpleName());
+                UpdateRestaurantDataCommand.class.getSimpleName(),UpdateProviderDataCommand.class.getSimpleName(),UpdateServiceDataCommand.class.getSimpleName(),
+                UpdateWorkerDataCommand.class.getSimpleName(),UpdateQuickSettingsCommand.class.getSimpleName(),SetDefaultSettingsCommand.class.getSimpleName());
         List<String> tablesFolder = Arrays.asList(ShowClientsCommand.class.getSimpleName(), ShowProvidersCommand.class.getSimpleName(),
                 ShowRestaurantsCommand.class.getSimpleName(), ShowWorkersCommand.class.getSimpleName(), ShowServicesCommand.class.getSimpleName());
-        List<String> simulablesFolder = Arrays.asList(SearchCommand.class.getSimpleName(), FollowSimulableCommand.class.getSimpleName(),
+        List<String> simulablesFolder = Arrays.asList(FollowSimulableCommand.class.getSimpleName(),
                 UnfollowSimulableCommand.class.getSimpleName());
+        List<String> searchFolder = Arrays.asList(SearchCommand.class.getSimpleName(), SearchClientsCommand.class.getSimpleName(),
+                SearchWorkersCommand.class.getSimpleName(), SearchRestaurantsCommand.class.getSimpleName(),
+                SearchProvidersCommand.class.getSimpleName(),SearchServicesCommand.class.getSimpleName());
         folderTable.put(folders[0],billsFolder);
         folderTable.put(folders[1],settingsFolder);
         folderTable.put(folders[2],tablesFolder);
         folderTable.put(folders[3],simulablesFolder);
+        folderTable.put(folders[4],searchFolder);
     }
 
     public static String getFolder(String name){

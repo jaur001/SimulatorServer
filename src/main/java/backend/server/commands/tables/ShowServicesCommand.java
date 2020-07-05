@@ -16,13 +16,13 @@ public class ShowServicesCommand extends PageableFrontCommand<ServiceCompany> {
     }
 
     @Override
-    protected List<ServiceCompany> getList(int page) {
-        return Simulation.getServiceCompanyList(page);
+    protected String getName() {
+        return "serviceList";
     }
 
     @Override
-    protected int getLimit(){
-        return Simulation.getServiceCompanySize();
+    protected List<ServiceCompany> loadList() {
+        return Simulation.getServiceCompanyListCopy();
     }
 
 }

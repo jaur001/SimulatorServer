@@ -1,4 +1,4 @@
-package backend.server.commands.simulables;
+package backend.server.commands.search;
 
 import backend.model.simulables.company.Company;
 import backend.model.simulables.person.client.Client;
@@ -33,7 +33,7 @@ public class SearchCommand extends FrontCommand {
 
     private List<Client> getPeople(SearchBy searchBy, String text) {
         Search<Client> search = SearchUtils.getPersonFilter(searchBy);
-        return Search.searchPeople(search.search(text));
+        return Search.searchClients(search.search(text));
     }
 
     private List<Company> getCompanies(SearchBy searchBy, String text) {

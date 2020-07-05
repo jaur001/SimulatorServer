@@ -8,25 +8,40 @@ import java.util.List;
 public abstract class PageableFrontCommand<T> extends FrontCommand{
 
     protected void checkPagination(){
-        setPage();
         SimulatorSwitcher.stopSimulation();
+        setPage();
         setMaxPage();
     }
 
     protected void setPage() {
-        String attribute = request.getParameter("page");
-        if(attribute == null) getPage(1);
-        else getPage(Integer.parseInt(attribute));
+        getPage(readPage());
+    }
+
+    public int readPage(){
+        return request.getParameter("page")!=null?getIntParameter("page"):1;
     }
 
     protected void getPage(int page) {
         setToRequest("page", page);
-        List<T> list = getList(page);
+        List<T> list = getList();
         if(list.size() == 0) forward("/wait.jsp");
-        setToRequest("list",list);
+        setToRequest("list",getListToShow(page,list));
     }
 
-    protected abstract List<T> getList(int page);
+    private List<T> getListToShow(int page, List<T> list) {
+        int from = DatabaseManager.getFrom(page);
+        int to = DatabaseManager.getTo(from,list.size());
+        return list.subList(from, to);
+    }
+
+
+    private List<T> getList() {
+        return loadList();
+    }
+
+    protected abstract String getName();
+
+    protected abstract List<T> loadList();
 
 
     protected void setMaxPage() {
@@ -34,7 +49,9 @@ public abstract class PageableFrontCommand<T> extends FrontCommand{
         setToRequest("length", getMaxPage(count));
     }
 
-    protected abstract int getLimit();
+    protected int getLimit(){
+        return getList().size();
+    }
 
 
     protected int getMaxPage(int count) {

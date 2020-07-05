@@ -14,8 +14,16 @@ public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
         checkPagination();
         forward("/bills.jsp");
     }
-    protected List<XMLBill> getList(int page) {
-        request.getSession(true).setAttribute("billPage",page);
+
+    @Override
+    protected String getName() {
+        return "billList";
+    }
+
+    @Override
+    protected List<XMLBill> loadList() {
+        int page = readPage();
+        setToSession("billPage", page);
         return SimulationBillAdministrator.getBillPage(page);
     }
 

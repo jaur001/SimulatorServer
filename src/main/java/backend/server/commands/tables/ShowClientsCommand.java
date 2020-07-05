@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ShowClientsCommand extends PageableFrontCommand<Client> {
 
-    public static final String TABLE_NAME = "Client";
 
     @Override
     public void process() {
@@ -17,13 +16,14 @@ public class ShowClientsCommand extends PageableFrontCommand<Client> {
     }
 
     @Override
-    protected List<Client> getList(int page) {
-        return Simulation.getClientList(page);
+    protected String getName() {
+        return "clientList";
     }
 
     @Override
-    protected int getLimit() {
-        return Simulation.getClientSize();
+    protected List<Client> loadList() {
+        return Simulation.getClientListCopy();
     }
+
 
 }

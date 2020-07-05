@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Restaurants</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     </head>
     <script src="JS/pagination.js"></script>
     <body>
@@ -52,6 +52,31 @@
             <% int actualPage = (Integer) request.getAttribute("page"); %>
             <% int length = (Integer) request.getAttribute("length"); %>
             <h3><%="Current Date: " + TimeLine.getDate().toString()%></h3>
+            <div class="bottom">
+                <form class="inline-button half-space" method="post" action="FrontControllerServlet">
+                    <div class="searcher full-space">
+                        <div class="block-left">
+                            <label for="searchText">Search Restaurant</label>
+                            <input type="text" id="searchText" name="searchText" value="">
+                        </div>
+                        <div class="block-right">
+                            <label class="no-padding" for="searchOptions">Search by</label>
+                            <select id="searchOptions" name="searchBy">
+                                <option value="NIF">NIF</option>
+                                <option value="Name">Name</option>
+                                <option value="Benefits">Benefits</option>
+                                <option value="Treasury">Treasury</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="command" value="SearchRestaurantsCommand">
+                        <input class="margin-top" type="submit" id="search" value="Search">
+                    </div>
+                </form>
+                <form class="inline-button end-search" method="post" action="FrontControllerServlet">
+                    <input type="hidden" name="command" value="ShowRestaurantsCommand">
+                    <input type="submit" value="End Search">
+                </form>
+            </div>
             <form class="inline-button" id="pageForm" method="post" action="FrontControllerServlet">
                 <input type="hidden" name="command" value="ShowRestaurantsCommand">
                 <label>Page</label>
@@ -77,13 +102,13 @@
                     <th>Table Number</th>
                     <th>Minimum Price Per Plate</th>
                     <th>Maximum Price Per Plate</th>
-                    <th>Number Of Workers</th>
+                    <th>Number of Workers</th>
                     <th>Zipcode</th>
                     <th>Telephone Number</th>
+                    <th>Number of Companies to Pay</th>
                     <th>Profits</th>
                     <th>Losses</th>
                     <th>Sales</th>
-                    <th>Social Capital</th>
                     <th>Total Active</th>
                     <th>Total Passive</th>
                     <th>Treasury</th>
@@ -104,10 +129,10 @@
                         <td><%=restaurant.getNumberOfWorkers()%></td>
                         <td><%=restaurant.getStreet()%></td>
                         <td><%=restaurant.getTelephoneNumber()%></td>
+                        <td><%=restaurant.getProviders().size()+restaurant.getServices().size()%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getIncome())%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getLosses())%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getSales())%></td>
-                        <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getSocialCapital())%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getTotalActive())%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getTotalPassive())%></td>
                         <td><%=EuroFormatter.formatEuro(restaurant.getFinancialData().getTreasury())%></td>

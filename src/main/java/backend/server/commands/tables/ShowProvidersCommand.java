@@ -16,13 +16,14 @@ public class ShowProvidersCommand extends PageableFrontCommand<Provider> {
     }
 
     @Override
-    protected List<Provider> getList(int page) {
-        return Simulation.getProviderList(page);
+    protected String getName() {
+        return "providerList";
     }
 
     @Override
-    protected int getLimit(){
-        return Simulation.getProviderSize();
+    protected List<Provider> loadList() {
+        return Simulation.getProviderListCopy();
     }
+
 
 }

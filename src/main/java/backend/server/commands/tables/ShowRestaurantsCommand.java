@@ -16,13 +16,13 @@ public class ShowRestaurantsCommand extends PageableFrontCommand<Restaurant> {
     }
 
     @Override
-    protected List<Restaurant> getList(int page) {
-        return Simulation.getRestaurantList(page);
+    protected String getName() {
+        return "restaurantList";
     }
 
     @Override
-    protected int getLimit(){
-        return Simulation.getRestaurantSize();
+    protected List<Restaurant> loadList() {
+        return Simulation.getRestaurantListCopy();
     }
 
 }

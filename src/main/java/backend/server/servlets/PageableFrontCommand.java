@@ -25,6 +25,7 @@ public abstract class PageableFrontCommand<T> extends FrontCommand{
         setToRequest("page", page);
         List<T> list = getList();
         if(list.size() == 0) forward("/wait.jsp");
+        setToSession(getName(),list);
         setToRequest("list",getListToShow(page,list));
     }
 
@@ -36,7 +37,9 @@ public abstract class PageableFrontCommand<T> extends FrontCommand{
 
 
     private List<T> getList() {
-        return loadList();
+        if(getSession().getAttribute(getName()) == null) return loadList();
+        if(request.getParameter("page")==null) return loadList();
+        return (List<T>) getSession().getAttribute(getName());
     }
 
     protected abstract String getName();

@@ -43,6 +43,7 @@ function receiveData() {
 
 function startWorkers() {
     startEventWorker();
+    startSimulableCountWorker();
     startSimulableWorkers();
 }
 
@@ -61,7 +62,6 @@ function startEventWorker() {
 function startSimulableWorkers() {
     startPersonWorker();
     startCompanyWorker();
-    startSimulableCountWorker()
 }
 
 function startPersonWorker() {
@@ -105,6 +105,10 @@ function stopWorkers(){
         eventWorker.terminate();
         eventWorker = undefined;
     }
+    if(simulableCountWorker !== undefined){
+        simulableCountWorker.terminate();
+        simulableCountWorker = undefined;
+    }
     stopSimulableWorkers();
 }
 
@@ -116,10 +120,6 @@ function stopSimulableWorkers(){
     if(companyWorker !== undefined){
         companyWorker.terminate();
         companyWorker = undefined;
-    }
-    if(simulableCountWorker !== undefined){
-        simulableCountWorker.terminate();
-        simulableCountWorker = undefined;
     }
 }
 
@@ -237,10 +237,9 @@ $(document).ready(function() {
                 command: "UnfollowSimulableCommand",
                 NIF: NIF
             });
-            startSimulableWorkers();
+            setTimeout(startSimulableWorkers, 500);
         } else {
             let NIF = $(this).find("td")[0].innerHTML;
-            console.log("xd");
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",
                 NIF: NIF
@@ -256,10 +255,9 @@ $(document).ready(function() {
                 command: "UnfollowSimulableCommand",
                 NIF: NIF
             });
-            startSimulableWorkers();
+            setTimeout(startSimulableWorkers, 500);
         } else {
             let NIF = $(this).find("td")[0].innerHTML;
-            console.log("xd");
             $.post('FrontControllerServlet', {
                 command: "UnfollowSimulableCommand",
                 NIF: NIF

@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class OfferManager {
 
@@ -18,7 +19,7 @@ public class OfferManager {
 
     public OfferManager(AdministratorWithStaff administratorWithStaff) {
         this.administratorWithStaff = administratorWithStaff;
-        this.workerOffers = new LinkedHashMap<>();
+        this.workerOffers = new ConcurrentHashMap<>();
 
     }
 

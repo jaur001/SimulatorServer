@@ -2,21 +2,23 @@ package backend.model.simulables.person.worker;
 
 import backend.model.simulables.company.complexCompany.ComplexCompany;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class JobOffer {
     private ComplexCompany company;
     private Worker worker;
     private double salary;
-    private boolean canceled;
-    private boolean acceptedByWorker;
-    private boolean acceptedByRestaurant;
+    private AtomicBoolean canceled;
+    private AtomicBoolean acceptedByWorker;
+    private AtomicBoolean acceptedByRestaurant;
 
     public JobOffer(ComplexCompany company, Worker worker, double salary) {
         this.company = company;
         this.worker = worker;
         this.salary = salary;
-        canceled = false;
-        acceptedByWorker = false;
-        acceptedByRestaurant = false;
+        canceled = new AtomicBoolean(false);
+        acceptedByWorker = new AtomicBoolean(false);
+        acceptedByRestaurant = new AtomicBoolean(false);
     }
 
     public ComplexCompany getCompany() {
@@ -32,22 +34,22 @@ public class JobOffer {
     }
 
     public boolean isAccepted(){
-        return acceptedByWorker && acceptedByRestaurant;
+        return acceptedByWorker.get() && acceptedByRestaurant.get();
     }
 
     public void acceptOfferWorker() {
-        acceptedByWorker = true;
+        acceptedByWorker.set(true);
     }
 
     public void acceptOfferRestaurant() {
-        acceptedByRestaurant = true;
+        acceptedByRestaurant.set(true);
     }
 
     public void cancel() {
-        canceled = true;
+        canceled.set(true);
     }
 
     public boolean isCanceled() {
-        return canceled;
+        return canceled.get();
     }
 }

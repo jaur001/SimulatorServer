@@ -32,4 +32,12 @@ public class ShowBillsCommand extends PageableFrontCommand<XMLBill> {
         return SimulationBillAdministrator.getBillCount();
     }
 
+    @Override
+    protected void getPage(int page) {
+        setToRequest("page", page);
+        List<XMLBill> list = loadList();
+        if(list.size() == 0) forward("/wait.jsp");
+        setToRequest("list",list);
+    }
+
 }

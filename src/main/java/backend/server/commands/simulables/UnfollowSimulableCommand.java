@@ -1,5 +1,6 @@
 package backend.server.commands.simulables;
 
+import backend.model.simulables.Simulable;
 import backend.model.simulation.administration.data.SimulationDataAdministrator;
 import backend.model.simulation.administration.data.SimulationFollowAdministrator;
 import backend.server.servlets.FrontCommand;
@@ -13,8 +14,9 @@ public class UnfollowSimulableCommand extends FrontCommand {
     }
 
     public void unfollowSimulable(int NIF){
-        SimulationDataAdministrator.getTimeLine().getSimulableList().stream()
+        Simulable simulableToQuit = SimulationDataAdministrator.getSimulationData().getFollowedSimulables().stream()
                 .filter(simulable -> simulable.getNIF() == NIF)
-                .findFirst().ifPresent(SimulationFollowAdministrator::unfollowSimulable);
+                .findFirst().orElse(null);
+        SimulationFollowAdministrator.unfollowSimulable(simulableToQuit);
     }
 }

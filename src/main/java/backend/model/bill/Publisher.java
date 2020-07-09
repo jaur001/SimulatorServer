@@ -1,5 +1,5 @@
 package backend.model.bill;
-
+/*
 import io.finbook.TextGenerator;
 import io.finbook.datahub.SensorTerminal;
 import io.finbook.datahub.events.Invoice;
@@ -27,4 +27,4 @@ public class Publisher {
     public static void publish (String invoice){
         terminal.publish(new Invoice().ts(Instant.now()).ss("simulator-sensor").xml(TextGenerator.getBase64TextFrom(invoice)));
     }
-}
+}*/

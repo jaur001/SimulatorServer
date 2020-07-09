@@ -6,7 +6,7 @@
     <title>Restaurant Simulator</title>
     <link rel="stylesheet" type="text/css" href="CSS/frontStyle.css">
     <script src="JQuery/jquery-3.4.1.min.js"></script>
-    <script src="JS/administrator.js"></script>
+    <script src="JS/mainAdministrator.js"></script>
   </head>
   <body>
     <div class="main-header">

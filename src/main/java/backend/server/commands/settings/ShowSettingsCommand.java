@@ -9,6 +9,8 @@ public class ShowSettingsCommand extends FrontCommand {
     @Override
     public void process() {
         SimulatorSwitcher.stopSimulation();
+        SettingsBuilder.setCurrentSettingsToSession(request);
+        FrontControllerUtils.setQuickSettings(request);
         forward("/settings.jsp");
     }
 }

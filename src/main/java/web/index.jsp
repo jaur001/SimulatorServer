@@ -9,6 +9,7 @@
     <script src="JS/mainAdministrator.js"></script>
   </head>
   <body>
+    <%FrontControllerUtils.setQuickSettings(request);%>
     <div class="main-header">
       <div class="main-header__container">
         <h1 class="header">Invoice Generator</h1>

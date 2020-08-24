@@ -11,9 +11,9 @@ During the execution the simulator will generate a high volume of invoices or bi
 ## Built with
 #### Backend
 * Java - Language
-* Tomcat Server - Server
-* SQLite - SQL Relational DB Management System
-* Maven - Dependency Management
+* [Tomcat Server](http://tomcat.apache.org/) - Server for Backend
+* [SQLite Browse](https://sqlitebrowser.org/) - SQL Relational DB Management System Aplication
+* [Maven](https://maven.apache.org/) - Dependency Management
 #### Frontend
 * JSP, JavaScript and CSS - Languages for Web designing
-* AJAX - Library to control the Web Requests and Data-Flow
+* [Jquery](https://jquery.com/) - Library to control the Web Requests and Data-Flow

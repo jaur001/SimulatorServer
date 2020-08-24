@@ -7,10 +7,12 @@ The Web application allows the user to change the settings to get a simulation a
 
 This project was focused on the Backend (more than 250 classes) side to get the most reliability and realistic Virtual Economic Simulation and to be scalable using the base Arquitecture developed.
 
+
 ## Install/Execute
 * The project has no Framework dependency, so it is necessary to have the server downloaded apart.
 * The project uses the Tomcat Server, so the server downloaded must be Tomcat.
 * Then, it is only need to clone and execute the project with the Tomcat server.
+
 
 ## Built with
 #### Backend
@@ -21,3 +23,32 @@ This project was focused on the Backend (more than 250 classes) side to get the 
 #### Frontend
 * JSP, JavaScript and CSS - Languages for Web designing
 * [Jquery](https://jquery.com/) - Library to control the Web Requests and Data-Flow
+
+
+## Simulation - Events published
+
+![Simulation](https://github.com/jaur001/SimulatorServer/blob/release/GIF/Simulation.gif)
+
+
+
+## Simulation - Search Simulables
+
+![searchSimulable](https://github.com/jaur001/SimulatorServer/blob/release/GIF/searchSimulable.gif)
+
+
+
+## Simulation - Download Bills
+
+![downloadBills](https://github.com/jaur001/SimulatorServer/blob/release/GIF/downloadBills.gif)
+
+
+
+## Simulation - Agents actives in the Simulation
+
+![simulables](https://github.com/jaur001/SimulatorServer/blob/release/GIF/simulables.gif)
+
+
+
+## Simulation - Bills
+
+![bills](https://github.com/jaur001/SimulatorServer/blob/release/GIF/bills.gif)

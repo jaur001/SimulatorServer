@@ -3,9 +3,9 @@ This project was the my final project and part of a Big data project developed b
 
 During the execution the simulator will generate a high volume of invoices or bills that can be analyzed by other programs or processed by Big data applications, like in the case of this project. The rest of the modules of the main project use these invoices to generate reports about taxes automatically or to calculate the financial state of the companies. the bills will be saved in the XMLFiles folder located in "src/main/java/web/" folder.
 
-The Web application allows the user to change the settings to get a simulation adaptated to their needs. Besides, it allows to check what is happening inside the simulation by the Event Box that shows all the events that happened during the execution and decide which Companies, Clients or Worker to track to show the events only of these ones. The user can download all the bills generated he wants from the Web client to read them or to process with other programms.
+The Web application allows the user to change the settings to get a simulation adapted to their needs. Besides, it allows to check what is happening inside the simulation by the Event Box that shows all the events that happened during the execution and decide which Companies, Clients or Worker to track to show the events only of these ones. The user can download all the bills generated he wants from the Web client to read them or to process with other programs.
 
-This project was focused on the Backend (more than 250 classes) side to get the most reliability and realistic Virtual Economic Simulation and to be scalable using the base Arquitecture developed.
+This project was focused on the Backend (more than 250 classes) side to get the most reliability and realistic Virtual Economic Simulation and to be scalable using the base Architecture developed.
 
 
 ## Install/Execute
@@ -18,7 +18,7 @@ This project was focused on the Backend (more than 250 classes) side to get the 
 #### Backend
 * Java - Language
 * [Tomcat Server](http://tomcat.apache.org/) - Server for Backend
-* [SQLite Browse](https://sqlitebrowser.org/) - SQL Relational DB Management System Aplication
+* [SQLite Browse](https://sqlitebrowser.org/) - SQL Relational DB Management System Application
 * [Maven](https://maven.apache.org/) - Dependency Management
 #### Frontend
 * JSP, JavaScript and CSS - Languages for Web designing
